@@ -1,9 +1,0 @@
-<kl-breadcrumb *ngIf="dashboardId" (refreshDashboardEmitter)="loadWidgets()" [showDashboardFilter]="showDashboardFilter"
-    [dashboardData]="dashboardData" (createWidgetEmitter)="createWidget($event)"></kl-breadcrumb>
-<div class="main-content">
-    <div class="sub-main-content">
-        <div class="h-100">
-        <iframe style="width: 100%; height: 100%;" [src]="preview_url"></iframe>
-        </div>
-    </div>
-</div>

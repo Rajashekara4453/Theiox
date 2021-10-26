@@ -1,9 +1,0 @@
-<!-- <kl-mini-sidebar-menu [pageName]="'Configurations'"></kl-mini-sidebar-menu> -->
-<kl-serviceloader></kl-serviceloader>
-<ng-container *ngIf="Silo">
-  <kl-gateway-instance (selectedFilterValue)="routeToDeviceScreen($event)" (deviceInstance)='onEdit($event)'
-    (gatewayInstance)="onSiloView($event)"></kl-gateway-instance>
-</ng-container>
-<ng-container *ngIf="deviceInstance">
-  <kl-device-instance (siloView)='onSiloView($event)'></kl-device-instance>
-</ng-container>

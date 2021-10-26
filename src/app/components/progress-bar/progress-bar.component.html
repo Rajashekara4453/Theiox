@@ -1,9 +1,0 @@
-<div [ngClass]="{'horizontalBar' : !isDisplayVertical, 'verticalBar' : isDisplayVertical}">
-  <div #progress class="progress">
-    <div class="progress-bar progress-bar-striped" [style.background-color]="bgColor" role="progressbar"
-      [style.width]="percentValue+'%'" aria-valuenow="percentValue" aria-valuemin="0" aria-valuemax="100">
-      <span class="text-center" *ngIf="progressTagCount" [style.width]="displayTextWidth+'px'">{{displayText}} %</span>
-      <span class="text-center" *ngIf="!progressTagCount" [style.width]="displayTextWidth+'px'">{{displayText}}</span>
-    </div>
-  </div>
-</div>

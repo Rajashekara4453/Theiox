@@ -1,4 +1,0 @@
-Projectname elmeasure_ui
-Version 6.26
-Commit-id I am not giving any commit id.
-// Version should always in line 2
