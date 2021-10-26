@@ -1,0 +1,493 @@
+<!-- <kl-mini-sidebar-menu [pageName]="'Alarms'"></kl-mini-sidebar-menu> -->
+<!-- <kl-config-breadcrumb [breadcrumbTitle]="'Alarms & Events'" [breadcrumbIcon]="'elm-alarm'"></kl-config-breadcrumb> -->
+<kl-config-breadcrumb *ngIf="pageType == 'alarmEvents'" [breadcrumbTitle]="'Alarms & Events'" [isBusy]="isServiceBusy"
+    (alarmFilterConfiguration)="onFilterReceive($event)">
+</kl-config-breadcrumb>
+<div class="alarm-table-widget"
+    [ngClass]="{'main-content':pageType == 'alarmEvents', 'alarm-table-widget':pageType != 'alarmEvents'}">
+    <div *ngIf="pageType == 'alarmEvents' && isPageLoading" class="position-relative h-100">
+        <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <div class="sub-main-content bg-transparent">
+        <!--  <div class="col-md-4 mainBodyHeaderEachPart">
+            <form class="bd-search d-flex align-items-center bg-smoke"><i class=" material-icons md-24px md-light color icon"></i>
+                <input [(ngModel)]="searchText" type="search" class="form-control form-control-borderless bg-smoke"
+                    placeholder="Search for alarms">
+            </form>
+        </div> -->
+        <!--  <div [hidden]="!showDashboardFilter">
+            <kl-dashboard-filters></kl-dashboard-filters>
+        </div> -->
+        <div class="h-100 overflow-hidden">
+            <!-- <div class="col-md-1 dropdown rowClass">
+                <button type="button" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+                    aria-expanded="false" aria-controls="collapseExample">
+                    <i class="elm-table"></i>
+                </button>
+
+                <div class="collapse collapseHover" id="collapseExample">
+                    <div class="custom-control custom-checkbox overflow-auto pb-2 pt-2 bg-white text-dark">
+                        <ul cdkDropList (cdkDropListDropped)="drop($event)" class="card card-body">
+                            <li cdkDrag *ngFor="let headerCol of headerCols; let i =index">
+                                <input type="checkbox" checked class="custom-control-input" id="{{headerCol.key}}"
+                                    (change)="checkBoxChangeColumn($event,headerCol)">
+                                <label class="custom-control-label" id="{{headerCol.key}}" for="{{headerCol.key}}">{{headerCol.value}}</label>
+                            </li>
+                        </ul>
+                        <button type="button" (click)="applyColumnHide()" class="btn btn-primary float-right">
+                            Apply
+                        </button>
+                    </div>
+                </div>
+            </div> -->
+            <div *ngIf="highPriorityObject!=undefined && showPriorityList && pageType != 'alarmEvents'"
+                class="alarm-widget-data">
+                <div class="with-priority widget-text-color">
+                    <ng-container *ngIf="!showHighPriorityBlock">
+                        <span class="{{highPriorityObject['icon']}}"
+                            [style.background-color]="highPriorityObject['color'] + '33'"
+                            [style.color]="highPriorityObject['color']"></span>
+                        <h6 class="widget-text-color" [style.color]="highPriorityObject['color']">
+                            {{highPriorityObject['count']}}
+                            <span>
+                                {{highPriorityObject['label']}}
+                            </span>
+                        </h6>
+                    </ng-container>
+                    <ng-container *ngIf="showHighPriorityBlock">
+                        <span class="{{highPriorityObject['rightIcon']}}"
+                            [style.background-color]="highPriorityObject['rightIconColor'] + '33'"
+                            [style.color]="highPriorityObject['rightIconColor']"></span>
+                        <h6 class="widget-text-color" [style.color]="highPriorityObject['rightIconColor']">No Alarm</h6>
+                    </ng-container>
+                </div>
+            </div>
+
+            <div class="card-container" data-toggle="modal" [attr.data-target]="'#modal_' + widgetData['widget_id']"
+                *ngIf="priorityList.length > 0 && highPriorityObject!=undefined && showPriorityList"
+                [style.border-bottom]="isShowBorder && showPriorityList?(!showHighPriorityBlock?'2px solid' + highPriorityObject['color']:'2px solid' + highPriorityObject['rightIconColor']):''">
+                <ng-container *ngFor="let item of priorityList;let i=index;trackBy:track">
+                    <!-- <div class="card devices widget-flat col-sm-6 col-md-4 col-lg-3 col-xl-2" >
+              <div class="card-header border-0">
+                    <h5 class="card-title m-0 d-flex">{{item['label']}} </h5>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                    <div class="col-9" >
+                        {{item['icon']}} &nbsp;&nbsp;{{item['count']}}
+                    </div>
+                    <div class="col-3" [style.backgroundColor]="item['color']">
+
+                    </div>
+                </div>
+              </div>
+            </div> -->
+                    <!-- (click)="pageType != 'alarmEvents'?onCard(item):''" -->
+                    <div class="card" title="{{item['label']}}: {{item['count']}}">
+                        <div class="card-body">
+                            <div class="inside-content">
+                                <div class="data-left">
+                                    <div class="left-circle">
+                                        <!-- <span [ngClass]="{'fa fa-flash' : item['icon'] === 'icon1' }">
+                          </span> -->
+                                        <span class="{{item['icon']}}" [style.color]="item['color']"></span>
+                                        <!-- <span *ngIf="item['icon'] === 'warning'" class="fa fa-exclamation-circle" [style.color]="item['color']"></span>-->
+
+                                    </div>
+                                </div>
+                                <div class="data-right">
+                                    <p *ngIf="pageType == 'alarmEvents'">{{item['label']}}</p>
+                                    <h6 title="{{item['label']}}: {{item['count']}}">{{item['count']}}</h6>
+                                    <!-- {{item['icon']}} -->
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <div class="modal fade" *ngIf="showPriorityList && !showTable"
+                    [attr.id]="'modal_' + widgetData['widget_id']" tabindex="-1" role="dialog"
+                    [attr.aria-labelledby]="widgetData['widget_id']" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-custom modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="table-contente bg-white"
+                                    [ngClass]="{'table-container':priorityList.length > 0,'table-container-withoutCard':!(priorityList.length > 0 && highPriorityObject!=undefined && showPriorityList)}">
+                                    <table class="table d-block overflow-auto mb-0 h-100">
+                                        <thead align="center">
+                                            <tr class="">
+                                                <!-- <th class="thClass text-left" *ngFor="let column of columns;let i =index" >
+                                                <strong [ngClass]="{'d-none':pageType != 'alarmEvents' && column.key == 'acknowledge','':pageType == 'alarmEvents' && column.key == 'acknowledge'}">{{column.value}}</strong>
+                                            </th> -->
+                                                <ng-container *ngFor="let column of columns;let i =index;trackBy:track">
+                                                    <th class="thClass text-left"
+                                                        *ngIf="(column.key !== 'acknowledge')">
+                                                        <strong>{{column.value}}</strong>
+                                                    </th>
+                                                </ng-container>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="" *ngFor="let device of alarms;let i=index;trackBy:track">
+                                                <ng-container *ngFor="let column of columns;let i=index;trackBy:track">
+                                                    <td *ngIf="column.key !== 'acknowledge'" style="text-align: left;">
+                                                        <div>
+                                                            <span *ngIf="column.key == 'level'">
+                                                                <span class="level"
+                                                                    [style.color]="device['color']">{{device[column.key]}}</span>
+                                                            </span>
+                                                            <span *ngIf="column.key == 'priority'">
+                                                                <ng-container
+                                                                    *ngFor="let item of headerContent;let i=index;trackBy:track">
+                                                                    <span
+                                                                        *ngIf="device['priority_icon'] == item['value']"
+                                                                        [style.color]="device['color']">
+                                                                        <i class="{{item['class']}}"></i>
+                                                                        {{ device[column.key]}}
+                                                                    </span>
+                                                                    <!-- <span class="level" [style.color]="device['color']"></span> -->
+                                                                </ng-container>
+                                                            </span>
+                                                            <span *ngIf="column.key == 'status'">
+                                                                <span
+                                                                    [style.color]="!device['status']?'#EE4040;':'#24A148;'">{{!device['status']?"Active":"Inactive"}}</span>
+                                                                <!-- <span class="level" [style.color]="device['color']"></span> -->
+                                                            </span>
+                                                            <span *ngIf="column.key == 'triggered_value'">
+                                                                <span
+                                                                    [style.color]="device['color']">{{device['triggered_value']}}</span>
+                                                                <!-- <span class="level" [style.color]="device['color']"></span> -->
+                                                            </span>
+                                                            <!--  <span *ngIf="column.key == 'flag'">
+                                                         <img *ngIf = "device[column] == 1" src="assets/images/push-pin (1).png" alt="" style="height: 10px;width: auto;">
+                                                            <img *ngIf = "device[column] == 0" src="assets/images/push-pin (2).png" alt="" style="height: 10px;width: auto;">
+                                                        <i class="elm-pin-2"></i>
+                                                    </span> -->
+                                                            <!--  <span *ngIf="column.key == 'Notes'" data-toggle="modal" data-target="#myModal" (click)="changeTab('notes',device)">
+                                                        <a data-toggle="tab" href="#notes">
+                                                            <i class="elm-terms-and-conditions"></i>
+                                                        </a>
+                                                    </span> -->
+                                                            <span *ngIf="column.key == 'Assigned To'"
+                                                                data-toggle="modal" data-target="#myModal"
+                                                                (click)="changeTab('assign',columns,i)">
+                                                                <a data-toggle="tab" href="#assign">
+                                                                    <i class="elm-customer"></i>
+                                                                </a>
+                                                            </span>
+
+                                                            <!-- Modal -->
+                                                            <span
+                                                                *ngIf="(column.key !== 'acknowledge' && column.key !== 'level' && column.key !== 'status' && column.key !== 'priority' && column.key !== 'triggered_value' && column.key !== 'Assigned To')">
+                                                                {{device[column.key]}}
+                                                            </span>
+
+                                                        </div>
+                                                    </td>
+                                                </ng-container>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-secondary"
+                                    data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="table-contente bg-white position-relative" *ngIf="showTable"
+                [ngClass]="{'table-container':priorityList.length > 0,'table-container-withoutCard':!(priorityList.length > 0 && highPriorityObject!=undefined && showPriorityList)}">
+                <table class="table d-block overflow-auto mb-0 h-100">
+                    <thead align="center">
+                        <tr class="">
+                            <!-- <th class="thClass text-left" *ngFor="let column of columns;let i =index" >
+                                <strong [ngClass]="{'d-none':pageType != 'alarmEvents' && column.key == 'acknowledge','':pageType == 'alarmEvents' && column.key == 'acknowledge'}">{{column.value}}</strong>
+                            </th> -->
+                            <ng-container *ngFor="let column of columns;let i =index;trackBy:track">
+                                <th class="thClass text-left" *ngIf="(pageType == 'alarmEvents')">
+                                    <strong>{{column.value}}</strong>
+                                </th>
+                                <th class="thClass text-left"
+                                    *ngIf="(pageType !== 'alarmEvents' && column.key !== 'acknowledge')">
+                                    <strong>{{column.value}}</strong>
+                                </th>
+                            </ng-container>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="" *ngFor="let device of alarms;let i=index;trackBy:track">
+                            <ng-container *ngFor="let column of columns;trackBy:track">
+                                <td *ngIf="(column.key !== 'acknowledge')" style="text-align: left;">
+
+                                    <span *ngIf="column.key == 'level'">
+                                        <span class="level"
+                                            [style.color]="device['color']">{{device[column.key]}}</span>
+                                    </span>
+                                    <span *ngIf="column.key == 'priority'">
+                                        <ng-container *ngFor="let item of headerContent;trackBy:track">
+                                            <span *ngIf="device['priority_icon'] == item['value']"
+                                                [style.color]="device['color']">
+                                                <i class="{{item['class']}}"></i>&nbsp;{{device[column.key]}}</span>
+                                            <!-- <span class="level" [style.color]="device['color']"></span> -->
+                                        </ng-container>
+                                    </span>
+                                    <span *ngIf="column.key == 'status'">
+                                        <span
+                                            [style.color]="!device['status']?'#EE4040':'#24A148'">{{!device['status']?"Active":"Inactive"}}</span>
+                                        <!-- <span class="level" [style.color]="device['color']"></span> -->
+                                    </span>
+                                    <span *ngIf="column.key == 'triggered_value'">
+                                        <span [style.color]="device['color']">{{device['triggered_value']}}</span>
+                                        <!-- <span class="level" [style.color]="device['color']"></span> -->
+                                    </span>
+                                    <!--  <span *ngIf="column.key == 'flag'">
+                                            <img *ngIf = "device[column] == 1" src="assets/images/push-pin (1).png" alt="" style="height: 10px;width: auto;">
+                                                <img *ngIf = "device[column] == 0" src="assets/images/push-pin (2).png" alt="" style="height: 10px;width: auto;">
+                                            <i class="elm-pin-2"></i>
+                                        </span> -->
+                                    <!--  <span *ngIf="column.key == 'Notes'" data-toggle="modal" data-target="#myModal" (click)="changeTab('notes',device)">
+                                            <a data-toggle="tab" href="#notes">
+                                                <i class="elm-terms-and-conditions"></i>
+                                            </a>
+                                        </span> -->
+                                    <span *ngIf="column.key == 'Assigned To'" data-toggle="modal" data-target="#myModal"
+                                        (click)="changeTab('assign',columns,i)">
+                                        <a data-toggle="tab" href="#assign">
+                                            <i class="elm-customer"></i>
+                                        </a>
+                                    </span>
+
+                                    <span
+                                        *ngIf="(column.key !== 'level' && column.key !== 'status' && column.key !== 'priority' && column.key !== 'triggered_value' && column.key !== 'Assigned To')"
+                                        title="{{device[column.key]}}">
+                                        {{device[column.key]}}
+                                    </span>
+
+
+                                    <!-- <ng-container *ngIf=" pageType != 'alarmEvents' && column.key=='acknowledge'?false:true">
+                                        <span>
+                                            {{device[column.key]}}
+                                        </span>
+                                    </ng-container> -->
+
+
+                                </td>
+                                <td *ngIf="(pageType == 'alarmEvents' && column.key == 'acknowledge')"
+                                    style="text-align: left;">
+                                    <span data-toggle="modal" data-target="#myModal"
+                                        (click)="changeTab('home',columns,i)">
+                                        <button *ngIf="!device[column.key]" class="btn btn-sm btn-primary">
+                                            <i class="elm-checked"></i> ACK
+                                        </button>
+                                        <button *ngIf="device[column.key]" class="btn btn-sm btn-secondary">
+                                            <i class="elm-checked"></i> ACK
+                                        </button>
+                                    </span>
+                                </td>
+                            </ng-container>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="count-container" cdkDragLockAxis="y" cdkDragBoundary=".table-contente" cdkDrag
+                    *ngIf="pageType == 'alarmEvents'">
+                    <div class="count-text">
+                        <svg cdkDragHandle fill="currentColor" viewBox="0 0 24 24" width="14px">
+                            <path
+                                d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z">
+                            </path>
+                            <path d="M0 0h24v24H0z" fill="none"></path>
+                        </svg>
+                        <span class="pl-2 pr-1">Recent :</span>
+                    </div>
+                    <div class="count-number">
+                        <ng-select [clearable]="false" [items]="alarmConfiguration.alarmCount" bindLabel="label"
+                            bindValue="value" [(ngModel)]="alarmConfiguration.count" [searchable]="false"
+                            (change)="onCountChange($event)">
+                        </ng-select>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal fade" *ngIf="pageType == 'alarmEvents'" id="myModal" tabindex="-1" role="dialog"
+                aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="vertical-alignment-helper">
+                    <div class="modal-dialog vertical-align-center">
+                        <div class="modal-content" style="margin-top:7%;">
+                            <div class="modal-header popUpHeader">
+                                <h5 class="modal-title" id="myModalLabel">Acknowledge Form</h5>
+                                <button type="button" id="closeModalAcknowledgeID" (click)="startTimeInt()"
+                                    class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                                        class="sr-only">Close</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- <ul class="nav nav-tabs" id="myTab" role="tablist"> -->
+                                <!-- <li class="nav-item">
+                                    <a class="nav-link " id="home-tab" data-toggle="tab"
+                                        href="#home" role="tab"
+                                        [ngClass]="{ 'active': activeTab == 'home','show': activeTab == 'home'}">Info</a>
+                                </li> -->
+                                <!--   <li class="nav-item">
+                                    <a class="nav-link" id="assign-tab" data-toggle="tab"
+                                        href="#assign" role="tab" (click)="changeTab('assign',device)"
+                                        [ngClass]="{ 'active': activeTab == 'assign','show': activeTab == 'assign' }">
+                                        Assign To</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="notes-tab" data-toggle="tab"
+                                        href="#notes" role="tab" (click)="changeTab('notes',device)"
+                                        [ngClass]="{ 'active': activeTab == 'notes','show': activeTab == 'notes' }">Notes</a>
+                                </li> -->
+                                <!-- </ul> -->
+
+                                <div class="tab-content" id="myTabContent" style="height:65vh;">
+                                    <div id="home" role="tabpanel"
+                                        [ngClass]="{'tab-pane fade':true, 'active': activeTab == 'home', 'show': activeTab == 'home'}">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr class="trAlignLeft"
+                                                    *ngFor="let keyValue of keyStr ; let i = index;trackBy:track">
+                                                    <!-- <td [ngClass]="{'font-weight-bold' :keyValuePair.key == 0}" *ngFor="let keyValuePair of keyValue | keyvalue;">{{keyTitleCase(keyValuePair.value,i)}}</td> -->
+                                                    <ng-container
+                                                        *ngIf="keyValue.key != 'acknowledge' && keyValue.key!='priority' &&keyValue.key !='status'">
+                                                        <td [ngClass]="{'font-weight-bold' :keyValue.value}">
+                                                            {{keyValue.value}}</td>
+                                                        <td>{{keyTitleCase(alarmData[keyValue.key],i)}}</td>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="keyValue.key=='priority'">
+                                                        <ng-container *ngFor="let item of headerContent;trackBy:track">
+                                                            <td *ngIf="alarmData['priority_icon'] == item['value']"
+                                                                [ngClass]="{'font-weight-bold' :keyValue.value}">
+                                                                {{keyValue.value}}</td>
+                                                            <td *ngIf="alarmData['priority_icon'] == item['value']">
+                                                                <span class="{{item['class']}}"
+                                                                    [style.color]="alarmData['color']">&nbsp;{{alarmData[keyValue.key]}}</span>
+                                                            </td>
+                                                            <!-- <span class="level" [style.color]="device['color']"></span> -->
+                                                        </ng-container>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="keyValue.key=='status'">
+                                                        <td [ngClass]="{'font-weight-bold' :keyValue.value}">
+                                                            {{keyValue.value}}</td>
+                                                        <td
+                                                            [style.color]="!alarmData['status']?'rgb(233, 0, 45)':'rgb(0, 176, 0)'">
+                                                            {{!alarmData['status']?"Active":"Inactive"}}
+                                                        </td>
+                                                        <!-- <span class="level" [style.color]="device['color']"></span> -->
+                                                    </ng-container>
+                                                </tr>
+                                                <tr>
+                                                    <ng-container
+                                                        *ngIf="alarmData!=undefined && alarmData['acknowledge']">
+                                                        <td Class="font-weight-bold"> Acknowledged Time</td>
+                                                        <td>{{alarmData!=undefined?keyTitleCase(alarmData['timeAck']):''}}
+                                                        </td>
+                                                    </ng-container>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <!-- <div [ngClass]="{ 'tab-pane fade':true, 'active': activeTab == 'assign','show': activeTab == 'assign' }"
+                                    id="assign" role="tabpanel">
+                                    <table class="table modalHeightSet">
+                                        <tbody>
+                                            <tr class="trAlignLeft">
+                                                <td>
+                                                    <ng-select name="usersOrUserGroup"
+                                                        placeholder="Users / User Group"
+                                                        [multiple]="true" [clearable]="true"
+                                                        class="form-control p-0" [items]="userList">
+                                                    </ng-select>
+                                                </td>
+                                                <td>
+                                                    <ng-select bindValue="value" name="notificationProfile"
+                                                        [items]="notificationDropdownList"
+                                                        placeholder="Notification type"
+                                                        class="form-control p-0" [multiple]="true">
+                                                    </ng-select>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="modal-footer">
+                                        <button (click)="startTimeInt()" type="button"
+                                            class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="elm-businessman"></i>
+                                            Assign
+                                        </button>
+                                    </div>
+                                </div> -->
+
+                                    <!-- <div [ngClass]="{ 'tab-pane  fade':true, 'active show': activeTab =='notes' }"
+                                    id="notes" role="tabpanel">
+                                    <div class="noteTable">
+                                        <table class="table table-borderless">
+                                            <tbody>
+                                                <tr *ngFor="let note of arrNotes;" class="trAlignLeft">
+                                                    <td>
+                                                        <div class="form-group" [ngClass]="{'float-right':note.isSlef == 1,'float-left':note.isSlef == 0}">
+                                                            <textarea disabled placeholder="Type here"
+                                                                name="description" class="form-control">{{note.text}}</textarea>
+                                                            <div class="p-3 float-right">
+                                                                <label class="labelClass">{{note.date}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea placeholder="Type here" name="description"
+                                            class="form-control "></textarea>
+                                        <div>
+                                             <label class="labelClass">{{labelDate}}</label>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" (click)="startTimeInt()"
+                                            class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="elm-comments"></i>
+                                            Add Notes
+                                        </button>
+                                    </div>
+                                    </div>
+                                </div> -->
+
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-primary"
+                                    [disabled]="isAcknowledged ? true:currentAccess.acknowledge ? false:true"
+                                    [title]="isAcknowledged ? 'Acknowledged':currentAccess.acknowledge ? 'Acknowledge':'Access Denied'"
+                                    (click)="currentAccess.acknowledge && !isAcknowledged ? acknowledge():''">
+                                    <i class="elm-checked"
+                                        [ngClass]="{'not-allowed-cursor': !currentAccess.acknowledge }"></i>
+                                    Acknowledge
+                                </button>
+                                <button type="button" (click)="startTimeInt()" class="btn btn-sm btn-secondary"
+                                    data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<kl-dashboard-filters *ngIf="pageType == 'alarmEvents'" [pageType]='pageType'
+    (alarmFilteremit)="onFilterReceiveCommon($event)"></kl-dashboard-filters>

@@ -1,0 +1,106 @@
+<div class="h-100 w-100">
+  <h6 class="text-truncate main-content-title">
+    {{assetLabel}}
+  </h6>
+  <ng-container #outlet>
+  </ng-container>
+</div>
+<ng-template #content>
+  <svg [attr.viewBox]="getViewboxvalues()" version="1.1"
+    [ngClass]="{'verticle':!widgetData['cData'].chartOptions.isHorizontal}" xmlns="http://www.w3.org/2000/svg"
+    [attr.id]="'bar-range-id_'+ widgetData['widget_id']">
+    <!--Element Background color taking here start-->
+
+    <g class="parent-group" transform="matrix(0.90,0,0,0.90,20,20)">
+      <!--background-color-reference start-->
+      <g class="background-refrence" transform="matrix(1,0,0,1,0,16)">
+        <g class="raphael-group-70-colorrange" *ngFor="let eachbenchmark of benchmarks;let i=index">
+          <rect [attr.fill]="eachbenchmark.color" fill-opacity="1" [attr.x]="0" y="0" [attr.width]="eachbenchmark.width"
+            height="74.2" ry="0" rx="0" stroke-width="0" stroke="#f48e8c" stroke-opacity="1"></rect>
+          <!-- <rect fill="url('#third-elment-bg')" fill-opacity="1" x="277.5" y="0" width="92.5" height="74.2" ry="0" rx="0" stroke-width="0" stroke="#81c4a5" stroke-opacity="1"></rect> -->
+          <g class="box-lebel-group">
+            <g class="box-label">
+              <text fill="#fff" [attr.x]="eachbenchmark['textLabelWidth']" stroke="none" y="43">
+                {{eachbenchmark.priority}}
+              </text>
+            </g>
+          </g>
+        </g>
+      </g>
+      <!--background-color-reference ends-->
+
+      <!--Ruler start-->
+      <g class="ruler-container" transform="matrix(1,0,0,1,0,0)">
+        <g class="ruler-line">
+          <g class="line-tick">
+            <path stroke="#333333" stroke-opacity="0.5" stroke-width="1" stroke-linecap="round" d="M0,
+                    93.2L400,
+                    94.2" fill="none">
+            </path>
+
+            <path stroke="#333333" *ngFor="let ss of scaleValues;let i=index" stroke-opacity="0.5" stroke-width="1"
+              stroke-linecap="round" [attr.d]="getDvalues(ss,'path')" fill="none">
+            </path>
+          </g>
+          
+    <!--Ruler label strart-->
+          <g class="ruler-label">
+            <g class="ruler-label-text" 
+               transform="matrix(1,0,0,1,0,0)" 
+               font-size="14px" 
+               font-style="normal" >
+               <text transform="matrix(1,0,0,1,0,0)" *ngFor="let eachScale of scaleValues;let i=index"
+                    opacity="1" 
+                    fill-opacity="1" 
+                    fill="#5a5a5a"
+                    [attr.x]="eachScale['width']" 
+                    stroke="none" 
+                    [attr.text-anchor]="(scaleValues.length-1==i)?'end':(i==0?'start':'middle')" 
+                    y="116">
+                    {{eachScale['value']}}
+             </text>
+            </g>
+          </g>
+        </g>
+        <!--Ruler label end-->
+
+
+      </g>
+      <!--Ruler end-->
+
+      <!--text inside box start-->
+      <g class="box-label container" transform="matrix(1,0,0,1,0,16)" *ngIf="pointerObject!=undefined">
+
+        <!-- pointer start-->
+        <g class="pointer" opacity="1" [attr.id]="'niddle_'+ widgetData['widget_id']" transform="translate(-15 0)">
+          <path d="M15.03490651415223,
+             9.999939076577904L23.64274801953707,
+             -5.03019946630234L6.32234546631074,
+             -4.969739610275568Z" fill="#545454" stroke="#545454" stroke-linecap="round" fill-opacity="1"
+            stroke-opacity="1" stroke-width="0">
+          </path>
+          <g class="pointer label">
+            <text x="18" text-anchor="middle" fill-opacity="1" fill="#868ca0" stroke="none" font-size="14px"
+              font-weight="normal" y="-22">
+              {{pointerObject['pointerValue']}}
+            </text>
+          </g>
+          <g class="pointer label">
+            <text x="18" text-anchor="middle" fill-opacity="1" fill="#868ca0" font-size="13px" font-weight="normal"
+              stroke="none" y="-9">
+              {{pointerObject['unitlabel']}}
+            </text>
+          </g>
+        </g>
+        <animateTransform id="pointer" [attr.xlink:href]="'#'+'niddle_'+ widgetData['widget_id']"
+          attributeName="transform" type="translate" [attr.from]="pointerObject['fromwidth']"
+          [attr.to]="pointerObject['towidth']" dur="1s" fill="freeze" id="move" />
+
+        <!-- pointer end-->
+      </g>
+
+    </g>
+    <!--text inside box end-->
+    <!-- </g> -->
+  </svg>
+</ng-template>

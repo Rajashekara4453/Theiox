@@ -1,0 +1,36 @@
+{
+    "data": [
+      {
+        "isdeleted": false,
+        "label": "client1",
+        "value": "client_2086"
+      },
+      {
+        "isdeleted": false,
+        "label": "client2",
+        "value": "client_2209"
+      },
+      {
+        "isdeleted": true,
+        "label": "client3",
+        "value": "client_2411"
+      },
+      {
+        "isdeleted": false,
+        "label": "client4",
+        "value": "client_5035"
+      },
+      {
+        "isdeleted": false,
+        "label": "client36",
+        "value": "client_2386"
+      },
+      {
+        "isdeleted": false,
+        "label": "client_5",
+        "value": "client_5025"
+      }
+    ],
+    "message": "data fetch successfully",
+    "status": "success"
+  }

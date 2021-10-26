@@ -1,0 +1,84 @@
+<div class="col-12 " *ngIf="inputData">
+  <input #filterSearch (keyup)="searchFilter(filterSearch.value, tree.treeModel)" placeholder="Search"
+    class="form-control">
+  <button class="btn btn-link btn-sm "
+    (click)="tree.treeModel.doForAll(selectAll);switchMode(treeMode, tree.treeModel)">Select All</button>
+  <button class="btn btn-sm btn-link"
+    (click)="tree.treeModel.doForAll(unselectAll);switchMode(treeMode, tree.treeModel)">Deselect All</button> |
+  <!-- modelChange() -->
+  <button class="btn btn-sm btn-link" (click)="tree.treeModel.expandAll();">Expand all</button>
+  <button class="btn btn-sm btn-link" (click)="tree.treeModel.collapseAll();">Collapse all</button> | <br />
+  <ng-container *ngIf = "isShowModesOption">
+    <button class="btn btn-sm btn-link" (click)="changeTreeModeView('leafMode', tree.treeModel)">Leaf Mode</button>
+    <button class="btn btn-sm btn-link" (click)="changeTreeModeView('treeMode',tree.treeModel)">Tree Mode</button>
+    <button class="btn btn-sm btn-link" (click)="changeTreeModeView('selectMode',tree.treeModel)">Select Mode</button>
+    <!-- <button class="btn btn-sm btn-link" (click)="changeTreeModeView('selectMode',tree.treeModel)">Parent Mode</button> -->
+  </ng-container>
+  <div class="col-12 " style="height: 165px" *ngIf="show">
+    <strong>Current Mode:</strong> {{currentMode}}
+    <ng-container *ngIf='treeMode == "selectMode"  ; else otherModes'>
+      <tree-root #tree [focused]="true" [(state)]="stateData" [nodes]="inputData.list" [options]="treeOptions1">
+        <ng-template #treeNodeWrapperTemplate let-node let-index="index">
+          <div class="node-wrapper" [style.padding-left]="node.getNodePadding()">
+            <tree-node-expander [node]="node"></tree-node-expander>
+            <tree-node-checkbox *ngIf="node.options.useCheckbox" [node]="node"
+              (click)="switchMode(treeMode, tree.treeModel)">
+            </tree-node-checkbox>
+            <div class="node-content-wrapper">
+              <tree-node-content [node]="node" [index]="index"></tree-node-content>
+            </div>
+          </div>
+        </ng-template>
+      </tree-root>
+    </ng-container>
+
+    <ng-template #otherModes>
+      <tree-root #tree [focused]="true" [(state)]="stateData" [nodes]="inputData.list" [options]="treeOptions">
+        <ng-template #treeNodeWrapperTemplate let-node let-index="index">
+          <div class="node-wrapper" [style.padding-left]="node.getNodePadding()">
+            <tree-node-expander [node]="node"></tree-node-expander>
+            <tree-node-checkbox *ngIf="node.options.useCheckbox" [node]="node"
+              (click)="switchMode(treeMode, tree.treeModel)">
+            </tree-node-checkbox>
+            <div class="node-content-wrapper">
+              <tree-node-content [node]="node" [index]="index"></tree-node-content>
+            </div>
+          </div>
+        </ng-template>
+      </tree-root>
+    </ng-template>
+
+
+    <!-- <ng-container *ngIf = 'treeMode == "treeMode"  ; else leafMode'>
+      <u>Tree Mode</u>
+      <tree-root #tree [focused]="true"  [(state)]="stateData" [nodes]="inputData.list" [options]="treeOptions">
+        <ng-template #treeNodeWrapperTemplate let-node let-index="index">
+          <div class="node-wrapper" [style.padding-left]="node.getNodePadding()">
+            <tree-node-expander [node]="node"></tree-node-expander>
+            <tree-node-checkbox *ngIf="node.options.useCheckbox" [node]="node" (click)="treeModeFunction(tree.treeModel)">
+            </tree-node-checkbox>
+            <div class="node-content-wrapper">
+              <tree-node-content [node]="node" [index]="index"></tree-node-content>
+            </div>
+          </div>
+        </ng-template>
+      </tree-root>
+    </ng-container>
+    <ng-template #leafMode>
+        <u>Leaf Mode</u>
+      <tree-root #tree [focused]="true"  [(state)]="stateData" [nodes]="inputData.list" [options]="treeOptions">
+        <ng-template #treeNodeWrapperTemplate let-node let-index="index">
+          <div class="node-wrapper" [style.padding-left]="node.getNodePadding()">
+            <tree-node-expander [node]="node"></tree-node-expander>
+            <tree-node-checkbox *ngIf="node.options.useCheckbox" [node]="node" (click)="leafModeFunction(tree.treeModel)">
+            </tree-node-checkbox>
+            <div class="node-content-wrapper">
+              <tree-node-content [node]="node" [index]="index"></tree-node-content>
+            </div>
+          </div>
+        </ng-template>
+      </tree-root>
+    </ng-template> -->
+
+  </div>
+</div>

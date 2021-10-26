@@ -1,0 +1,161 @@
+<div class="main-content">
+  <div class="sub-sidebar">
+    <kl-menubar *ngIf="pageLoaded" [menus]="sideMenus" (clickStatus)="getDeviceModelData($event)"
+      [displayProperty]="'name'" [valueProperty]="''" (addnew)="addDeviceGroup($event)"></kl-menubar>
+  </div>
+  <div class="sub-main-content-sb">
+    <div class="form-container overflow-hidden">
+      <div class="form-header">
+        <h6 class="form-title">{{title}}</h6>
+      </div>
+      <div class="form-content p-0">
+        <div class="accordion" *ngIf="loadingDeviceGroup">
+          <div class="accordion md-accordion accordion-2" id="accordionEx7" role="tablist" aria-multiselectable="true">
+            <div class="card border-left-0 border-right-0 border-top-0">
+              <div class="card-header rgba-stylish-strong z-depth-1 border-0 py-2" role="tab" id="heading1">
+                <a data-toggle="collapse" data-parent="#accordionEx7" href="#collapse1" aria-expanded="true"
+                  aria-controls="collapse1">
+                  <h6 class="form-title">{{step1}}</h6>
+                </a>
+              </div>
+              <div id="collapse1" class="collapse show" role="tabpanel" aria-labelledby="heading1"
+                data-parent="#accordionEx7">
+                <div class="card-body h-100 p-0">
+                  <div class="form-content p-0">
+                    <div class="row mx-0">
+                      <div class="col-5 form-group">
+                        <div class="">
+                          <label class="control-label text-right">Name<span class="color-red">&nbsp;*</span></label>
+                          <input class="form-control" type="text" [(ngModel)]="groupInfo.groupname" placeholder="Name"
+                            required>
+                        </div>
+                        <div class="">
+                          <label class="control-label text-right pr-0">Description</label>
+                          <textarea class="form-control" type="text" [(ngModel)]="groupInfo.groupDescription"
+                            placeholder="Description" rows=3></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="form-footer">
+                    <button type="button" class="btn btn-sm btn-primary ml-2"
+                      (click)="accessLevel.create ? addGroupInfo(groupInfo) : return "
+                      [disabled]="groupInfo.groupname === ''">Save and Proceed </button>
+                    <button class="btn btn-sm btn-secondary ml-2" (click)="onCancel()">Cancel</button>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+            <div class="card border-left-0 border-right-0">
+              <!-- Card header -->
+              <div class="card-header rgba-stylish-strong z-depth-1 border-0 py-2" role="tab" id="heading2">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx7" href="#collapse2"
+                  aria-expanded="false" aria-controls="collapse2">
+                  <h6 class="form-title">{{step2}}</h6>
+                </a>
+              </div>
+              <div id="collapse2" class="collapse show" role="tabpanel" aria-labelledby="heading2"
+                data-parent="#accordionEx7">
+                <div class="card-body p-0">
+                  <div class="form-content pt-0">
+                    <div class="row">
+                      <div class="col-md-12 config-padding pl-0">
+                        <tree-root [nodes]="nodesData" [options]="treeOptions" [state]="state"
+                          (activate)="onActivenode($event)" (stateChange)="setState($event)" data-toggle="modal"
+                          data-target="#exampleModal" (toggleExpanded)="onExpand()">
+                          <ng-template #treeNodeTemplate let-node let-index="index">
+                            <span style="margin-left:6px;" contenteditable="false" [textContent]="node.data.name"
+                              (input)="node.data.name=$event.target.textContent">
+                              {{ node.data.name }}
+                            </span>
+                            <div class="list-inline action_list float-right">
+                              <a class="" (click)="onRemoveNode(node)">
+                                <li class="float-right">
+                                  <fa-icon [icon]="['fas', 'trash-alt']"></fa-icon>
+                                </li>
+                              </a>
+                            </div>
+                            <div class="list-inline action_list float-right">
+                              <a (click)="addNode($event, node)">
+                                <li class="float-right">
+                                  <fa-icon [icon]="['fas', 'plus-square']"></fa-icon>
+                                </li>
+                              </a>
+                            </div>
+                          </ng-template>
+                        </tree-root>
+                      </div>
+                      <div *ngIf="visible" class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content" style="overflow: hidden">
+                            <div class="modal-body h-100">
+                              <div class="row">
+                                <div class="col-lg-12">
+                                  <div class="form-group">
+                                    <h6 class="card-title">Details</h6>
+                                    <div>
+                                      <label>Name<span class="color-red">&nbsp;*</span></label>
+                                      <div>
+                                        <input class="form-control" type="text" [(ngModel)]="nodeStoredData['name']"
+                                          placeholder="Name">
+                                      </div>
+                                    </div>
+                                    <div>
+                                      <label>Description</label>
+                                      <div>
+                                        <textarea class="form-control" rows="3"
+                                          [(ngModel)]="nodeStoredData['description']"
+                                          placeholder="Description"></textarea>
+                                      </div>
+                                    </div>
+                                    <div class="float-left mt-3">
+                                      <button type="submit"
+                                        (click)="accessLevel.create ? configNode(nodeStoredData): return"
+                                        class="btn btn-primary btn-sm">Apply changes</button>
+                                      <button type="button" class="btn btn-secondary btn-sm" style="
+                              margin-left: 5px" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <button type="button" hidden="hidden" class="btn btn-secondary btn-sm" data-dismiss="modal"
+                          #close>Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-footer">
+          <!-- <button (click)="previousStep()" class="btn btn-secondary btn-sm ml-2">
+            Previous
+          </button> -->
+          <button type="submit" (click)="accessLevel.create ? saveDeviceGroup(groupInfo) : '' "
+            class="btn btn-primary btn-sm ml-2" [disabled]="disableBtn">
+            <img *ngIf="!saving_devicegroup" class="but-loader" src="assets/images/button_loader.gif">
+            Save
+          </button>
+          <button (click)="cancel()" class="btn btn-sm btn-secondary ml-2">
+            Cancel
+          </button>
+        </div>
+        <div *ngIf="!loadingDeviceGroup">
+          <div id="loader-wrapper-submaincontent">
+            <div class="lds-ring">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,182 @@
+{
+    "header_id": "smart_meter_configuration",
+    "data": {
+      "number": 6,
+      "headerContent": [
+        {
+          "sectionWidth": "12",
+          "content": "New Section",
+          "class": "",
+          "data": [
+            {
+              "label": "Smart meter configuration ID",
+              "type": "text",
+              "key": "smart_meter_configuration_id",
+              "value": "",
+              "placeholder": "Enter Smart meter configuration ID",
+              "required": false,
+              "disabled": true,
+              "hidden": true,
+              "gridWidth": "3"
+            },
+            {
+              "label": "Name",
+              "type": "text",
+              "key": "smart_meter_configuration_name",
+              "value": "",
+              "placeholder": "Enter Name",
+              "required": true,
+              "disabled": false,
+              "hidden": false,
+              "gridWidth": "3"
+            },
+            {
+              "label": "Flat No",
+              "type": "text",
+              "key": "flat_no",
+              "value": "",
+              "placeholder": "Enter Flat No",
+              "required": true,
+              "disabled": false,
+              "hidden": false,
+              "gridWidth": "3"
+            },
+            {
+              "label": "Customer Name",
+              "type": "text",
+              "key": "customer_name",
+              "value": "",
+              "placeholder": "Enter Customer Name",
+              "required": true,
+              "disabled": false,
+              "hidden": false,
+              "gridWidth": "3"
+            },
+            {
+              "label": "Address",
+              "type": "text",
+              "key": "customer_address",
+              "value": "",
+              "placeholder": "Enter Address",
+              "required": true,
+              "disabled": false,
+              "hidden": false,
+              "gridWidth": "3"
+            },
+            {
+              "label": "Mobile No",
+              "type": "text",
+              "key": "mobile_no",
+              "value": "",
+              "placeholder": "Enter Mobile Number",
+              "required": true,
+              "disabled": false,
+              "hidden": false,
+              "gridWidth": "3"
+            },
+            {
+              "label": "Email ID",
+              "type": "text",
+              "key": "email_id",
+              "value": "",
+              "placeholder": "Enter Email Address",
+              "required": true,
+              "disabled": false,
+              "hidden": false,
+              "gridWidth": "3"
+            },
+            {
+              "label": "Sensors",
+              "type": "multiselect",
+              "key": "sensor_list",
+              "placeholder": "Select Sensors",
+              "allowClear": true,
+              "value": "null",
+              "options": [
+                {
+                  "value": "",
+                  "label": ""
+                }
+              ],
+              "required": true,
+              "disabled": false,
+              "hidden": false,
+              "dependent": false,
+              "gridWidth": "3",
+              "settings": {
+                "singleSelection": false,
+                "text": "Select Categorys",
+                "selectAllText": "Select All",
+                "unSelectAllText": "UnSelect All",
+                "enableSearchFilter": true,
+                "classes": "myclass custom-class",
+                "labelKey": "label",
+                "primaryKey": "value",
+                "fullObject": false
+              }
+            },
+            {
+              "label": "Disable/ Enable",
+              "type": "select",
+              "key": "isdisabled",
+              "value": "",
+              "placeholder": "Select Status",
+              "required": false,
+              "disabled": true,
+              "hidden": true,
+              "gridWidth": "4",
+              "allowClear": true,
+              "options": [
+                {
+                  "label": "Disable",
+                  "value": "true"
+                },
+                {
+                  "label": "Enable",
+                  "value": "false"
+                }
+              ],
+              "dependent": false
+            },
+            {
+              "label": "Delete/Restore",
+              "type": "select",
+              "key": "isdeleted",
+              "placeholder": "Select Status",
+              "required": false,
+              "disabled": true,
+              "hidden": true,
+              "gridWidth": "4",
+              "value": "",
+              "allowClear": true,
+              "options": [
+                {
+                  "label": "Delete",
+                  "value": "true"
+                },
+                {
+                  "label": "Restore",
+                  "value": "false"
+                }
+              ],
+              "dependent": false
+            }
+          ],
+          "layoutType": "section",
+          "sectionTitle": ""
+        }
+      ],
+      "bodyContent": {},
+      "userActions": {
+        "buttonsPosition": "fixed",
+        "cancel": {
+          "label": "Cancel"
+        },
+        "save": {
+          "label": "Save & Proceed"
+        }
+      }
+    },
+    "status": "success",
+    "message": ""
+  }

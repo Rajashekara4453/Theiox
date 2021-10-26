@@ -1,0 +1,63 @@
+<div class="form-header px-2">
+  <!-- <img class="toggleImg" (click)="toggleExpandCollepseImg()" src="/assets/images/right.png" [ngClass]="{'toggle-expanded': isExpanded, 'toggle-collepsed': !isExpanded }" /> -->
+  <!-- <div class="btn-group mr-2" (click)="toggleExpandCollepseImg()" [ngClass]="{'toggle-expanded': isExpanded, 'toggle-collepsed': !isExpanded }">
+<button class="btn btn-secondary btn-sm active shadow-none" style="min-width: 100px">
+    Levels {{isExpanded ? 'Expand' : 'Hide'}}
+  </button>
+  <button class="btn btn-sm btn-secondary" [ngClass]="{'toggle-expanded': isExpanded, 'toggle-collepsed': !isExpanded }">
+      <i class="elm-forward"></i>
+    </button>
+
+</div> -->
+  <div
+    *ngIf="alarmTriggerType !='15min' && alarmTriggerType !='30min' && alarmTriggerType !='eod' && alarmTriggerType !='eoh' && alarmTriggerType !='eos'"
+    class="
+    btn-group mr-2" [ngClass]="{'d-inline-block': isExpanded, 'd-none': !isExpanded}">
+    <button class="btn btn-primary btn-sm" (click)="addNewLevel()"> <span class="fa fa-plus"></span> Add</button>
+  </div>
+</div>
+<div class="body-container overflow-auto px-2">
+  <ul class="col-sm-12">
+    <li *ngFor="let level of levels; let i = index" [ngClass]="{'d-block': isExpanded, 'd-none': !isExpanded}">
+      <div class="row border position-relative my-2">
+        <!-- <button type="button" class="btn btn-sm btn-secondary position-absolute m-2" style="right: 0; top: 0; z-index: 99;" title="Delete Level" (click)="deleteLevel(i)">
+            Delete
+          </button> -->
+        <!-- <fa-icon
+          *ngIf="alarmTriggerType !='15min' && alarmTriggerType !='30min' && alarmTriggerType !='eod' && alarmTriggerType !='eoh' && alarmTriggerType !='eos'"
+          [icon]="['fas', 'trash']" title="Delete Level" (click)="deleteLevel(i)"></fa-icon> -->
+        <div *ngIf="alarmTriggerType != '15min' && alarmTriggerType != '30min' && alarmTriggerType != 'eod' && alarmTriggerType != 'eoh' 
+          && alarmTriggerType != 'eos' && levels?.length != 1" class="cancel-y-axis">
+          <span class="up-down-container p-1">
+            <i class="elm-cancel mx-1" title="Remove" (click)="deleteLevel(i)">
+            </i>
+          </span>
+        </div>
+
+        <div
+          *ngIf="alarmTriggerType !='15min' && alarmTriggerType !='30min' && alarmTriggerType !='eod' && alarmTriggerType !='eoh' && alarmTriggerType !='eos'"
+          class="col-sm-12">
+          <div class="col-xl-5 col-lg-5 col-md-6 col-sm-8 d-inline-block" style="min-width: 410px;">
+            <form>
+              <div class="form-group">
+                <label for="suppress"><b>Suppress<span class="color-red">&nbsp; *</span></b></label>
+                <kl-minute-second-inputs name="suppress" [(minuteSecondData)]="level.suppress">
+                </kl-minute-second-inputs>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- <div class="dropdown-divider w-100"></div> -->
+        <div class="col-sm-12">
+          <kl-notificationprofile [usersGroup]="usersGroup" [notificationProfiles]="level.notificationProfiles"
+            [notificationTypes]="notificationTypes"></kl-notificationprofile>
+        </div>
+        <!-- <div class="dropdown-divider w-100"></div> -->
+        <!-- <div class="col-sm-12" [ngClass]="{ 'd-block' : isCommandShow , 'd-none' : !isCommandShow }"> -->
+        <div class="col-sm-12" [ngClass]="{'d-none' : isCommandShow == 'Status' }">
+          <kl-alarm-triggers [devices]="devices" [tags]="tags" [commands]="level.commands"></kl-alarm-triggers>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

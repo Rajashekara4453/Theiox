@@ -1,0 +1,114 @@
+<div class="main-content">
+  <div class="sub-sidebar">
+    <kl-menubar *ngIf="sideMenus" [menus]="sideMenus" [displayProperty]="'name'" [valueProperty]="''"
+      (clickStatus)="gettableKey($event)" (addnew)="addNewtable()"></kl-menubar>
+
+  </div>
+  <div class="sub-main-content-sb">
+    <div class="h-100" *ngIf="pageLoaded">
+
+      <form #lookuptableForm="ngForm" class="form-container">
+        <div class="form-header">
+          <h6 class="form-title ">{{title}}</h6>
+        </div>
+        <div class="form-content">
+          <div class="row">
+            <div class="col-lg-6">
+              <label class="control-label text-right ">
+                <span>Name</span>
+                <span class="color-red">&nbsp;*</span>
+              </label>
+              <div>
+                <input class="form-control" type="text" autocomplete="off" [(ngModel)]="form.name" name="name"
+                  [required]="true" placeholder="Enter Name">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <label class="control-label text-right ">
+                <span>Description</span>
+                <span class="color-red">&nbsp;*</span> </label>
+              <div>
+                <textarea class="form-control" type="textarea" rows="3" name="description" [required]="true"
+                  autocomplete="off" [(ngModel)]="form.description" placeholder="Enter Description"></textarea>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label>
+                <span>Start Date</span>
+                <span class="color-red">&nbsp;*</span> </label>
+              <div>
+                <!-- [ngModelOptions]="{standalone: true}" -->
+                <angular2-date-picker [(ngModel)]="form.startdate" (onDateSelect)="onDateSelect($event)"
+                  name="startdate" [settings]="settings" [required]="true"></angular2-date-picker>
+                <!-- <input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" [(ngModel)]="form.startdate" class="w-100"
+                        [min]="mindate" [required]="true" [ngModelOptions]="{standalone: true}">
+                      <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time> -->
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div><label>
+                  <span>Start Time</span>
+                  <span class="color-red">&nbsp;*</span></label>
+              </div>
+              <div>
+                <input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" [(ngModel)]="form.starttime" class="w-100"
+                  [min]="mindate" [required]="true" [ngModelOptions]="{standalone: true}">
+                <owl-date-time [pickerType]="'timer'" [hour12Timer]='true' #dt2></owl-date-time>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div><label>
+                  <span>End Time</span>
+                  <span class="color-red">&nbsp;*</span></label></div>
+              <div>
+                <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" [(ngModel)]="form.endtime" class="w-100"
+                  [min]="form.starttime" [required]="true" [ngModelOptions]="{standalone: true}">
+                <owl-date-time [pickerType]="'timer'" [hour12Timer]='true' #dt3></owl-date-time>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div><label> Value<span class="color-red">&nbsp;*</span></label></div>
+              <div>
+                <input type="number" class="w-100" [(ngModel)]="form.value" placeholder="" name="value"
+                  [required]="true" autocomplete="off">
+              </div>
+            </div>
+          </div>
+          <div class="table-content p-2">
+            <table class="table table-bordered">
+              <h6 *ngIf="bodyContent_length === 0">No Rows Available</h6>
+
+              <tr>
+                <th *ngFor="let headerContent of table_data.headerContent">{{headerContent.label}}</th>
+              </tr>
+              <tr *ngFor="let bodyContent of bodyContent">
+                <td *ngFor="let headerContent of table_data.headerContent">{{bodyContent[headerContent.key]}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="form-footer">
+          <button type="submit" (click)="isPermission ? update(form): return" class="btn btn-primary btn-sm"
+            [disabled]="!lookuptableForm.form.valid || disableupBtn">Update</button>
+          <button type="button" (click)="cancel()" class="btn btn-sm btn-secondary mx-2">Cancel</button>
+          <!-- [disabled]="((form.name === '') || (form.description === '')) ? true : false" -->
+          <button type="button" (click)="isPermission ? submittable(): return " class="btn btn-primary btn-sm"
+            [disabled]="disableBtn">Save
+            <img *ngIf="!submitting_table" class="but-loader" src="assets/images/button_loader.gif"></button>
+
+        </div>
+      </form>
+    </div>
+  </div>
+  <div *ngIf="!pageLoaded">
+    <div id="loader-wrapper-submaincontent">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,1071 @@
+/*
+ * Icon Font elmeasure-icon
+ * Made with love by elm [ https://elm.com/ ] using FontCustom [ https://github.com/FontCustom/fontcustom ]
+ *
+ * Contacts:
+ *    [ https://elm.com/contact ]
+ *
+ * Follow Icon8 on
+ *    Twitter [ https://twitter.com/icons_8 ]
+ *    Facebook [ https://www.facebook.com/elm ]
+ *    Google+ [ https://plus.google.com/+elm ]
+ *    GitHub [ https://github.com/elm ]
+ */
+
+
+@font-face {
+  font-family: "elmeasure-icon";
+  src: url("../fonts/elmeasure-icon.eot");
+  src: url("../fonts/elmeasure-icon.eot?#iefix") format("embedded-opentype"),
+       url("../fonts/elmeasure-icon.woff2") format("woff2"),
+       url("../fonts/elmeasure-icon.woff") format("woff"),
+       url("../fonts/elmeasure-icon.ttf") format("truetype"),
+       url("../fonts/elmeasure-icon.svg#elmeasure-icon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "elmeasure-icon";
+    src: url("../fonts/elmeasure-icon.svg#elmeasure-icon") format("svg");
+  }
+}
+
+[data-elm]:before { content: attr(data-elm); }
+
+.elm, [data-elm]:before,
+.elm-about:before,
+.elm-access:before,
+.elm-access-2:before,
+.elm-account:before,
+.elm-account-2:before,
+.elm-add:before,
+.elm-add-2:before,
+.elm-add-folder:before,
+.elm-add-list:before,
+.elm-add-node:before,
+.elm-add-property:before,
+.elm-address:before,
+.elm-address-2:before,
+.elm-address-book:before,
+.elm-address-book-2:before,
+.elm-advance:before,
+.elm-advanced-search:before,
+.elm-alarm:before,
+.elm-alarm-2:before,
+.elm-alarm-clock:before,
+.elm-answers:before,
+.elm-approve:before,
+.elm-area-chart:before,
+.elm-area-chart-2:before,
+.elm-arrow:before,
+.elm-arrow-pointing-left:before,
+.elm-artificial-intelligence:before,
+.elm-ask-question:before,
+.elm-ask-question-2:before,
+.elm-asterisk:before,
+.elm-attach:before,
+.elm-automatic:before,
+.elm-automatic-contrast:before,
+.elm-automation:before,
+.elm-available-updates:before,
+.elm-back:before,
+.elm-back-2:before,
+.elm-back-to:before,
+.elm-back-to-2:before,
+.elm-bar-chart:before,
+.elm-bar-chart-2:before,
+.elm-bar-chart-3:before,
+.elm-below:before,
+.elm-big-data:before,
+.elm-blockchain-new-logo:before,
+.elm-bonds:before,
+.elm-bookmark:before,
+.elm-bookmark-2:before,
+.elm-buffering:before,
+.elm-bug:before,
+.elm-bugle:before,
+.elm-businessman:before,
+.elm-businessman-2:before,
+.elm-calendar:before,
+.elm-calendar-1:before,
+.elm-calendar-2:before,
+.elm-call:before,
+.elm-cancel:before,
+.elm-cancel-2:before,
+.elm-cancel-last-digit:before,
+.elm-candlestick-chart:before,
+.elm-category:before,
+.elm-chart:before,
+.elm-chat:before,
+.elm-check-all:before,
+.elm-checked:before,
+.elm-checked-2:before,
+.elm-checkmark:before,
+.elm-choose-font:before,
+.elm-circled-menu:before,
+.elm-circled-menu-2:before,
+.elm-circled-right:before,
+.elm-circled-right-2:before,
+.elm-city:before,
+.elm-clear-filters:before,
+.elm-clear-symbol:before,
+.elm-clear-symbol-2:before,
+.elm-close-pane:before,
+.elm-close-pane-2:before,
+.elm-cloth:before,
+.elm-code-fork:before,
+.elm-collapse-arrow:before,
+.elm-collapse-arrow-2:before,
+.elm-combo-chart:before,
+.elm-combo-chart-2:before,
+.elm-comments:before,
+.elm-comments-2:before,
+.elm-company:before,
+.elm-company-2:before,
+.elm-company-3:before,
+.elm-compass:before,
+.elm-compress:before,
+.elm-compress-2:before,
+.elm-computer-memory-slot:before,
+.elm-computer-support:before,
+.elm-computers-connecting:before,
+.elm-connect:before,
+.elm-connect-2:before,
+.elm-contact-details:before,
+.elm-contact-us:before,
+.elm-content:before,
+.elm-contrast:before,
+.elm-conversion:before,
+.elm-copyright:before,
+.elm-country:before,
+.elm-cursor:before,
+.elm-curved-arrow:before,
+.elm-customer:before,
+.elm-dashboard:before,
+.elm-data-backup:before,
+.elm-date-from:before,
+.elm-date-to:before,
+.elm-decision:before,
+.elm-decline:before,
+.elm-decrease:before,
+.elm-delete:before,
+.elm-delete-2:before,
+.elm-delete-bin:before,
+.elm-delete-file:before,
+.elm-delete-trash:before,
+.elm-department:before,
+.elm-department-2:before,
+.elm-deployment:before,
+.elm-device-information:before,
+.elm-device-manager:before,
+.elm-discussion-forum:before,
+.elm-do-not-disturb:before,
+.elm-documents:before,
+.elm-documents-folder:before,
+.elm-doorbell:before,
+.elm-doughnut-chart:before,
+.elm-down-arrow:before,
+.elm-down-button:before,
+.elm-down-button-2:before,
+.elm-download:before,
+.elm-download-2:before,
+.elm-download-from-the-cloud:before,
+.elm-download-from-the-cloud-2:before,
+.elm-downloading-updates:before,
+.elm-drag:before,
+.elm-drag-2:before,
+.elm-edit:before,
+.elm-edit-2:before,
+.elm-edit-file:before,
+.elm-edit-property:before,
+.elm-electricity:before,
+.elm-electronics:before,
+.elm-email:before,
+.elm-engineering:before,
+.elm-enlarge:before,
+.elm-enter-key:before,
+.elm-error:before,
+.elm-error-2:before,
+.elm-ethernet-off:before,
+.elm-event:before,
+.elm-event-accepted:before,
+.elm-expand:before,
+.elm-expand-arrow:before,
+.elm-expand-arrow-2:before,
+.elm-external-link:before,
+.elm-external-link-2:before,
+.elm-factory:before,
+.elm-factory-2:before,
+.elm-falling-edge:before,
+.elm-faq:before,
+.elm-faq-2:before,
+.elm-feedback:before,
+.elm-feedback-2:before,
+.elm-file:before,
+.elm-filter:before,
+.elm-filter-and-sort:before,
+.elm-filter-edit:before,
+.elm-financial-dynamic-presentation:before,
+.elm-fingerprint:before,
+.elm-flow-chart:before,
+.elm-folder:before,
+.elm-forgot-password:before,
+.elm-form:before,
+.elm-forward:before,
+.elm-forward-2:before,
+.elm-forward-arrow:before,
+.elm-forward-button:before,
+.elm-futures:before,
+.elm-gas:before,
+.elm-gas-industry:before,
+.elm-globe-earth:before,
+.elm-go-back:before,
+.elm-go-back-2:before,
+.elm-goal:before,
+.elm-graph:before,
+.elm-graph-report:before,
+.elm-hand-cursor:before,
+.elm-harmonica:before,
+.elm-hashtag-large:before,
+.elm-headphones:before,
+.elm-heart-outline:before,
+.elm-help:before,
+.elm-help-2:before,
+.elm-hide-sidepanel:before,
+.elm-hide-sidepanel-2:before,
+.elm-hierarchy:before,
+.elm-hierarchy-2:before,
+.elm-hint:before,
+.elm-home:before,
+.elm-home-button:before,
+.elm-home-page:before,
+.elm-hunt:before,
+.elm-id-verified:before,
+.elm-idea:before,
+.elm-image-file:before,
+.elm-increase:before,
+.elm-info:before,
+.elm-info-2:before,
+.elm-info-popup:before,
+.elm-info-popup-2:before,
+.elm-information-pyramid:before,
+.elm-input:before,
+.elm-internet-of-things:before,
+.elm-invert-colors:before,
+.elm-journal-records:before,
+.elm-key:before,
+.elm-key-2:before,
+.elm-keyboard:before,
+.elm-keypad:before,
+.elm-keypad-2:before,
+.elm-landlord:before,
+.elm-latitude:before,
+.elm-left-3:before,
+.elm-lifebuoy:before,
+.elm-line-chart:before,
+.elm-line-chart-2:before,
+.elm-line-chart-3:before,
+.elm-linechart-file:before,
+.elm-link:before,
+.elm-list:before,
+.elm-list-2:before,
+.elm-list-of-thumbnails:before,
+.elm-location:before,
+.elm-location-2:before,
+.elm-lock:before,
+.elm-lock-2:before,
+.elm-login:before,
+.elm-login-2:before,
+.elm-login-as-user:before,
+.elm-logo:before,
+.elm-longitude:before,
+.elm-maintenance:before,
+.elm-management:before,
+.elm-management-2:before,
+.elm-management-3:before,
+.elm-management-4:before,
+.elm-manager:before,
+.elm-manager-2:before,
+.elm-manpower:before,
+.elm-manual:before,
+.elm-map:before,
+.elm-marker:before,
+.elm-megaphone:before,
+.elm-menu:before,
+.elm-menu-2:before,
+.elm-menu-vertical:before,
+.elm-menu-vertical-2:before,
+.elm-merge-files:before,
+.elm-micro-sd:before,
+.elm-mind-map:before,
+.elm-minus-sign:before,
+.elm-mobile-navigator:before,
+.elm-monitor:before,
+.elm-more:before,
+.elm-more-details:before,
+.elm-move-left:before,
+.elm-move-right:before,
+.elm-multichannel-marketing:before,
+.elm-mute:before,
+.elm-mute-unmute:before,
+.elm-nas:before,
+.elm-natural-user-interface-2:before,
+.elm-navigation:before,
+.elm-near-me:before,
+.elm-network-card:before,
+.elm-network-card-2:before,
+.elm-neutral-decision:before,
+.elm-neutral-trading:before,
+.elm-new-contact:before,
+.elm-next-page:before,
+.elm-next-page-2:before,
+.elm-no-rotate-left:before,
+.elm-noise:before,
+.elm-normal-distribution-histogram:before,
+.elm-normal-distribution-histogram-2:before,
+.elm-note:before,
+.elm-notification:before,
+.elm-notification-2:before,
+.elm-oculus-rift:before,
+.elm-office:before,
+.elm-oil-industry:before,
+.elm-ok:before,
+.elm-onedrive:before,
+.elm-online:before,
+.elm-online-support:before,
+.elm-online-support-2:before,
+.elm-open-pane:before,
+.elm-open-pane-2:before,
+.elm-opened-folder:before,
+.elm-opened-folder-2:before,
+.elm-organization:before,
+.elm-organization-2:before,
+.elm-output:before,
+.elm-overview:before,
+.elm-padlock:before,
+.elm-password:before,
+.elm-password-1:before,
+.elm-password-2:before,
+.elm-pencil:before,
+.elm-people:before,
+.elm-phone:before,
+.elm-phone-contact:before,
+.elm-picture:before,
+.elm-picture-2:before,
+.elm-pie-chart:before,
+.elm-pie-chart-2:before,
+.elm-pie-chart-report:before,
+.elm-pin:before,
+.elm-pin-2:before,
+.elm-pin-code:before,
+.elm-pin-code-2:before,
+.elm-pipeline:before,
+.elm-place-marker:before,
+.elm-plugin:before,
+.elm-plus:before,
+.elm-plus-2:before,
+.elm-popup-window:before,
+.elm-popup-window-2:before,
+.elm-postcode:before,
+.elm-print:before,
+.elm-privacy:before,
+.elm-processor:before,
+.elm-push-notifications:before,
+.elm-push-notifications-2:before,
+.elm-puzzle:before,
+.elm-question-mark:before,
+.elm-questions:before,
+.elm-quick-mode-off:before,
+.elm-quick-mode-on:before,
+.elm-quote:before,
+.elm-rack:before,
+.elm-radio-tower:before,
+.elm-radio-tower-2:before,
+.elm-rating:before,
+.elm-rating-2:before,
+.elm-ratings:before,
+.elm-realtime:before,
+.elm-recycle:before,
+.elm-redo:before,
+.elm-refresh:before,
+.elm-refresh-2:before,
+.elm-registered-trademark:before,
+.elm-remove:before,
+.elm-reply-all-arrow:before,
+.elm-reply-arrow:before,
+.elm-reset:before,
+.elm-resize-horizontal:before,
+.elm-resize-vertical:before,
+.elm-restart:before,
+.elm-restart-2:before,
+.elm-return:before,
+.elm-rfid-signal:before,
+.elm-right:before,
+.elm-ringer-volume:before,
+.elm-rising-edge:before,
+.elm-root-server:before,
+.elm-root-server-2:before,
+.elm-rotate:before,
+.elm-rotate-left:before,
+.elm-rotate-right:before,
+.elm-router:before,
+.elm-rs-232-female:before,
+.elm-rs-232-male:before,
+.elm-satellites:before,
+.elm-save:before,
+.elm-save-2:before,
+.elm-scatter-plot:before,
+.elm-scatter-plot-2:before,
+.elm-scatter-plot-3:before,
+.elm-schedule:before,
+.elm-scroll:before,
+.elm-scroll-down:before,
+.elm-search:before,
+.elm-search-2:before,
+.elm-search-more:before,
+.elm-search-property:before,
+.elm-select-all:before,
+.elm-send:before,
+.elm-send-comment:before,
+.elm-send-email:before,
+.elm-send-email-2:before,
+.elm-sent:before,
+.elm-server-shutdown:before,
+.elm-server-shutdown-2:before,
+.elm-services:before,
+.elm-settings:before,
+.elm-settings-2:before,
+.elm-share:before,
+.elm-share-2:before,
+.elm-share-3:before,
+.elm-shared-folder:before,
+.elm-show-sidepanel:before,
+.elm-show-sidepanel-2:before,
+.elm-shutdown:before,
+.elm-shutdown-2:before,
+.elm-sidebar-menu:before,
+.elm-sidebar-menu-2:before,
+.elm-sigma:before,
+.elm-sign-out:before,
+.elm-sign-out-2:before,
+.elm-signin:before,
+.elm-signin-2:before,
+.elm-slide-up:before,
+.elm-slide-up-2:before,
+.elm-small-icons:before,
+.elm-sms:before,
+.elm-socket:before,
+.elm-sort-down:before,
+.elm-sort-down-2:before,
+.elm-sort-left:before,
+.elm-sort-right:before,
+.elm-sort-right-2:before,
+.elm-sort-up:before,
+.elm-speed:before,
+.elm-speedometer:before,
+.elm-squared-menu:before,
+.elm-squared-menu-2:before,
+.elm-stacked-organizational-chart-highlighted-first-node:before,
+.elm-star:before,
+.elm-statistics:before,
+.elm-storage:before,
+.elm-sun:before,
+.elm-support:before,
+.elm-support-2:before,
+.elm-swap:before,
+.elm-swipe-down:before,
+.elm-swipe-right-gesture:before,
+.elm-swipe-up:before,
+.elm-switch:before,
+.elm-switch-2:before,
+.elm-synchronize:before,
+.elm-synchronize-2:before,
+.elm-table:before,
+.elm-table-of-content:before,
+.elm-tape-drive:before,
+.elm-tasklist:before,
+.elm-tasks:before,
+.elm-terms-and-conditions:before,
+.elm-terms-and-conditions-2:before,
+.elm-text-input-form:before,
+.elm-thick-arrow-pointing-down:before,
+.elm-thick-arrow-pointing-up:before,
+.elm-thumbnails:before,
+.elm-tick-box:before,
+.elm-tick-box-2:before,
+.elm-time-machine:before,
+.elm-timer:before,
+.elm-today:before,
+.elm-today-2:before,
+.elm-toggle-off:before,
+.elm-toggle-on:before,
+.elm-toolbox:before,
+.elm-topic:before,
+.elm-tracking:before,
+.elm-trademark:before,
+.elm-train:before,
+.elm-trash:before,
+.elm-trash-2:before,
+.elm-trash-can:before,
+.elm-tree-structure:before,
+.elm-unchecked-checkbox:before,
+.elm-unchecked-radio-button:before,
+.elm-undo:before,
+.elm-up:before,
+.elm-update-file:before,
+.elm-upload:before,
+.elm-upload-2:before,
+.elm-upload-to-the-cloud:before,
+.elm-upload-to-the-cloud-2:before,
+.elm-upward-arrow:before,
+.elm-usb-connector:before,
+.elm-usb-on:before,
+.elm-user:before,
+.elm-user-2:before,
+.elm-user-account:before,
+.elm-user-folder:before,
+.elm-user-group:before,
+.elm-user-groups:before,
+.elm-user-location:before,
+.elm-user-manual:before,
+.elm-user-menu-female:before,
+.elm-variation:before,
+.elm-vga:before,
+.elm-video-conference:before,
+.elm-video-message:before,
+.elm-view-all:before,
+.elm-virtual-reality:before,
+.elm-visual-studio-code:before,
+.elm-voltage:before,
+.elm-wait:before,
+.elm-water:before,
+.elm-world-map:before,
+.elm-zip:before,
+.elm-zip-2:before,
+.elm-zip-code:before {
+  display: inline-block;
+  font-family: "elmeasure-icon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+.elm-about:before { content: "\f109"; }
+.elm-access:before { content: "\f139"; }
+.elm-access-2:before { content: "\f1f9"; }
+.elm-account:before { content: "\f264"; }
+.elm-account-2:before { content: "\f24e"; }
+.elm-add:before { content: "\f275"; }
+.elm-add-2:before { content: "\f2f3"; }
+.elm-add-folder:before { content: "\f27b"; }
+.elm-add-list:before { content: "\f216"; }
+.elm-add-node:before { content: "\f248"; }
+.elm-add-property:before { content: "\f133"; }
+.elm-address:before { content: "\f1d2"; }
+.elm-address-2:before { content: "\f30d"; }
+.elm-address-book:before { content: "\f180"; }
+.elm-address-book-2:before { content: "\f2e0"; }
+.elm-advance:before { content: "\f1df"; }
+.elm-advanced-search:before { content: "\f2fd"; }
+.elm-alarm:before { content: "\f163"; }
+.elm-alarm-2:before { content: "\f1fb"; }
+.elm-alarm-clock:before { content: "\f162"; }
+.elm-answers:before { content: "\f2e9"; }
+.elm-approve:before { content: "\f25e"; }
+.elm-area-chart:before { content: "\f22c"; }
+.elm-area-chart-2:before { content: "\f2b4"; }
+.elm-arrow:before { content: "\f1ed"; }
+.elm-arrow-pointing-left:before { content: "\f1ea"; }
+.elm-artificial-intelligence:before { content: "\f309"; }
+.elm-ask-question:before { content: "\f168"; }
+.elm-ask-question-2:before { content: "\f19a"; }
+.elm-asterisk:before { content: "\f293"; }
+.elm-attach:before { content: "\f19d"; }
+.elm-automatic:before { content: "\f1ce"; }
+.elm-automatic-contrast:before { content: "\f131"; }
+.elm-automation:before { content: "\f152"; }
+.elm-available-updates:before { content: "\f13f"; }
+.elm-back:before { content: "\f11e"; }
+.elm-back-2:before { content: "\f205"; }
+.elm-back-to:before { content: "\f124"; }
+.elm-back-to-2:before { content: "\f1f1"; }
+.elm-bar-chart:before { content: "\f21e"; }
+.elm-bar-chart-2:before { content: "\f22a"; }
+.elm-bar-chart-3:before { content: "\f262"; }
+.elm-below:before { content: "\f128"; }
+.elm-big-data:before { content: "\f23c"; }
+.elm-blockchain-new-logo:before { content: "\f25f"; }
+.elm-bonds:before { content: "\f2de"; }
+.elm-bookmark:before { content: "\f112"; }
+.elm-bookmark-2:before { content: "\f16f"; }
+.elm-buffering:before { content: "\f2ff"; }
+.elm-bug:before { content: "\f1ab"; }
+.elm-bugle:before { content: "\f2d8"; }
+.elm-businessman:before { content: "\f213"; }
+.elm-businessman-2:before { content: "\f288"; }
+.elm-calendar:before { content: "\f256"; }
+.elm-calendar-1:before { content: "\f164"; }
+.elm-calendar-2:before { content: "\f279"; }
+.elm-call:before { content: "\f2b5"; }
+.elm-cancel:before { content: "\f104"; }
+.elm-cancel-2:before { content: "\f176"; }
+.elm-cancel-last-digit:before { content: "\f13d"; }
+.elm-candlestick-chart:before { content: "\f261"; }
+.elm-category:before { content: "\f23b"; }
+.elm-chart:before { content: "\f26b"; }
+.elm-chat:before { content: "\f199"; }
+.elm-check-all:before { content: "\f1cf"; }
+.elm-checked:before { content: "\f105"; }
+.elm-checked-2:before { content: "\f175"; }
+.elm-checkmark:before { content: "\f1c4"; }
+.elm-choose-font:before { content: "\f2db"; }
+.elm-circled-menu:before { content: "\f14c"; }
+.elm-circled-menu-2:before { content: "\f190"; }
+.elm-circled-right:before { content: "\f126"; }
+.elm-circled-right-2:before { content: "\f20c"; }
+.elm-city:before { content: "\f231"; }
+.elm-clear-filters:before { content: "\f247"; }
+.elm-clear-symbol:before { content: "\f143"; }
+.elm-clear-symbol-2:before { content: "\f185"; }
+.elm-close-pane:before { content: "\f14d"; }
+.elm-close-pane-2:before { content: "\f193"; }
+.elm-cloth:before { content: "\f1c6"; }
+.elm-code-fork:before { content: "\f1a9"; }
+.elm-collapse-arrow:before { content: "\f120"; }
+.elm-collapse-arrow-2:before { content: "\f207"; }
+.elm-combo-chart:before { content: "\f21d"; }
+.elm-combo-chart-2:before { content: "\f266"; }
+.elm-comments:before { content: "\f140"; }
+.elm-comments-2:before { content: "\f17e"; }
+.elm-company:before { content: "\f151"; }
+.elm-company-2:before { content: "\f229"; }
+.elm-company-3:before { content: "\f230"; }
+.elm-compass:before { content: "\f2c5"; }
+.elm-compress:before { content: "\f12b"; }
+.elm-compress-2:before { content: "\f304"; }
+.elm-computer-memory-slot:before { content: "\f23d"; }
+.elm-computer-support:before { content: "\f18c"; }
+.elm-computers-connecting:before { content: "\f30b"; }
+.elm-connect:before { content: "\f111"; }
+.elm-connect-2:before { content: "\f173"; }
+.elm-contact-details:before { content: "\f2e1"; }
+.elm-contact-us:before { content: "\f2e6"; }
+.elm-content:before { content: "\f2fb"; }
+.elm-contrast:before { content: "\f130"; }
+.elm-conversion:before { content: "\f245"; }
+.elm-copyright:before { content: "\f15e"; }
+.elm-country:before { content: "\f1d3"; }
+.elm-cursor:before { content: "\f1c7"; }
+.elm-curved-arrow:before { content: "\f20e"; }
+.elm-customer:before { content: "\f1f3"; }
+.elm-dashboard:before { content: "\f251"; }
+.elm-data-backup:before { content: "\f23f"; }
+.elm-date-from:before { content: "\f1fc"; }
+.elm-date-to:before { content: "\f1fd"; }
+.elm-decision:before { content: "\f25d"; }
+.elm-decline:before { content: "\f265"; }
+.elm-decrease:before { content: "\f222"; }
+.elm-delete:before { content: "\f101"; }
+.elm-delete-2:before { content: "\f1b0"; }
+.elm-delete-bin:before { content: "\f188"; }
+.elm-delete-file:before { content: "\f285"; }
+.elm-delete-trash:before { content: "\f2dd"; }
+.elm-department:before { content: "\f21a"; }
+.elm-department-2:before { content: "\f25c"; }
+.elm-deployment:before { content: "\f1c3"; }
+.elm-device-information:before { content: "\f27f"; }
+.elm-device-manager:before { content: "\f22f"; }
+.elm-discussion-forum:before { content: "\f19b"; }
+.elm-do-not-disturb:before { content: "\f1a6"; }
+.elm-documents:before { content: "\f2eb"; }
+.elm-documents-folder:before { content: "\f27c"; }
+.elm-doorbell:before { content: "\f187"; }
+.elm-doughnut-chart:before { content: "\f267"; }
+.elm-down-arrow:before { content: "\f1e7"; }
+.elm-down-button:before { content: "\f123"; }
+.elm-down-button-2:before { content: "\f1f0"; }
+.elm-download:before { content: "\f17c"; }
+.elm-download-2:before { content: "\f2ef"; }
+.elm-download-from-the-cloud:before { content: "\f113"; }
+.elm-download-from-the-cloud-2:before { content: "\f1b7"; }
+.elm-downloading-updates:before { content: "\f13e"; }
+.elm-drag:before { content: "\f129"; }
+.elm-drag-2:before { content: "\f291"; }
+.elm-edit:before { content: "\f1b1"; }
+.elm-edit-2:before { content: "\f255"; }
+.elm-edit-file:before { content: "\f284"; }
+.elm-edit-property:before { content: "\f134"; }
+.elm-electricity:before { content: "\f1c0"; }
+.elm-electronics:before { content: "\f156"; }
+.elm-email:before { content: "\f274"; }
+.elm-engineering:before { content: "\f153"; }
+.elm-enlarge:before { content: "\f12a"; }
+.elm-enter-key:before { content: "\f298"; }
+.elm-error:before { content: "\f17f"; }
+.elm-error-2:before { content: "\f2ee"; }
+.elm-ethernet-off:before { content: "\f2a9"; }
+.elm-event:before { content: "\f27a"; }
+.elm-event-accepted:before { content: "\f233"; }
+.elm-expand:before { content: "\f303"; }
+.elm-expand-arrow:before { content: "\f11f"; }
+.elm-expand-arrow-2:before { content: "\f206"; }
+.elm-external-link:before { content: "\f10a"; }
+.elm-external-link-2:before { content: "\f17b"; }
+.elm-factory:before { content: "\f155"; }
+.elm-factory-2:before { content: "\f1bf"; }
+.elm-falling-edge:before { content: "\f242"; }
+.elm-faq:before { content: "\f157"; }
+.elm-faq-2:before { content: "\f259"; }
+.elm-feedback:before { content: "\f25a"; }
+.elm-feedback-2:before { content: "\f2ea"; }
+.elm-file:before { content: "\f1be"; }
+.elm-filter:before { content: "\f243"; }
+.elm-filter-and-sort:before { content: "\f246"; }
+.elm-filter-edit:before { content: "\f244"; }
+.elm-financial-dynamic-presentation:before { content: "\f305"; }
+.elm-fingerprint:before { content: "\f2ca"; }
+.elm-flow-chart:before { content: "\f306"; }
+.elm-folder:before { content: "\f10f"; }
+.elm-forgot-password:before { content: "\f273"; }
+.elm-form:before { content: "\f2f2"; }
+.elm-forward:before { content: "\f11d"; }
+.elm-forward-2:before { content: "\f204"; }
+.elm-forward-arrow:before { content: "\f1e2"; }
+.elm-forward-button:before { content: "\f208"; }
+.elm-futures:before { content: "\f226"; }
+.elm-gas:before { content: "\f2b3"; }
+.elm-gas-industry:before { content: "\f2ac"; }
+.elm-globe-earth:before { content: "\f2c3"; }
+.elm-go-back:before { content: "\f125"; }
+.elm-go-back-2:before { content: "\f20a"; }
+.elm-goal:before { content: "\f287"; }
+.elm-graph:before { content: "\f2f7"; }
+.elm-graph-report:before { content: "\f258"; }
+.elm-hand-cursor:before { content: "\f1c8"; }
+.elm-harmonica:before { content: "\f2d7"; }
+.elm-hashtag-large:before { content: "\f1a0"; }
+.elm-headphones:before { content: "\f2d9"; }
+.elm-heart-outline:before { content: "\f292"; }
+.elm-help:before { content: "\f136"; }
+.elm-help-2:before { content: "\f1f8"; }
+.elm-hide-sidepanel:before { content: "\f14f"; }
+.elm-hide-sidepanel-2:before { content: "\f196"; }
+.elm-hierarchy:before { content: "\f146"; }
+.elm-hierarchy-2:before { content: "\f18a"; }
+.elm-hint:before { content: "\f186"; }
+.elm-home:before { content: "\f10c"; }
+.elm-home-button:before { content: "\f27e"; }
+.elm-home-page:before { content: "\f276"; }
+.elm-hunt:before { content: "\f2bd"; }
+.elm-id-verified:before { content: "\f138"; }
+.elm-idea:before { content: "\f1c5"; }
+.elm-image-file:before { content: "\f283"; }
+.elm-increase:before { content: "\f2f4"; }
+.elm-info:before { content: "\f10b"; }
+.elm-info-2:before { content: "\f178"; }
+.elm-info-popup:before { content: "\f18b"; }
+.elm-info-popup-2:before { content: "\f302"; }
+.elm-information-pyramid:before { content: "\f26a"; }
+.elm-input:before { content: "\f183"; }
+.elm-internet-of-things:before { content: "\f30a"; }
+.elm-invert-colors:before { content: "\f2b8"; }
+.elm-journal-records:before { content: "\f24b"; }
+.elm-key:before { content: "\f11c"; }
+.elm-key-2:before { content: "\f1cc"; }
+.elm-keyboard:before { content: "\f29f"; }
+.elm-keypad:before { content: "\f142"; }
+.elm-keypad-2:before { content: "\f184"; }
+.elm-landlord:before { content: "\f214"; }
+.elm-latitude:before { content: "\f2c2"; }
+.elm-left-3:before { content: "\f20d"; }
+.elm-lifebuoy:before { content: "\f2cd"; }
+.elm-line-chart:before { content: "\f21f"; }
+.elm-line-chart-2:before { content: "\f22b"; }
+.elm-line-chart-3:before { content: "\f263"; }
+.elm-linechart-file:before { content: "\f24d"; }
+.elm-link:before { content: "\f1a4"; }
+.elm-list:before { content: "\f181"; }
+.elm-list-2:before { content: "\f2f1"; }
+.elm-list-of-thumbnails:before { content: "\f23a"; }
+.elm-location:before { content: "\f1d1"; }
+.elm-location-2:before { content: "\f2c4"; }
+.elm-lock:before { content: "\f10d"; }
+.elm-lock-2:before { content: "\f177"; }
+.elm-login:before { content: "\f200"; }
+.elm-login-2:before { content: "\f2fa"; }
+.elm-login-as-user:before { content: "\f1f7"; }
+.elm-logo:before { content: "\f2df"; }
+.elm-longitude:before { content: "\f2c1"; }
+.elm-maintenance:before { content: "\f278"; }
+.elm-management:before { content: "\f15c"; }
+.elm-management-2:before { content: "\f218"; }
+.elm-management-3:before { content: "\f21b"; }
+.elm-management-4:before { content: "\f260"; }
+.elm-manager:before { content: "\f20b"; }
+.elm-manager-2:before { content: "\f215"; }
+.elm-manpower:before { content: "\f1d8"; }
+.elm-manual:before { content: "\f1cd"; }
+.elm-map:before { content: "\f1d0"; }
+.elm-marker:before { content: "\f2c0"; }
+.elm-megaphone:before { content: "\f1a7"; }
+.elm-menu:before { content: "\f107"; }
+.elm-menu-2:before { content: "\f17a"; }
+.elm-menu-vertical:before { content: "\f148"; }
+.elm-menu-vertical-2:before { content: "\f18e"; }
+.elm-merge-files:before { content: "\f307"; }
+.elm-micro-sd:before { content: "\f294"; }
+.elm-mind-map:before { content: "\f145"; }
+.elm-minus-sign:before { content: "\f144"; }
+.elm-mobile-navigator:before { content: "\f2bf"; }
+.elm-monitor:before { content: "\f301"; }
+.elm-more:before { content: "\f19e"; }
+.elm-more-details:before { content: "\f2d5"; }
+.elm-move-left:before { content: "\f12d"; }
+.elm-move-right:before { content: "\f12c"; }
+.elm-multichannel-marketing:before { content: "\f308"; }
+.elm-mute:before { content: "\f234"; }
+.elm-mute-unmute:before { content: "\f238"; }
+.elm-nas:before { content: "\f29e"; }
+.elm-natural-user-interface-2:before { content: "\f192"; }
+.elm-navigation:before { content: "\f2c6"; }
+.elm-near-me:before { content: "\f2be"; }
+.elm-network-card:before { content: "\f29d"; }
+.elm-network-card-2:before { content: "\f2a0"; }
+.elm-neutral-decision:before { content: "\f26e"; }
+.elm-neutral-trading:before { content: "\f223"; }
+.elm-new-contact:before { content: "\f2e7"; }
+.elm-next-page:before { content: "\f121"; }
+.elm-next-page-2:before { content: "\f1ee"; }
+.elm-no-rotate-left:before { content: "\f1e6"; }
+.elm-noise:before { content: "\f1a8"; }
+.elm-normal-distribution-histogram:before { content: "\f224"; }
+.elm-normal-distribution-histogram-2:before { content: "\f268"; }
+.elm-note:before { content: "\f281"; }
+.elm-notification:before { content: "\f141"; }
+.elm-notification-2:before { content: "\f182"; }
+.elm-oculus-rift:before { content: "\f2d1"; }
+.elm-office:before { content: "\f228"; }
+.elm-oil-industry:before { content: "\f2ad"; }
+.elm-ok:before { content: "\f1cb"; }
+.elm-onedrive:before { content: "\f1d6"; }
+.elm-online:before { content: "\f1a5"; }
+.elm-online-support:before { content: "\f158"; }
+.elm-online-support-2:before { content: "\f217"; }
+.elm-open-pane:before { content: "\f14e"; }
+.elm-open-pane-2:before { content: "\f194"; }
+.elm-opened-folder:before { content: "\f110"; }
+.elm-opened-folder-2:before { content: "\f1bd"; }
+.elm-organization:before { content: "\f15d"; }
+.elm-organization-2:before { content: "\f219"; }
+.elm-output:before { content: "\f189"; }
+.elm-overview:before { content: "\f24a"; }
+.elm-padlock:before { content: "\f10e"; }
+.elm-password:before { content: "\f13b"; }
+.elm-password-1:before { content: "\f13a"; }
+.elm-password-2:before { content: "\f1ff"; }
+.elm-pencil:before { content: "\f12e"; }
+.elm-people:before { content: "\f2e2"; }
+.elm-phone:before { content: "\f2b6"; }
+.elm-phone-contact:before { content: "\f2e5"; }
+.elm-picture:before { content: "\f11a"; }
+.elm-picture-2:before { content: "\f1c2"; }
+.elm-pie-chart:before { content: "\f21c"; }
+.elm-pie-chart-2:before { content: "\f240"; }
+.elm-pie-chart-report:before { content: "\f257"; }
+.elm-pin:before { content: "\f132"; }
+.elm-pin-2:before { content: "\f1ad"; }
+.elm-pin-code:before { content: "\f13c"; }
+.elm-pin-code-2:before { content: "\f1a1"; }
+.elm-pipeline:before { content: "\f269"; }
+.elm-place-marker:before { content: "\f30c"; }
+.elm-plugin:before { content: "\f1aa"; }
+.elm-plus:before { content: "\f100"; }
+.elm-plus-2:before { content: "\f16d"; }
+.elm-popup-window:before { content: "\f2cc"; }
+.elm-popup-window-2:before { content: "\f2d3"; }
+.elm-postcode:before { content: "\f1d4"; }
+.elm-print:before { content: "\f12f"; }
+.elm-privacy:before { content: "\f2e4"; }
+.elm-processor:before { content: "\f299"; }
+.elm-push-notifications:before { content: "\f169"; }
+.elm-push-notifications-2:before { content: "\f2bc"; }
+.elm-puzzle:before { content: "\f172"; }
+.elm-question-mark:before { content: "\f1da"; }
+.elm-questions:before { content: "\f2e8"; }
+.elm-quick-mode-off:before { content: "\f252"; }
+.elm-quick-mode-on:before { content: "\f253"; }
+.elm-quote:before { content: "\f198"; }
+.elm-rack:before { content: "\f2b1"; }
+.elm-radio-tower:before { content: "\f154"; }
+.elm-radio-tower-2:before { content: "\f2ae"; }
+.elm-rating:before { content: "\f108"; }
+.elm-rating-2:before { content: "\f179"; }
+.elm-ratings:before { content: "\f271"; }
+.elm-realtime:before { content: "\f137"; }
+.elm-recycle:before { content: "\f1d7"; }
+.elm-redo:before { content: "\f1dc"; }
+.elm-refresh:before { content: "\f116"; }
+.elm-refresh-2:before { content: "\f1b5"; }
+.elm-registered-trademark:before { content: "\f15f"; }
+.elm-remove:before { content: "\f16e"; }
+.elm-reply-all-arrow:before { content: "\f1e3"; }
+.elm-reply-arrow:before { content: "\f1e4"; }
+.elm-reset:before { content: "\f159"; }
+.elm-resize-horizontal:before { content: "\f28f"; }
+.elm-resize-vertical:before { content: "\f290"; }
+.elm-restart:before { content: "\f115"; }
+.elm-restart-2:before { content: "\f1b4"; }
+.elm-return:before { content: "\f1dd"; }
+.elm-rfid-signal:before { content: "\f2af"; }
+.elm-right:before { content: "\f1e9"; }
+.elm-ringer-volume:before { content: "\f2b7"; }
+.elm-rising-edge:before { content: "\f241"; }
+.elm-root-server:before { content: "\f2a2"; }
+.elm-root-server-2:before { content: "\f2aa"; }
+.elm-rotate:before { content: "\f1de"; }
+.elm-rotate-left:before { content: "\f1e1"; }
+.elm-rotate-right:before { content: "\f1e0"; }
+.elm-router:before { content: "\f29c"; }
+.elm-rs-232-female:before { content: "\f2a6"; }
+.elm-rs-232-male:before { content: "\f2a5"; }
+.elm-satellites:before { content: "\f2c7"; }
+.elm-save:before { content: "\f1fe"; }
+.elm-save-2:before { content: "\f2ed"; }
+.elm-scatter-plot:before { content: "\f225"; }
+.elm-scatter-plot-2:before { content: "\f26c"; }
+.elm-scatter-plot-3:before { content: "\f26d"; }
+.elm-schedule:before { content: "\f15a"; }
+.elm-scroll:before { content: "\f1bc"; }
+.elm-scroll-down:before { content: "\f209"; }
+.elm-search:before { content: "\f1af"; }
+.elm-search-2:before { content: "\f1b2"; }
+.elm-search-more:before { content: "\f2fc"; }
+.elm-search-property:before { content: "\f135"; }
+.elm-select-all:before { content: "\f2dc"; }
+.elm-send:before { content: "\f1a2"; }
+.elm-send-comment:before { content: "\f16b"; }
+.elm-send-email:before { content: "\f16a"; }
+.elm-send-email-2:before { content: "\f1a3"; }
+.elm-sent:before { content: "\f19f"; }
+.elm-server-shutdown:before { content: "\f29b"; }
+.elm-server-shutdown-2:before { content: "\f2a3"; }
+.elm-services:before { content: "\f1bb"; }
+.elm-settings:before { content: "\f103"; }
+.elm-settings-2:before { content: "\f1b9"; }
+.elm-share:before { content: "\f117"; }
+.elm-share-2:before { content: "\f170"; }
+.elm-share-3:before { content: "\f119"; }
+.elm-shared-folder:before { content: "\f27d"; }
+.elm-show-sidepanel:before { content: "\f150"; }
+.elm-show-sidepanel-2:before { content: "\f195"; }
+.elm-shutdown:before { content: "\f22e"; }
+.elm-shutdown-2:before { content: "\f295"; }
+.elm-sidebar-menu:before { content: "\f14a"; }
+.elm-sidebar-menu-2:before { content: "\f203"; }
+.elm-sigma:before { content: "\f1d9"; }
+.elm-sign-out:before { content: "\f201"; }
+.elm-sign-out-2:before { content: "\f2f8"; }
+.elm-signin:before { content: "\f202"; }
+.elm-signin-2:before { content: "\f2f9"; }
+.elm-slide-up:before { content: "\f122"; }
+.elm-slide-up-2:before { content: "\f1ef"; }
+.elm-small-icons:before { content: "\f2cf"; }
+.elm-sms:before { content: "\f2bb"; }
+.elm-socket:before { content: "\f2b0"; }
+.elm-sort-down:before { content: "\f28c"; }
+.elm-sort-down-2:before { content: "\f28d"; }
+.elm-sort-left:before { content: "\f20f"; }
+.elm-sort-right:before { content: "\f210"; }
+.elm-sort-right-2:before { content: "\f28b"; }
+.elm-sort-up:before { content: "\f28e"; }
+.elm-speed:before { content: "\f24f"; }
+.elm-speedometer:before { content: "\f250"; }
+.elm-squared-menu:before { content: "\f14b"; }
+.elm-squared-menu-2:before { content: "\f18f"; }
+.elm-stacked-organizational-chart-highlighted-first-node:before { content: "\f15b"; }
+.elm-star:before { content: "\f211"; }
+.elm-statistics:before { content: "\f300"; }
+.elm-storage:before { content: "\f2f5"; }
+.elm-sun:before { content: "\f1ca"; }
+.elm-support:before { content: "\f11b"; }
+.elm-support-2:before { content: "\f1ba"; }
+.elm-swap:before { content: "\f1e5"; }
+.elm-swipe-down:before { content: "\f2ba"; }
+.elm-swipe-right-gesture:before { content: "\f197"; }
+.elm-swipe-up:before { content: "\f2b9"; }
+.elm-switch:before { content: "\f2a1"; }
+.elm-switch-2:before { content: "\f2ab"; }
+.elm-synchronize:before { content: "\f118"; }
+.elm-synchronize-2:before { content: "\f1b6"; }
+.elm-table:before { content: "\f22d"; }
+.elm-table-of-content:before { content: "\f2da"; }
+.elm-tape-drive:before { content: "\f2a4"; }
+.elm-tasklist:before { content: "\f26f"; }
+.elm-tasks:before { content: "\f2f6"; }
+.elm-terms-and-conditions:before { content: "\f161"; }
+.elm-terms-and-conditions-2:before { content: "\f277"; }
+.elm-text-input-form:before { content: "\f2d4"; }
+.elm-thick-arrow-pointing-down:before { content: "\f1eb"; }
+.elm-thick-arrow-pointing-up:before { content: "\f1ec"; }
+.elm-thumbnails:before { content: "\f191"; }
+.elm-tick-box:before { content: "\f106"; }
+.elm-tick-box-2:before { content: "\f174"; }
+.elm-time-machine:before { content: "\f165"; }
+.elm-timer:before { content: "\f166"; }
+.elm-today:before { content: "\f167"; }
+.elm-today-2:before { content: "\f1fa"; }
+.elm-toggle-off:before { content: "\f235"; }
+.elm-toggle-on:before { content: "\f236"; }
+.elm-toolbox:before { content: "\f1c9"; }
+.elm-topic:before { content: "\f280"; }
+.elm-tracking:before { content: "\f227"; }
+.elm-trademark:before { content: "\f160"; }
+.elm-train:before { content: "\f2c9"; }
+.elm-trash:before { content: "\f102"; }
+.elm-trash-2:before { content: "\f171"; }
+.elm-trash-can:before { content: "\f1b3"; }
+.elm-tree-structure:before { content: "\f147"; }
+.elm-unchecked-checkbox:before { content: "\f2cb"; }
+.elm-unchecked-radio-button:before { content: "\f2ce"; }
+.elm-undo:before { content: "\f1db"; }
+.elm-up:before { content: "\f1e8"; }
+.elm-update-file:before { content: "\f28a"; }
+.elm-upload:before { content: "\f17d"; }
+.elm-upload-2:before { content: "\f2f0"; }
+.elm-upload-to-the-cloud:before { content: "\f114"; }
+.elm-upload-to-the-cloud-2:before { content: "\f1b8"; }
+.elm-upward-arrow:before { content: "\f127"; }
+.elm-usb-connector:before { content: "\f2a8"; }
+.elm-usb-on:before { content: "\f29a"; }
+.elm-user:before { content: "\f1f2"; }
+.elm-user-2:before { content: "\f296"; }
+.elm-user-account:before { content: "\f1f5"; }
+.elm-user-folder:before { content: "\f212"; }
+.elm-user-group:before { content: "\f1f6"; }
+.elm-user-groups:before { content: "\f1f4"; }
+.elm-user-location:before { content: "\f297"; }
+.elm-user-manual:before { content: "\f18d"; }
+.elm-user-menu-female:before { content: "\f149"; }
+.elm-variation:before { content: "\f2ec"; }
+.elm-vga:before { content: "\f2a7"; }
+.elm-video-conference:before { content: "\f2e3"; }
+.elm-video-message:before { content: "\f19c"; }
+.elm-view-all:before { content: "\f2d0"; }
+.elm-virtual-reality:before { content: "\f2d2"; }
+.elm-visual-studio-code:before { content: "\f1ac"; }
+.elm-voltage:before { content: "\f1c1"; }
+.elm-wait:before { content: "\f2fe"; }
+.elm-water:before { content: "\f2b2"; }
+.elm-world-map:before { content: "\f1d5"; }
+.elm-zip:before { content: "\f286"; }
+.elm-zip-2:before { content: "\f289"; }
+.elm-zip-code:before { content: "\f282"; }

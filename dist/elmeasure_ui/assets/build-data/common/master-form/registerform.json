@@ -1,0 +1,99 @@
+{
+    "data": {
+        "general_info": {
+            "number": 6,
+            "headerContent": [
+                {
+                    "sectionWidth": "12",
+                    "content": "New Section",
+                    "class": "",
+                    "data": [
+                        {
+                            "label": "Name",
+                            "type": "text",
+                            "key": "name",
+                            "value": "",
+                            "placeholder": "Enter Name",
+                            "required": true,
+                            "disabled": false,
+                            "hidden": false,
+                            "gridWidth": "6"
+                        },
+                        {
+                            "label": "Organisation Name",
+                            "type": "text",
+                            "key": "orgname",
+                            "value": "",
+                            "placeholder": "Enter Organisation Name",
+                            "required": true,
+                            "disabled": false,
+                            "hidden": false,
+                            "gridWidth": "6"
+                        },
+                        {
+                            "label": "Mobile Number",
+                            "type": "number",
+                            "key": "mobileno",
+                            "value": "",
+                            "placeholder": "Enter Mobile Number",
+                            "required": true,
+                            "disabled": false,
+                            "hidden": false,
+                            "gridWidth": "6"
+                        },
+                        {
+                            "label": "Email",
+                            "type": "email",
+                            "key": "username",
+                            "value": "",
+                            "placeholder": "Enter your User ID",
+                            "required": true,
+                            "disabled": false,
+                            "hidden": false,
+                            "gridWidth": "6"
+                        },
+                        {
+                            "label": "Application",
+                            "type": "select",
+                            "key": "application",
+                            "value": "null",
+                            "placeholder": "Select Application",
+                            "allowClear": true,
+                            "options": [
+                                {
+                                    "label": "ELNet 5",
+                                    "value": 1
+                                },
+                                {
+                                    "label": "ELNet 6",
+                                    "value": 2
+                                },
+                                {
+                                    "label": "ELNet 7",
+                                    "value": 3
+                                }
+                            ],
+                            "required": true,
+                            "disabled": false,
+                            "hidden": false,
+                            "dependent": false,
+                            "gridWidth": "6"
+                        }
+                    ],
+                    "layoutType": "section",
+                    "sectionTitle": ""
+                }
+            ],
+            "bodyContent": {},
+            "userActions": {
+                "buttonsPosition": "fixed",
+                "cancel": {
+                    "label": "Cancel"
+                },
+                "save": {
+                    "label": "Submit"
+                }
+            }
+        }
+    }
+}

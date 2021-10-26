@@ -1,0 +1,31 @@
+[
+    {
+        "itemName": "Sunday",
+        "id": "Sunday"
+    },
+    {
+        "itemName": "Monday",
+        "id": "Monday"
+    },
+    {
+        "itemName": "Tuesday",
+        "id": "Tuesday"
+    },
+    {
+        "itemName": "Wednesday",
+        "id": "Wednesday"
+    },
+    {
+        "itemName": "Thursday",
+        "id": "Thusrday"
+    },
+    {
+        "itemName": "Friday",
+        "id": "Friday"
+    },
+    {
+        "itemName": "Saturday",
+        "id": "Saturday"
+    }
+    
+]

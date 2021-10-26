@@ -1,0 +1,409 @@
+{
+    "asset_action_id": "asset_action_13",
+    "action_name": "Generator ON",
+    "last_modified_by": "Mithu",
+    "last_modified_at": "21-12-2020 6:30am",
+    "created_by": "Akash",
+    "created_at": "21-12-2020 6:30am",
+    "description": "lorem ispum to be noted down in history for being most vague writing practice",
+    "labels": [
+        "Generator",
+        "Elmeasure",
+        "ELM MUMBAI",
+        "ELMEAURE MEE-EXPO"
+    ],
+    "schedule": {
+        "schedule": true,
+        "dayType": "month",
+        "minutes": [
+            {
+                "itemName": "0",
+                "id": "0"
+            },
+            {
+                "itemName": "1",
+                "id": "1"
+            }
+        ],
+        "hours": [
+            {
+                "itemName": "02",
+                "id": "02"
+            },
+            {
+                "itemName": "01",
+                "id": "01"
+            }
+        ],
+        "months": [
+            {
+                "itemName": "January",
+                "id": "1"
+            },
+            {
+                "itemName": "February",
+                "id": "2"
+            }
+        ],
+        "startDate": "21-12-2020",
+        "startDateVal": "2020-12-21T07:43:14.381Z",
+        "endDate": "21-12-2020",
+        "endDateVal": "2020-12-21T07:43:14.381Z"
+    },
+    "body_content": [
+        {
+            "asset_name": "Transformer Incomer",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        },
+        {
+            "asset_name": "Distributor",
+            "tag": "W total",
+            "value": "345"
+        }
+    ],
+    "header_content": [
+        {
+            "label": "Asset",
+            "key": "asset_name"
+        },
+        {
+            "label": "Tag",
+            "key": "tag"
+        },
+        {
+            "label": "Value",
+            "key": "value"
+        }
+    ]
+}

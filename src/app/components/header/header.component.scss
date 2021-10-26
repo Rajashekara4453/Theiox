@@ -1,0 +1,215 @@
+.mobileHeader
+{
+  min-height: 60px;
+  display: none;
+  height: 60px;
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
+
+  .headerContainer
+  {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 15px;
+    height: 100%;
+    font-size: 17px;
+    color: #9a9a9a;
+  }
+  #Logo
+  {
+    // filter: invert(0.4);
+  }
+  .mobile-alert
+  {
+    float: left;
+    margin-right: 0;
+    font-size: 15px;
+    width: 35px;
+    min-width: 30px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    border-radius: 50%;
+    /* padding: 5px; */
+    padding: 2px;
+    background: transparent;
+    position: relative;
+    display: inline-block;
+    .icon
+    {
+      font-size: 21px;
+      display: inline-block;
+    }
+    .number
+    {
+      border-radius: 50%;
+      border: none;
+      background: var(--brandRed);
+      color: white;
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      right: 0px;
+      top: 0px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+    }
+  }
+
+}
+.contentFooter
+{
+
+  background: #f6f7f9;
+  height: 30px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  font-size: 12px;
+  border-color: #b2b2b2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    margin-left: 0px;
+  }
+  ul
+    {
+    list-style-type: none;
+    float: right;
+    box-sizing: border-box;
+    text-align: left;
+    outline: 0 none;
+    margin: 0;
+    padding:0px;
+    height: 100%;
+    font-size: 15px;
+    @media screen and (max-width: 992px) {
+      display: none;
+  }
+    // padding: 5px;
+      li
+      {
+        box-sizing: border-box;
+        text-align: left;
+        outline: 0 none;
+        margin: 0;
+        float:left;
+        // width: 52px;
+        // border-left: 0.5px solid #e9ecef;
+        text-align: center;
+        height: 100%;
+        display: flex;
+        /* animation: ce; */
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        padding:0px 5px;
+        cursor: pointer;
+        // border-top: 2px solid transparent;
+        .borderCorner
+        {
+          border-style: solid;
+          border-width: 0px 25px 22px 0px;
+          border-color: transparent var(--brandRed) transparent transparent;
+          position: absolute;
+          top: 0;
+          right: 0;
+          filter: drop-shadow(0 0.1px 4px rgba(0,0,0,0.2));
+        }
+        .borderCorner+span
+        {
+          position: absolute;
+          color: white;
+          top: 0px;
+          right: 0px;
+          z-index: 9;
+          font-size: 10px;
+          width: 12px;
+          text-align: center;
+        }
+        .dot
+        {
+          width: 6px;
+          height: 6px;
+          border-radius: 100%;
+          background: var(--brandRed);
+          // padding:0px 5px;
+          // position: absolute;
+          // top: 50%;
+          // transform: translateY(-50%);
+
+        }
+        .iconContainer
+        {
+          display: inline-block;
+          width: 100%;
+          position: relative;
+          padding-left: 5px;
+          padding-right: 5px;
+
+        }
+        .subtext
+        {
+          font-size: 12px;
+          vertical-align: middle;
+          padding: 0px 5px;
+        }
+        .onhovertext
+        {
+          display: none;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translate(-50%,-100%);
+          padding:7px;
+          box-shadow: 2px 2px 10px #ccc;
+          background: #fff;
+          transform: translate(-50%, -112%);
+          cursor: default;
+    padding: 7px;
+    &::after
+    {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-width: 10px;
+      border-style: solid;
+      border-color: transparent #FFFFFF transparent transparent;
+      border-color: #FFFFFF transparent transparent transparent;
+      /* top: 11px; */
+      left: 50%;
+      transform: translate(-50%, 0);
+      top: 100%;
+    }
+    span.name
+    {
+      white-space: nowrap;
+    font-size: 12px;
+    }
+        }
+        &:hover
+        {
+          .onhovertext
+        {
+          display: inline-block;
+        }
+        }
+      }
+    }
+    .footerLeft
+    {
+      padding: 0px 7px;
+    }
+}
+.defaultuserprofile
+{
+  font-size: 18px;
+}

@@ -1,0 +1,40 @@
+<div class="form-header px-2">
+    <!-- <img class="toggleImg" (click)="toggleExpandCollepseImg()" src="assets/images/right.png" [ngClass]="{'toggle-expanded': isExpanded, 'toggle-collepsed': !isExpanded }" />
+    Rule Sets -->
+    <!-- <div class="btn-group mr-2" (click)="toggleExpandCollepseImg()" [ngClass]="{'toggle-expanded': isExpanded, 'toggle-collepsed': !isExpanded }">
+        <button class="btn btn-secondary btn-sm active shadow-none" style="min-width: 100px">
+            {{isExpanded ? 'Expand' : 'Hide'}}
+          </button>
+      <button class="btn btn-sm btn-secondary" [ngClass]="{'toggle-expanded': isExpanded, 'toggle-collepsed': !isExpanded }">
+        <i class="elm-forward"></i>
+      </button>
+ 
+    </div> -->
+    <!-- <div class="btn-group mr-2"
+    [ngClass]="{'d-inline-block': isExpanded, 'd-none': !isExpanded}">
+      <button class="btn btn-sm btn-primary" (click)="addNewRuleSet()">Add Rule Set</button>
+    </div> -->
+    <!-- <div class="btn-group mr-2" role="group" [ngClass]="{ 'invisible':ruleSets.length<=1 }">
+        <button type="button" class="btn btn-sm" [ngClass]="{ 'btn-primary' : ruleSetAndOrOperationData['isAnd'], 'btn-secondary' : ruleSetAndOrOperationData['isOr'] }"
+          (click)="andClicked()">AND</button>
+        <button type="button" class="btn btn-sm" [ngClass]="{ 'btn-primary' : ruleSetAndOrOperationData['isOr'], 'btn-secondary' : ruleSetAndOrOperationData['isAnd'] }"
+          (click)="orClicked()">OR</button>
+      </div> -->
+  </div>
+  <div class="body-container overflow-auto px-2">
+    <ul class="col-12">
+      <li *ngFor="let ruleSet of ruleSets; let i = index;" [ngClass]="{'d-block': isExpanded, 'd-none': !isExpanded}">
+        <div class="row border position-relative my-2">
+            <!-- <div class="delete">
+              <fa-icon [icon]="['fas', 'trash']" title="Delete Rule Set" ></fa-icon>
+            </div> -->
+          <!-- <button type="button" class="btn btn-sm btn-secondary position-absolute m-2" (click)="deleteRuleSet(i)" style="right: 0; top: 0; z-index: 99;">
+            Delete
+          </button> -->
+          <div class="col-sm-12">
+              <kl-rules [thresholds]="thresholds" [category]="alarmConfig" [tags]="tags" [rules]="ruleSet.rules" [ruleAndOrOperationData]="ruleSet.ruleAndOrOperationData"></kl-rules>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>

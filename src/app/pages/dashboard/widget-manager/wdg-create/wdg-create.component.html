@@ -1,0 +1,157 @@
+<div KLWdgConfigPannel *ngIf="widgetSelection" class="card" [ngClass]="{ 'cardbg' :stepNumber == 2}">
+  <!-- widgetConfigPannel -->
+  <div class="card-header">
+    <h5 class="widget-create-title text-muted">
+      <span *ngIf="!isEditWidget">Create </span>
+      <span *ngIf="isEditWidget">Edit </span>
+      <span *ngIf="stepNumber != 2"> Widget</span>
+      <span *ngIf="widgetConfigData.wcSelect === 'chart' && stepNumber == 2"> - Historical </span>
+      <span *ngIf="widgetConfigData.wcSelect === 'live' && stepNumber == 2"> - Live </span>
+      <span *ngIf="getChartLabel() && stepNumber == 2"> {{getChartLabel()}} Widget <i [hidden]="!showImagePicker"
+          class="fa fa-angle-double-right"></i> {{showImagePicker?'Gallery':''}}</span>
+    </h5>
+    <!-- <i class="elm-cancel pull-right h5 m-0 ml-auto text-muted" (click)="closeWidgetConfigPopup()"></i> -->
+  </div>
+  <div class="card-body p-0" [ngSwitch]="stepNumber">
+    <div class="row h-100 sample-widget-container" *ngSwitchCase="1">
+
+      <!-- <h6 class="widget-create-title subtitlesize">Visualization</h6> -->
+      <!-- <div class="pl-2 row"> -->
+      <!-- <div class="col-12 p-2">
+            <ul class="nav nav-tabs" value="myTab" role="tablist">
+              <li class="nav-item text-center" (click)="wdgTypeTabChanged(vData)"
+              *ngFor="let vData of visualizationData; let ind = index">
+              <a class="nav-link" *ngIf="pageType != 'reports'" [ngClass]="{'active': widgetConfigData.wcSelect === vData.type}" id="vData.value"
+                data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                aria-selected="true">{{vData.label}}</a>
+                <a class="nav-link" *ngIf="pageType == 'reports'" [ngClass]="{'active':reportFormat == vData.value}" id="vData.value"
+                data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                aria-selected="true">{{vData.label}}</a>
+              </li>
+            </ul>
+          </div> -->
+      <div class="col-12 h-100">
+        <ng-container *ngIf="pageType !== 'reports'">
+          <div class="m-3" *ngFor="let vData of visualizationData; let ind = index">
+            <h5 class="cheat-sheat-title text-muted border-bottom">{{vData.label}}</h5>
+            <div *ngFor="let item of vData.items" (click)="chartTypeChanged(item)"
+              class="d-inline-block sample-container">
+              <ul class='p-0 m-0'>
+                <li class="card sample-widget"
+                  [ngClass]="{'selected-chart-color': widgetConfigData.wcType === item.cType, 'disabled': item.disabled}">
+                  <div class="chart-sample align-center">
+                    <img style="width: 90px;height:90px;" src="assets/images/wdg-cheat-sheet/{{item.img}}">
+                  </div>
+                  <h5 class="text-muted font-weight-normal text-truncate p-1" data-toggle="tooltip" data-placement="top"
+                    title="{{item.label}}">
+                    {{item.label}}
+                  </h5>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="pageType === 'reports'">
+          <div class="m-3" *ngFor="let vData of visualizationData; let ind = index">
+            <!-- <h5 class="cheat-sheat-title text-muted border-bottom">{{vData.label}}</h5> -->
+            <div *ngFor="let item of vData.items" (click)="chartTypeChanged(item)" class="">
+              <ul class='p-0 m-0'>
+                <li class="card sample-widget" style="width: 100%; text-align: left;"
+                  [ngClass]="{'selected-chart-color': widgetConfigData.wcType === item.cType, 'disabled': item.disabled}">
+                  <!-- <div class="chart-sample align-center">
+                  <img style="width: 90px;height:90px;" src="assets/images/wdg-cheat-sheet/{{item.img}}">
+                </div> -->
+                  <h5 class="text-muted font-weight-normal text-truncate p-1" data-toggle="tooltip" data-placement="top"
+                    title="{{item.label}}">
+                    <i class="fa fa-file-excel-o pl-2 pr-2"></i> {{item.label}}
+                  </h5>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+    </div>
+
+    <div class="custom-dropdown-toggle" style="width: 100%; background:#000; opacity:0.5; height: 100%"
+      *ngIf="showPreview && !isEditWidget && stepNumber == 2?true:showPreview && stepNumber == 2"
+      (click)="$event.stopPropagation();closePreviewPop()">
+    </div>
+    <div class="custom-dropdown-toggle"
+      *ngIf="showPreview && !isEditWidget && stepNumber == 2?true:showPreview && stepNumber == 2"
+      (click)="$event.stopPropagation();" style="width: 80%; margin-left: 10%; margin-right: 0px; margin-top:5%;">
+      <div class="showPreview">
+        <kl-wdg-display *ngIf="widgetData && widgetConfigData.wcSelect === 'chart'" [widgetInfo]="widgetData"
+          [alarmWidgetData]='alarmWidgetData' [mapData]="latlongData" (blockIndex)="getBlockIndex($event)">
+        </kl-wdg-display>
+        <kl-wdg-show *ngIf="widgetDataLiveShow && widgetConfigData.wcSelect === 'live'" [wcData]="widgetDataLive">
+        </kl-wdg-show>
+      </div>
+      <div class="border-top pt-3">
+        <button (click)="closePreviewPop()" class="btn btn-sm btn-primary ml-2">Close Preview</button>
+      </div>
+    </div>
+
+    <div *ngSwitchCase="2" class="h-100" [ngClass]="{'elarge': !showPreview}">
+      <div [hidden]="!showConfig">
+        <div class="" *ngIf="widgetConfigData.wcSelect === 'chart'" class="showConfi">
+          <kl-basic-chart-config [chartConfig]="widgetConfigData.wcData" (imagePickerState)="imageStateEvent($event)"
+            [showImagePicker]='showImagePicker' (reportConfigurationChange)="updateReportsOptions($event)"
+            (chartConfigChange)="updateOptions($event)" [chartOptions]="chartOptions" [(showPreview)]="showPreview"
+            [pageType]="pageType"></kl-basic-chart-config>
+        </div>
+        <div class="col-12 p-1" *ngIf="widgetConfigData.wcSelect === 'live'" class="showConfi">
+          <kl-live-chart-config [chartConfig]="widgetConfigData.wcData" (imagePickerState)="imageStateEvent($event)"
+            [showImagePicker]='showImagePicker' (chartConfigChange)="updateOptionsLive($event)"
+            [chartOptions]="chartOptions" [(showPreview)]="showPreview"></kl-live-chart-config>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer d-flex align-items-center" [ngSwitch]="stepNumber">
+    <div class="col-md-12 px-1" *ngSwitchCase="2">
+      <!-- <button type="button" class="btn float-left btn-secondary btn-sm" (click)="closeWidgetConfigPopup()">Close</button> -->
+
+      <button (click)="stepNumber = 1;isPreviewLoading = false" [disabled]="isPreviewLoading || isSaveLoading"
+        *ngIf="!isEditWidget && !showImagePicker" type="button"
+        class="btn btn-secondary btn-sm mr-3 float-left">Back</button>
+      <button type="button" class="btn btn-primary btn-sm mr-3" [hidden]="showImagePicker" (click)="saveWidgetConfig();"
+        [disabled]="isSaveLoading" style="width:63.4px"><span *ngIf="!isSaveLoading">Save</span>
+        <span *ngIf="isSaveLoading" class="loader-custom btn-loader d-inline-block"></span></button>
+
+      <button type="button"
+        *ngIf="widgetConfigData.wcSelect === 'chart' && !showImagePicker && !widgetConfigData.wcData.isModeBus "
+        class="btn btn-primary btn-sm mr-3" (click)="previewChart()" [disabled]="isPreviewLoading"
+        style="width:63.4px"><span *ngIf="!isPreviewLoading">Preview</span>
+        <span *ngIf="isPreviewLoading" class="loader-custom btn-loader d-inline-block"></span>
+        <!-- <div class="loader-custom btn-loader" style="font-size: 10px;" *ngIf="isPreviewLoading"></div> -->
+      </button>
+      <button type="button"
+        *ngIf="widgetConfigData.wcSelect === 'live'  && !showImagePicker && !widgetConfigData.wcData.isModeBus"
+        class="btn btn-primary btn-sm mr-3" (click)="previewChartLive()" [disabled]="isPreviewLoading"
+        style="width:63.4px"><span *ngIf="!isPreviewLoading">Preview</span>
+        <span *ngIf="isPreviewLoading" class="loader-custom btn-loader d-inline-block"></span>
+        <div class="loader-custom btn-loader" style="font-size: 10px;" *ngIf="isPreviewLoading"></div>
+      </button>
+      <button type="button" class="btn btn-secondary btn-sm mr-3" [hidden]="showImagePicker"
+        (click)="closeWidgetConfigPopup()">Cancel</button>
+      <button type="button" class="btn btn-secondary btn-sm mr-3" (click)="stepNumber = 2;showImagePicker=false"
+        [hidden]="!showImagePicker">Cancel</button>
+    </div>
+    <div class="col-md-12 px-1" *ngSwitchCase="1">
+      <button type="button" class="btn btn-secondary btn-sm" (click)="closeWidgetConfigPopup()">Cancel</button>
+    </div>
+  </div>
+
+</div>
+<div *ngIf="!widgetSelection">
+  <div id="loader-wrapper-submaincontent">
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</div>

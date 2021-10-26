@@ -1,0 +1,140 @@
+<div class="breadcrumb-content">
+  <div class="breadcrumb-title">
+    <div class="breadcrumb-left">
+      <span class="cell"> Activity Log </span>
+    </div>
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="sub-main-content" *ngIf="!isPageLoading">
+    <div class="tab-pane">
+      <div class="tab-pane-container clearfix body-container">
+        <div class="row">
+          <div class="form-group col mt-3 ml-2">
+            <label class="control-label">From</label>
+            <angular2-date-picker
+              [settings]="time_settings"
+              [(ngModel)]="selected_filters.from_date"
+              (onDateSelect)="onDateSelect($event, 'from')"
+            >
+            </angular2-date-picker>
+          </div>
+          <div class="form-group col mt-3 ml-2">
+            <label class="control-label">To</label>
+            <angular2-date-picker
+              [settings]="time_settings"
+              [(ngModel)]="selected_filters.to_date"
+              (onDateSelect)="onDateSelect($event, 'to')"
+            >
+            </angular2-date-picker>
+          </div>
+
+          <div class="form-group col mt-3 ml-2">
+            <label class="control-label"> Module </label>
+            <angular2-multiselect
+              [settings]="dropDownSettings"
+              [(ngModel)]="selected_filters.module"
+              [data]="module"
+              (onSelect)="onItemSelect($event, 'module')"
+              (onDeSelectAll)="onDeSelectAll($event, 'module')"
+            >
+            </angular2-multiselect>
+          </div>
+          <div class="form-group col mt-3 ml-2">
+            <label class="control-label"> User</label>
+            <angular2-multiselect
+              [data]="user"
+              [settings]="dropDownSettings"
+              [(ngModel)]="selected_filters.users"
+              (onSelect)="onItemSelect($event, 'user')"
+              (onDeSelectAll)="onDeSelectAll($event, 'user')"
+            >
+            </angular2-multiselect>
+          </div>
+
+          <div class="form-group col mt-3 ml-2">
+            <label class="control-label"> Action </label>
+            <angular2-multiselect
+              [settings]="dropDownSettings"
+              [(ngModel)]="selected_filters.Actions"
+              [data]="actions"
+              (onSelect)="onItemSelect($event, 'action')"
+              (onDeSelectAll)="onDeSelectAll($event, 'action')"
+            >
+            </angular2-multiselect>
+          </div>
+          <div class="form-group apply-btn mt-3">
+            <label for=""></label>
+            <button
+              class="btn btn-secondary btn-sm"
+              (click)="reset()"
+              [disabled]="
+                action_select == '' &&
+                module_select == '' &&
+                user_select == '' &&
+                !touched
+              "
+            >
+              Reset
+            </button>
+          </div>
+          <div class="form-group apply-btn mt-3">
+            <label for=""></label>
+            <button
+              class="btn btn-primary btn-sm"
+              (click)="apply()"
+              [disabled]=""
+            >
+              Apply
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="display">
+      <kl-common-table [tableData]="display_table"></kl-common-table>
+<div class="btn-load-more" *ngIf="isLoadmore">
+        <button class="btn btn-sm btn-outline-primary" (click)="loadMore()">
+          <i class="fa fa-repeat"></i> Load More
+        </button>
+      </div>
+    </div> -->
+    <div class="display table-content">
+      <table class="table">
+        <thead>
+          <tr>
+            <th *ngFor="let item of display_table.header_content">
+              {{ item.label }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ele of display_table.body_content">
+            <td *ngFor="let item of display_table.header_content">
+              {{ ele[item.key] }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="isempty" *ngIf="isempty">
+        <p>No records found.</p>
+      </div>
+      <div class="btn-load-more" *ngIf="isLoadmore">
+        <button class="btn btn-sm btn-outline-primary" (click)="loadMore()">
+          <i class="fa fa-repeat"></i> Load More
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isPageLoading" class="">
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</div>

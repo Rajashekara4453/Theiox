@@ -1,0 +1,8 @@
+<button class="btn btn-secondary khide btn-sm"
+    [ngClass]="{'isEnabled': ((pageType !== 'trends' && pageType !=='alarmEvents') && (!hasClickAccess.commonfilter) )}"
+    (click)="pageType !== 'trends' && pageType !=='alarmEvents' ? (hasClickAccess.commonfilter ? pinFilter($event) : '') : pinFilter($event)"
+    [title]="((pageType !== 'trends' && pageType !=='alarmEvents') && (!hasClickAccess.commonfilter))?'Access Denied':'Filter'">
+    <i [ngClass]="{
+    'fa fa-filter' : elmfilter,
+    'elm-clear-filters' : elmClearFilter, 'isEnabled': ((pageType !== 'trends' && pageType !=='alarmEvents') && (!hasClickAccess.commonfilter) )}"
+        style="padding:0;"></i></button>

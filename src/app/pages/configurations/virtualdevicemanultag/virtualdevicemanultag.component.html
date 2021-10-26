@@ -1,0 +1,64 @@
+<div class="main-content">
+  <div class="sub-sidebar">
+    <ng-container *ngIf="onLoaded">
+      <kl-menubar *ngIf="sideMenus" [menus]="sideMenus" [displayProperty]="'name'"
+        [secondDisplyProperty]="'device_instance_id'" [valueProperty]="''" (clickStatus)="getVirualData($event)"
+        (addnew)="addNewManulTag()" (draggedElement)="draggedEventFromMenubar($event)" draggable="true"
+        (dragstart)="drag($event)" (dragover)="allowDrop($event)"></kl-menubar>
+    </ng-container>
+  </div>
+  <div class="sub-main-content-sb" (drop)="drop($event)" (dragover)="allowDrop($event)">
+    <form class="form-container" *ngIf="onLoadPage">
+      <div class="form-header">
+        <h5 class="form-title">Create Asset Manual Tag</h5>
+      </div>
+      <div class="form-content">
+        <div class="form-group col-6">
+          <label>Assets:</label>
+          <angular2-multiselect [data]="virtualDeviceDropDown" [(ngModel)]="selectedItemsVirtualDevice"
+            [settings]="deviceDropdownSettings" class="form-control p-0" (onSelect)="onVirtualDeviceSelection($event)"
+            (onDeSelect)="onItemDeSelectDevice($event)" (onSelectAll)="onDeviceSelectAll($event)"
+            (onDeSelectAll)="onItemDeSelectDeviceAll($event)" name="device"></angular2-multiselect>
+        </div>
+        <div class="form-group col-6">
+          <label for="manualTag">Manual Tags: </label>
+          <angular2-multiselect [data]="manualTagDeviceDropDown" [(ngModel)]="selectedItemsManulDevice"
+            [settings]="manualTagDropdownSettings" class="form-control p-0" (onSelect)="onManualDeviceSelection($event)"
+            (onDeSelect)="onItemDeSelectManual($event)" (onSelectAll)="onManualSelectAll($event)"
+            (onDeSelectAll)="onItemDeSelectManualAll($event)" name="manual"></angular2-multiselect>
+        </div>
+      </div>
+      <div class="form-footer">
+        <button type="button" class="btn btn-sm btn-primary" [disabled]="disableBtn"
+          (click)="accessLevel.create ? onSave(): return">Save</button>
+        <button type="button" class="btn btn-sm btn-secondary" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+    <form class="form-container" *ngIf="onEditpageLoad">
+      <div class="form-header">
+        <h5 class="form-title">{{title}}</h5>
+      </div>
+      <div class="form-content">
+        <div class="form-group col-6">
+          <label>Assets:</label>
+          <angular2-multiselect [data]="virtualDeviceDropDown" [(ngModel)]="selectedItemsVirtualDevice"
+            [settings]="deviceDropdownSettings" class="form-control p-0" (onSelect)="onVirtualDeviceSelection($event)"
+            (onDeSelect)="onItemDeSelectDevice($event)" (onSelectAll)="onDeviceSelectAll($event)"
+            (onDeSelectAll)="onItemDeSelectDeviceAll($event)" name="device"></angular2-multiselect>
+        </div>
+        <div class="form-group col-6">
+          <label for="manualTag">Manual Tags: </label>
+          <angular2-multiselect [data]="manualTagDeviceDropDown" [(ngModel)]="selectedItemsManulDevice"
+            [settings]="manualTagDropdownSettings" class="form-control p-0" (onSelect)="onManualDeviceSelection($event)"
+            (onDeSelect)="onItemDeSelectManual($event)" (onSelectAll)="onManualSelectAll($event)"
+            (onDeSelectAll)="onItemDeSelectManualAll($event)" name="manual"></angular2-multiselect>
+        </div>
+      </div>
+      <div class="form-footer">
+        <button type="button" class="btn btn-primary btn-sm" [disabled]="disableEditBtn"
+          (click)="accessLevel.create ? onEditSave(): return">Update</button>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="onEditCancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

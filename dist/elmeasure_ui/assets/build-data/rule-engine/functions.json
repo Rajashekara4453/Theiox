@@ -1,0 +1,34 @@
+[
+    {
+        "label": "Average",
+        "value": "Average"
+    },
+    {
+        "label": "Count",
+        "value": "Count"
+    },
+    {
+        "label": "Delta Sum",
+        "value": "Delta Sum"
+    },
+    {
+        "label": "Min",
+        "value": "Min"
+    },
+    {
+        "label": "Max",
+        "value": "Max"
+    },
+    {
+        "label": "Moving Avg",
+        "value": "Moving Avg"
+    },
+    {
+        "label": "Sum",
+        "value": "Sum"
+    },
+    {
+        "label": "None",
+        "value": "None"
+    }
+]

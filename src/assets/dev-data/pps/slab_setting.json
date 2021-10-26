@@ -1,0 +1,885 @@
+{
+    "header_id": "slab_setting",
+    "data": {
+      "number": 6,
+      "headerContent": [
+        {
+          "sectionWidth": "12",
+          "content": "New Section",
+          "class": "",
+          "data": [
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "eb_threshold_kva",
+              "label": "EB Threshold (kVA)",
+              "placeholder": "Enter EB Threshold (kVA)",
+              "required": false,
+              "type": "number",
+              "value": "60"
+            },
+            {
+              "label": "DG Selection",
+              "type": "select",
+              "key": "dg_selection",
+              "value": "",
+              "placeholder": "Select DG Option",
+              "allowClear": true,
+              "options": [
+                {
+                  "label": "R Phase",
+                  "value": "0"
+                },
+                {
+                  "label": "Y Phase",
+                  "value": "1"
+                },
+                {
+                  "label": "B Phase",
+                  "value": "2"
+                },
+                {
+                  "label": "RYB Phase",
+                  "value": "3"
+                },
+                {
+                  "label": "No DG",
+                  "value": "4"
+                }
+              ],
+              "required": true,
+              "disabled": false,
+              "hidden": false,
+              "dependent": false,
+              "gridWidth": "2"
+            },
+            {
+              "label": "Maintenance/ Fixed Cost Deduction",
+              "type": "select",
+              "key": "maintenance_fixed_cost_deduction",
+              "value": "",
+              "placeholder": "Maintenance/ Fixed Cost Deduction",
+              "allowClear": true,
+              "options": [
+                {
+                  "label": "Disable",
+                  "value": "0"
+                },
+                {
+                  "label": "Monthly",
+                  "value": "1"
+                },
+                {
+                  "label": "Weekly",
+                  "value": "2"
+                },
+                {
+                  "label": "Daily",
+                  "value": "3"
+                }
+              ],
+              "required": true,
+              "disabled": false,
+              "hidden": false,
+              "dependent": false,
+              "gridWidth": "2"
+            },
+            {
+              "label": "Monthly",
+              "type": "select",
+              "key": "monthly_selection",
+              "value": "",
+              "placeholder": "Select Date",
+              "allowClear": true,
+              "options": [
+                {
+                  "label": "1",
+                  "value": "1"
+                },
+                {
+                  "label": "2",
+                  "value": "2"
+                },
+                {
+                  "label": "3",
+                  "value": "3"
+                },
+                {
+                  "label": "4",
+                  "value": "4"
+                },
+                {
+                  "label": "5",
+                  "value": "5"
+                },
+                {
+                  "label": "6",
+                  "value": "6"
+                },
+                {
+                  "label": "7",
+                  "value": "7"
+                },
+                {
+                  "label": "8",
+                  "value": "8"
+                },
+                {
+                  "label": "9",
+                  "value": "9"
+                },
+                {
+                  "label": "10",
+                  "value": "10"
+                },
+                {
+                  "label": "11",
+                  "value": "11"
+                },
+                {
+                  "label": "12",
+                  "value": "12"
+                },
+                {
+                  "label": "13",
+                  "value": "13"
+                },
+                {
+                  "label": "14",
+                  "value": "14"
+                },
+                {
+                  "label": "15",
+                  "value": "15"
+                },
+                {
+                  "label": "16",
+                  "value": "16"
+                },
+                {
+                  "label": "17",
+                  "value": "17"
+                },
+                {
+                  "label": "18",
+                  "value": "18"
+                },
+                {
+                  "label": "19",
+                  "value": "19"
+                },
+                {
+                  "label": "20",
+                  "value": "20"
+                },
+                {
+                  "label": "21",
+                  "value": "21"
+                },
+                {
+                  "label": "22",
+                  "value": "22"
+                },
+                {
+                  "label": "23",
+                  "value": "23"
+                },
+                {
+                  "label": "24",
+                  "value": "24"
+                },
+                {
+                  "label": "25",
+                  "value": "25"
+                },
+                {
+                  "label": "26",
+                  "value": "26"
+                },
+                {
+                  "label": "27",
+                  "value": "27"
+                },
+                {
+                  "label": "28",
+                  "value": "28"
+                }
+              ],
+              "required": false,
+              "disabled": false,
+              "hidden": false,
+              "dependent": false,
+              "gridWidth": "2"
+            },
+            {
+              "label": "Weekly",
+              "type": "select",
+              "key": "weekly",
+              "value": "",
+              "placeholder": "Select Week",
+              "allowClear": true,
+              "options": [
+                {
+                  "label": "Monday",
+                  "value": "0"
+                },
+                {
+                  "label": "Tuesday",
+                  "value": "1"
+                },
+                {
+                  "label": "Wednesday",
+                  "value": "2"
+                },
+                {
+                  "label": "Thursday",
+                  "value": "3"
+                },
+                {
+                  "label": "Friday",
+                  "value": "4"
+                },
+                {
+                  "label": "Saturday",
+                  "value": "5"
+                },
+                {
+                  "label": "Sunday",
+                  "value": "6"
+                }
+              ],
+              "required": false,
+              "disabled": false,
+              "hidden": false,
+              "dependent": false,
+              "gridWidth": "2"
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "time",
+              "label": "Select Time",
+              "placeholder": "Select Time",
+              "required": false,
+              "type": "time",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "number",
+              "label": "Maintenance Fixed Cost EB",
+              "placeholder": "Select Maintenance Fixed Cost EB",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "number",
+              "label": "Maintenance Fixed Cost DG",
+              "placeholder": "Select Maintenance Fixed Cost DG",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "number",
+              "label": "Low Balance Blinking Alarm",
+              "placeholder": "Enter Low Balance",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "label": "Slab Status",
+              "type": "select",
+              "key": "slab_status",
+              "value": "",
+              "placeholder": "Select Slab Status",
+              "allowClear": true,
+              "options": [
+                {
+                  "label": "Disable",
+                  "value": "0"
+                },
+                {
+                  "label": "Enable",
+                  "value": "1"
+                }
+              ],
+              "required": true,
+              "disabled": false,
+              "hidden": false,
+              "dependent": false,
+              "gridWidth": "2"
+            },
+            {
+              "label": "Number of TOD",
+              "type": "select",
+              "key": "select_no_of_tod",
+              "value": "",
+              "placeholder": "Select Number of TOD",
+              "allowClear": true,
+              "options": [
+                {
+                  "label": "TOD Timing-1",
+                  "value": "1"
+                },
+                {
+                  "label": "TOD Timing-2",
+                  "value": "2"
+                }
+              ],
+              "required": true,
+              "disabled": false,
+              "hidden": false,
+              "dependent": false,
+              "gridWidth": "2"
+            },
+            {
+              "label": "Number of Slab",
+              "type": "select",
+              "key": "select_no_of_slab",
+              "value": "",
+              "placeholder": "Select Number of Slab",
+              "allowClear": true,
+              "options": [
+                {
+                  "label": "Peak Slab-1",
+                  "value": "0"
+                },
+                {
+                  "label": "Peak Slab-2",
+                  "value": "1"
+                },
+                {
+                  "label": "Peak Slab-3",
+                  "value": "2"
+                },
+                {
+                  "label": "Peak Slab-4",
+                  "value": "3"
+                },
+                {
+                  "label": "Peak Slab-5",
+                  "value": "4"
+                },
+                {
+                  "label": "Peak Slab-6",
+                  "value": "5"
+                },
+                {
+                  "label": "Peak Slab-7",
+                  "value": "6"
+                },
+                {
+                  "label": "Peak Slab-8",
+                  "value": "7"
+                },
+                {
+                  "label": "Non-Peak Slab-1",
+                  "value": "8"
+                },
+                {
+                  "label": "Non-Peak Slab-2",
+                  "value": "9"
+                },
+                {
+                  "label": "Non-Peak Slab-3",
+                  "value": "10"
+                },
+                {
+                  "label": "Non-Peak Slab-4",
+                  "value": "11"
+                },
+                {
+                  "label": "Non-Peak Slab-5",
+                  "value": "12"
+                },
+                {
+                  "label": "Non-Peak Slab-6",
+                  "value": "13"
+                },
+                {
+                  "label": "Non-Peak Slab-7",
+                  "value": "14"
+                },
+                {
+                  "label": "Non-Peak Slab-8",
+                  "value": "15"
+                }
+              ],
+              "required": true,
+              "disabled": false,
+              "hidden": false,
+              "dependent": false,
+              "gridWidth": "2"
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "tod_timing_min_1",
+              "label": "Select TOD Timing 1(min)",
+              "placeholder": "Select TOD Timing 1(min)",
+              "required": false,
+              "type": "time",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "tod_timing_min_2",
+              "label": "Select TOD Timing 2(min)",
+              "placeholder": "Select TOD Timing 2(min)",
+              "required": false,
+              "type": "time",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "peak_slab_unit_1",
+              "label": "Peak Slab unit 1",
+              "placeholder": "Energy units in Wh",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "peak_slab_unit_2",
+              "label": "Peak Slab unit 2",
+              "placeholder": "Energy units in Wh",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "peak_slab_unit_3",
+              "label": "Peak Slab unit 3",
+              "placeholder": "Energy units in Wh",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "peak_slab_unit_4",
+              "label": "Peak Slab unit 4",
+              "placeholder": "Energy units in Wh",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "peak_slab_unit_5",
+              "label": "Peak Slab unit 5",
+              "placeholder": "Energy units in Wh",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "peak_slab_unit_6",
+              "label": "Peak Slab unit 6",
+              "placeholder": "Energy units in Wh",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "peak_slab_unit_7",
+              "label": "Peak Slab unit 7",
+              "placeholder": "Energy units in Wh",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "peak_slab_unit_8",
+              "label": "Peak Slab unit 8",
+              "placeholder": "Energy units in Wh",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "non_peak_slab_unit_1",
+              "label": "Non Peak Slab unit 1",
+              "placeholder": "Energy units in Wh",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "non_peak_slab_unit_2",
+              "label": "Non Peak Slab unit 2",
+              "placeholder": "Energy units in Wh",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "non_peak_slab_unit_3",
+              "label": "Non Peak Slab unit 3",
+              "placeholder": "Energy units in Wh",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "non_peak_slab_unit_4",
+              "label": "Non Peak Slab unit 4",
+              "placeholder": "Energy units in Wh",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "non_peak_slab_unit_5",
+              "label": "Non Peak Slab unit 5",
+              "placeholder": "Energy units in Wh",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "non_peak_slab_unit_6",
+              "label": "Non Peak Slab unit 6",
+              "placeholder": "Energy units in Wh",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "non_peak_slab_unit_7",
+              "label": "Non Peak Slab unit 7",
+              "placeholder": "Energy units in Wh",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "non_peak_slab_unit_8",
+              "label": "Non Peak Slab unit 8",
+              "placeholder": "Energy units in Wh",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "peak_rate_1",
+              "label": "Peak Rate 1",
+              "placeholder": "Rate/Cost-1",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "peak_rate_2",
+              "label": "Peak Rate 2",
+              "placeholder": "Rate/Cost-2",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "peak_rate_3",
+              "label": "Peak Rate 3",
+              "placeholder": "Rate/Cost-3",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "peak_rate_4",
+              "label": "Peak Rate 4",
+              "placeholder": "Rate/Cost-4",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "peak_rate_5",
+              "label": "Peak Rate 5",
+              "placeholder": "Rate/Cost-5",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "peak_rate_6",
+              "label": "Peak Rate 6",
+              "placeholder": "Rate/Cost-6",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "peak_rate_7",
+              "label": "Peak Rate 7",
+              "placeholder": "Rate/Cost-7",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "peak_rate_8",
+              "label": "Peak Rate 8",
+              "placeholder": "Rate/Cost-8",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "non_peak_rate_1",
+              "label": "Non Peak Rate 1",
+              "placeholder": "Rate/Cost-1",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "non_peak_rate_2",
+              "label": "Non Peak Rate 2",
+              "placeholder": "Rate/Cost-2",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "non_peak_rate_3",
+              "label": "Non Peak Rate 3",
+              "placeholder": "Rate/Cost-3",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "non_peak_rate_4",
+              "label": "Non Peak Rate 4",
+              "placeholder": "Rate/Cost-4",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "non_peak_rate_5",
+              "label": "Non Peak Rate 5",
+              "placeholder": "Rate/Cost-5",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "non_peak_rate_6",
+              "label": "Non Peak Rate 6",
+              "placeholder": "Rate/Cost-6",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "non_peak_rate_7",
+              "label": "Non Peak Rate 7",
+              "placeholder": "Rate/Cost-7",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "non_peak_rate_8",
+              "label": "Non Peak Rate 8",
+              "placeholder": "Rate/Cost-8",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "kva_trip_delay",
+              "label": "kVA Trip Delay",
+              "placeholder": "Enter kVA Trip Delay",
+              "required": false,
+              "type": "text",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "overload_off_cycle_1",
+              "label": "Overload off Cycle 1",
+              "placeholder": "Enter Overload off Cycle 1",
+              "required": false,
+              "type": "text",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "overload_off_cycle_2",
+              "label": "Overload off Cycle 2",
+              "placeholder": "Enter Overload off Cycle 2",
+              "required": false,
+              "type": "text",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "overload_off_cycle_3",
+              "label": "Overload off Cycle 3",
+              "placeholder": "Enter Overload off Cycle 3",
+              "required": false,
+              "type": "text",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "overload_off_cycle_4",
+              "label": "Overload off Cycle 4",
+              "placeholder": "Enter Overload off Cycle 4",
+              "required": false,
+              "type": "text",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "overload_off_cycle_5",
+              "label": "Overload off Cycle 5",
+              "placeholder": "Enter Overload off Cycle 5",
+              "required": false,
+              "type": "text",
+              "value": ""
+            }
+          ],
+          "layoutType": "section",
+          "sectionTitle": ""
+        }
+      ],
+      "bodyContent": {},
+      "userActions": {
+        "buttonsPosition": "fixed",
+        "read": {
+          "label": "Read"
+        },
+        "save": {
+          "label": "Write"
+        }
+      }
+    },
+    "status": "success",
+    "message": ""
+  }

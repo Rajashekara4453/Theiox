@@ -1,0 +1,48 @@
+ul {
+  list-style-type: none;
+}
+.cursor{
+cursor: pointer;
+}
+// .form-control-borderless {
+//   border: none;
+//   font-size: 15px;
+//   margin-top: 3%;
+//   padding-left: 4%;
+// }
+// .form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+//   border: none;
+//   outline: none;
+//   box-shadow: none;
+// }
+// .bg-ghostwhite{
+//   background-color: ghostwhite;
+// }
+.color-blue{
+color:blue;
+}
+
+.active {
+background: #cee1f9;
+}
+li:hover {
+background: #dfe6ef;
+}
+
+.scrollsetup{
+  max-height: 50vh;
+  min-height: 100%;
+  overflow-y: auto;
+  padding-top:0;
+  padding-left:0;
+  margin:2px;
+}
+
+//common-css
+.accordion-elements{
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #f9f9f9;
+  margin-top: 0;
+}
+//common-css

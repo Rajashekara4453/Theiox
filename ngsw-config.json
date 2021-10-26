@@ -1,0 +1,12 @@
+{
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "Theiox",
+      "installMode": "prefetch",
+      "resources": {
+        "files": ["/*.css", "/*.js", "/index.html"]
+      }
+    }
+  ]
+}

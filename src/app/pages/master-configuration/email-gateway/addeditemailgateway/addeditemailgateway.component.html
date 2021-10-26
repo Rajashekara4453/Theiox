@@ -1,0 +1,162 @@
+<div class="main-content">
+  <div class="sub-main-content">
+    <form #gateway_form="ngForm" class="form-container bg-white">
+      <div *ngIf="pageLoaded" class="h-100">
+        <div class="form-header">
+          <h5 class="form-title">{{title}}</h5>
+        </div>
+        <div class="form-content">
+          <div class="form-body">
+            <div class="row height_setup">
+              <div class="col-lg-5">
+                <div class="form-item">
+                  <label class="control-label text-right">Profile Name <span class="color-red">&nbsp;*</span></label>
+                  <div>
+                    <input class="form-control " type="text" name="profile_name" placeholder="Enter Profile name"
+                      autocomplete="off" [(ngModel)]="gatewayform.profile_name" [required]="true" #name="ngModel">
+                    <!-- <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                              <div *ngIf="name.errors.required">
+                               field required *
+                              </div>
+                            </div> -->
+                  </div>
+                </div>
+                <div class="form-item">
+                  <label class="control-label text-right">Sender Name <span class="color-red">&nbsp;*</span></label>
+                  <div>
+                    <input class="form-control " type="text" name="sender_name" placeholder="Enter Sender Name"
+                      autocomplete="off" [(ngModel)]="gatewayform.sender_name" [required]="true" #sender_name="ngModel">
+                    <!-- <div *ngIf="sender_name.invalid && (sender_name.dirty || sender_name.touched)" class="alert">
+                                <div *ngIf="sender_name.errors.required">
+                                  field required.
+                                </div>
+                              </div> -->
+                  </div>
+                </div>
+                <div class="form-item">
+                  <label class="control-label text-right">Sender Email <span class="color-red">&nbsp;*</span></label>
+                  <div>
+                    <input class="form-control " type="email" placeholder="sender email" name="sender_email" email
+                      autocomplete="off" [(ngModel)]="gatewayform.sender_email" required>
+                  </div>
+                </div>
+                <div class="form-item">
+                  <label class="control-label text-right">Username <span class="color-red">&nbsp;*</span></label>
+                  <div>
+                    <input class="form-control " type="text" placeholder="Username" name="username" autocomplete="off"
+                      [(ngModel)]="gatewayform.username" required>
+                  </div>
+                </div>
+                <div class="form-item">
+                  <label class="control-label text-right">Password <span class="color-red">&nbsp;*</span></label>
+                  <div class="password-visibility-container">
+                    <input class="form-control " type="password" name="password" placeholder="Password"
+                      autocomplete="off" [(ngModel)]="gatewayform.password" required [inputPassword]= password.value #password >
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-1"></div>
+              <div class="col-lg-5">
+                <div class="form-item">
+                  <label class="control-label text-right">SMTP Address <span class="color-red">&nbsp;*</span></label>
+                  <div>
+                    <input class="form-control " type="text" name="server" placeholder="Enter SMTP address"
+                      autocomplete="off" [(ngModel)]="gatewayform.mail_server" [required]="true">
+                  </div>
+                </div>
+                <div class="form-item">
+                  <label class="control-label text-right">SMTP Port <span class="color-red">&nbsp;*</span></label>
+                  <div>
+                    <input class="form-control " type="number" pattern="[0-9.]+" min="0" name="smtp_port"
+                      placeholder="Enter SMTP port" autocomplete="off" [(ngModel)]="gatewayform.smtp_port" required>
+                  </div>
+                </div>
+                <div class="form-item">
+                  <label class="control-label text-right">SMTP Encryption Protocol <span
+                      class="color-red">&nbsp;*</span></label>
+                  <div>
+                    <ng-select bindValue="value" name="encryption_protocol" [items]="encryption_options"
+                      placeholder="Encryption Type" [(ngModel)]="gatewayform.encryption" [clearable]="true" required>
+                    </ng-select>
+                  </div>
+                </div>
+                <div class="form-item d-flex align-items-center">
+                  <input type="checkbox" name="smtp_authorization" [(ngModel)]="gatewayform.smtp_authorization"
+                    data-md-icheck class="filled-in chk-col-light-green check-mark">
+                  <label class="control-label text-right mb-0 mx-2">SMTP Authorization required</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-footer">
+          <button type="button" (click)="cancel_gateway()" class="btn btn-secondary btn-sm">Cancel</button>
+          <button type="button" class="btn btn-primary btn-sm" data-target="#sendmail" data-toggle="modal"
+            [disabled]="!gateway_form.form.valid && (formvalid !== true) || disableBtn" (click)="validate_form()">Send
+            Test
+            Mail
+            <img *ngIf="!sending_mail" class="but-loader" src="assets/images/button_loader.gif">
+          </button>
+          <button type="submit" (click)="isPermission ? save_gateway(): return" class="btn btn-primary btn-sm"
+            [disabled]="!gateway_form.form.valid">Save
+            <img *ngIf="!submitting_emailgateway" class="but-loader" src="assets/images/button_loader.gif">
+          </button>
+
+        </div>
+      </div>
+      <div *ngIf="!pageLoaded">
+        <div id="loader-wrapper-submaincontent">
+          <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- Modal -->
+  <div *ngIf="(formvalid === true)" class="modal fade" id="sendmail" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title text-muted" id="exampleModalLabel">Test Mail</h6>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="elm-cancel"></i>
+          </button>
+        </div>
+        <form class="modal-body" #email="ngForm">
+          <div class="form-item">
+            <label class="control-label">Enter mail Id to send test mail <span class="color-red">&nbsp;*</span></label>
+            <div>
+              <input type="email" [(ngModel)]="emailform.emailid" required name="email" autocomplete="off" email
+                class="w-75">
+            </div>
+          </div>
+
+          <div class="form-item">
+            <label> Subject </label>
+            <div>
+              <input type="text" [(ngModel)]="emailform.subject" name="subject" autocomplete="off" class="w-75">
+            </div>
+          </div>
+          <div class="form-item">
+            <label>Message </label>
+            <div>
+              <textarea type="text" [(ngModel)]="emailform.message" name="message" autocomplete="off" rows="3"
+                class="w-75"></textarea>
+
+            </div>
+          </div>
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary btn-sm" (click)="isPermission ? sendmail(): return"
+            [disabled]="!email.form.valid" data-dismiss="modal">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

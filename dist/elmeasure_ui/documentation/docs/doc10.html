@@ -1,0 +1,133 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Setting up Gateway and Sensors · Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## About Gateway"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Setting up Gateway and Sensors · Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="undefined/documentation/"/><meta property="og:description" content="## About Gateway"/><meta property="og:image" content="undefined/documentation/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="undefined/documentation/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/documentation/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/documentation/js/scrollSpy.js"></script><link rel="stylesheet" href="/documentation/css/main.css"/><script src="/documentation/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/documentation/"><h2 class="headerTitle">Documentation</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"></ul></nav></div></header></div></div><div class="navPusher singleRowMobileNav"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Working with ELNet</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Welcome<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/documentation/docs/doc1">Introduction</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Getting started<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/documentation/docs/doc2">Sign Up</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Client area<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/documentation/docs/doc3">Work area</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Components<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/documentation/docs/doc6">Understanding the Components</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Working with ELNet<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/documentation/docs/doc9">User Management</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc8">Organisation Settings</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/documentation/docs/doc10">Data Acquisition</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc14">Master Settings</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc11">Protocols</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc7">Dashboard</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc12">Reports</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc13">Alert Notifications</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc15">Web Scada</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc16">Data Processing</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc17">Trends</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Setting up Gateway and Sensors</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="about-gateway"></a><a href="#about-gateway" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>About Gateway</h2>
+<p>A Gateway is a hardware device that acts as a &quot;Gate&quot; between two networks. It may be a router, firewall, server, or other devices that enable traffic to flow in and out of the network.
+While a gateway protects the nodes within the network, it also a node itself. The gateway node is considered to be on the &quot;edge&quot; of the network as all data must flow through it before coming in or going out of the network.
+It may also translate data received from outside networks into a format or protocol recognized by devices within the internal network.
+The Gateways that are created under Gateway Model of the Configurations will be available under Gateway Models of the Channel Configuration. The Gateways can be created using the existing Gateway Model by selecting any one of the models from the list.</p>
+<h3><a class="anchor" aria-hidden="true" id="function-of-gateways"></a><a href="#function-of-gateways" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Function of Gateways:</h3>
+<p>Gateway's basic function is to simplify the connection between two different devices or systems.
+It is a device capable of linking two networks that use different base protocols.</p>
+<p><em>Note</em>: <strong><em>To understand the different types of protocols , please refer to <strong>Protocols</strong> section</em></strong></p>
+<h3><a class="anchor" aria-hidden="true" id="adding-new-gateway"></a><a href="#adding-new-gateway" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding New Gateway</h3>
+<p>To configure the <strong>Gateway</strong> in software</p>
+<ul>
+<li>Click  <strong>Data Acquisition</strong> -&gt; <strong>Gateways</strong></li>
+</ul>
+<p><img src="/documentation/docs/assets/gate1.png" alt="alt-text"></p>
+<ul>
+<li><p>Click on + icon on the gateway page</p>
+<ul>
+<li>On the pop-box you will see three Tabs <strong>All</strong>, <strong>Protocol</strong>, and, <strong>Library</strong>.</li>
+<li>In <strong>All</strong> Tab you will see the entire list of <strong>Protocol</strong> and <strong>Library</strong></li>
+<li><strong>Library</strong> is the collections of gateway , when you creat a Gateway Elnet7 gives you a feature to add       that gateway to library so that you can use it later</li>
+<li><strong>Protocol</strong> is what you will be clicking on to configure the Gateway</li>
+</ul></li>
+<li><p>Select The protocol you want to configure for the gateway , by selecting <strong>Protocol</strong> it will display its respective forms.</p></li>
+<li><p>Once you click <strong>Create Gateway</strong> the gateway will be created and its visible on the  <strong>Monitor Gateway &amp; Sensor</strong>  and you can also view it under the <strong>Gateways</strong></p></li>
+<li><p>The <strong>Green</strong> colour apprearing on the gateway card show's that the gateway is configured correctly and its communicating</p></li>
+<li><p>The <strong>Red</strong> colour apprearing on the gateway may be due to its wrong configuration and gateway is not communicating.\\</p></li>
+</ul>
+<p><img src="/documentation/docs/assets/AddingGW.gif" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="adding-devices-sensors"></a><a href="#adding-devices-sensors" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding Devices (Sensors)</h3>
+<p>After creating the Gateway, the Devices (Sensors) should be added. The (Sensors) can be added by two methods. One is using Customised Devices and the other is using the existing Device Models.</p>
+<ul>
+<li><p>To add the sensors click on <strong>Sensors</strong> under <strong>Data Acquisition</strong></p></li>
+<li><p>Click on + sign to add the <strong>Sensor</strong> to the Gateway that is created.</p></li>
+</ul>
+<ul>
+<li>Select the Gateway from list to add the device and click Continue</li>
+</ul>
+<ul>
+<li><p>Select the sensor series from the  <strong>Library</strong> or, to create the new sensor  Select <strong>Create Custom Sensor</strong></p></li>
+<li><p>Once clicked on <strong>Create Custom Sensor</strong> a new window for configutaion will open which has two section in the form <strong>General Info</strong> and <strong>Configuration</strong></p></li>
+</ul>
+<ul>
+<li><p>In <strong>General Info</strong>,</p></li>
+<li><p><strong>Device model name</strong>,</p></li>
+<li><p><strong>Type</strong> i.e., what Type of meter example Energy meter,</p></li>
+<li><p><strong>Make</strong> of the sensor i.e., Elmeasure,</p></li>
+<li><p><strong>Assign to</strong>i.e., the site where the device is configured,</p></li>
+<li><p><strong>Belongs TO</strong> i.e. were it belongs like DG Supply, Main Supply etc .. * <strong>Device COM ID</strong>,</p></li>
+<li><p><strong>Time out in seconds</strong>,</p></li>
+<li><p><strong>Device Selection</strong>,</p></li>
+<li><p><strong>Status Timeout</strong>.</p></li>
+<li><p>Under <strong>Configuration</strong> you can add block with setting show in below picture  and assign the <strong>Tags</strong> .</p></li>
+</ul>
+<p><img src="/documentation/docs/assets/Addingsens.gif" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="gateway-library"></a><a href="#gateway-library" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Gateway Library</h3>
+<p>Gateway Library gives you ability to create your own custom library</p>
+<ul>
+<li>To create Library for Gateway  click on <strong>Gateway Library</strong> under <strong>Data Acquisition</strong> Select the protocol</li>
+</ul>
+<p><img src="/documentation/docs/assets/GWLIB1.png" alt="alt-text"></p>
+<ul>
+<li>Enter all the information base on protocol selected and click <strong>Create Gateway Model</strong></li>
+</ul>
+<p><img src="/documentation/docs/assets/GWLIB2.png" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="sensor-library"></a><a href="#sensor-library" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Sensor Library</h3>
+<p>To create Library for Sensors click on <strong>Sensor Library</strong> under Data Acquisition enter all required deatils as per the  Model selection</p>
+<p><img src="/documentation/docs/assets/Sens1.png" alt="alt-text"></p>
+<ul>
+<li>Step 1 : Enter the General Information Pertaining to Sensor</li>
+</ul>
+<p><img src="/documentation/docs/assets/Sens2.png" alt="alt-text"></p>
+<ul>
+<li>Step 2 : Enter the Block and Tag details and click <strong>Save Device Model</strong></li>
+</ul>
+<p><img src="/documentation/docs/assets/Sens3.png" alt="alt-text"></p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 12/4/2020 by MithuLohar</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/documentation/docs/doc8"><span class="arrow-prev">← </span><span>Organisation Settings</span></a><a class="docs-next button" href="/documentation/docs/doc14"><span>Master Settings</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#about-gateway">About Gateway</a><ul class="toc-headings"><li><a href="#function-of-gateways">Function of Gateways:</a></li><li><a href="#adding-new-gateway">Adding New Gateway</a></li><li><a href="#adding-devices-sensors">Adding Devices (Sensors)</a></li><li><a href="#gateway-library">Gateway Library</a></li><li><a href="#sensor-library">Sensor Library</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><a href="https://elmeasure.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/documentation/img/oss_logo.png" alt="Elmeasure" width="223" height="64"/></a></footer></div></body></html>

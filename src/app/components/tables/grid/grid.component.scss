@@ -1,0 +1,140 @@
+tr.tr-bg-disable {
+    background-color: #EBEBE4;
+    .disabled {
+        pointer-events: none;
+    }
+}
+
+tr.tr-bg-enable {
+    background-color: #ffffff;
+    .enable {
+        pointer-events: all;
+    }
+}
+// tr td input
+// {
+// border: transparent;
+// outline: transparent;
+// }
+// th
+// {
+//     min-width: 100px;
+//     vertical-align: middle;
+// }
+// th:first-child {
+//    min-width: 15px;
+//   }
+  
+//   // Varsha
+//   table th {
+//     position: -webkit-sticky;
+//     position: sticky;
+//     top: 0;
+//   }
+//   .freeze {
+//     position: sticky;
+//     left: 0px;
+//     background-color: #ffffff;
+// }
+// .col1{
+//     position:absolute;
+//     left:0; 
+//     width:100px;
+//   }
+//   .col2{
+//     position:absolute;
+//     left:100px; 
+//     width:100px;
+//   }
+//   .col3{
+//     position:absolute;
+//     left:200px; 
+//     width:100px;
+//   }
+//   .ng-select.customNgSelect {
+//     color: #000000 !important;
+// }
+
+
+thead th {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  background: white;
+  z-index: 9;
+  height: 45px;
+  padding: 0px 5px;
+  vertical-align: middle;
+  text-align: left;
+  font-size: 14px;
+  color:#888c9b;
+  min-width: 100px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  // white-space: nowrap;
+  border-top:0.2px solid #e9ecef;
+  border-bottom: none;
+  font-weight: 500;
+}
+tbody tr td:first-child
+{
+  position: sticky;
+  left: 0px;
+  background: white;
+  z-index: 10;
+  box-shadow: 5px 2px 9px 0px #e9eaedb0;
+}
+th:first-child
+{
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  left: 0;
+  background: white;
+  z-index: 11 !important;
+  box-shadow: 5px 2px 9px 0px #e9eaedb0;
+ 
+}
+tr td:nth-child(2),th:nth-child(2)
+{
+  padding-left: 12px !important;
+}
+tr:last-child td:first-child
+{
+  box-shadow: 5px 0px 9px 0px #e9eaedb0;
+}
+tbody
+{
+  overflow: auto;
+  td
+  {
+    height: 45px;
+    padding: 0px 5px;
+    vertical-align: middle;
+    text-align: left;
+    font-size: 14px;
+    color:#888c9b;
+    min-width: 100px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    border-top:0.2px solid #e9ecef;
+  }
+  tr:last-child
+  {
+    border-bottom:0.2px solid #e9ecef;
+  }
+}
+.freeze, .col1  {
+ min-width: 60px !important;
+ width: 60px;
+ text-align: center !important;
+ input[type="checkbox"]
+ {
+   vertical-align: middle;
+ }
+}
+.form-control
+{
+  width: auto;
+}

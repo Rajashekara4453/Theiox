@@ -1,0 +1,120 @@
+.editFields {
+  /* display:none; */
+}
+.disabled {
+  pointer-events: none !important;
+  cursor: not-allowed;
+}
+.disabled-background {
+   background-color: #dddddd;;
+  }
+.error {
+  border: 1px solid red;
+}
+.form-control.is-invalid,
+.was-validated .form-control:invalid {
+  border-color: #dc3545 !important;
+  border-left: 3px solid #dc3545;
+}
+.select {
+  max-width: 280px;
+  font-size: 11px;
+  background-color: ghostwhite;
+  border-color: lightblue;
+}
+.btn-save {
+  background-color: blue;
+  border: 1px blue solid;
+  color: white;
+  border-radius: 0px;
+  font-weight: 500;
+  font-size: 100%;
+  width: max-content;
+}
+.btn-cancel {
+  border: 1px blue solid;
+  color: blue;
+  border-radius: 0px;
+  font-weight: 500;
+  font-size: 100%;
+}
+.btn-previous {
+  border: 1px blue solid;
+  font-size: 100%;
+  color: blue;
+  border-radius: 0px;
+  font-weight: 500;
+}
+
+.card-style {
+  border: none;
+}
+.title_fontsize {
+  font-size: 14px;
+}
+
+.hidden {
+  display: none;
+}
+.pretty {
+  margin-right: 0;
+}
+
+.ng-select.is-invalid ::ng-deep .ng-select-container {
+  border-color: #dc3545 !important;
+  border-left: 3px solid #dc3545;
+}
+kl-multiselect.ng-star-inserted.is-invalid ::ng-deep .ng-untouched .cuppa-dropdown .selected-list .c-btn,
+kl-multiselect.ng-star-inserted.is-invalid ::ng-deep .ng-invalid .cuppa-dropdown .selected-list .c-btn {
+  border-color: #dc3545 !important;
+  border-left: 3px solid #dc3545;
+}
+
+// Image upload button start
+// .inputfile {
+// 	width: 0.1px;
+// 	height: 0.1px;
+// 	opacity: 0;
+// 	overflow: hidden;
+// 	position: absolute;
+// 	z-index: -1;
+// }
+
+// .inputfile + label {
+//     font-size: 1.25em;
+//     font-weight: 700;
+//     color: white;
+//     background-color: #047cca;
+//     display: inline-block;
+//     margin-bottom: 12px;
+//     margin-top: 3px;
+//     padding-right: 4px;
+//     padding-left: 4px;
+//     border-style: inset;
+//     border-color: rgba(0, 123, 255, 0.5);
+// }
+
+// .inputfile:focus + label,
+// .inputfile + label:hover {
+//     background-color:#047cca;
+// }
+
+// .inputfile + label {
+// 	cursor: pointer; /* "hand" cursor */
+// }
+.editFields
+{
+  height: 100%;
+  .form-body
+  {
+    height: calc(100% - 45px);
+    overflow: auto;
+
+  }
+  .form-footer
+  {
+    height: 45px;
+    display: flex;
+    align-items: center;
+  }
+}

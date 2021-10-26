@@ -1,0 +1,308 @@
+{
+    "header_id": "general_info",
+    "data": {
+      "number": 6,
+      "headerContent": [
+        {
+          "sectionWidth": "12",
+          "content": "New Section",
+          "class": "",
+          "data": [
+            {
+              "label": "Model ID",
+              "type": "text",
+              "key": "device_model_ref_id",
+              "value": "",
+              "placeholder": "Enter Model ID",
+              "required": false,
+              "disabled": true,
+              "hidden": true,
+              "gridWidth": "3"
+            },
+            {
+              "label": "Flat No",
+              "type": "text",
+              "key": "flat_no",
+              "value": "",
+              "placeholder": "Enter Flat No",
+              "required": false,
+              "disabled": false,
+              "hidden": false,
+              "gridWidth": "3"
+            },
+            {
+              "label": "Customer Name",
+              "type": "text",
+              "key": "customer_name",
+              "value": "",
+              "placeholder": "Enter Customer Name",
+              "required": true,
+              "disabled": false,
+              "hidden": false,
+              "gridWidth": "3"
+            },
+            {
+              "label": "Address",
+              "type": "text",
+              "key": "customer_address",
+              "value": "",
+              "placeholder": "Enter Address",
+              "required": false,
+              "disabled": false,
+              "hidden": false,
+              "gridWidth": "3"
+            },
+            {
+              "label": "Mobile No",
+              "type": "text",
+              "key": "mobile_no",
+              "value": "",
+              "placeholder": "Enter Mobile Number",
+              "required": false,
+              "disabled": false,
+              "hidden": false,
+              "gridWidth": "3"
+            },
+            {
+              "label": "Email ID",
+              "type": "text",
+              "key": "email_id",
+              "value": "",
+              "placeholder": "Enter Email Address",
+              "required": false,
+              "disabled": false,
+              "hidden": false,
+              "gridWidth": "3"
+            },
+            {
+              "label": "IP Address / SL.No",
+              "type": "text",
+              "key": "ip_address_sl_no",
+              "value": "",
+              "placeholder": "Enter IP Address / SL.No",
+              "required": true,
+              "disabled": false,
+              "hidden": false,
+              "gridWidth": "3"
+            },
+            {
+              "label": "Model Name",
+              "type": "text",
+              "key": "device_model_name",
+              "value": "",
+              "placeholder": "Enter Model Name",
+              "required": true,
+              "disabled": false,
+              "hidden": false,
+              "gridWidth": "3"
+            },
+            {
+              "label": "Name",
+              "type": "text",
+              "key": "smart_meter_configuration_name",
+              "value": "",
+              "placeholder": "Enter Name",
+              "required": false,
+              "disabled": false,
+              "hidden": true,
+              "gridWidth": "3"
+            },
+            {
+              "label": "Type",
+              "type": "select",
+              "key": "device_type",
+              "value": "",
+              "placeholder": "Select Type",
+              "allowClear": true,
+              "options": [
+                {
+                  "label":"dt1",
+                  "value":"t_1"
+                },
+                {
+                  "label":"dt2",
+                  "value":"t_2"
+                }
+              ],
+              "required": true,
+              "disabled": false,
+              "dependent": false,
+              "gridWidth": "3"
+            },
+            {
+              "label": "Protocol Category",
+              "type": "select",
+              "key": "protocol_category",
+              "value": "null",
+              "placeholder": "Select Protocol",
+              "allowClear": true,
+              "options": [
+                {
+                  "label":"modbus",
+                  "value":"proto_1"
+                },
+                {
+                  "label":"tcp",
+                  "value":"proto_2"
+                }
+              ],
+              "required": true,
+              "disabled": false,
+              "hidden": false,
+              "dependent": false,
+              "gridWidth": "3"
+            },
+            {
+              "label": "Make",
+              "type": "text",
+              "key": "make",
+              "value": "",
+              "placeholder": "Enter Make",
+              "required": false,
+              "disabled": false,
+              "gridWidth": "3"
+            },
+            {
+              "label": "Model Number",
+              "type": "text",
+              "key": "model_number",
+              "value": "",
+              "placeholder": "Enter Model Number",
+              "required": false,
+              "disabled": false,
+              "gridWidth": "3"
+            },
+            {
+              "label": "Multiple Block",
+              "type": "select",
+              "key": "multiple_block",
+              "value": "",
+              "placeholder": "Multiple Block",
+              "allowClear": true,
+              "options": [
+                {
+                  "label": "No",
+                  "value": "single"
+                },
+                {
+                  "label": "Yes",
+                  "value": "multiple"
+                }
+              ],
+              "required": false,
+              "disabled": false,
+              "hidden": true,
+              "dependent": false,
+              "gridWidth": "3"
+            },
+            {
+              "disabled": false,
+              "hidden": true,
+              "gridWidth": "6",
+              "key": "assign_ref",
+              "label": "Assign To",
+              "innerlabel": "Select here",
+              "innerlabelsub": "",
+              "type": "treesingleselect",
+              "expanded": false,
+              "options": {
+                "allowDrag": true,
+                "allowDrop": true
+              },
+              "nodeData": []
+            },
+            {
+              "disabled": false,
+              "hidden": true,
+              "gridWidth": "6",
+              "key": "belongs_ref",
+              "label": "Belongs To",
+              "innerlabel": "Select here",
+              "innerlabelsub": "",
+              "type": "treeMultiselect",
+              "expanded": false,
+              "options": {
+                "allowDrag": true,
+                "allowDrop": true
+              },
+              "nodeData": []
+            },
+            {
+              "disabled": false,
+              "gridWidth": "2",
+              "hidden": false,
+              "key": "data_logging_frequency",
+              "label": "Data Log Frequency",
+              "placeholder": "Enter Data Saving Frequency in Seconds",
+              "required": false,
+              "type": "number",
+              "value": "60"
+            },
+            {
+              "label": "Disable/ Enable",
+              "type": "select",
+              "key": "isdisabled",
+              "value": "",
+              "placeholder": "Select Status",
+              "allowClear": true,
+              "options": [
+                {
+                  "label": "Disable",
+                  "value": "true"
+                },
+                {
+                  "label": "Enable",
+                  "value": "false"
+                }
+              ],
+              "required": false,
+              "disabled": true,
+              "hidden": true,
+              "dependent": false,
+              "gridWidth": "4"
+            },
+            {
+              "label": "Delete/Restore",
+              "type": "select",
+              "key": "isdeleted",
+              "value": "",
+              "placeholder": "Select Status",
+              "allowClear": true,
+              "options": [
+                {
+                  "label": "Delete",
+                  "value": "true"
+                },
+                {
+                  "label": "Restore",
+                  "value": "false"
+                }
+              ],
+              "required": false,
+              "disabled": true,
+              "hidden": true,
+              "dependent": false,
+              "gridWidth": "4"
+            }
+          ],
+          "layoutType": "section",
+          "sectionTitle": ""
+        }
+      ],
+      "bodyContent": {},
+      "userActions": {
+        "buttonsPosition": "fixed",
+        "cancel": {
+          "label": "Cancel"
+        },
+        "save": {
+          "label": "Save"
+        },
+        "customActions":[
+          {"buttonId":"readCustomer", "label":"Read"}
+       ]
+      }
+    },
+    "status": "success",
+    "message": ""
+  }

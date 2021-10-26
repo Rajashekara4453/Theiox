@@ -1,0 +1,34 @@
+[
+    {
+      "label": "15 min",
+      "value": "15 min"
+    },
+    {
+      "label": "30 min",
+      "value": "30 min"
+    },
+    {
+      "label": "45 min",
+      "value": "45 min"
+    },
+    {
+      "label": "Hourly",
+      "value": "1 hour"
+    },
+    {
+      "label": "Daily",
+      "value": "daily"
+    },
+    {
+      "label": "Monthly",
+      "value": "monthly"
+    },
+    {
+      "label": "Yearly",
+      "value": "yearly"
+    },
+    {
+      "label": "Shift Based",
+      "value": "shiftbased"
+    }
+  ]

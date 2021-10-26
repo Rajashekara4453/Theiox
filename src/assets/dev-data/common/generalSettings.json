@@ -1,0 +1,17 @@
+{
+    "emails": {
+        "systemAdminEmails": [
+            "suresh.babu@elmeasure.com",
+            "naveen.kumar@elmeasure.com",
+            "varsha.y@elmeasure.com"
+        ],
+        "registerEmail": {
+            "cc": "naveen.kumar@elmeasure.com",
+            "bcc": "varsha.y@elmeasure.com",
+            "eMail":"varsha.y@elmeasure.com"
+        },
+        "login": {
+            
+        }
+    }
+}

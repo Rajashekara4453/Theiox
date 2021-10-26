@@ -1,0 +1,18 @@
+<div class="graphContainer" #graphContainer></div>
+
+<!-- LIVE DATA MODAL -->
+<button type="button" id="scada_liveData_modal" class="btn btn-primary m-auto d-none" data-toggle="modal"
+    data-target="#liveData_modal"></button>
+<div class="modal fade" id="liveData_modal" tabindex="-1" role="dialog" aria-hidden="true"
+    aria-labelledby="exampleModalLabel">
+    <kl-scada-live-configuration [isPopupOpened]='_editorUI.liveData'></kl-scada-live-configuration>
+</div>
+
+<!-- ASSET CONTROL MODAL -->
+<button type="button" id="scada_assetControl_modal" class="btn btn-primary m-auto d-none" data-toggle="modal"
+    data-target="#assetControl_modal">
+</button>
+<div class="modal fade" id="assetControl_modal" tabindex="-1" role="dialog" aria-hidden="true"
+    aria-labelledby="exampleModalLabel">
+    <kl-scada-asset-control [isPopupOpened]='_editorUI.assetControl'></kl-scada-asset-control>
+</div>

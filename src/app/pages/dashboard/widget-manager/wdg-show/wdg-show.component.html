@@ -1,0 +1,59 @@
+<div class="widget-container" *ngIf="!wcData.isPreview" [ngClass]="{'wdgReport': pageType === 'reports'}">
+    <div *ngIf="!wcData.isPreview">
+        <div *ngIf="!doResize" lb-gridstack [options]="gridstackOptions" (change)="onChangeResize($event,wcData)" width="12"
+            height="100">
+            <div lb-gridstack-item *ngFor="let eachWidget of wcData; let ind = index;trackBy:track" [x]="eachWidget.wResize.x"
+                [y]="eachWidget.wResize.y" [auto-position]="eachWidget.wResize.y === 100 ? true : false"
+                [width]="eachWidget.wResize.w" [height]="eachWidget.wResize.h"
+                [min-height]="getWidgetHeightWidth(eachWidget.cTypeLabel,'min-height',ind)"
+                [max-height]="getWidgetHeightWidth(eachWidget.cTypeLabel,'max-height',ind)"
+                [min-width]="getWidgetHeightWidth(eachWidget.cTypeLabel,'min-width',ind)"
+                [max-width]="getWidgetHeightWidth(eachWidget.cTypeLabel,'max-width',ind)"
+                [no-resize]="getWidgetHeightWidth(eachWidget.cTypeLabel,'no-resize',ind)"
+                [id]="eachWidget.widget_id">
+                <kl-wdg-display [widgetInfo]="eachWidget" [dashboardInfo]="dashboardInfo" [filteredData]="filteredData"
+                    [timeRangeList]='timeRangeList' [mqttData]="mqttData" (editWidgetEmitter)="editWidgetAction(eachWidget)"
+                    (actionEmitter)="doActions($event)"></kl-wdg-display>
+            </div>
+        </div>
+
+        <!-- <div *ngIf="doResize" lb-gridstack [options]="{}" (change)="onChangeResize($event,wcData)" width="12"
+            height="100">
+            <div lb-gridstack-item *ngFor="let eachWidget of wcData; let ind = index" [x]="eachWidget.wResize.x"
+                [y]="eachWidget.wResize.y" [width]="eachWidget.wResize.w" [height]="eachWidget.wResize.h" [min-height]="2"
+                [id]="eachWidget.widget_id">
+                <kl-wdg-display [widgetInfo]="eachWidget" [dashboardInfo]="dashboardInfo" [filteredData]="filteredData"
+                    [mqttData]="mqttData" (editWidgetEmitter)="editWidgetAction(eachWidget)"
+                    (actionEmitter)="doActions($event)"></kl-wdg-display>
+            </div>
+        </div> -->
+    </div>
+</div>
+<ng-container *ngIf="wcData.isPreview">
+    <kl-wdg-display [widgetInfo]="wcData['wcData'][0]" [filteredData]="filteredData" [mqttData]="mqttData">
+    </kl-wdg-display>
+</ng-container>
+<!-- <a class="d-none" href="javascript:void(0)" data-toggle="modal" (click)="deleteWidget()">Delete</a> -->
+<button class="d-none" data-toggle="modal" data-target="#widgetDeleteModal" id="widgetDeleteModalButton"></button>
+<div class="modal fade" id="widgetDeleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure want to delete <b>
+                </b> ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="dismissWidgetDelete"
+                    data-dismiss="modal">No</button>
+                <button [title]="titleDenied" type="button" class="btn btn-primary" (click)="pageType!='reports'?(accessForWidget?deleteWidget() : '' ):(pageAccessFor.edit?deleteWidget() : '') " >Yes</button>
+            </div>
+        </div>
+    </div>
+</div>

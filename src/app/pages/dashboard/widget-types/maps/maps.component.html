@@ -1,0 +1,24 @@
+<!-- [style.height.px]="tableDataMaps.h -155" -->
+<agm-map [fitBounds]="true" class="ui-resizable-handle d-block w-100 h-100" [disableDefaultUI]="false"
+  [streetViewControl]="false" [zoomControl]="true" [maxZoom]="zoom" [fullscreenControl]="true"
+  (mapClick)="mapClicked($event)" [minZoom]="2">
+  <agm-marker *ngFor="let m of markers; let i = index" (markerClick)="clickedMarker(m.label, i,infowindow)"
+    [latitude]="m.lat" [longitude]="m.lng" [label]="m.label" [title]='m.title' [iconUrl]="m.image" [agmFitBounds]="true"
+    [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m, $event)">
+    <agm-info-window #infowindow>
+      <div *ngIf="!showWindow" class="h-100 position-relative" style="min-width: 100px;
+        min-height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;">
+        <div class="lds-ring">
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      <label class="text-truncate" title="{{m.title}}" *ngIf="showWindow">{{m.title}}</label>
+      <kl-dashboard-tiles *ngIf="showWindow" [isPreview]="tableDataMaps['isPreview']" [cData]="tableDataMaps['cData']">
+      </kl-dashboard-tiles>
+    </agm-info-window>
+  </agm-marker>
+</agm-map>

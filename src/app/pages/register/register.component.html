@@ -1,0 +1,12 @@
+<kl-dfm *ngIf="DFMinput" [DFMDATA]="DFMinput" (SelectedValues)='registerEnquiry($event)' (customBtnAction)="backToLogin()"></kl-dfm>
+<!-- (customBtnAction) = 'backToLogin()' -->
+<div *ngIf="!DFMinput">
+        <div id="loader-wrapper-submaincontent">
+          <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      </div>

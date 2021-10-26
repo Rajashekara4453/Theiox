@@ -1,0 +1,271 @@
+<div class="h-100 overflow-auto">
+  <div class="col-12 d-inline-block overflow-hidden">
+    <!-- <img class="toggleImg" (click)="toggleExpandCollepseImg()" src="/assets/images/right.png" [ngClass]="{'toggle-expanded': isBlockExpanded, 'toggle-collepsed': !isBlockExpanded }" /> -->
+    <i class="toggleImg h4 elm-collapse-arrow" (click)="toggleExpandCollepseImg()"
+      [ngClass]="{'toggle-expanded': isBlockExpanded, 'toggle-collepsed': !isBlockExpanded }"></i>
+    Blocks
+  </div>
+  <div class="col-12" [ngClass]="{'d-inline-block': isBlockExpanded, 'd-none': !isBlockExpanded }">
+    <button type="button" class="btn btn-sm btn-primary float-left" (click)="addBlocks()"> + Add Block</button>
+  </div>
+  <ul class="p-2 my-1">
+    <li class="col-md-12 py-2 pt-3" *ngFor="let blockObj of eachBlockData; let BlockIndex = index"
+      [ngClass]="{'d-block': isBlockExpanded, 'd-none': !isBlockExpanded}"
+      style="max-height:100%;border-bottom: 10px solid #fff;background: #f9f9f9;">
+      <div class="editFields">
+        <form #blockForm="ngForm">
+          <div class="form-body form-padding-bottom">
+            <div class="row">
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="blockNumber" class="control-label text-right">Block
+                    Number <span class="color-red">&nbsp;*</span></label>
+                  <div>
+                    <input autocomplete="off" class="form-control" type="number" name="blockNumber"
+                      placeholder="Enter Block Number" [(ngModel)]="eachBlockData[BlockIndex].blockNumber" required
+                      #blockNumber="ngModel" [ngClass]="{ 'error' : blockNumber.invalid && blockNumber.touched }">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2" *ngIf="!snmp">
+                <div class="form-group">
+                  <label for="modBusFc" class="control-label text-right">Modbus
+                    FC <span class="color-red">&nbsp;*</span></label>
+                  <div>
+                    <ng-select bindValue="value" name="modBusFc" [items]="deviceGroup_config['modeFctype']"
+                      placeholder="Select Modbus FC" [(ngModel)]="eachBlockData[BlockIndex].modBusFc" [clearable]="true"
+                      [required]="true" #modBusFc="ngModel"
+                      [ngClass]="{ 'error' : modBusFc.invalid && modBusFc.touched }">
+                    </ng-select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2" *ngIf="snmp">
+                <div class="form-group">
+                  <label for="startAddress" class="control-label text-right">OID
+                    <span class="color-red">&nbsp;*</span></label>
+                  <div>
+                    <input autocomplete="off" class="form-control" type="text" name="startAddress"
+                      placeholder="Enter Start Address" [(ngModel)]="eachBlockData[BlockIndex].startAddress"
+                      #startAddress="ngModel" required
+                      [ngClass]="{ 'error' : startAddress.invalid && startAddress.touched }">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2" *ngIf="!snmp">
+                <div class="form-group">
+                  <label for="noOfRegister" class="control-label text-right">No. of Registers
+                    <span class="color-red">&nbsp;*</span></label>
+                  <div>
+                    <input autocomplete="off" class="form-control" type="number" name="noOfRegister"
+                      placeholder="No.of Register" [(ngModel)]="eachBlockData[BlockIndex].noOfRegister"
+                      #noOfRegister="ngModel" required
+                      [ngClass]="{ 'error' : noOfRegister.invalid && noOfRegister.touched }">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2" *ngIf="selectionData.hasMultipleVirtuaDevice">
+                <div class="form-group">
+                  <label for="vitualDevice" class="control-label text-right">Map to Asset</label>
+                  <div>
+                    <ng-select *ngIf="selectionData.validation" bindValue="device_instance_id" bindLabel="name"
+                      name="device_instance_name" [items]="deviceGroup_config['name']" placeholder="Select"
+                      dropdownPosition="bottom" [(ngModel)]="eachBlockData[BlockIndex].device_instance_id"
+                      [clearable]="false" [required]="true" #device_instance_name="ngModel"
+                      (change)="eachBlockData[BlockIndex].name=$event.label"
+                      (change)="setVirtualDevice(eachBlockData[BlockIndex].blockNumber,BlockIndex,eachBlockData[BlockIndex].device_instance_id)">
+                    </ng-select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 d-flex align-items-end">
+                <div class="form-group">
+                  <label class="control-label text-right"></label>
+
+                  <button type="button" class="btn btn-secondary" (click)="deleteBlock(BlockIndex)"
+                    title="Delete Block">
+                    <!-- <fa-icon [icon]="['fas', 'trash']"></fa-icon> -->
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="my-2 clearfix align-items-center">
+        <div class="col-12 d-inline-block overflow-hidden float-left px-2"
+          (click)="toggleTagExpandCollepseImg(BlockIndex)">
+          <!-- <img class="toggleImg" (click)="toggleTagExpandCollepseImg(BlockIndex)" src="/assets/images/right.png"
+          [ngClass]="{'toggle-expanded': eachBlockData[BlockIndex].isTagExpanded, 'toggle-collepsed': !eachBlockData[BlockIndex].isTagExpanded }" /> -->
+          <i class="toggleImg h4 elm-collapse-arrow"
+            [ngClass]="{'toggle-expanded': eachBlockData[BlockIndex].isTagExpanded, 'toggle-collepsed': !eachBlockData[BlockIndex].isTagExpanded }"></i>
+          Tags
+        </div>
+        <div class="col-12 addBlock textallign-right d-inline-block float-left px-2 clearfix"
+          [ngClass]="{'d-inline-block': eachBlockData[BlockIndex].isTagExpanded, 'd-none': !eachBlockData[BlockIndex].isTagExpanded}">
+          <button type="button" class="btn btn-sm btn-primary" (click)="addTag(BlockIndex)">+
+            Add Tag</button>
+        </div>
+      </div>
+      <div class="editFields py-2"
+        [ngClass]="{'d-block': eachBlockData[BlockIndex].isTagExpanded, 'd-none': !eachBlockData[BlockIndex].isTagExpanded}">
+        <table class="table tagTable">
+          <thead>
+            <tr>
+              <th class="">Tag Name <span class="color-red">&nbsp;*</span></th>
+              <th class="">OID <span class="color-red">&nbsp;*</span></th>
+              <th class="">Data Type <span class="color-red">&nbsp;*</span></th>
+              <th class="">Multiplication Factor Details <span class="color-red">&nbsp;*</span></th>
+              <th *ngIf="selectionData.hasMultipleVirtuaDevice" class="text-center">Map to Asset <span
+                  class="color-red">&nbsp;*</span></th>
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tag of eachBlockData[BlockIndex].tagsData; let i = index">
+              <td>
+                <ng-select bindValue="value" name="tag_Name" [items]="deviceGroup_config['tagname']"
+                  placeholder="Select Tag" dropdownPosition="bottom"
+                  [(ngModel)]="eachBlockData[BlockIndex].tagsData[i].tag_id" [clearable]="true" [required]="true"
+                  #tagName="ngModel" [ngClass]="{ 'error' : tagName.invalid && tagName.touched }"
+                  (change)="eachBlockData[BlockIndex].tagsData[i].tag_name=$event.label">
+                </ng-select>
+              </td>
+              <td style="max-width: 125px;">
+                <input autocomplete="off" class="form-control" type="text" name="reg_Address"
+                  placeholder="Enter Register Address" [(ngModel)]="eachBlockData[BlockIndex].tagsData[i].reg_Address"
+                  #registerAddress="ngModel" required
+                  [ngClass]="{ 'error' : registerAddress.invalid && registerAddress.touched }">
+              </td>
+              <td>
+                <ng-select bindValue="value" name="data_Type" [items]="deviceGroup_config['dataType']"
+                  placeholder="Select Data Type" dropdownPosition="bottom"
+                  [(ngModel)]="eachBlockData[BlockIndex].tagsData[i].data_Type" [clearable]="true" #dataType="ngModel"
+                  [required]="true" [ngClass]="{ 'error' : dataType.invalid && dataType.touched }">
+                </ng-select>
+              </td>
+              <td style="max-width: 140px !important;">
+                <ng-select bindValue="value" name="mFactor" [items]="deviceGroup_config['multiplication_factor']"
+                  placeholder="Select M Factor" dropdownPosition="bottom"
+                  [(ngModel)]="eachBlockData[BlockIndex].tagsData[i].mFactor" [clearable]="true" #mFactor="ngModel"
+                  [required]="true" [ngClass]="{ 'error' : mFactor.invalid && mFactor.touched }"
+                  (change)="eachBlockData[BlockIndex].tagsData[i]['mFactorValue']=$event.mFactorValue"
+                  (clear)="eachBlockData[BlockIndex].tagsData[i]['mFactorValue']=''">
+                </ng-select>
+              </td>
+              <td *ngIf="selectionData.hasMultipleVirtuaDevice">
+                <div class="form-check d-flex align-items-center justify-content-center p-0">
+                  <input id="eachBlockData[BlockIndex].tagsData[i]" type="checkbox" name="virtualDeviceCheckBox"
+                    class="box"
+                    (click)="setDisplayValue($event.target.checked,eachBlockData[BlockIndex].tagsData[i],BlockIndex)">
+                  <button *ngIf="deviceIdAndNameMap[eachBlockData[BlockIndex].tagsData[i].device_instance_id]"
+                    type="button" class="btn btn-primary btn-sm ml-2 box1" data-toggle="modal"
+                    data-target="#exampleModal"
+                    (click)="clearField(eachBlockData[BlockIndex].tagsData[i],BlockIndex)">{{deviceIdAndNameMap[eachBlockData[BlockIndex].tagsData[i].device_instance_id]}}</button>
+                  <button *ngIf="!deviceIdAndNameMap[eachBlockData[BlockIndex].tagsData[i].device_instance_id]"
+                    type="button" class="btn btn-primary btn-sm ml-2 box1" data-toggle="modal"
+                    data-target="#exampleModal"
+                    (click)="clearField(eachBlockData[BlockIndex].tagsData[i],BlockIndex)">Select</button>
+                  <!-- <label class="ml-1" for="exampleCheck1">{{deviceIdAndNameMap[eachBlockData[BlockIndex].tagsData[i].device_instance_id]}}</label> -->
+                  <!-- <ng-select *ngIf="selectionData.validation" bindValue="device_instance_id" bindLabel="name" name="name"
+                    [items]="deviceGroup_config['name']" placeholder="Select" dropdownPosition="bottom" [(ngModel)]="eachBlockData[BlockIndex].tagsData[i].device_instance_id"
+                    [clearable]="true" [required]="true" #device_instance_name="ngModel" [disabled]="true">
+                  </ng-select> -->
+
+                </div>
+                <!-- <ng-select *ngIf="selectionData.validation" bindValue="device_instance_id" bindLabel="name" name="name" [items]="virtualDevices"
+                  placeholder="Select" dropdownPosition="bottom" [(ngModel)]="eachBlockData[BlockIndex].tagsData[i].device_instance_id"
+                  [clearable]="true" [required]="true" #device_instance_name="ngModel" [ngClass]="{ 'error' : device_instance_name.invalid && device_instance_name.touched }"
+                  (change)="virtualDevice(eachBlockData[BlockIndex])" (open) ="openVirtualField()" (close) ="closeVirtualField()">
+                </ng-select> 
+                 <ng-select *ngIf="!selectionData.validation" bindValue="device_instance_id" bindLabel="name" name="name" [items]="virtualDevices"
+                  placeholder="Select" dropdownPosition="bottom" [(ngModel)]="eachBlockData[BlockIndex].tagsData[i].device_instance_id"
+                  [clearable]="true" [required]="true" #device_instance_name="ngModel"
+                  (change)="eachBlockData[BlockIndex].tagsData[i].name=$event.label" (open) ="openVirtualField()" (close) ="closeVirtualField()">
+                </ng-select> -->
+              </td>
+              <td class="text-center">
+                <!-- <div class="dropdown d-inline-block">
+                  <fa-icon [icon]="['fas', 'cog']" class="btn" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false" title="Log Config"></fa-icon>
+                  <div class="dropdown-menu aggregationDropDownMenu" (click)="$event.stopPropagation()" style='right:0;min-width:300px;'>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Aggregation</th>
+                          <th scope="col">Frequency</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of eachBlockData[BlockIndex].tagsData[i].aggregationRules; let j = index">
+                          <th *ngIf="item.name != 'Raw'" scope="raw"><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="eachBlockData[BlockIndex].tagsData[i].aggregationRules[j].isSelected">
+                          </th>
+                          <td *ngIf="item.name != 'Raw'">{{item.name}}</td>
+                          <td *ngIf="item.name == 'Raw'">
+                            <ng-select bindValue="value" name="frequency" [items]="frequencyFortableForRaw" placeholder="Select Data Type"
+                              [(ngModel)]="eachBlockData[BlockIndex].tagsData[i].aggregationRules[j].frequency"
+                              [clearable]="true" dropdownPosition="bottom" [ngModelOptions]="{standalone: true}"
+                              [disabled]="!eachBlockData[BlockIndex].tagsData[i].aggregationRules[j].isSelected">
+                            </ng-select>
+                          </td>
+                          <td *ngIf="item.name != 'Raw'" class="text-truckate">
+                            <ng-select bindValue="value" name="frequency" [items]="frequencyFortable" placeholder="Select Data Type"
+                              [closeOnSelect]="false" [(ngModel)]="eachBlockData[BlockIndex].tagsData[i].aggregationRules[j].frequency"
+                              [clearable]="true" dropdownPosition="bottom" [ngModelOptions]="{standalone: true}"
+                              [multiple]="true" [disabled]="!eachBlockData[BlockIndex].tagsData[i].aggregationRules[j].isSelected">
+                            </ng-select>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div> -->
+                <fa-icon [icon]="['fas', 'clone']" class="btn" title="clone Tag"
+                  (click)="cloneTag(BlockIndex, eachBlockData[BlockIndex].tagsData[i])">
+                </fa-icon>
+                <fa-icon [icon]="['fas', 'trash']" class="btn" title="Delete Tag" (click)="deleteTag(BlockIndex, i)">
+                </fa-icon>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title col-md-8" id="exampleModalCenterTitle">Map to Asset</h6>
+        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true"
+            class="elm-cancel cancel-elm"></span></button>
+      </div>
+      <div class="modal-body" style="min-height: 300px">
+        <!-- <select >
+          <option *ngFor="let vd of virtualDevices" value="vd.device_instance_id">{{vd.name}}</option>
+        </select> -->
+        <style>
+          .ng-select.customNgSelect {
+            color: #000000 !important;
+          }
+        </style>
+        <ng-select class="customNgSelect" id="virtualDevicesListSelect" bindValue="device_instance_id" bindLabel="name"
+          name="name" [items]="deviceGroup_config['name']" placeholder="Select" dropdownPosition="bottom"
+          [(ngModel)]="selectedVirtualDevice" [clearable]="true" (change)="AssignVirtualDevices()" [searchable]="true"
+          [required]="true" #myNgSelect #device_instance_name="ngModel" [selectOnTab]="true" [openOnEnter]="true">
+        </ng-select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" hidden="hidden" class="btn btn-secondary" data-dismiss="modal" #close>Close</button>
+        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"
+          (click)="closePopUP()">cancel</button>
+        <!-- <button type="button" class="btn-elm-cancel" (click)="AssignVirtualDevices()">Submit</button> -->
+      </div>
+    </div>
+  </div>
+</div>

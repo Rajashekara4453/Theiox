@@ -1,0 +1,54 @@
+
+.error{
+    border: 1px solid red !important;
+}
+
+.ng-select.customNgSelect {
+    color: #000000 !important;
+}
+.form-check-input
+{
+    height: 16px;
+    width: 16px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.toggle-expanded
+{
+    transform: rotate(180deg);
+    display: inline-block;
+}
+.toggle-collepsed
+{
+    transform: rotate(90deg);
+    display: inline-block;
+}
+th
+{
+white-space: nowrap;
+text-overflow: ellipsis;
+overflow: hidden;
+
+}
+.aggregationDropDownMenu
+{
+    min-width: 280px;
+}
+.text-truckate
+{
+    white-space: nowrap;
+}
+.table td
+{
+    white-space: nowrap;
+}
+.box {
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+}
+.box1 {
+  display: inline-block;
+  height: 28px;
+  width: 250px;
+}

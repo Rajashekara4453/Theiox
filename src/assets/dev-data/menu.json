@@ -1,0 +1,1069 @@
+{
+    "menu":[
+       {
+          "accessLevel":{
+             "commonfilter":true,
+             "create":false,
+             "delete":false,
+             "edit":true,
+             "resize":true,
+             "share":true,
+             "view":true
+          },
+          "createBtn":true,
+          "hasChildren":true,
+          "icon":"fa fa-pie-chart",
+          "id":1,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "isShowMobileView":true,
+          "name":"Dashboard",
+          "openNewTab":false,
+          "pId":0,
+          "reference":"dashboard",
+          "reference_id":"dashboard",
+          "ticket":"dashboard",
+          "type":"Dashboard",
+          "url":"dashboard"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "share":true,
+             "view":true
+          },
+          "createBtn":true,
+          "hasChildren":true,
+          "icon":"fa fa-sitemap",
+          "id":14,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "name":"Web SCADA",
+          "openNewTab":false,
+          "pId":0,
+          "reference":"dashboard",
+          "ticket":"webscada",
+          "type":"Scada",
+          "url":"scada"
+       },
+       {
+          "accessLevel":{
+             "commonfilter":true,
+             "create":true,
+             "delete":false,
+             "edit":true,
+             "resize":true,
+             "schedule":true,
+             "share":true,
+             "view":true
+          },
+          "createBtn":true,
+          "hasChildren":true,
+          "icon":"fa fa-file-excel-o",
+          "id":2,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "name":"Reports",
+          "openNewTab":false,
+          "pId":0,
+          "reference":"dashboard",
+          "reference_id":"reports",
+          "ticket":"reports",
+          "type":"Reports",
+          "url":"reports"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "share":true,
+             "view":true
+          },
+          "createBtn":true,
+          "hasChildren":true,
+          "icon":"fa fa-bar-chart",
+          "id":3,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "isShowMobileView":true,
+          "name":"Trends",
+          "openNewTab":false,
+          "pId":0,
+          "reference":"dashboard",
+          "reference_id":"trends",
+          "ticket":"trends",
+          "type":"Trends",
+          "url":"trends"
+       },
+      {
+"accessLevel":{
+"create":false,
+"delete":false,
+"edit":false,
+"trigger":false,
+"view":true,
+"schedule":false
+},
+"createBtn":false,
+"hasChildren":false,
+"icon":"fa fa-plug",
+"id":4,
+"isShowAccessLevel":true,
+"isShowLeftSideBar":true,
+"name":"Asset Control",
+"openNewTab":false,
+"pId":0,
+"reference":"assetControl",
+"reference_id":"assetControl",
+"ticket": "assetControl",
+"type":"assetAction",
+"url":"asset-control"
+},
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "hasChildren":true,
+          "icon":"fa fa-clock-o",
+          "id":5,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "isShowMobileView":true,
+          "isStatic":true,
+          "name":"Alert Notifications",
+          "openNewTab":false,
+          "pId":0,
+          "ticket":"default"
+       },
+       {
+          "accessLevel":{
+             "acknowledge":true,
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "createBtn":false,
+          "hasChildren":false,
+          "icon":"fa fa-clock-o",
+          "id":5.1,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "isShowMobileView":true,
+          "name":"Alert Notifications List",
+          "openNewTab":false,
+          "pId":5,
+          "ticket":"alarmEvents",
+          "url":"alarm-events"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "hasChildren":false,
+          "icon":"fa fa-cog",
+          "id":5.2,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Configure Alert Notifications",
+          "openNewTab":false,
+          "pId":5,
+          "reference_id":"alarmConfigurations",
+          "ticket":"alarmConfigurations",
+          "url":"configurations/alarm/alarms"
+       },
+       {
+          "accessLevel":{
+             "create":false,
+             "delete":false,
+             "edit":false,
+             "view":true
+          },
+          "hasChildren":false,
+          "icon":"fa fa-sort-amount-desc",
+          "id":5.3,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Priority Type",
+          "openNewTab":false,
+          "pId":5,
+          "ticket":"alarmPriorityTypes",
+          "url":"configurations/alarm/alarmPriorityTypes"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "hasChildren":true,
+          "icon":"fa fa-microchip",
+          "id":13,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Asset Management",
+          "openNewTab":false,
+          "pId":0,
+          "ticket":"virtualdevice"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "hasChildren":false,
+          "icon":"fa fa-cog",
+          "id":13.1,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":false,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Asset Configuration",
+          "openNewTab":false,
+          "pId":13,
+          "reference_id":"virtualdevice",
+          "ticket":"virtualdevice",
+          "url":"configurations/vitualdevice"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "icon":"fa fa-list-ul",
+          "id":13.2,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":false,
+          "isShowLeftSideBar":true,
+          "name":"Asset Group",
+          "openNewTab":false,
+          "pId":13,
+          "ticket":"virtualdevice",
+          "url":"configurations/businessGroups/deviceGroups"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "createBtn":false,
+          "hasChildren":true,
+          "icon":"fa fa-database",
+          "id":6,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Data Acquisition",
+          "openNewTab":false,
+          "pId":0,
+          "ticket":"gateways"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "createBtn":false,
+          "hasChildren":false,
+          "icon":"fa fa-code-fork",
+          "id":6.2,
+          "isShowAccessLevel":false,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Gateways",
+          "openNewTab":false,
+          "pId":6,
+          "reference":"gateways",
+          "reference_id":"gateways",
+          "ticket":"gateways",
+          "url":"configurations/gatewayDevices/gatewaylist"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "createBtn":false,
+          "hasChildren":false,
+          "icon":"fa fa-thermometer-4",
+          "id":6.4,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Sensors",
+          "openNewTab":false,
+          "pId":6,
+          "reference":"gateways",
+          "reference_id":"sensors",
+          "ticket":"devices",
+          "url":"configurations/gatewayDevices/gatewaylist/gateway_instance_all"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "createBtn":false,
+          "hasChildren":false,
+          "icon":"fa fa-book",
+          "id":6.3,
+          "isShowAccessLevel":false,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Gateway Library",
+          "openNewTab":false,
+          "pId":6,
+          "ticket":"gateways",
+          "url":"configurations/masterConfig/gatewaymodel"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "createBtn":false,
+          "hasChildren":false,
+          "icon":"fa fa-book",
+          "id":6.5,
+          "isShowAccessLevel":false,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Sensor Library",
+          "openNewTab":false,
+          "pId":6,
+          "ticket":"gateways",
+          "url":"configurations/masterConfig/devicemodels"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "createBtn":false,
+          "hasChildren":true,
+          "icon":"fa fa-steam",
+          "id":7,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Data Processing",
+          "openNewTab":false,
+          "pId":0,
+          "ticket":"default",
+          "url":""
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "hasChildren":false,
+          "icon":"fa fa-edit",
+          "id":7.2,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Manual Entry",
+          "openNewTab":false,
+          "pId":7,
+          "reference_id":"manualEntry",
+          "ticket":"manualEntry",
+          "url":"configurations/manual-entry"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "hasChildren":false,
+          "icon":"fa fa-list-ul",
+          "id":7.3,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":false,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Batch Entry",
+          "openNewTab":false,
+          "pId":7,
+          "ticket":"manualEntry",
+          "url":"configurations/batchentry"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "icon":"fa fa-tags",
+          "id":7.4,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "name":"Tag Group",
+          "openNewTab":false,
+          "pId":7,
+          "ticket":"tags",
+          "url":"configurations/businessGroups/tagGroups"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "hasChildren":true,
+          "hasUserModfied":true,
+          "icon":"fa fa-institution",
+          "id":8,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "modifiedTime":"time-stamp",
+          "name":"Organisation Settings",
+          "openNewTab":false,
+          "pId":0,
+          "ticket":"default"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "icon":"fa fa-info-circle",
+          "id":8.1,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "name":"Organisation Info",
+          "openNewTab":false,
+          "pId":8,
+          "ticket":"siteInfo",
+          "url":"configurations/siteInfo"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "hasChildren":false,
+          "icon":"fa fa-sitemap",
+          "id":8.2,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "name":"Organisation Hierarchy",
+          "openNewTab":false,
+          "pId":8,
+          "ticket":"siteHierarchy",
+          "url":"configurations/siteHierarchy"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "hasChildren":true,
+          "icon":"fa fa-hourglass-2",
+          "id":8.4,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Shift Management",
+          "openNewTab":false,
+          "pId":8,
+          "ticket":"default"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "hasChildren":false,
+          "icon":"fa fa-list-ul",
+          "id":84.1,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":false,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Shift/TOD List",
+          "openNewTab":false,
+          "pId":8.4,
+          "ticket":"masterConfiguration",
+          "url":"configurations/shiftmanagement"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "hasChildren":false,
+          "icon":"fa fa-list-ul",
+          "id":84.2,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":false,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Shift/TOD Group",
+          "openNewTab":false,
+          "pId":8.4,
+          "ticket":"masterConfiguration",
+          "url":"configurations/timeslotgroup"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "hasChildren":true,
+          "icon":"fa fa-address-book",
+          "id":8.5,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "isShowMobileView":true,
+          "isStatic":true,
+          "name":"User Management",
+          "openNewTab":false,
+          "pId":8,
+          "ticket":"default"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "icon":"fa fa-vcard",
+          "id":85.1,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "isShowMobileView":true,
+          "name":"My Profile",
+          "openNewTab":false,
+          "pId":8.5,
+          "ticket":"default",
+          "url":"configurations/userManagement/userProfile"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "icon":"fa fa-user-plus",
+          "id":85.2,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "name":"Users",
+          "openNewTab":false,
+          "pId":8.5,
+          "reference_id":"userList",
+          "ticket":"userList",
+          "url":"configurations/userManagement/userList"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "icon":"fa fa-group",
+          "id":85.3,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "name":"Work Group",
+          "openNewTab":false,
+          "pId":8.5,
+          "ticket":"workGroup",
+          "url":"configurations/userManagement/workGroup"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "icon":"fa fa-unlock-alt",
+          "id":85.4,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "name":"Access Levels",
+          "openNewTab":false,
+          "pId":8.5,
+          "ticket":"accessLevel",
+          "url":"configurations/userManagement/accessLevel"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "hasChildren":false,
+          "icon":"fa fa-envelope",
+          "id":8.6,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":false,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Email Settings",
+          "openNewTab":false,
+          "pId":8,
+          "ticket":"masterConfiguration",
+          "url":"configurations/masterConfig/emailGateway"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "hasChildren":false,
+          "icon":"fa fa-comment",
+          "id":8.7,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":false,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"SMS Settings",
+          "openNewTab":false,
+          "pId":8,
+          "ticket":"masterConfiguration",
+          "url":"configurations/masterConfig/smsgateway"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "hasChildren":true,
+          "icon":"fa fa-cogs",
+          "id":9,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Master Settings",
+          "openNewTab":false,
+          "pId":0,
+          "ticket":"masterConfiguration"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "hasChildren":false,
+          "icon":"fa fa-tag",
+          "id":9.1,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":false,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Tags",
+          "openNewTab":false,
+          "pId":9,
+          "ticket":"masterConfiguration",
+          "url":"configurations/masterConfig/parameters"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "hasChildren":false,
+          "icon":"fa fa-dot-circle-o",
+          "id":9.2,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":false,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Units",
+          "openNewTab":false,
+          "pId":9,
+          "ticket":"masterConfiguration",
+          "url":"configurations/masterConfig/unit-master"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "hasChildren":false,
+          "icon":"fa fa-sort-numeric-desc",
+          "id":9.3,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":false,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Unit Converter",
+          "openNewTab":false,
+          "pId":9,
+          "ticket":"masterConfiguration",
+          "url":"configurations/masterConfig/unitconverter"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "hasChildren":false,
+          "icon":"fa fa-times",
+          "id":9.4,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":false,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Multiplication Factors",
+          "openNewTab":false,
+          "pId":9,
+          "ticket":"masterConfiguration",
+          "url":"configurations/masterConfig/multiplicationFactors"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "hasChildren":false,
+          "icon":"fa fa-list-ul",
+          "id":9.5,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":false,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Gateway Types",
+          "openNewTab":false,
+          "pId":9,
+          "ticket":"masterConfiguration",
+          "url":"configurations/masterConfig/gatewayTypes"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "hasChildren":false,
+          "icon":"fa fa-list-ul",
+          "id":9.6,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":false,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Sensor Types",
+          "openNewTab":false,
+          "pId":9,
+          "ticket":"masterConfiguration",
+          "url":"configurations/masterConfig/deviceTypes"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "hasChildren":false,
+          "icon":"fa fa-list-ul",
+          "id":10,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":true,
+          "isStatic":true,
+          "name":"Licence Info",
+          "openNewTab":false,
+          "pId":8,
+          "ticket":"default",
+          "url":"license-management"
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "id":101.1,
+          "isAccessOnlyAdmin":false,
+          "isShowAccessLevel":false,
+          "isShowLeftSideBar":false,
+          "isStatic":true,
+          "name":"Assets",
+          "openNewTab":false,
+          "pId":7,
+          "ticket":"masterConfiguration",
+          "url":""
+       },
+       {
+          "accessLevel":{
+             "create":true,
+             "delete":true,
+             "edit":true,
+             "view":true
+          },
+          "id":101.2,
+          "isShowAccessLevel":true,
+          "isShowLeftSideBar":false,
+          "isStatic":true,
+          "name":"Widgets",
+          "pId":1,
+          "ticket":"widgets",
+          "url":""
+       },{
+         "accessLevel":{
+
+            "view":true
+         },
+         "hasChildren":false,
+         "icon":"fa fa-table",
+         "id":8.55,
+         "isAccessOnlyAdmin":false,
+         "isShowAccessLevel":true,
+         "isShowLeftSideBar":true,
+         "isStatic":true,
+         "name":"Activity Log",
+         "openNewTab":false,
+         "pId":8.5,
+         "ticket":"default",
+         "url":"activity-log"
+      },
+      {
+         "accessLevel":{
+         "create":true,
+         "delete":true,
+         "edit":true,
+         "view":true
+         },
+         "createBtn":false,
+         "hasChildren":true,
+         "icon":"fa fa-building",
+         "id":15,
+         "isShowAccessLevel":false,
+         "isShowLeftSideBar":true,
+         "name":"PPS",
+         "openNewTab":false,
+         "pId":0,
+         "reference":"pps",
+         "reference_id":"pps",
+         "ticket": "default",
+         "type":"pps",
+         "url":"pps"
+         },
+         {
+            "accessLevel":{
+               "create":true,
+               "delete":true,
+               "edit":true,
+                "view":true
+              },
+           "createBtn":false,
+           "hasChildren":false,
+           "icon":"fa fa-bolt",
+           "id":16,
+           "isShowAccessLevel":false,
+           "isShowLeftSideBar":true,
+           "isShowMobileView":false,
+           "name":"Analog Input",
+           "openNewTab":false,
+           "pId":0,
+           "ticket":"analoginput",
+           "url":"pps/meterforms/analoginput?dd=0"
+       },
+         {
+            "accessLevel":{
+               "create":true,
+               "delete":true,
+               "edit":true,
+                "view":true
+              },
+           "createBtn":false,
+           "hasChildren":false,
+           "icon":"fa fa-bolt",
+           "id":17,
+           "isShowAccessLevel":false,
+           "isShowLeftSideBar":true,
+           "isShowMobileView":false,
+           "name":"Digital Input",
+           "openNewTab":false,
+           "pId":0,
+           "ticket":"digitalinput",
+           "url":"pps/meterforms/digitalinput?dd=0"
+       },
+         {
+            "accessLevel":{
+               "create":true,
+               "delete":true,
+               "edit":true,
+               "view":true
+            },
+            "createBtn":false,
+            "hasChildren":false,
+            "icon":"fa fa-cog",
+            "id":15.1,
+            "isShowAccessLevel":true,
+            "isShowLeftSideBar":true,
+            "isShowMobileView":false,
+            "name":"Configurator",
+            "openNewTab":false,
+            "pId":15,
+            "ticket":"default",
+            "url":"pps/configurator"
+         },
+         {
+             "accessLevel":{
+                "create":true,
+                "delete":true,
+                "edit":true,
+                 "view":true
+               },
+            "createBtn":false,
+            "hasChildren":false,
+            "icon":"fa fa-bolt",
+            "id":15.2,
+            "isShowAccessLevel":false,
+            "isShowLeftSideBar":true,
+            "isShowMobileView":false,
+            "name":"Recharge",
+            "openNewTab":false,
+            "pId":15,
+            "ticket":"ppsrecharge",
+            "url":"pps/meterforms/smartmeterrecharge?dd=1"
+        },
+        {
+             "accessLevel":{
+                "create":true,
+                "delete":true,
+                "edit":true,
+                 "view":true
+               },
+            "createBtn":false,
+            "hasChildren":false,
+            "icon":"fa fa-bolt",
+            "id":15.3,
+            "isShowAccessLevel":false,
+            "isShowLeftSideBar":true,
+            "isShowMobileView":false,
+            "name":"Cost management",
+            "openNewTab":false,
+            "pId":15,
+            "ticket":"ppscostman",
+            "url":"pps/meterforms/costmanagement?dd=0"
+        },
+        {
+           "id": 102.1,
+           "pId": 10,
+           "url": "product/version",
+           "name": "Version",
+           "ticket": "productVersion",
+           "isStatic": true,
+           "openNewTab": false,
+           "accessLevel": {
+           "view": true
+            },
+           "isAccessOnlyAdmin": false,
+           "isShowAccessLevel": false,
+         "isShowLeftSideBar": false
+           }
+        ,{
+
+            "accessLevel":{
+               "create":true,
+               "delete":true,
+               "edit":true,
+                "view":true
+              },
+           "createBtn":false,
+           "hasChildren":false,
+           "icon":"fa fa-history",
+           "id":15.4,
+           "isShowAccessLevel":false,
+           "isShowLeftSideBar":true,
+           "isShowMobileView":false,
+           "name":"Recharge History",
+           "openNewTab":false,
+           "pId":15,
+           "ticket":"ppsrecharge",
+           "url":"pps/filterPages/smartmeterrecharge"
+       }
+
+    ],
+    "status":"success"
+ }

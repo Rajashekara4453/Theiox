@@ -1,0 +1,78 @@
+.etsadm--ios-toggle {
+    -webkit-appearance: none;
+    height: 20px;
+    width: 45px;
+    background-color: #707070;
+    border-radius: 43px;
+    position: relative;
+    cursor: pointer;
+    vertical-align: middle;
+    margin: 0px 10px !important;
+    outline: none;
+}
+.etsadm--ios-toggle::after {
+    top: 50% !important;
+    left: 2px !important;
+    content: '';
+    width: 18px !important;
+    height: 18px !important;
+    background-color: lightgray !important;
+    position: absolute;
+    border-radius: 100% !important;
+    -webkit-transition: .3s;
+    transition: .3s !important;
+    transform: translateY(-50%);
+    border:none !important;
+
+}
+.etsadm--ios-toggle:checked {
+    background-color: var(--brandPrimaryBlue);
+}
+.etsadm--ios-toggle:checked::after {
+    transform: translateX(22px) translateY(-50%);
+}
+.etsadm--ios-toggle:focus {
+    outline-color: transparent;
+}
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value .ng-value-label {
+    display: inline-block;
+    padding: 10px 50px!important;
+}
+.table-head{
+    thead {
+        text-align: center;
+        box-shadow: 0px 0px 10px 0px #e3dbdb;
+        color: #6c757d;
+    }
+    thead tr td{
+        width: 25%;
+    }
+    thead tr td:nth-child(3), thead tr td:nth-child(4){
+        width: 20%;
+    }
+    thead tr td:last-child{
+        width: 10%;
+    }
+    td {
+        border: none;
+        padding: 0.7rem;
+    }
+}
+.not-allowed{
+    cursor: not-allowed;
+}
+:host /deep/ angular2-multiselect {
+    .dropdown-list{
+        overflow: inherit;
+    }
+
+    .list-area div:last-child {
+        max-height:220px !important;
+    }
+    .vertical.selfScroll
+    {
+        height: 220px !important;
+        overflow: auto;
+        clear: both;
+    }
+}

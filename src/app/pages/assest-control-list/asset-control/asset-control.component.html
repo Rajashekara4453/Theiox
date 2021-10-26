@@ -1,0 +1,296 @@
+<!-- Bread Crumb start-->
+<div class="breadcrumb-content">
+  <div class="breadcrumb-title">
+    <div class="breadcrumb-left">
+      <span class="cell">
+        <i class="fa fa-plug">
+
+        </i>
+        Asset Control Configuration
+      </span>
+    </div>
+
+  </div>
+</div>
+<!-- Bread Crumb ends-->
+
+
+<div class="main-content">
+
+  <div class="sub-main-content">
+
+    <!-- Loader -->
+
+    <!-- loader ends -->
+    <div class="form-header">
+      <h6 class="form-header m-0 p-0 text-muted border-0">
+        {{assetControlID?'Edit':'Create Asset Control'}}
+      </h6>
+      <h6 class="form-header m-0 p-0 text-muted border-0" *ngIf="configdata['action_name']!=null">
+        {{assetControlID?(' - '+configdata['action_name'] | titlecase):''}}
+      </h6>
+    </div>
+    <div class="col-12 tab-content accordion form-content" *ngIf="!isPageLoading">
+
+      <div class="card border-0 pt-3">
+
+
+        <div class="accordian-header border-bottom">
+          <h6>General info</h6>
+        </div>
+        <div class="tab-pane" id="collapsetitle" class="collapse show mt-3 mb-3">
+          <div class="tab-pane-container">
+            <div class="row">
+              <div class="form-group col-lg-3 col-md-4 colsm-6">
+                <label for="" class="control-label">Name<span class="color-red">&nbsp;*</span></label><input type="text"
+                  class="form-control" required [(ngModel)]="configdata.action_name"
+                  [ngModelOptions]="{standalone: true}" #action_name="ngModel" placeholder="Enter Name"
+                  autocomplete="off">
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                <label for="" class="control-label">Groups</label>
+                <angular2-multiselect [data]="configOptionData.labels" [settings]="labelDDSettings"
+                  [(ngModel)]="selectedlabel" (onAddFilterNewItem)="onAddItem($event)"
+                  (onDeSelectAll)="onDeSelectAll($event,'label')">
+                </angular2-multiselect>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-lg-3 col-md-4 colsm-6">
+
+                <label class="control-label">Description</label> <textarea cols="12" rows="2"
+                  [(ngModel)]="configdata.description" class="form-control" placeholder="Description"></textarea>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="card border-0 pt-3">
+        <div class="accordian-header border-bottom">
+          <h6>Action</h6>
+        </div>
+        <div class="tab-pane">
+          <div class="tab-pane-container clearfix"
+            *ngFor="let item of configdata.actions; let i=index;trackBy:trackByActionValue">
+            <div class="row position-relative p-3" style="background:#f9f9f9">
+              <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                <label for="" class="control-label"> Assets<span class="color-red">&nbsp;*</span></label>
+
+
+                <angular2-multiselect [data]="configOptionData.devices" [settings]="deviceDDSetting"
+                  [(ngModel)]="item.assets" (onDeSelectAll)="onDeSelectAll($event,'assets',i)">
+                </angular2-multiselect>
+              </div>
+
+              <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                <label for="" class="control-label">Tags<span class="color-red">&nbsp;*</span> </label>
+
+                <angular2-multiselect [data]="configOptionData.tags" [settings]="tagsDDSettings" [(ngModel)]="item.tags"
+                  (onSelect)="onItemSelect($event,i)" (onDeSelect)="OnItemDeSelect($event,i)"
+                  (onDeSelectAll)="onDeSelectAll($event,'tags',i)">
+                </angular2-multiselect>
+
+
+
+              </div>
+              <div class="form-group col-lg-3 colmd-4 col-sm-6">
+                <label for="" class="control-label"> Value<span class="color-red">&nbsp;*</span></label> <input
+                  [disabled]='item.disabledInput' type="text" class="form-control" [(ngModel)]="item.write_value"
+                  placeholder="Enter Value">
+              </div>
+
+              <div class="form-group col-lg-3 colmd-4 col-sm-6">
+                <label for="" class="control-label">Label</label>
+                <input type="text" class="form-control" required [(ngModel)]="item.action_label"
+                  placeholder="Enter Label">
+              </div>
+              <div class="cancel-y-axis">
+                <span class="up-down-container p-1">
+                  <i class="fa fa-clone mx-1" style="font-size: 18px;" (click)="cloneAction(i)" title="Clone"></i>
+
+                  <i class="elm-cancel mx-1 ng-star-inserted" data-placement="top" data-toggle="tooltip"
+                    [ngClass]="{'not-allowed-cursor':configdata.actions.length<=1}" title="Remove"
+                    (click)="configdata.actions.length>1?removeAction(i):''"></i>
+                </span>
+              </div>
+
+            </div>
+
+
+
+          </div>
+        </div>
+        <!-- <div *ngIf="isPageLoading" style="height: 100px;" class="position-relative tab-content accordion form-content">
+          <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div> -->
+      </div>
+      <button (click)="addActions()" class="btn btn-sm btn-primary mb-3 ml-0"> <span class="fa fa-plus"></span>
+        Add</button>
+
+      <div class="card border-0 pt-3">
+
+        <div class="accordian-header border-bottom" id='scrollId'>
+          <h6>Schedule
+            <span class="d-flex align-items-center float-right"
+              [ngClass]="{'not-allowed-cursor' : !pageAccessFor.schedule}"
+              [title]="!pageAccessFor['schedule'] ? 'Access Denied' :''">
+              <label class="d-flex" [ngClass]="{'pointer-event-none' : !pageAccessFor.schedule}">
+                Disable <input class="etsadm--ios-toggle" type="checkbox" [(ngModel)]="configdata.schedule.schedule"
+                  (ngModelChange)="pageAccessFor.schedule?updateScheduleData():''" />
+                Enable
+              </label>
+            </span>
+          </h6>
+
+        </div>
+        <div class="tab-pane">
+          <div class="tab-pane-container clearfix">
+
+            <div class="row">
+
+              <div class="form-group col-lg-3 col-md-4 colsm-6">
+                <label class="control-label">
+                  Minutes<span class="color-red">&nbsp;*</span>
+                </label>
+                <angular2-multiselect [settings]="scheduleDDSetting" [data]="configOptionData.minutes"
+                  [(ngModel)]="configdata.schedule.minutes" (onDeSelectAll)="onDeSelectAll($event,'minutes')">
+                </angular2-multiselect>
+              </div>
+
+              <div class="form-group col-lg-3 col-md-4 colsm-6">
+                <label class="control-label">
+                  Hours<span class="color-red">&nbsp;*</span>
+                </label>
+                <angular2-multiselect [settings]="scheduleDDSetting" [data]="configOptionData.hours"
+                  [(ngModel)]="configdata.schedule.hours" (onDeSelectAll)="onDeSelectAll($event,'hours')">
+                </angular2-multiselect>
+              </div>
+
+              <div class="form-group col-lg-3 col-md-4 colsm-6">
+                <label class="control-label">
+                  Type<span class="color-red">&nbsp;*</span>
+                </label>
+                <ng-select bindValue="value" bindLabel="label" [items]="daytype" placeholder="Select"
+                  [clearable]="false" [(ngModel)]="configdata.schedule.dayType" [multiple]="false">
+                </ng-select>
+              </div>
+              <div class="form-group col-lg-3 col-md-4 colsm-6">
+                <label for="" class="control-label">Months<span class="color-red">&nbsp;*</span> </label>
+
+                <angular2-multiselect [settings]="scheduleDDSetting" [data]="configOptionData.months"
+                  [(ngModel)]="configdata.schedule.months" (onDeSelectAll)="onDeSelectAll($event,'month')">
+
+                </angular2-multiselect>
+              </div>
+
+            </div>
+
+            <div class="row">
+
+
+              <div class="form-group col-lg-3 col-md-4 colsm-6" *ngIf="configdata.schedule.dayType=='date'">
+                <label class="control-label">
+                  Dates<span class="color-red">&nbsp;*</span>
+                </label>
+                <angular2-multiselect [settings]="scheduleDDSetting" [data]="configOptionData.days"
+                  [(ngModel)]="configdata.schedule.date" (onDeSelectAll)="onDeSelectAll($event,'date')">
+                </angular2-multiselect>
+              </div>
+
+              <div class="form-group col-lg-3 col-md-4 colsm-6" *ngIf="configdata.schedule.dayType=='day'">
+                <label class="control-label">
+                  Days<span class="color-red">&nbsp;*</span>
+                </label>
+                <angular2-multiselect [settings]="scheduleDDSetting" [data]="configOptionData.weekdays"
+                  [(ngModel)]="configdata.schedule.day" (onDeSelectAll)="onDeSelectAll($event,'day')">
+                </angular2-multiselect>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="form-group col-lg-3 col-md-4 colsm-6">
+                <label class="control-label">
+                  Choose From Date
+                </label>
+
+                <angular2-date-picker [(ngModel)]="configdata.schedule.startDateVal" [settings]="time_settings">
+                </angular2-date-picker>
+              </div>
+              <div class="form-group col-lg-3 col-md-4 colsm-6">
+                <label class="control-label">
+                  Choose End Date
+                </label>
+                <angular2-date-picker [(ngModel)]="configdata.schedule.endDateVal" [settings]="time_settings">
+
+                </angular2-date-picker>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+    <div *ngIf="isPageLoading" class="position-relative tab-content accordion form-content">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="form-footer">
+      <button *ngIf="!this.paramsObject.schedule" class="btn btn-primary btn-sm"
+        [disabled]="assetControlID?(!pageAccessFor.edit?'not-allowed-cursor':''):(!pageAccessFor.create?'not-allowed-cursor':'')"
+        (click)="assetControlID?(pageAccessFor.edit?onSubmit():''):(pageAccessFor.create?onSubmit():'')"
+        [title]="assetControlID?(!pageAccessFor.edit?'Access Denied':'Save'):(!pageAccessFor.create?'Access Denied':'Save')"
+        [attr.disabled]="isPageLoading?'disabled':null">Save</button>
+
+      <button *ngIf="this.paramsObject.schedule" class="btn btn-primary btn-sm"
+        [ngClass]="{'not-allowed-cursor' : !pageAccessFor['schedule'],'not-allowed-cursor':isPageLoading}"
+        [disabled]="!assetControlID?(!pageAccessFor.schedule?'not-allowed-cursor':''):(isPageLoading?'not-allowed-cursor':'')"
+        (click)="pageAccessFor['schedule'] ?onSubmit():'' " [title]="!pageAccessFor['schedule'] ? 'Access Denied' :''"
+        [attr.disabled]="isPageLoading?'disabled':null">Save
+      </button>
+      <button class="btn btn-sm btn-secondary" (click)="cancel()" [title]="'Cancel'">Cancel</button>
+      <button class="btn btn-sm btn-secondary" *ngIf="assetControlID!=null"
+        [disabled]="!pageAccessFor['delete'] ? true :false" data-toggle="modal"
+        [attr.data-target]="pageAccessFor.delete?'#deleteModal':''" id="deleteModalButton"
+        [title]="!pageAccessFor['delete'] ? 'Access Denied' :'Delete'">Delete</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade " id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title m-0" id="exampleModalLabel">Confirm</h6>
+      </div>
+      <div class="modal-body">
+
+        <p class="text-muted">Are you sure you want to delete?</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-sm" id="dismissDelete" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="pageAccessFor.delete? deleteConfiguration():''"
+          data-dismiss="modal">Yes</button>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,580 @@
+<!-- Bread Crumb start-->
+<div class="breadcrumb-content">
+    <div class="breadcrumb-title">
+        <div class="breadcrumb-left">
+            <span class="cell">
+                <i class="fa fa-plug">
+
+                </i>
+                Asset Control
+            </span>
+        </div>
+        <div class="breadcrumb-right button-group-container d-flex justify-content-left align-items-center">
+            <div class="search-group search-group-sm mr-2" tabindex="1">
+                <i class="search-icon fa fa-search"></i>
+                <input class="search-input" placeholder="Search" type="search" [(ngModel)]="queryStringAssetControlList"
+                    [ngModelOptions]="{standalone:true}">
+            </div>
+            <button class="btn btn-primary khide btn-sm" [disabled]="!pageAccessFor['create'] ? true :false"
+                (click)="pageAccessFor.create?onClickAssetActions('create'):''"
+                [title]="!pageAccessFor['create'] ? 'Access Denied' :'Create'">
+                <span class="fa fa-plus"></span> Create
+            </button>
+        </div>
+    </div>
+</div>
+<!-- Bread Crumb ends-->
+
+
+<!-- Main Content Area start -->
+<div class="main-content">
+    <div class="sub-main-content bg-transparent">
+
+        <!-- Page Loading -->
+        <div *ngIf="isPageLoading" class="position-relative h-100">
+            <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <!-- Page Loading -->
+
+        <!-- Error Message -->
+        <div>
+
+            <div class="empty-history" *ngIf="isAssetControlListResponse">
+                <span class="fa fa-refresh">
+                </span>
+                <div *ngIf="isAssetControlListResponseStatus">
+                    <h6 class="text-muted">
+                        Got failed status as response
+                    </h6>
+                    <p class="text-muted">
+                        Please try again later.
+                    </p>
+                </div>
+                <div *ngIf="!isAssetControlListResponseStatus">
+                    <h6 class="text-muted">
+                        Failed
+                    </h6>
+                    <p class="text-muted">
+                        Invalid response from server. Please try again later.
+                    </p>
+                </div>
+                <button class="btn btn-sm btn-link widget-text-color" (click)="getAssetControlList()">
+                    <i class="fa fa-repeat"></i>
+                    Try Again
+                </button>
+            </div>
+        </div>
+        <!-- Error Message -->
+
+        <div *ngIf="!isPageLoading" class="assets-control-container">
+            <div class="asset-control-block col-sm-12 col-md-6 col-lg-6 col-xl-4 col-xxl-3"
+                [ngClass]="{'sheduled-border' : data['next_scheduled_on'], 'disabled-border' : !data['next_scheduled_on']}"
+                *ngFor="let data of assetControlList | AssetControlFilter : queryStringAssetControlList : ['action_name','last_modified_by','last_modified_at','next_scheduled_on','labels'] : true : 2 | slice:initialRangeAssetControlList:finalRangeAssetControlList; let i =index; trackBy:trackAssetControlList">
+                <div class="asset-control-header">
+                    <div class="header-left">
+                        <h6 class="widget-text-color" [ngClass]="{'short-header': data.labels.length !== 0}"
+                            title="{{data['action_name']}}">
+                            {{data['action_name']}}
+                        </h6>
+
+                        <div class="label-group">
+                            <div class="label-block" *ngFor="let labels of data['labels']">
+                                {{labels}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="header-right dropdown">
+                        <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle card-right-icon"
+                            data-toggle="dropdown" id="dropdownMenuButton" title="More Actions">
+                            <span class="fa fa-ellipsis-h"></span>
+                        </a>
+                        <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+                            <a class="dropdown-item" [ngClass]="!pageAccessFor['edit'] ? 'isEnabled' : ''"
+                                [title]="!pageAccessFor['edit'] ? 'Access Denied' :''"
+                                (click)="pageAccessFor['edit']? onClickAssetActions('edit',data['asset_action_id']):$event.stopPropagation()">
+                                <span class="fa fa-edit pr-2"></span> Edit
+                            </a>
+                            <a class="dropdown-item" [ngClass]="!pageAccessFor['delete'] ? 'isEnabled' : ''"
+                                [title]="!pageAccessFor['delete'] ? 'Access Denied' :''"
+                                (click)="pageAccessFor['delete'] ?deleteActionControl(data['asset_action_id']):$event.stopPropagation()"
+                                data-toggle="modal" data-target="#asset-control-delete">
+                                <span class="fa fa-times pr-2"></span> Delete
+                            </a>
+                            <a class="dropdown-item"
+                                (click)="moreInfoForAction(data['asset_action_id'],data['action_name'])"
+                                data-toggle="modal" data-target="#asset-control-more-info">
+                                <span class="fa fa-info-circle pr-2"></span> More info
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="assets-control-content">
+                    <div class="asset-user widget-text-color d-flex">
+                        <span class="text-truncate text-truncate" title=" {{data['last_modified_by']}}">
+                            <i class="fa fa-user-o"></i> {{data['last_modified_by']}}
+                        </span>
+                        <span class="text-truncate text-truncate" title="{{data['last_modified_at']}}">
+                            &nbsp;on {{data['last_modified_at']}}
+                        </span>
+                    </div>
+                    <div class="asset-schedule"
+                        *ngIf="data['next_scheduled_on']!='' && data['next_scheduled_on']!= null">
+                        <h6 title="Next schedule"><i class="fa fa-calendar-plus-o">
+
+                            </i>
+                            <span>
+                                {{data['next_scheduled_on']}}
+                            </span>
+                        </h6>
+                        <!-- <p class="asset-paragraph">
+                            Upcoming
+                        </p> -->
+                    </div>
+                    <div class="asset-schedule complete-schedule"
+                        *ngIf="data['next_scheduled_on']== null && data['schedule']">
+                        <h6>
+                            <i class="fa fa-calendar-check-o">
+                            </i>
+                            <span>
+                                Schedule Completed
+                            </span>
+                        </h6>
+                        <!-- <p class="asset-paragraph">
+                            Upcoming
+                        </p> -->
+                    </div>
+                    <div class="asset-schedule not-schedule" *ngIf="!data['schedule']">
+                        <h6>
+                            <i class="fa fa-calendar-o">
+                            </i>
+                            <span>
+                                Not scheduled
+                            </span>
+                        </h6>
+                        <!-- <p class="asset-paragraph">
+                            Upcoming
+                        </p> -->
+                    </div>
+                </div>
+                <div class="assets-control-footer">
+                    <div class="btn-container p-0">
+                        <button class="btn btn-sm btn-link widget-text-color"
+                            (click)="actionHistory(data['asset_action_id'],data['action_name'])" data-toggle="modal"
+                            data-target="#addModalDashboard">
+                            <i class="fa fa-history"></i>
+                            History
+                        </button>
+                        <button class="btn btn-sm btn-link widget-text-color"
+                            [ngClass]="{'not-allowed-cursor' : !pageAccessFor['schedule']}"
+                            [disabled]="!pageAccessFor['schedule']"
+                            (click)="pageAccessFor['schedule']?onClickAssetActions('schedule',data['asset_action_id'],target):'' "
+                            [title]="!pageAccessFor['schedule'] ? 'Access Denied' :''">
+                            <i class="fa fa-calendar-plus-o"></i>
+                            {{data['next_scheduled_on'] == '' ? 'Schedule' : 'Reschedule'}}
+                        </button>
+                        <button class="btn btn-sm btn-link widget-text-color"
+                            [ngClass]="{'not-allowed-cursor' : !pageAccessFor['trigger']}" data-toggle="modal"
+                            [attr.data-target]="pageAccessFor['trigger']?'#asset-control-trigger':''"
+                            [disabled]="!pageAccessFor['trigger']"
+                            (click)="pageAccessFor['trigger'] ?triggerAction(data['asset_action_id'],assetControlList[i]):$event.stopPropagation()"
+                            [title]="!pageAccessFor['trigger'] ? 'Access Denied' :''">
+                            <i class="fa fa-clock-o"></i>
+                            Trigger
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Create First Asset Control -->
+        <div *ngIf="isCreateFirstAssetControl" class="empty-assets-control-container">
+            <div class="empty-asset-control-block col-sm-12 col-md-6 col-lg-6 col-xl-4 col-xxl-3">
+                <div class="empty-header">
+                </div>
+                <div class="epmty-content">
+
+                </div>
+                <div class="epmty-footer">
+
+                </div>
+            </div>
+            <h6 class="text-muted">
+                No asset control found
+            </h6>
+            <p class="text-muted">
+                Here you configure the assets with actions and schedule them
+            </p>
+            <button type="button" class="btn btn-sm btn-primary"
+                (click)="pageAccessFor['create']?onClickAssetActions('create'):''" [disabled]="!pageAccessFor['create']"
+                [ngClass]="{'not-allowed-cursor' : !pageAccessFor.create}"
+                [title]="!pageAccessFor['create'] ? 'Access Denied' :'Create New'">
+                <i class="fa fa-plus"></i>
+                Create New
+            </button>
+        </div>
+        <!-- Create First Asset Control -->
+
+        <!-- No Search Results -->
+        <div *ngIf="!isAssetControlListResponse && !isCreateFirstAssetControl && !isPageLoading && (assetControlList | AssetControlFilter : queryStringAssetControlList : ['action_name','last_modified_by','last_modified_at','next_scheduled_on','labels'] : true : 2).length===0"
+            class="d-flex align-items-center justify-content-center flex-column h-100">
+            <h6 class="text-muted">
+                No results found
+            </h6>
+            <!-- <p class="text-muted">
+                Please search keywords related to <strong>Action Name</strong>, <strong>Group</strong> or <strong>User
+                    Name</strong>.
+            </p> -->
+        </div>
+        <!-- No Search Results -->
+
+        <div class="btn-load-more"
+            *ngIf="isloadMoreAssetControlList && (assetControlList | AssetControlFilter : queryStringAssetControlList : ['action_name','last_modified_by','last_modified_at','next_scheduled_on','labels'] : true : 2).length>32">
+            <button (click)="loadMoreAssetControlList()" class="btn btn-sm  btn-outline-primary"><i
+                    class="fa fa-repeat"></i> Load More </button>
+        </div>
+    </div>
+</div>
+<!-- Main content area ends -->
+
+
+<!-- Trigger Confirmation Modal -->
+<div aria-labelledby="" class="modal fade" id="asset-control-trigger" role="dialog" tabindex="-1" aria-modal="true">
+    <div class="modal-dialog modal-dialog-component" role="document">
+        <div class="modal-content">
+            <div class="modal-header dropdown">
+                <h6>Confirm </h6>
+                <span class="text-muted ml-auto">Closes in {{timer}}</span>
+
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to trigger  <strong>{{triggerConfirmName}}</strong> ?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-primary" type="button" (click)="triggerConfirm()"
+                    data-dismiss="modal">Yes</button>
+                <button class="btn btn-sm btn-secondary" id="dismissTriggerModal" data-dismiss="modal"
+                    type="button">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Trigger Confirmation Modal Ends-->
+
+
+<!-- History Modal Starts-->
+<div aria-labelledby="" class="modal fade modal-history" id="addModalDashboard" role="dialog" tabindex="-1"
+    aria-modal="true">
+    <div class="modal-dialog modal-dialog-component modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header dropdown">
+                <h6 class="modal-title text-muted">
+                    History - {{headerLabelName}}
+                </h6>
+                <div class="search-group ml-auto mr-2" tabindex="1">
+                    <i class="search-icon fa fa-search"></i>
+                    <input class="search-input" placeholder="Search" type="search" [(ngModel)]="queryStringHistoryTable"
+                        [ngModelOptions]="{standalone:true}">
+                </div>
+
+                <ng-select bindValue="date_and_time" bindLabel="triggered_by" [clearable]="false"
+                    name="historyDefaultDropdownValue" ngDefaultControl [items]="historyExecutionDropdownList"
+                    [(ngModel)]="historyDefaultDropdownValue" (change)="actionHistoryInfo($event.execution_id)"
+                    placeholder="Activity">
+                    <ng-template ng-label-tmp let-item="item" [(ngModel)]="historyDefaultDropdownValue"
+                        ngDefaultControl>
+                        {{historyDefaultDropdownValue}}
+                    </ng-template>
+                    <ng-template ng-option-tmp let-item="item">
+                        {{item['date_and_time']}} by {{item['triggered_by']}}
+                    </ng-template>
+                </ng-select>
+            </div>
+            <div class="modal-body pt-0">
+                <table class="table" *ngIf="!isHistoryDataMessage && !isHistoryResponse && !isHistoryLoading">
+                    <thead>
+                        <tr>
+                            <th *ngFor="let th of historyExecutionData['header_content']">{{th['label']}}</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            *ngFor="let tr of historyExecutionData['body_content']  | elmfilter : queryStringHistoryTable : ['asset_name','tag','value','status'] : true : 2 | slice:initialRangeHistoryExecutionTable:finalRangeHistoryExecutionTable; let i =index; trackBy:trackAssetControlList ">
+                            <td *ngFor="let td of historyExecutionData['header_content']">
+                                <span *ngIf="td['key']!='status'">
+                                    {{tr[td['key']]}}
+                                </span>
+                                <span *ngIf="td['key']=='status'">
+                                    <span *ngIf="tr[td['key']]=='success'">
+                                        <span class="table-status success">
+                                            {{tr[td['key']]}}
+                                        </span>
+                                    </span>
+                                    <span *ngIf="tr[td['key']]=='failed'">
+                                        <span class="table-status failed">
+                                            {{tr[td['key']]}}
+                                        </span>
+                                    </span>
+                                </span>
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+
+                <div class="btn-load-more"
+                    *ngIf="isHistoryExecutionTableLoadMore && (historyExecutionData['body_content'] | elmfilter : queryStringHistoryTable : ['asset_name','tag','value'] : true : 2).length>30">
+                    <button (click)="loadMoreHistoryLists()" class="btn btn-sm  btn-outline-primary"><i
+                            class="fa fa-repeat"></i> Load More</button>
+                </div>
+
+                <!-- Page Loading -->
+                <div *ngIf="isHistoryLoading" class="position-relative h-100">
+                    <div class="lds-ring">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <!-- Page Loading -->
+
+                <!-- No Data Found -->
+                <div class="empty-history" *ngIf="isHistoryDataMessage">
+
+                    <span class="fa fa-clock-o">
+                    </span>
+                    <h6 class="text-muted">
+                        History data not found
+                    </h6>
+                    <p>
+                        Choose another activity from the activity list to view the history of other schedules.
+                    </p>
+                </div>
+                <!-- No Data Found -->
+
+                <!-- Error Message -->
+                <div class="modal-body" *ngIf="isHistoryResponse">
+                    <div class="empty-history">
+                        <span class="fa fa-refresh">
+                        </span>
+                        <h6 class="text-muted">
+                            Failed
+                        </h6>
+                        <p class="text-muted">
+                            Invalid response from server. Please try again later.
+                        </p>
+                        <button class="btn btn-sm btn-link widget-text-color"
+                            (click)="actionHistory($event.execution_id)">
+                            <i class="fa fa-repeat"></i>
+                            Try Again
+                        </button>
+                    </div>
+                </div>
+                <!-- Error Message -->
+
+                <!-- No Search Result Found  -->
+                <div *ngIf="!isHistoryDataMessage && !isHistoryResponse && !isHistoryLoading && (historyExecutionData['body_content'] | elmfilter : queryStringHistoryTable : ['asset_name','tag','value','status'] : true : 2).length===0"
+                    class="d-flex align-items-center justify-content-center flex-column h-100">
+                    <h6 class="text-muted">
+                        No results found
+                    </h6>
+                    <p class="text-muted">
+                        <!-- Please search keywords related to <strong>Action Name</strong>, <strong>Group</strong> or
+                        <strong>User Name</strong>. -->
+                    </p>
+                </div>
+                <!-- No Search Result Found  -->
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-secondary" data-dismiss="modal" type="button"
+                    (click)="cancelHistoryInfoModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- History Modal Ends-->
+
+
+<!-- More Info Modal -->
+<div aria-labelledby="" class="more-info-modal modal fade" id="asset-control-more-info" role="dialog" tabindex="-1"
+    aria-modal="true">
+    <div class="modal-dialog modal-dialog-component modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title">
+                    More info - {{headerLabelName}}
+                </h6>
+                <div class="asset-control-status"
+                    [ngClass]="{'scheduled': isActionMoreInfoSchedule==true, 'not-scheduled': isActionMoreInfoSchedule==false }"
+                    *ngIf="!isActionMoreInfoResponse && !isActionMoreInfoData && !isMoreInfoLoading">
+                    <p *ngIf="isActionMoreInfoSchedule==true">
+                        <i class="fa fa-clock-o"></i>
+                        Scheduled
+                    </p>
+                    <p *ngIf="isActionMoreInfoSchedule==false">
+                        <i class="fa fa-clock-o"></i>
+                        Not scheduled
+                    </p>
+                </div>
+            </div>
+            <div class="modal-body pt-0">
+                <!-- Page Loading -->
+                <div *ngIf="isMoreInfoLoading" class="position-relative h-100">
+                    <div class="lds-ring">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <!-- Page Loading -->
+
+                <!-- No Data Found -->
+                <div class="empty-history" *ngIf="isActionMoreInfoData">
+
+                    <span class="fa fa-clock-o">
+                    </span>
+                    <h6 class="text-muted">
+                        More info data not found
+                    </h6>
+                </div>
+                <!-- No Data Found -->
+
+                <!-- Error Message -->
+                <div class="error-history" *ngIf="isActionMoreInfoResponse">
+                    <span class="fa fa-refresh">
+                    </span>
+                    <h6 class="text-muted">
+                        Failed
+                    </h6>
+                    <p class="text-muted">
+                        Invalid response from server. Please try again later.
+                    </p>
+                    <button class="btn btn-sm btn-link widget-text-color" (click)="moreInfoForAction()">
+                        <i class="fa fa-repeat"></i>
+                        Try Again
+                    </button>
+                </div>
+                <!-- Error Message -->
+
+                <div class="tab-pane-container"
+                    *ngIf="!isActionMoreInfoResponse && !isActionMoreInfoData && !isMoreInfoLoading">
+                    <div class="tab-pane-contnet row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="control-label">
+                                    Labels
+                                </label>
+                                <div class="label-group">
+                                    <div class="label-block" *ngFor="let label of actionMoreInfoData['labels']">
+                                        {{label}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane-contnet row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="control-label">Description</label>
+                                <p class="">
+                                    {{actionMoreInfoData['description']}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane-contnet row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="control-label">Created By </label>
+                                <p class="asset-user"><i class="fa fa-user-o"></i> {{actionMoreInfoData['created_by']}}
+                                    at
+                                    {{actionMoreInfoData['created_at']}}</p>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="control-label">Modified By</label>
+                                <p class="asset-user"><i class="fa fa-user-o"></i>
+                                    {{actionMoreInfoData['last_modified_by']}}
+                                    at
+                                    {{actionMoreInfoData['last_modified_at']}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane-contnet row">
+                        <div class="col-12">
+                            <div class="form-group mb-0">
+                                <label class="control-label">Asset Info</label>
+                                <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th *ngFor="let th of actionMoreInfoData['header_content']">
+                                                {{th['label']}}
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            *ngFor="let tr of actionMoreInfoData['body_content'] | slice:initialRangeActionMoreInfoTable:finalRangeActionMoreInfoTable; let i=index; trackBy:trackAssetControlList">
+                                            <td *ngFor="let td of actionMoreInfoData['header_content']">
+                                                {{tr[td['key']]}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+                            <div class="btn-load-more" *ngIf="isActionMoreInfoLoadMore">
+                                <button (click)="loadMoreInfo()" class="btn btn-sm  btn-outline-primary"><i
+                                        class="fa fa-repeat"></i> Load More</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-secondary" data-dismiss="modal" type="button"
+                    (click)="moreInfoCancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- More Info Modal Ends -->
+
+
+<!-- Delete Modal Starts -->
+<div aria-labelledby="" class="modal fade" id="asset-control-delete" role="dialog" tabindex="-1" aria-modal="true">
+    <div class="modal-dialog modal-dialog-component" role="document">
+        <div class="modal-content">
+            <div class="modal-header dropdown">
+                <h6>Confirm </h6>
+
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete ?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-primary" id="dismissDeleteModal" data-dismiss="modal" type="button">
+                    No
+                </button>
+                <button class="btn btn-sm btn-secondary" type="button" (click)="deleteConfirm()"
+                    data-dismiss="modal">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delete Modal Ends -->

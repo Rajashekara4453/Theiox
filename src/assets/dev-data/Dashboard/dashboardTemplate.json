@@ -1,0 +1,21 @@
+{
+ 
+  "data":[
+    { 
+      "label": "none",
+      "value":"null"
+     
+    },
+  { 
+    "label": "Dashboard template 1",
+    "value":"dashboard_template_111"
+   
+  },
+  {
+    "label": "Dashboard template 2",
+    "value":"dashboard_template_112"
+  }
+   
+  ],
+  "status":"success"
+}

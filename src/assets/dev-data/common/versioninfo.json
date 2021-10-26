@@ -1,0 +1,11 @@
+{
+    "content_type" : "versions_info",
+    "data" : {
+        "versions" : {           
+            "product" : {
+                "displayName" : "PRODUCT VERSION",
+                "version" : "v 0.0.6"
+            }
+        }
+    }
+}

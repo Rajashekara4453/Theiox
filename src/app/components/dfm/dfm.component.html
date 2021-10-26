@@ -1,0 +1,445 @@
+<div class="editFields">
+  <form [formGroup]="formDFM" class="h-100" autocomplete="on">
+    <div class="form-body form-padding-bottom">
+      <!-- <div class="col-12" style="height: calc(100vh - 245px); overflow: auto;"> -->
+      <div class="col-12">
+        <!-- Input fields Template -->
+        <ng-template #FormBuilderTemplate let-eachField="eachField" let-colWidth="colWidth">
+          <div *ngFor="let field of eachField; let ind = index" class="col-lg-{{colWidth ? field.gridWidth : '12'}}"
+            [ngClass]="{'hidden': field.hidden,'disabled':field.disabled}">
+            <div class="form-group">
+              <label for="{{field.key}}_{{ind}}_{{field.type}}" class="control-label pr-0 w-100 d-inline-block"
+                title="{{field.label}}">
+                {{field.label}}
+                <span *ngIf="field.required === true"> <span class="color-red">&nbsp;*</span></span>
+              </label>
+              <sup *ngIf="field.sup !== ''">{{field.sup}}</sup>
+              <sub *ngIf="field.sub !== ''">{{field.sub}}</sub>
+              <!-- <span *ngIf="field.required === true"> <span class="color-red">&nbsp;*</span></span>   -->
+
+              <!-- Inputs fields starts starts -->
+              <div>
+                <div>
+
+                  <!-- Type Text -->
+                  <input *ngIf="(field.type === 'text')" class="form-control" type="text" name="{{ field.key }}"
+                    placeholder="{{ field.placeholder }}" [(ngModel)]="Form_filled_data[field.key]"
+                    [ngClass]="{ 'is-invalid': submitted && f[field.key]['errors'],'disabled-background':field.disabled}"
+                    formControlName="{{ field.key }}" [required]="field.required" [disabled]="field.disabled"
+                    (blur)="fieldValidationMethod(field,field.key,Form_filled_data[field.key])">
+
+                  <!-- Input-type Number -->
+                  <div *ngIf="(field.type === 'number')">
+                    <input *ngIf="(field.type === 'number')" class="form-control" type="number" name="{{ field.key }}"
+                      placeholder="{{ field.placeholder }}" [(ngModel)]="Form_filled_data[field.key]"
+                      [ngClass]="{ 'is-invalid': submitted && f[field.key]['errors'],'disabled-background':field.disabled }"
+                      formControlName="{{ field.key }}" [required]="field.required" [disabled]="field.disabled"
+                      (input)="fieldNumberValidationMethod(field,field.key,Form_filled_data[field.key],$event)"
+                      (keydown)="onHide(field,field.key,Form_filled_data[field.key])">
+                    <div *ngIf="numberValid && (Form_filled_data[field.key] === null)" class="color-red">Enter Valid
+                      Exponential value</div>
+                  </div>
+
+                  <!-- Input-type Password -->
+                  <input *ngIf="(field.type === 'password')" class="form-control" type="password" name="{{ field.key }}"
+                    placeholder="{{ field.placeholder }}" [(ngModel)]="Form_filled_data[field.key]"
+                    [ngClass]="{ 'is-invalid': submitted && f[field.key]['errors'],'disabled-background':field.disabled }"
+                    formControlName="{{ field.key }}" [required]="field.required" [disabled]="field.disabled">
+
+                  <!-- Input-type textarea -->
+                  <textarea *ngIf="(field.type === 'textarea')" name="{{ field.key }}" class="form-control h-100"
+                    rows="5" placeholder="{{ field.placeholder }}" [(ngModel)]="Form_filled_data[field.key]"
+                    [ngClass]="{ 'is-invalid': submitted && f[field.key]['errors'],'disabled-background':field.disabled }"
+                    formControlName="{{ field.key }}" [required]="field.required"
+                    [disabled]="field.disabled"></textarea>
+
+                  <!-- Input-type file -->
+                  <div *ngIf="(field.type === 'file')">
+                    <div *ngIf="field.customOptions.imageProperties.isFilePreview">
+                      <div *ngIf="isDefaultFile">
+                        <img src="{{field.customOptions.imageProperties.defaultFilePath}}" class="image"
+                          height="{{field.customOptions.imageProperties.height}}"
+                          width="{{field.customOptions.imageProperties.width}}" alt="image" />
+                      </div>
+                      <div *ngIf="!isDefaultFile && newFileUploadedPreview">
+                        <!-- && newFileUploadedPreview" -->
+                        <img src="{{imageBaseString}}" class="image"
+                          height="{{field.customOptions.imageProperties.height}}"
+                          width="{{field.customOptions.imageProperties.height}}" alt="image" />
+                      </div>
+                      <div *ngIf="!isDefaultFile && !newFileUploadedPreview">
+                        <img src="{{imageBaseString}}" class="image"
+                          height="{{field.customOptions.imageProperties.height}}"
+                          width="{{field.customOptions.imageProperties.height}}" alt="image" />
+                      </div>
+                    </div>
+
+                    <div *ngIf="field.customOptions.buttonProperties.showFileUploadButton">
+                      <label for="file-input">{{field.customOptions.buttonProperties.buttonName}}
+                        <input id="file-input" class="inputfile" type="file" name="file"
+                          formControlName="{{ field.key }}"
+                          [ngClass]="{ 'is-invalid': submitted && f[field.key]['errors'],'disabled-background':field.disabled }"
+                          id="file-input" (change)="uploadFile($event, field.key)" [required]="field.required"
+                          [disabled]="field.disabled" value="">
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Input-Type url -->
+                  <input *ngIf="(field.type === 'url')" type="url" class="form-control"
+                    id="{{field.key}}_{{ind}}_{{field.type}}" placeholder="{{field.placeholder}}"
+                    [attr.required]="field.required" [disabled]="field.disabled"
+                    [ngClass]="{'disabled-background':field.disabled}">
+
+                  <!-- Input-type email -->
+                  <input *ngIf="(field.type === 'email')" class="form-control" type="email" name="{{field.key}}"
+                    placeholder="{{ field.placeholder }}" [(ngModel)]="Form_filled_data[field.key]"
+                    [ngClass]="{ 'is-invalid': submitted && f[field.key]['errors'],'disabled-background':field.disabled}"
+                    formControlName="{{ field.key }}" [required]="field.required" [disabled]="field.disabled"
+                    (blur)="fieldValidationMethod(field,field.key,Form_filled_data[field.key])">
+                  <!-- <span >Please Enter Valid Email</span> -->
+                  <!-- Input-type Select without dependency-->
+                  <ng-select bindValue="value" *ngIf="(field.type === 'select' && field.dependent === false)"
+                    [items]="field.options" placeholder="{{ field.placeholder }}"
+                    [(ngModel)]="Form_filled_data[field.key]"
+                    [ngClass]="{ 'is-invalid': submitted && f[field.key]['errors'],'disabled-background':field.disabled }"
+                    formControlName="{{ field.key }}" [clearable]="true" [disabled]="field.disabled"
+                    [required]="field.required" (change)="OnSelectChange($event, field.key)">
+                  </ng-select>
+                  <!-- Input-type Select with dependency-->
+                  <ng-select bindValue="value" *ngIf="(field.type === 'select' && field.dependent === true)"
+                    [items]="dynamicDropDownInfo(field, field.dependent_key)" placeholder="{{ field.placeholder }}"
+                    [(ngModel)]="Form_filled_data[field.key]"
+                    [ngClass]="{ 'is-invalid': submitted && f[field.key]['errors'],'disabled-background':field.disabled }"
+                    formControlName="{{ field.key }}" [clearable]="true" [disabled]="field.disabled"
+                    [required]="field.required" (change)="OnSelectChange($event, field.key)">
+                  </ng-select>
+
+                  <!-- Input-type Multiselect without dependency-->
+
+                  <kl-multiselect *ngIf="(field.type === 'multiselect')" [DropDownInfo]="field.options"
+                    [ngClass]="{ 'is-invalid': submitted && f[field.key]['errors'],'disabled-background':field.disabled }"
+                    [form_Control]="formDFM['controls'][field.key]" [settings]="field.settings"
+                    [SelectedInfo]="Form_filled_data[field.key]" (ngModelChange)="multiselectFunc($event, field.key)"
+                    (SelectedValues)="multiselectFunc($event, field.key, formControlkey)"></kl-multiselect>
+
+                  <!-- Input-type Multiselect with dependency-->
+                  <!-- <multi-select *ngIf="(field.type === 'multiselect') &&  field.dependent === true " [DropDownInfo]="dynamicDropDownInfo(field, field.dependent_key)" [settings]="DropDownsettings" (SelectedValues)="MultiselectFunc($event, field.key)"> </multi-select> -->
+
+                  <!-- Input-type date -->
+                  <angular2-date-picker *ngIf="(field.type === 'date')" [(ngModel)]="Form_filled_data[field.key]"
+                    [ngClass]="{ 'is-invalid': submitted && f[field.key]['errors'],'disabled-background':field.disabled }"
+                    formControlName="{{ field.key }}" [ngClass]="field.disabled ? 'disabled': ''" [settings]="settings"
+                    (onDateSelect)="onDateSelect($event,field.key)" [disabled]="field.disabled"></angular2-date-picker>
+                  <!-- <angular2-date-picker *ngIf="(field.type === 'time')" [(ngModel)]="Form_filled_data[field.key]"  [ngClass]="{ 'is-invalid': submitted && f[field.key]['errors'] }"  formControlName="{{ field.key }}"
+                    [ngClass]="field.disabled ? 'disabled': ''" [settings]="settings2" [ngModelOptions]="{standalone: true}"
+                    (onDateSelect)="onDateSelect($event,field.key)" [disabled]="field.disabled"></angular2-date-picker> -->
+                  <ng-container *ngIf="(field.type === 'time')">
+                    <ng-container *ngIf="field.hasOwnProperty('format') && field.format !==''">
+                      <input type="time" class="form-control" id="{{field.key}}_{{ind}}_{{field.type}}"
+                        placeholder="{{ field.placeholder }}" name="{{field.key}}"
+                        [(ngModel)]="Form_filled_data[field.key]"
+                        [ngClass]="{ 'is-invalid': submitted && f[field.key]['errors'],'disabled-background':field.disabled }"
+                        formControlName="{{ field.key }}" autocomplete="off" step="{{TimeFormat}}">
+                    </ng-container>
+                    <ng-container *ngIf="!(field.hasOwnProperty('format')) || field.format ===''">
+                      <input type="time" class="form-control" id="{{field.key}}_{{ind}}_{{field.type}}"
+                        placeholder="{{ field.placeholder }}" name="{{field.key}}"
+                        [(ngModel)]="Form_filled_data[field.key]"
+                        [ngClass]="{ 'is-invalid': submitted && f[field.key]['errors'],'disabled-background':field.disabled }"
+                        formControlName="{{ field.key }}" autocomplete="off" step="2">
+                    </ng-container>
+                    <!-- [owlDateTimeTrigger]="dt1"
+                      [owlDateTime]="dt1"
+                    <owl-date-time [pickerType]="'timer'" #dt1></owl-date-time> -->
+                  </ng-container>
+
+                  <!-- Input-type Radio Buttons -->
+                  <div *ngIf="(field.type === 'radio')">
+                    <span *ngFor="let RadioGroup of field.options; let radio = index"
+                      class="col-lg-{{ field.radio_width }}">
+                      <div class="pretty p-default p-round">
+                        <label for="{{RadioGroup.value}}_{{i}}_{{radio}}">{{RadioGroup.label}}
+                          <input type="radio" id="{{RadioGroup.value}}_{{i}}_{{radio}}"
+                            [ngClass]="{ 'is-invalid': submitted && f[field.key]['errors'],'disabled-background':field.disabled }"
+                            formControlName="{{ field.key }}" class="with-gap radio-col-light-green"
+                            value="{{ RadioGroup.value }}" [(ngModel)]="Form_filled_data[field.key]"
+                            (change)="radioFieldUpdate(field.key, RadioGroup.value,RadioGroup)">
+                          <!-- <div class="state p-primary"> -->
+                        </label>
+                        <!-- </div> -->
+                      </div>
+                    </span>
+                  </div>
+
+                  <!-- Input-type CheckBox -->
+                  <div *ngIf="(field.type === 'checkbox')">
+                    <div *ngIf="field.enableSelectAll" class="col-12 d-inline-block">
+                      <input type="checkbox" name="allowAll" id="allowAll" formControlName="{{field.key}}"
+                        [checked]="checkBox.selectAll"
+                        (ngModelChange)="selectAllCheckboxOptions($event, field.options, field.key)">
+                      &nbsp; <label for="allowAll">{{field.selectAllLabel ? field.selectAllLabel : "Select
+                        All"}}</label>
+                    </div>
+                    <span *ngFor="let CheckBox of field.options; let j=index;"
+                      class="col-lg-{{ field.checkbox_width }}">
+                      <div class="pretty p-icon p-smooth">
+                        <label for="{{CheckBox.value}}_{{i}}_{{j}}">{{CheckBox.label}}
+                          <input type="checkbox" name="{{CheckBox.value}}" [(ngModel)]="CheckBox.IsSelected"
+                            id="{{CheckBox.value}}_{{i}}_{{j}}"
+                            [ngClass]="{ 'is-invalid': submitted && f[field.key]['errors'],'disabled-background':field.disabled }"
+                            formControlName="{{field.key}}" [required]="field.required"
+                            (change)="checkboxUpdate(field.key, CheckBox.value, CheckBox, field.options)"
+                            [checked]="CheckBox.IsSelected">
+                          <!-- <div class="state p-primary"> -->
+                          <!-- <fa-icon [icon]="['fas', 'check']" class="icon"></fa-icon> -->
+                        </label>
+                        <!-- </div> -->
+                      </div>
+                    </span>
+                  </div>
+
+                  <!-- Input-type Switch -->
+
+                  <!-- Type of tree -->
+                  <div id="accordion"
+                    *ngIf="(field.type === 'treesingleselect' || field.type === 'treeMultiselect' || field.type === 'treeHierarchy')">
+                    <div class="card col-lg-12">
+                      <div id="{{field.gridWidth}}{{field.key}}">
+                        <h5 class="mb-0">
+                          <button class="btn btn-link" data-toggle="collapse"
+                            [attr.data-target]="'#' + field.key + field.gridWidth" [attr.aria-expanded]="field.expanded"
+                            [attr.aria-controls]="field.key + field.gridWidth">
+                            {{field.innerlabel}}
+                          </button>
+                          <small>{{field.innerlabelsub}}</small>
+                        </h5>
+                      </div>
+                      <div id="{{field.key}}{{field.gridWidth}}" class="collapse"
+                        [ngClass]="{'show': field.expanded === true,'disabled-background':field.disabled}"
+                        [attr.aria-labelledby]="field.gridWidth + field.key" data-parent="#accordion">
+
+                        <!-- Type of Tree "treesingleselect" -->
+                        <div class="card-body" *ngIf="(field.type === 'treesingleselect')">
+                          <!-- <p>Inside treesingleselect</p> -->
+                          <div class="collapse-buttons btn-group">
+                            <a id="collapse-all" href="javascript:void(0)"
+                              (click)="treesingleselect.treeModel.expandAll();" class="btn btn-link text-blue">Expand
+                              all</a>
+                            <a id="show-all" href="javascript:void(0)"
+                              (click)="treesingleselect.treeModel.collapseAll();"
+                              class="btn btn-link text-blue">Collapse
+                              all</a>
+                          </div>
+                          <tree-root #treesingleselect [nodes]="field.nodeData" [options]="options">
+                            <ng-template #treeNodeTemplate let-node="node" let-index="index">
+                              <input (change)="checkSingleSelectTree(node, !node.data.isChecked, field.key)"
+                                type="checkbox" [indeterminate]="node.data.indeterminate"
+                                [checked]="node.data.isChecked">
+                              <span>{{ node.data.name }}</span>
+                            </ng-template>
+                          </tree-root>
+                        </div>
+
+                        <!-- Type of Tree "treeMultiselect" -->
+                        <div class="card-body" *ngIf="(field.type === 'treeMultiselect')">
+                          <!-- <p>Inside treeMultiselect</p> -->
+                          <div class="collapse-buttons btn-group">
+                            <a id="collapse-all" (click)="treeMultiselect.treeModel.expandAll();"
+                              href="javascript:void(0)" class="btn btn-link text-blue">Expand
+                              all</a>
+                            <a id="show-all" (click)="treeMultiselect.treeModel.collapseAll();"
+                              href="javascript:void(0)" class="btn btn-link text-blue">Collapse
+                              all</a>
+                          </div>
+                          <tree-root #treeMultiselect [nodes]="field.nodeData" [options]="options">
+                            <ng-template #treeNodeTemplate let-node="node" let-index="index">
+                              <input (change)="checkTreeMultiSelect(node, !node.data.isChecked, field.key)"
+                                type="checkbox" [indeterminate]="node.data.indeterminate"
+                                [checked]="node.data.isChecked">
+                              <span>{{ node.data.name }}</span>
+                            </ng-template>
+                          </tree-root>
+                        </div>
+
+                        <!-- Type of Tree "treeHierarchy" -->
+                        <div class="card-body" *ngIf="(field.type === 'treeHierarchy')">
+                          <!-- <p>Inside treeHierarchy</p> -->
+                          <div class="collapse-buttons btn-group">
+                            <a id="collapse-all" (click)="treeHierarchy.treeModel.expandAll();"
+                              href="javascript:void(0)" class="btn btn-link text-blue">Expand
+                              all</a>
+                            <a id="show-all" (click)="treeHierarchy.treeModel.collapseAll();" href="javascript:void(0)"
+                              class="btn btn-link text-blue">Collapse
+                              all</a>
+                          </div>
+                          <tree-root #treeHierarchy [nodes]="field.nodeData" [options]="options">
+                            <ng-template #treeNodeTemplate let-node="node" let-index="index">
+                              <input (change)="checkSingleSelectTree(node, node.data.isChecked, field.key)"
+                                type="checkbox" [indeterminate]="node.data.indeterminate"
+                                [checked]="node.data.isChecked">
+                              <span>{{ node.data.name }}</span>
+                            </ng-template>
+                          </tree-root>
+                        </div>
+
+
+                        <!-- Type of Tree "tree" -->
+                        <div class="card-body" *ngIf="(field.type === 'tree')">
+                          <tree-root #tree [nodes]="field.nodeData" [options]="options">
+                            <ng-template #treeNodeTemplate let-node="node" let-index="index">
+                              <input (change)="check(node, !node.data.checked, field.key, $event)" type="checkbox"
+                                [indeterminate]="node.data.indeterminate" [checked]="node.data.checked">
+                              <span>{{ node.data.name }}</span><br />
+                            </ng-template>
+                          </tree-root>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <!-- <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                    Name is required
+                  </div> -->
+
+
+                </div>
+              </div>
+
+              <!-- error message -->
+
+              <!-- <div *ngIf="submitted === true">
+                <div *ngIf="f[field.key]['errors']  && submitted === true" class="color-red pt-1">
+                  <fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon> &nbsp;{{field.label}} is required.
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </ng-template>
+        <ng-container *ngFor="let DFMObject of DFMDATA.headerContent; let i=index">
+          <!-- Section Starts -->
+          <div class="col-lg-{{DFMObject.sectionWidth}} display-inline-block">
+            <div class="card-style">
+              <div class="card-body">
+                <h4 *ngIf="DFMObject.sectionTitle !== ''" class="card-title title_fontsize mb-3">
+                  <b>{{DFMObject.sectionTitle}}</b>
+                </h4>
+                <h6 *ngIf="DFMObject.sectionSubTitle !== ''" class="card-subtitle">{{DFMObject.sectionSubTitle}}</h6>
+                <div class="row">
+                  <ng-container
+                    *ngTemplateOutlet="FormBuilderTemplate; context:{ eachField: DFMObject.data, colWidth: DFMObject.sectionWidth}">
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="DFMDATA.userActions">
+          <ng-container *ngIf="DFMDATA.userActions.buttonsPosition === 'notfixed'">
+            <div style="margin-top: 25px; text-align: center;" class="float-left">
+              <!-- Button Type Save to save all the User Data -->
+              <button *ngIf="DFMDATA.userActions.save" type="submit" [disabled]="disableBtn" (click)="submitData()"
+                class="btn btn-primary btn-sm ml-1">
+                {{ DFMDATA.userActions.save.label }}
+              </button>
+
+              <!-- Button-type Cancel the Event or Triggger Out-->
+              <ng-container *ngIf="DFMDATA.userActions.customActions">
+                <!-- Button-type read the Event or Triggger Out-->
+                <ng-container *ngFor="let customActions of DFMDATA.userActions.customActions">
+                  <button type="button" (click)="custtomButtonGroup(customActions)" [disabled]="disableBtn"
+                    class="btn btn-primary btn-sm ml-1">
+                    {{ customActions.label }}
+                  </button>
+                </ng-container>
+              </ng-container>
+              <!-- Button-type Cancel the Event or Triggger Out-->
+              <button *ngIf="DFMDATA.userActions.cancel" type="reset" (click)="cancelForm()"
+                class="btn btn-secondary btn-sm ml-1">
+                {{ DFMDATA.userActions.cancel.label }}
+              </button>
+
+              <!-- Button-type Cancel the Event or Triggger Out-->
+              <button *ngIf="DFMDATA.userActions.close" type="" (click)="closeForm()"
+                class="btn btn-secondary btn-sm ml-1">
+                {{ DFMDATA.userActions.close.label }}
+              </button>
+
+              <!-- Button-type Refresh the Form -->
+              <button *ngIf="DFMDATA.userActions.refresh" type="" (click)="refreshForm()"
+                class="btn btn-primary btn-sm ml-1" (click)="stepprevious()">
+                {{ DFMDATA.userActions.refresh.label }}
+              </button>
+
+              <!-- Button-type previous or back -->
+              <button *ngIf="DFMDATA.userActions.back" type="" (click)="backForm()"
+                class="btn btn-secondary btn-sm ml-1" (click)="stepprevious()">
+                {{ DFMDATA.userActions.back.label }}
+              </button>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+
+    </div>
+    <div class="form-footer">
+      <ng-container *ngIf="DFMDATA.userActions">
+        <ng-container
+          *ngIf="!DFMDATA.userActions.buttonsPosition ||  (DFMDATA.userActions.buttonsPosition === 'fixed')">
+          <div class="col-12  display-inline-block">
+            <div class="float-left">
+              <!-- Button Type Save to save all the User Data -->
+              <button *ngIf="DFMDATA.userActions.save" type="submit" [disabled]="disableBtn" (click)="submitData()"
+                class="btn btn-primary btn-sm ml-1">
+                {{ DFMDATA.userActions.save.label }}
+              </button>
+              <!-- [disabled]="!formDFM.valid" -->
+              <!-- Button-type Cancel the Event or Triggger Out-->
+              <ng-container *ngIf="DFMDATA.userActions.customActions">
+                <!-- Button-type read the Event or Triggger Out-->
+                <ng-container *ngFor="let customActions of DFMDATA.userActions.customActions">
+                  <button type="button" (click)="custtomButtonGroup(customActions)" [disabled]="disableBtn"
+                    class="btn btn-primary btn-sm ml-1">
+                    {{ customActions.label }}
+                  </button>
+                </ng-container>
+              </ng-container>
+
+              <button *ngIf="DFMDATA.userActions.cancel" type="reset" (click)="cancelForm()"
+                class="btn btn-secondary btn-sm ml-1">
+                {{ DFMDATA.userActions.cancel.label }}
+              </button>
+
+              <!-- Button-type Cancel the Event or Triggger Out-->
+              <button *ngIf="DFMDATA.userActions.close" type="" (click)="closeForm()"
+                class="btn btn-secondary btn-sm ml-1">
+                {{ DFMDATA.userActions.close.label }}
+              </button>
+
+              <!-- Button-type Refresh the Form -->
+              <button *ngIf="DFMDATA.userActions.refresh" type="" (click)="refreshForm()"
+                class="btn btn-primary btn-sm ml-1" (click)="stepprevious()">
+                {{ DFMDATA.userActions.refresh.label }}
+              </button>
+
+              <!-- Button-type previous or back -->
+              <button *ngIf="DFMDATA.userActions.back" type="" (click)="backForm()"
+                class="btn ml-2 btn-info pl-4 pr-4 ml-1" (click)="stepprevious()">
+                {{ DFMDATA.userActions.back.label }}
+              </button>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+    <br>
+    <!-- <div class="row form-actions margin-top-rem" *ngIf="DFMDATA.type == undefined">
+      <div class="col-md-12">
+
+
+      </div>
+    </div> -->
+  </form>
+</div>

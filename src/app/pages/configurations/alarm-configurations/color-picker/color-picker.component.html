@@ -1,0 +1,13 @@
+<div class="mainDiv">
+    <ng-container *ngFor="let color of colorList">
+      <span [style.color]="color" 
+            (click)="handleSelectedColor(color)"
+            class="colorBlockClass"
+            [ngClass]="{'elm-checked-2': _selectedColorData == color,'elm-unchecked-radio-button': _selectedColorData != color }">
+      </span>
+  </ng-container>
+  <div c
+  lass="col-12">
+    <input [hidden]="true" autocomplete="off" type="text" [(ngModel)]="_selectedColorData" class="w-100 border-0 text-center rounded" />
+  </div>
+</div>

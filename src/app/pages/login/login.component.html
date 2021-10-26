@@ -1,0 +1,803 @@
+<div class="container-fluid login-container">
+  <!-- <div class="login-header">
+      <img src="assets/images/branding/login-header-logo.png" alt="elmeasure" />
+   </div> -->
+  <div class="login-content">
+    <div class="login-main-container container p-0">
+      <div class="login-form row h-100 mx-0">
+        <div class="login-form-text col-xl-7 col-lg-7 col-md-4 col-sm-0" style="
+            background-image: url('assets/images/branding/login-text-side.svg');
+          ">
+          <!-- <img src="assets/images/login-text-side.svg" width="100" height="100" alt="energy management"> -->
+        </div>
+        <div *ngIf="!isAnyProfileSaved" class="login-form-field col-xl-5 col-lg-5 col-md-8 col-sm-12">
+          <img class="d-block mx-auto" src="assets/images/branding/login-header-logo.png" alt="logo" />
+
+          <ng-container *ngIf="(pageView == '' || 'showLogin') && pageView !== 'Forgot Password' && !(pageView === 'changePassword') ">
+            <h4 class="main-title">Sign in to {{ indexTitle }}</h4>
+          </ng-container>
+          <ng-container *ngIf="pageView == 'Forgot Password'">
+            <h4 class="main-title">Account recovery</h4>
+          </ng-container>
+          <!-- <ng-container *ngIf="pageView == 'SA login'">
+            <h4 class="main-title">System Admin Login</h4>
+          </ng-container> -->
+          <!-- <ng-container *ngIf="pageView != ''">
+            <ng-container *ngIf="showRegisterPage">
+              <h4 class="main-title">Register</h4>
+            </ng-container>
+          </ng-container> -->
+          <form>
+            <!-- Login form start-->
+            <ng-container *ngIf="
+                (pageView == '' || 'showLogin') &&
+                pageView !== 'Forgot Password'  && !(pageView === 'changePassword')
+              ">
+              <!-- <h4 class="main-title">
+                        Login to {{indexTitle}}
+                     </h4> -->
+
+              <!-- Domain Name -->
+              <ng-container *ngIf="isServerMode">
+                <div class="form-group wrap-input d-flex">
+                  <select class="form-control input" (change)="changeTransferProtocol($event)">
+                    <option id="1" value="http" selected>http</option>
+                    <option id="2" value="https">https</option>
+                  </select>
+                  <input autocomplete="off" type="domainIP" class="form-control input pl-1"
+                    placeholder="Domain Name / IP" #domainIP name="domainIP" [(ngModel)]="form.domainIP" (keyup.enter)="
+                      login(form.username, form.password, form.domainIP)
+                    " />
+                  <span class="focus-input" data-placeholder="&#xf2c3;"> </span>
+                  <span *ngIf="form.domainIP" (click)="form.domainIP = ''" class="clearField elm-delete"></span>
+                </div>
+              </ng-container>
+              <!-- Domain Name End-->
+
+              <div class="form-group-container">
+                <!--Email-->
+                <div class="form-group wrap-input">
+                  <input autofocus autocomplete="off" type="email" class="form-control input" placeholder="Email"
+                    #username name="username" [(ngModel)]="form.username" (keyup.enter)="
+                      login(form.username, form.password, form.domainIP)
+                    " />
+                  <span class="focus-input" data-placeholder="&#xf296;"></span>
+                  <span *ngIf="form.username" (click)="form.username=''" class="clearField elm-delete"></span>
+                </div>
+                <!--Email End-->
+
+                <!--Password-->
+                <div class="form-group wrap-input mb-0">
+                  <input autocomplete="off" type="password" class="form-control input" placeholder="Password"
+                    name="password" [(ngModel)]="form.password" (keyup.enter)="
+                      login( form.username, form.password, form.domainIP, $event)" [inputPassword]= password.value #password/>
+                  <span class="focus-input" data-placeholder="&#xf10d;"></span>
+                  <span *ngIf="form.password" (click)="form.password=''" class="clearField elm-delete"></span>
+                  <!-- <span>
+                    <button class="password-eye" (click)="togglePassword()">
+                      <i [title]="showPassword ? 'Hide':'Show'" class="fa" [ngClass]="{
+                        'fa-eye-slash': !showPassword,
+                        'fa-eye': showPassword
+                      }"></i>
+                    </button>
+                  </span> -->
+
+
+                  <!-- <span *ngIf="form.password" (click)="form.password=''" class="clearField elm-delete"></span> -->
+                  <!-- <span class="password-eye fa fa-eye-slash"></span> -->
+                </div>
+                <!--Password End-->
+                <p class="text-right sub-discri">
+                  <a href="javascript:void(0)" (click)="changeView('Forgot Password')" class="link">Forgot Password?</a>
+                </p>
+
+                <!--Remeber Me-->
+                <div *ngIf="isMultiProfile"
+                  class="form-group custom-control custom-checkbox wrap-input border-0 mt-1 d-flex align-items-center">
+                  <input type="checkbox" name="rememberProfile" id="rememberProfile" [(ngModel)]="isRememberProfile"
+                    (ngModelChange)="rememberProfile($event)" class="custom-control-input"
+                    title="Let me remember your profile! Click please." id="customone" />
+                  <label class="m-0 custom-control-label" for="customone">
+                    Remember me
+                  </label>
+                </div>
+                <!-- Sign in -->
+                <button type="button" class="w-100 d-flex justify-content-center align-items-center btn-login"
+                  (click)="login(form.username, form.password, form.domainIP)" [disabled]="disableBtn">
+                  <span *ngIf="!disableBtn">Sign in</span>
+                  <span *ngIf="disableBtn" class="loader-custom btn-loader d-inline-block"></span>
+                </button>
+
+                <!-- Form below Text -->
+                <p class="sub-discri">
+                  By clicking Sign in, you agree to our
+                  <a href="https://www.elmeasure.com/storage/app/media/resources/documents/elmeasure-terms-and-conditions.pdf"
+                    class="link" target="_blank">Terms & Conditions</a>
+                  and
+                  <a href="https://www.elmeasure.com/storage/app/media/resources/documents/elmeasure-privacy-policy.pdf"
+                    target="_blank" class="link">Privacy Policy</a>
+                </p>
+                <!-- <p class="text-center m-0">
+                            <a href="https://www.elmeasure.com/get-quote" target="_blank"
+                              class="btn btn-default mt-2">Not a customer? Try for free</a>
+                        </p> -->
+              </div>
+            </ng-container>
+            <!-- Login form End -->
+
+            <!-- FOrgot Passowrd start-->
+            <ng-container *ngIf="pageView == 'Forgot Password'">
+              <!-- <h4 class="main-title">
+                        Forgot Your Password
+                     </h4> -->
+              <ng-container *ngIf="!showForgotFields">
+                <div class="form-group wrap-input">
+                  <input (keyup.enter)="forgotPassword()" autocomplete="off" type="email" class="form-control input"
+                    placeholder="Email" #username name="username" [(ngModel)]="form.username" />
+                  <span class="focus-input" data-placeholder="&#xf296;"></span>
+                  <span *ngIf="form.username" (click)="form.username = ''" class="clearField elm-delete"></span>
+                </div>
+                <!-- <button *ngIf="pageView =='Forgot Password' && !showForgotFields" type="submit"
+                                  class="btn-sign-in" (click)="forgotPassword()">
+                                  Send Reset Password Mail
+                                  </button> -->
+                <div class="btn-container d-flex">
+                  <button (click)="changeView('showLogin')"
+                    class="ml-2 justify-content-center align-items-center btn-login w-50 mr-2"
+                    *ngIf="pageView == 'Forgot Password' && !showForgotFields" type="button" [disabled]="disableBtn">
+                    Return to Sign in
+                  </button>
+
+                  <button (click)="forgotPassword()"
+                    class="ml-2 justify-content-center align-items-center btn-login w-50"
+                    *ngIf="pageView == 'Forgot Password' && !showForgotFields" type="button" [disabled]="disableBtn">
+                    <!-- Continue -->
+                    <span *ngIf="!disableBtn">Continue</span>
+                    <span *ngIf="disableBtn" class="loader-custom btn-loader d-inline-block"></span>
+                  </button>
+                </div>
+                <p class="text-right sub-discri">
+                  <a href="javascript:void(0)" (click)="alreadyHaveForgotKey()" class="link">I've already got a reset
+                    Key!</a>
+                </p>
+              </ng-container>
+
+              <!-- Forgot Password Page to create new password -->
+              <ng-container *ngIf="showForgotFields">
+                <div class="form-group wrap-input">
+                  <input (keyup.enter)="resetPassword()" autocomplete="off" type="email" class="form-control input"
+                    placeholder="Email" #username name="username" [(ngModel)]="form.username" />
+                  <span class="focus-input" data-placeholder="&#xf296;"></span>
+                  <span *ngIf="form.username" (click)="form.username = ''" class="clearField elm-delete"></span>
+                </div>
+                <div class="form-group wrap-input" style="margin-top: 20px; margin-bottom: 20px">
+                  <input (keyup.enter)="resetPassword()" autocomplete="new-text" type="text" class="form-control input"
+                    placeholder="Reset Key sent in Mail" #forgotKey name="forgotKey" [(ngModel)]="form.forgotKey" />
+                  <span class="focus-input" data-placeholder="&#xf10d;"></span>
+                  <span *ngIf="form.forgotKey" (click)="form.forgotKey = ''" class="clearField elm-delete"></span>
+                </div>
+
+                <div class="form-group wrap-input" style="margin-top: 20px; margin-bottom: 20px">
+                  <input (keyup.enter)="resetPassword()" autocomplete="new-password" type="password" class="form-control input"
+                    placeholder="New Password" #newPassword="ngModel" name="newPassword" [(ngModel)]="form.newPassword"
+                    minlength="8" required (keyup)="onKey($event)" (keypress)="onKeyPress($event)" (input)="onInput()"
+                    [inputPassword]= newPassword.value #newPassword/>
+                  <span class="focus-input" data-placeholder="&#xf10d;"></span>
+                  <!-- <span>
+                    <button class="password-eye" (click)="toggleNewPassword()">
+                      <i [title]="showNewPassword? 'Hide':'Show'" class="fa" [ngClass]="{
+                        'fa-eye-slash': !showNewPassword,
+                        'fa-eye': showNewPassword
+                      }"></i>
+                      <i *ngIf=showPassword title="Hide" class="fa fa-eye"></i>
+                    </button>
+                  </span> -->
+                  <span *ngIf="form.newPassword" (click)="form.newPassword = ''" class="clearField elm-delete"></span>
+                </div>
+
+                <div class="form-group wrap-input" style="margin-top: 20px; margin-bottom: 20px">
+                  <input (keyup.enter)="resetPassword()" onPaste="return false" autocomplete="new-password" type="password"
+                    class="form-control input" placeholder="Confirm Password" #confirmPassword="ngModel"
+                    name="confirmPassword" [(ngModel)]="form.confirmPassword" (input)="onInput()" [inputPassword]= confirmPassword.value #confirmPassword/>
+                  <span class="focus-input" data-placeholder="&#xf10d;"></span>
+                  <!-- <span>
+                    <button class="password-eye" (click)="toggleConfirmPassword()">
+                      <i [title]="showConfirmPassword? 'Hide':'Show'" class="fa" [ngClass]="{
+                        'fa-eye-slash': !showConfirmPassword,
+                        'fa-eye': showConfirmPassword
+                      }"></i>
+                      <i *ngIf=showPassword title="Hide" class="fa fa-eye"></i>
+                    </button>
+                  </span> -->
+                  <span *ngIf="form.confirmPassword" (click)="form.confirmPassword = ''"
+                    class="clearField elm-delete"></span>
+                </div>
+
+                <div class="change-pw">
+
+                  <!--UpperCase-->
+                  <h6>
+                    <i [ngClass]="{
+                        'red elm-cancel':
+                          (form.newPassword != '' && !checkUpperCaseLetter) ||
+                          form.newPassword == '',
+                        'green elm-checked':
+                          form.newPassword != '' && checkUpperCaseLetter
+                      }" [style.color]=" (form.newPassword != '' && !checkUpperCaseLetter) ||
+                      form.newPassword == '' ? 'red': 'green'"></i> 1 UPPER CASE
+                  </h6>
+
+                  <!---LoweCase-->
+                  <h6>
+                    <i [ngClass]="{
+                        'red elm-cancel':
+                          (form.newPassword != '' && !checkLowerCaseLetter) ||
+                          form.newPassword == '',
+                        'green elm-checked':
+                          form.newPassword != '' && checkLowerCaseLetter
+                      }" [style.color]="(form.newPassword != '' && !checkLowerCaseLetter) ||
+                      form.newPassword == '' ? 'red': 'green'"></i> 1 lower case
+                  </h6>
+
+                  <!--Number-->
+                  <h6>
+                    <i [ngClass]="{
+                        'red elm-cancel':
+                          (form.newPassword != '' && !checkNumberCharecter) ||
+                          form.newPassword == '',
+                        'green elm-checked':
+                          form.newPassword != '' && checkNumberCharecter
+                      }" [style.color]="(form.newPassword != '' && !checkNumberCharecter) ||
+                      form.newPassword == '' ? 'red': 'green'"></i> 1 Number
+                  </h6>
+
+                  <!--Special Character-->
+                  <h6>
+                    <i [ngClass]="{
+                        'red elm-cancel':
+                          (form.newPassword != '' && !checkSpecialCharecter) ||
+                          form.newPassword == '',
+                        'green elm-checked':
+                          form.newPassword != '' && checkSpecialCharecter
+                      }" [style.color]="(form.newPassword != '' && !checkSpecialCharecter) ||
+                      form.newPassword == '' ? 'red': 'green'"></i> 1 Special character
+                  </h6>
+
+                  <!--MiniMum 8 Character-->
+                  <h6>
+                    <i [ngClass]="{
+                        'red elm-cancel':
+                          (form.newPassword != '' && !minLegthChecker) ||
+                          form.newPassword == '',
+                        'green elm-checked':
+                          form.newPassword != '' && minLegthChecker
+                      }" [style.color]=" (form.newPassword != '' && !minLegthChecker) ||
+                      form.newPassword == '' ? 'red': 'green'"></i> Minimum 8 character
+                  </h6>
+
+                  <h6 *ngIf="passwordErrorMsg != ''">
+                    <i class="elm-cancel" [style.color]="'red'"></i>
+                    {{ passwordErrorMsg }}
+                  </h6>
+                </div>
+                <div class="d-flex flex-column">
+                  <password-strength-meter [password]="form.newPassword" (strengthChange)="onStrengthChange($event)"
+                    [colors]></password-strength-meter>
+                  <span class="h6 m-0 pull-right text-right" [style.color]="strengthColor">{{ strengthContent }}</span>
+                </div>
+                <div class="btn-container d-flex">
+                  <button (click)="changeView('showLogin')"
+                    class="ml-2 justify-content-center align-items-center btn-login w-50 mr-2"
+                    *ngIf="pageView == 'Forgot Password' && showForgotFields" type="button" [disabled]="disableBtn">
+                    Return to Sign in
+                  </button>
+
+                  <button (click)="resetPassword()"
+                    class="ml-2 justify-content-center align-items-center btn-login w-50"
+                    *ngIf="pageView == 'Forgot Password' && showForgotFields" type="button input"
+                    [disabled]="disableBtn">
+                    <!-- Submit -->
+                    <span *ngIf="!disableBtn">Submit</span>
+                    <span *ngIf="disableBtn" class="loader-custom btn-loader d-inline-block"></span>
+                  </button>
+                </div>
+                <p class="text-right sub-discri">
+                  <span *ngIf="resendMail" class="loader-custom-resendmail  d-inline-block"></span>
+                  <span> <a href="javascript:void(0)" (click)="resendMail ? '' :forgotPassword()" class="link"
+                      [ngClass]="resendMail ? 'link-blur':''">Resend the mail, Please!</a>
+                  </span>
+                </p>
+              </ng-container>
+            </ng-container>
+            <!-- FOrgot passowrd end -->
+
+            <!--SA Login Forms Start-->
+            <!-- <ng-container *ngIf="pageView == 'SA login'">--->
+            <!-- <h4 class="main-title">System Admin Login </h4> -->
+            <!-- <ng-container *ngIf="!showSAlogin">
+                <div class="form-group wrap-input">
+                  <input (keyUp.enter)="verifySAEmails()" autocomplete="off" type="email" class="form-control input"
+                    placeholder="Email" #username name="username" [(ngModel)]="form.username" />
+                  <span class="focus-input" data-placeholder="&#xf296;"></span>
+                  <span *ngIf="form.username" (click)="form.username = ''" class="clearField elm-delete"></span>
+                </div>
+                <div class="btn-container d-flex">
+                  <button (click)="changeView('showLogin')"
+                    class="ml-2 justify-content-center align-items-center btn-login w-50 mr-2" type="button"
+                    [disabled]="disableBtn">
+                    Return to Sign in
+                  </button>
+                  <button type="button" class="ml-2 justify-content-center align-items-center btn-login w-50"
+                    (click)="verifySAEmails()" [disabled]="disableBtn">
+                    <span *ngIf="!disableBtn">Submit</span>
+                    <span *ngIf="disableBtn" class="loader-custom btn-loader d-inline-block"></span>
+                  </button>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="showSAlogin">
+                <div class="form-group wrap-input">
+                  <input (keyup.enter)="saLogin()" autocomplete="off" type="email" class="form-control input"
+                    placeholder="Email" #username name="username" [(ngModel)]="form.username" />
+                  <span class="focus-input" data-placeholder="&#xf296;"></span>
+                  <span *ngIf="form.username" (click)="form.username = ''" class="clearField elm-delete"></span>
+                </div>
+                <div class="form-group wrap-input" style="margin-top: 20px; margin-bottom: 20px">
+                  <input (keyup.enter)="saLogin()" autocomplete="off" type="password" class="form-control input"
+                    placeholder="Password" #password name="password" [(ngModel)]="form.password" klPasswordVisibilty />
+                  <span class="focus-input" data-placeholder="&#xf10d;"></span> -->
+            <!-- <span>
+                    <button class="password-eye" (click)=toggleSApassword()>
+                      <i [title]="showSApassword? 'Hide':'Show'" class="fa" [ngClass]="{
+                        'fa-eye-slash': !showSApassword,
+                        'fa-eye': showSApassword
+                      }"></i>
+                      <i *ngIf=showPassword title="Hide" class="fa fa-eye"></i>
+                    </button>
+                  </span> -->
+            <!-- <span *ngIf="form.password" (click)="form.password = ''" class="clearField elm-delete"></span>
+                </div>
+                <div class="form-group client m-0">
+                  <label for="clientId" class="w-100">
+                    <angular2-multiselect [data]="clientListDropDown" #client [(ngModel)]="form.client"
+                      [settings]="clientDropdownSettings" name="client" class="form-control">
+                    </angular2-multiselect>
+                  </label>
+                </div>
+                <p class="text-right sub-discri m-0">
+                  <a href="javascript:void(0)" (click)="saPasswordShow()" class="link">Get System Admin Password</a>
+                </p>
+                <div class="btn-container d-flex">
+                  <button (click)="changeView('showLogin')"
+                    class="ml-2 justify-content-center align-items-center btn-login w-50 mr-2" type="button"
+                    [disabled]="disableBtn">
+                    Return to Sign in
+                  </button>
+
+                  <button (click)="saLogin()" class="ml-2 justify-content-center align-items-center btn-login w-50"
+                    type="button" [disabled]="disableBtn"> -->
+            <!-- Continue  -->
+            <!-- <span *ngIf="!disableBtn">Continue</span>
+                    <span *ngIf="disableBtn" class="loader-custom btn-loader d-inline-block"></span>
+                  </button>
+                </div>
+              </ng-container>
+            </ng-container> -->
+            <!--SA admin Form Ends-->
+
+            <!--register form login start-->
+            <!-- <ng-container *ngIf="pageView != ''">
+              <ng-container *ngIf="showRegisterPage">
+                <form id="registrationForm">
+                  <div class="register-container"> -->
+            <!-- <h4 class="main-title">
+                                          Register
+                                      </h4> -->
+            <!-- <kl-register (backToLoginBtn)="backToLogin()"></kl-register>-->
+            <!-- <div class="form-group wrap-input">
+                      <input required autocomplete="off" type="text" class="form-control input"
+                        placeholder=" Enter Name" #regName name="regName" [(ngModel)]="registrationForm.regName"
+                        (keyup.enter)="registerEnquiry()" />
+                      <span class="focus-input" data-placeholder="&#xf296;"></span>
+                      <span *ngIf="registrationForm.regName" (click)="registrationForm.regName = ''"
+                        class="clearField elm-delete"></span>
+                    </div>
+                    <div class="form-group wrap-input">
+                      <input required autocomplete="off" type="text" class="form-control input"
+                        placeholder="Enter Organisation Name" #regOrgName name="regOrgName"
+                        [(ngModel)]="registrationForm.regOrgName" (keyup.enter)="registerEnquiry()" />
+                      <span class="focus-input" data-placeholder="&#xf2c3;"></span>
+                      <span *ngIf="registrationForm.regOrgName" (click)="registrationForm.regOrgName = ''"
+                        class="clearField elm-delete"></span>
+                    </div>
+                    <div class="form-group wrap-input">
+                      <input required autocomplete="off" type="number" class="form-control input"
+                        placeholder="Enter Phone Number" #regPhoneNumber name="regPhoneNumber"
+                        [(ngModel)]="registrationForm.regPhoneNumber" (keyup.enter)="registerEnquiry()" />
+                      <span class="focus-input" data-placeholder="&#xf2b6;"></span>
+                      <span *ngIf="registrationForm['regMobileNumber']" (click)="registrationForm.regMobileNumber = ''"
+                        class="clearField elm-delete"></span>
+                    </div>
+                    <div class="form-group wrap-input">
+                      <input autofocus autocomplete="off" type="email" class="form-control input"
+                        placeholder="Enter Email" #regEmail name="regEmail" [(ngModel)]="registrationForm.regEmail"
+                        (keyup.enter)="registerEnquiry()" />
+                      <span class="focus-input" data-placeholder="&#xf296;"></span>
+                      <span *ngIf="registrationForm.regEmail" (click)="registrationForm.regEmail = ''"
+                        class="clearField elm-delete"></span>
+                    </div>
+                    <div class="btn-container d-flex">
+                      <button (click)="changeView('showLogin')" id="dismissLicenseUpload" data-dismiss="modal"
+                        class="ml-2 justify-content-center align-items-center btn-login w-50 mr-2" type="submit"
+                        [disabled]="disableBtn">
+                        Return to Sign in
+                      </button>
+                      <button (click)="registerEnquiry()"
+                        class="ml-2 justify-content-center align-items-center btn-login w-50" type="submit"
+                        [disabled]="disableBtn">
+                        <span *ngIf="!disableBtn">Submit</span>
+                        <span *ngIf="disableBtn" class="loader-custom btn-loader d-inline-block"></span>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </ng-container> --->
+
+              <ng-container *ngIf="pageView == 'changePassword' && !showLogin">
+                <h4 class="main-title">Change Password</h4>
+                <form class="wrap-login" [formGroup]="changePasswordForm">
+                  <div class="form-group wrap-input">
+                    <input required formControlName="current_password" type="password" placeholder="Current Password" onPaste="return false"
+                      class="form-control input" autocomplete="off" klPasswordVisibilty [inputPassword]= current_password.value #current_password/>
+                    <span class="focus-input" data-placeholder="&#xf10d;"></span>
+            <span>
+                      <!-- <button class="password-eye" (click)="togglePassword()">
+                        <i [title]="showPassword ? 'Hide':'Show'" class="fa" [ngClass]="{
+                          'fa-eye-slash': !showPassword,
+                          'fa-eye': showPassword
+                        }"></i>
+                      </button> -->
+                    </span>
+            </div>
+
+                  <div class="form-group wrap-input">
+                    <input required formControlName="new_password" type="password" placeholder="New Password" onPaste="return false"
+                      class="form-control input" autocomplete="off" (input)="onInput()" [(ngModel)]="passwordStrength"
+                      (keyup)="onKey($event)" (keypress)="onKeyPress($event)" klPasswordVisibilty [inputPassword]= new_password.value #new_password/>
+                    <span class="focus-input" data-placeholder="&#xf10d;"></span>
+            <span>
+                      <!-- <button class="password-eye" (click)="toggleNewPassword()">
+                        <i [title]="showNewPassword? 'Hide':'Show'" class="fa" [ngClass]="{
+                          'fa-eye-slash': !showNewPassword,
+                          'fa-eye': showNewPassword
+                        }"></i>
+                      </button> -->
+                    </span>
+            </div>
+
+                  <div class="form-group wrap-input">
+                    <input required formControlName="confirm_password" type="password" placeholder="Confirm Password" onPaste="return false"
+                      class="form-control input" autocomplete="off" (input)="onInput()" klPasswordVisibilty [inputPassword]= confirm_password.value #confirm_password/>
+                    <span class="focus-input" data-placeholder="&#xf10d;"></span>
+            <span>
+                      <!-- <button class="password-eye" (click)="toggleConfirmPassword()">
+                        <i [title]="showConfirmPassword? 'Hide':'Show'" class="fa" [ngClass]="{
+                          'fa-eye-slash': !showConfirmPassword,
+                          'fa-eye': showConfirmPassword
+                        }"></i>
+                      </button> -->
+                    </span>
+            </div>
+                </form>
+                <div class="change-pw">
+                  <h6 *ngIf="passwordErrorMsg != ''">
+                    <i class="elm-cancel" [style.color]="'red'"></i>{{ passwordErrorMsg }}
+                  </h6>
+
+            <!--UpperCase-->
+            <h6>
+                    <i [ngClass]="{
+                        'red elm-cancel':
+                          (passwordStrength != '' && !checkUpperCaseLetter) ||
+                          passwordStrength == '',
+                        'green elm-checked':
+                          passwordStrength != '' && checkUpperCaseLetter
+                      }"></i>1 UPPER CASE
+                  </h6>
+
+            <!---LoweCase-->
+            <h6>
+                    <i [ngClass]="{
+                        'red elm-cancel':
+                          (passwordStrength != '' && !checkLowerCaseLetter) ||
+                          passwordStrength == '',
+                        'green elm-checked':
+                          passwordStrength != '' && checkLowerCaseLetter
+                      }"></i>1 lower case
+                  </h6>
+
+            <!-- Number -->
+                  <h6>
+                    <i [ngClass]="{
+                        'red elm-cancel':
+                          (passwordStrength != '' && !checkNumberCharecter) ||
+                          passwordStrength == '',
+                        'green elm-checked':
+                          passwordStrength != '' && checkNumberCharecter
+                      }"></i>1 Number
+                  </h6>
+
+            <!--Special Character-->
+            <h6>
+                    <i [ngClass]="{
+                        'red elm-cancel':
+                          (passwordStrength != '' && !checkSpecialCharecter) ||
+                          passwordStrength == '',
+                        'green elm-checked':
+                          passwordStrength != '' && checkSpecialCharecter
+                      }"></i>1 Special Character
+                  </h6>
+
+            <!--MiniMum 8 Character-->
+            <h6>
+                    <i [ngClass]="{
+                        'red elm-cancel':
+                          ((changePasswordForm.get('new_password').touched ||
+                            changePasswordForm.get('new_password').dirty) &&
+                            !changePasswordForm
+                              .get('new_password')
+                              .hasError('minlength') &&
+                            passwordStrength != '') ||
+                          passwordStrength == '',
+                        'green elm-checked':
+                          (changePasswordForm.get('new_password').touched ||
+                            changePasswordForm.get('new_password').dirty) &&
+                          !changePasswordForm
+                            .get('new_password')
+                            .hasError('minlength') &&
+                          passwordStrength != ''
+                      }"></i>Minimum 8 Character
+                  </h6>
+                </div>
+                <div>
+                  <password-strength-meter [password]="passwordStrength" (strengthChange)="onStrengthChange($event)"
+                    [colors]></password-strength-meter>
+                  <span class="h6 m-0 pull-right" [style.color]="strengthColor">{{ strengthContent }}</span>
+                </div>
+                <button class="btn btn-primary" (click)="changePassword(changePasswordForm)"
+                  [disabled]="!changePasswordForm.valid || disableBtn">
+                  <span *ngIf="!disableBtn">Submit</span>
+                  <span *ngIf="disableBtn" class="loader-custom btn-loader d-inline-block"></span>
+                </button>
+              </ng-container>
+            <!-- </ng-container> -->
+            <!-- Register Form Login Ends -->
+          </form>
+        </div>
+
+        <!--Multi Profile Pageview-->
+        <div *ngIf="isMultiProfile && isAnyProfileSaved"
+          class="login-form-field col-xl-5 col-lg-5 col-md-8 col-sm-12 login-users">
+          <img class="d-block mx-auto" src="assets/images/branding/login-header-logo.png" alt="logo" />
+          <!-- <h4 class="main-title">Choose an account Sign in to {{ indexTitle }}</h4> -->
+          <h4 class="main-title">Choose an account</h4>
+          <ul class="multi-user" [ngClass]="isMultiProfileClicked ? 'isLoading' : ''">
+            <ng-container *ngFor="
+                let profile of storedProfiles;
+                let i = index;
+                trackBy: trackByFn
+              ">
+              <li>
+                <span [ngClass]="isMultiProfileClicked ? 'cursor-default' : ''">
+                  <div *ngIf="!isMultiProfileClicked" class="user-icon">
+                    <!-- <span class="fa fa-edit" title="Edit Profile" data-toggle="modal" data-target="#changePasswordModal"
+                      id="changePasswordModalButton" (click)="passProfile(profile)">
+                    </span> -->
+                    <span class="elm-delete" title="Remove Profile" data-toggle="modal"
+                      data-target="#profileDeleteModal" id="profileDeleteModalButton" (click)="passProfile(profile)">
+                    </span>
+                  </div>
+
+                  <div (click)="
+                      isMultiProfileClicked ? '' : loginUsingProfile(profile, i)
+                    " class="user-content" [ngClass]="isMultiProfileClicked ? 'cursor-default' : ''">
+                    <div class="user-image" [ngClass]="
+                        isMultiProfileClicked && i !== clickedProfileIndex
+                          ? 'link-blur'
+                          : ''
+                      " [hidden]="
+                        isMultiProfileClicked && i === clickedProfileIndex
+                      ">
+                      <img *ngIf="profile['profileImage'].includes('data:image/png;base64,')" src="{{ profile['profileImage'] }}" alt="" width="100%">
+                      <span *ngIf="!profile['profileImage'].includes('data:image/png;base64,')">{{ profile['profileImage'] | uppercase }}</span>
+                    </div>
+                    <div class="cursor-default" *ngIf="isMultiProfileClicked && i === clickedProfileIndex">
+                      <span class="profile-clicked loader-custom d-inline-block">
+                        <!-- <p class=""></p> -->
+                      </span>
+                    </div>
+                    <div [ngClass]="isMultiProfileClicked ? 'link-blur ' : ''">
+                      <ng-container *ngIf="appMode === 'server'">
+                        <p title="{{ profile['domain'] }}" class="m-0 mt-1">
+                          {{ profile['domain'] }}
+                        </p>
+                        <p title="{{ profile['username'] }}" class="m-0 mt-1">
+                          {{ profile['username'] }}
+                        </p>
+                      </ng-container>
+                      <ng-container *ngIf="appMode !== 'server'">
+                        <p title="{{ profile['username'] }}">
+                          {{ profile['username'] }}
+                        </p>
+                      </ng-container>
+                    </div>
+                  </div>
+                </span>
+              </li>
+            </ng-container>
+          </ul>
+          <ul class="mt-2 text-center">
+            <button (click)="
+                disableBtn ? $event.stopPropagation() : changeView('showLogin')
+              " class="ml-2 justify-content-center align-items-center btn-login w-50 mr-2" type="button"
+              [ngClass]="isMultiProfileClicked ? 'link-blur ' : ''" [disabled]="disableBtn && isMultiProfileClicked">
+              Return to Sign in
+            </button>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="login-footer">
+    <p class="float-left mr-2">
+      <!-- Powered by THEIOX -->
+      {{ whiteLabel }}
+    </p>
+    <p class="float-right">
+      <ng-container *ngIf="
+          isShowSwitchAccount && isMultiProfile && storedProfiles.length > 0
+        ">
+        <a (click)="disableFooter ? '':changeView('multiProfile')" class="link"
+          [ngClass]="disableFooter ? 'isSignIn ' : ''">Switch Account</a>
+        <span> | </span>
+      </ng-container>
+      <!-- <a href="javascript:void(0)" (click)="changeView('Register')" class="link">Register</a><span> | </span> -->
+      <!-- <a href="javascript:void(0)" (click)="changeView('SA login')" class="link">System Admin</a><span> | </span> -->
+      <a data-toggle="modal" [attr.data-target]="disableFooter ? '' : '#licenseUploadModal' "
+        id="licenseUploadModalButton" class="link" (click)="disableFooter ? '' : changeView('licenseUpdate')"
+        [ngClass]="disableFooter ? 'isSignIn ' : ''">License Update
+      </a>
+      <span> | </span>
+
+      <!-- <a href="https://www.elmeasure.com/company/contact-us" class="link" target="_blank">Contact us</a>
+            <span *ngIf="!isMobile"> | </span> -->
+      <a *ngIf="!isMobile" href="/documentation/" class="link" target="_blank">Need
+        help?</a>
+
+      <!-- <button [routerLink]="test-form" target="_blank">Go to test form</button> -->
+    </p>
+  </div>
+</div>
+
+<!-- Update Profile Password Modal starts -->
+<!-- <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+   <div class="form-group wrap-input">
+        <input required type="password" placeholder="Enter Password" class="form-control input" autocomplete="off"
+          (input)="onEditingPassword()" [(ngModel)]="profileNewPassword" (keyup)="onKey($event)"
+          (keypress)="onKeyPress($event)" />
+       <span class="focus-input" data-placeholder="&#xf10d;"></span>
+     </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-login-primary btn-sm" (click)="editProfile()"
+          [disabled]="isEditProfileInvalid" data-dismiss="modal">
+          Save
+        </button>
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" #changePasswordWindowClose>
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- Update Profile Password Modal ends -->
+
+<!--Update License start -->
+<div class="modal fade" id="licenseUploadModal" tabindex="-1" role="dialog" aria-labelledby="licenseUploadModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-component" role="document">
+    <div class="modal-content modal-content-component">
+      <div class="modal-header">
+        <h6 class="modal-title text-muted" id="licenseModalLabel">
+          Upload License
+        </h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" #licenseModalClose
+          (click)="changeView('licenseModalDismiss')">
+          <i class="elm-cancel"></i>
+        </button>
+      </div>
+      <div class="modal-body modal-body-component" id="licenseForm">
+        <!-- <form [formGroup]="licenseForm" (ngSubmit)="updateLicense()"> -->
+        <div class="form-group wrap-input">
+          <label for="secret_key">License Key : </label><span><input required type="text" class="form-control"
+              id="secret_key" #secret_key placeholder="Enter License Key" autocomplete="off"
+              [(ngModel)]="license_Key" /></span>
+          <!--formControlName="secret_key"-->
+        </div>
+        <div class="form-group wrap-input" style="margin-top: 20px; margin-bottom: 20px">
+          <label for="licenseFile">License File : </label>
+          <div class="form-control shadow-none browse-file">
+            <div class="browse-file-content mt-1">
+              <img src="assets/images/defaultImages/licence-upload-file.svg" />
+              <p class="license-file-name">
+                <ng-container *ngIf="licenseFileName == '' || licenseFileName == undefined">
+                  No file Selected
+                </ng-container>
+                <ng-container *ngIf="licenseFileName != '' || licenseFileName != undefined">
+                  {{ licenseFileName }}
+                </ng-container>
+              </p>
+              <p class="mt-2">Drop your File</p>
+              <p class="license-file-name">or</p>
+              <p class="btn btn-link pt-0">
+                {{ licenseFileName == '' ? 'Browse File' : 'Change File' }}
+              </p>
+            </div>
+            <input required type="file" id="licenseFile" class="browse-file-button" #uploadedLicenseFile
+              (change)="uploadLicense($event)" title="{{
+                  licenseFileName == '' ? 'Browse File' : licenseFileName
+                }}" />
+          </div>
+          <!-- <label class="my-1">Max file size : 1.5 MB</label> -->
+        </div>
+        <div class="btn-container d-flex">
+          <button class="btn btn-login-primary btn-sm mr-2" type="submit" (click)="updateLicense()"
+            [disabled]="(!secret_key.value || !uploadedLicenseFile.value) || disableLicenseUpdateBtn">
+            <span>Update</span>
+          </button>
+          <button (click)="changeView('licenseModalDismiss')" id="dismissLicenseUpload" data-dismiss="modal"
+            class="btn btn-secondary btn-sm mr-2" type="reset">
+            Cancel
+          </button>
+        </div>
+        <!-- </form> -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Update Licence ends -->
+
+<!-- Remove Profile Confirmation Modal-->
+<div class="modal fade" id="profileDeleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">Are you sure you want to remove?</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-login-primary btn-sm" data-dismiss="modal" (click)="removeProfile()">
+          Yes
+        </button>
+        <button type="button" class="btn btn-secondary btn-sm" id="dismissDelete" data-dismiss="modal">
+          No
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Remove Profile Confirmation Modal ends -->
+<!-- Forms Testing for Reactive Type-->

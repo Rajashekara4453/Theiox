@@ -1,0 +1,60 @@
+{
+  "configVersion": 1,
+  "timestamp": 1634889742004,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "Theiox",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/0.d5556c75e5eba99b6c72.js",
+        "/2.6c156ace40b7cfd50afc.js",
+        "/3.32ba6e47ad1a9ba24057.js",
+        "/7.089754196f3d475b2d0b.js",
+        "/8.4315eb992ad8623d65ca.js",
+        "/9.8297a1a1093a46fcd350.js",
+        "/index.html",
+        "/main.55113cecc9015588fe4e.js",
+        "/polyfills.52b29ba009af97676eb2.js",
+        "/runtime.cf6cb8bedc2db43ab493.js",
+        "/scripts.8ac955d10a139ea9ea63.js",
+        "/styles.a24d10373d6fc1871970.css"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/0.d5556c75e5eba99b6c72.js": "dd97b14dcf8f0c76727ff28d4924d5852ca70b85",
+    "/2.6c156ace40b7cfd50afc.js": "9fa30d75901985ea89e70454298ffd5292f194eb",
+    "/3.32ba6e47ad1a9ba24057.js": "41aa1b502a7af46fe9848f54615764646c66af99",
+    "/7.089754196f3d475b2d0b.js": "d20a800b799eb2f99fa774d9c899c5f6aba1cb8c",
+    "/8.4315eb992ad8623d65ca.js": "fa4015d680d6a8a2cf6b1c403922d03cadefb0f1",
+    "/9.8297a1a1093a46fcd350.js": "354f6c6648be01fb8e84ecc660782d77387eac1a",
+    "/index.html": "798c74c107123ba3a52504210598a2223aa6ca31",
+    "/main.55113cecc9015588fe4e.js": "4a0dea63c4feb98e4849ae780080ee44b5c8bc83",
+    "/polyfills.52b29ba009af97676eb2.js": "65d010faf144f2aa12b080acad5f99b1572c3a00",
+    "/runtime.cf6cb8bedc2db43ab493.js": "1d81ad4e321d1ced0c6c8cf61ff9009db182d710",
+    "/scripts.8ac955d10a139ea9ea63.js": "fe890186696478fd673b10c4ae89a83b57ffc50c",
+    "/styles.a24d10373d6fc1871970.css": "b9cc23f3d334a95018f0942b7466ec33d215c00d"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}

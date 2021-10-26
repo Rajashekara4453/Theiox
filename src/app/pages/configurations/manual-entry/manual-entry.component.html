@@ -1,0 +1,527 @@
+<div class="main-content">
+  <div class="sub-sidebar">
+    <kl-menubar *ngIf="isPageLoad" [menus]="sideMenus" (clickStatus)="loadManualEntryPage($event)"
+      [displayProperty]="'manual_entry_name'" [valueProperty]="'manual_entry_id'" (addnew)="addNewManualentry($event)">
+    </kl-menubar>
+  </div>
+  <div class="sub-main-content-sb">
+    <!-- <div *ngIf="!editpageSettings">
+      <button (click)="editPageSettingsFunc()" class="btn border-0 bg-white centered-content m-3 mb-0">
+        <fa-icon [icon]="['fas', 'edit']"></fa-icon>
+      </button>
+    </div>
+    <div>
+      <button *ngIf="editpageSettings && !addNewConfig" (click)="backToManualEntry()"
+        class="btn border-0 bg-white centered-content m-3 mb-0">
+        <fa-icon [icon]="['fas', 'arrow-left']"></fa-icon>
+      </button>
+    </div> -->
+    <div *ngIf="!editpageSettings && isPageLoad && (entryPageId !== 'new')" class="h-100">
+      <div class="centered-content h-100" *ngIf="editLoaded">
+        <div class="header-container overflow-visible border-bottom">
+          <ng-container *ngFor="let displayData of showData">
+            <ng-container *ngIf="displayData['label'] !== 'Sites'">
+              <div class="header-element border-right">
+                <h6 class="m-0">{{displayData['value']}}
+                  <i *ngIf="displayData['label'] === 'Manual Entry Name'" class="elm-edit-2 time" title="Edit Entry"
+                    (click)="editPageSettingsFunc()"></i>
+                </h6>
+              </div>
+            </ng-container>
+          </ng-container>
+          <div class="manual-page-date header-element border-right">
+            <angular2-date-picker [(ngModel)]="selectedRecordData.date" [settings]="datePickerSettings"
+              [ngModelOptions]="{standalone: true}" (onDateSelect)="onDateSelect($event)">
+            </angular2-date-picker>
+            <p class="m-0"> Pick Date </p>
+          </div>
+          <div class="header-element border-right" *ngIf="loadedData.time_selection === 'time'">
+            <h6 class="m-0 d-flex">
+              <input type="text" [(ngModel)]="loadedData.timeDisp" autocomplete="off" [owlDateTimeTrigger]="dt1"
+                (dateTimeChange)="onTimeChange($event)" placeholder="Pick Time" [owlDateTime]="dt1" name="Start Time"
+                class="card-title h6 m-0" style="line-height: 0px">
+              <i class="elm-realtime time" [owlDateTimeTrigger]="dt1" (dateTimeChange)="onTimeChange($event)">
+              </i>
+            </h6>
+            <p class="m-0"> Pick Time </p>
+            <owl-date-time [pickerType]="'timer'" #dt1></owl-date-time>
+          </div>
+          <!-- <div class="header-element border-right col-2" *ngIf="loadedData.time_selection === 'shift'">
+            <kl-multiselect [DropDownInfo]="shift_selection" [settings]="SingleSelectsettingsShift"
+              [SelectedInfo]="loadedData.shift" (SelectedValues)="selectShiftforFetch($event)"></kl-multiselect>
+          </div> -->
+          <div class="header-element border-right">
+            <h6 data-toggle="modal" data-target="#showmetadata" class="m-0 d-flex">
+              Additional Information
+              <i class="elm-more-details time pl-1"></i>
+            </h6>
+            <p class="m-0">Show Data</p>
+          </div>
+          <!-- <div class="button-group ml-auto" role="group">
+            <button class="btn btn-secondary btn-sm active shadow-none" type="button" (click)="showMetaDataPage()"
+              data-toggle="modal" data-target="#addMetaDataModal" class="btn btn-secondary border-left-0 btn-sm">
+              Add Metadata</button>
+          </div> -->
+          <!-- commented temprorily -->
+          <!-- <div class="button-group ml-auto" role="group">
+            <button class="btn btn-secondary btn-sm active shadow-none" type="button" (click)="showHistoryPage()"
+              data-toggle="modal" data-target="#showHistoryModal" class="btn btn-secondary border-left-0 btn-sm">
+              Show History</button>
+          </div> -->
+          <!-- <div class="header-element btn-primary border-left ml-auto" (click)="editPageSettingsFunc()" style="cursor: pointer;">
+            <h6 class='m-0'>Edit Entry <i class="elm-edit-2"></i></h6>
+
+          </div> -->
+          <!-- <div class="btn-group mx-2" role="group">
+            <button class="btn btn-secondary btn-sm active shadow-none" type="button">Fetch Entry</button>
+            <button class="btn btn-secondary border-left-0 btn-sm" (click)="fetchDate()"><i
+                class="elm-download"></i></button>
+          </div> -->
+        </div>
+        <div class="body-container px-2 pt-2">
+          <!-- <div id="accordion">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                    aria-controls="collapseOne">
+                    MetaData
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                  <ng-container *ngFor="let metaData of metaDataArray;trackBy: trackByFn; let i = index">
+                    <div>
+                      <div class="col-3" id="{{'metaData_key_' + i}}">
+                        <strong>{{metaData.key[0].key_name}}</strong>
+                      </div>
+
+                      <div class="col-3">
+                        <div class="form-item" (click)=getMetaValuesOnClickValueDD(i)>
+                          <angular2-multiselect [data]="metaValues" [(ngModel)]="metaData.value"
+                            [settings]="metaDataDropdownSettings_value" name="{{'metaData_value_' + i}}"
+                            id="{{'metaData_value_' + i}}" (onAddFilterNewItem)="onAddMetaValue($event, i)"
+                            (onSelect)="onMetaValueSelect($event, i, 'settingsPage')">
+                          </angular2-multiselect>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <ng-container *ngIf="showHistory">
+            <div>
+              <!-- <kl-common-table [tableData]="histData['data']"></kl-common-table> -->
+              <table datatable *ngIf="histData" class="table table-custom table-bordered table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th *ngFor="let th of histData['data'].headerContent">{{th.label}}</th>
+                  </tr>
+                </thead>
+                <tbody class="fixedAlign">
+                  <tr *ngFor="let tr of histData['data'].bodyContent | slice:0:1000">
+                    <td style="text-align:left" *ngFor="let th of histData['data'].headerContent">
+                      <pre>{{(th.key == 'timestamp' || th.key.split('_')[0] == 'timestamp')? convertToTime(tr[th.key]) : tr[th.key]}}</pre>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </ng-container>
+          <!-- grid start -->
+          <kl-grid [styling]="gridStyling" (saveEmitter)="submitManualEntry($event)" (cancelEmitter)="refreshData()"
+            [settings]="gridSettings" [batchList]='batchList' [columns]="gridColumns" [data]="gridData"
+            [disableSaveOnEdit]="disableSave" [allowSaveOnEdit]="allowAddOrEditManualEntry"
+            (actionEmitter)=getAction($event) [gridActions]="gridActions">
+          </kl-grid>
+          <!-- grid end -->
+        </div>
+      </div>
+      <div *ngIf="!editLoaded">
+        <div id="loader-wrapper-submaincontent">
+          <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="editpageSettings && isPageLoad" class="centered-content h-100">
+      <form class="form-container">
+        <div class="form-header">
+          <h6 class="form-title">{{title}}</h6>
+        </div>
+        <div class="form-content" *ngIf="manualEntryLoaded">
+          <div class="row">
+            <div class="form-group col-lg-5 col-md-8 col-sm-8">
+              <label class="control-label text-right pr-0">Manual Entry Name <span
+                  class="color-red">&nbsp;*</span></label>
+              <input class="form-control" type="text" [(ngModel)]="pageDetails.manual_entry_name"
+                placeholder="Enter Manual Entry Name" name="manual_entry_name">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-lg-5 col-md-8 col-sm-8">
+              <label class="control-label text-right pr-0">Manual Entry Description</label>
+              <textarea class="form-control" type="text" [(ngModel)]="pageDetails.manual_entry_description"
+                placeholder="Enter Manual Entry Description" name="manual_entry_description"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-lg-5 col-md-8 col-sm-8">
+              <label class="control-label text-right pr-0">Select Assets Based on <span
+                  class="color-red">&nbsp;*</span></label>
+              <kl-multiselect [DropDownInfo]="metaDataStorage.device_selection_list" [settings]="SingleSelectsettings"
+                [SelectedInfo]="saveFromConfig.device_selection"
+                (SelectedValues)="selectDeviceBasedOn($event, 'device_selection')"
+                (Reset)="onClearFiled($event,'asset')">
+              </kl-multiselect>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-lg-5 col-md-8 col-sm-8 m-0">
+              <label class="control-label text-right pr-0" *ngIf="saveFromConfig.device_selection !== ''">
+                <!-- Select Device -->
+                <ng-container
+                  *ngIf="saveFromConfig.device_selection =='device_group' || saveFromConfig.device_selection =='site_device_group'">
+                  Select Asset Group <span class="color-red">&nbsp;*</span></ng-container>
+                <ng-container *ngIf="saveFromConfig.device_selection =='devices'">Select Asset <span
+                    class="color-red">&nbsp;*</span></ng-container>
+                <ng-container *ngIf="saveFromConfig.device_selection =='site'">Select Hierarchy <span
+                    class="color-red">&nbsp;*</span></ng-container>
+              </label>
+            </div>
+            <div class="col-12"></div>
+            <div class="form-group col-lg-6 col-md-8 col-sm-10" *ngIf="saveFromConfig.device_selection === 'site'">
+              <div class="accordion" style="background:#f9f9f9;" id="accordionExample">
+                <div class="card bg-transparent">
+                  <div class="card-header bg-transparent py-2 px-1" id="headingOne">
+                    <button class="btn btn-link p-2" type="button" data-toggle="collapse" data-target="#collapseOne"
+                      aria-expanded="false" aria-controls="collapseOne">
+                      Select level from hierarchy
+                    </button>
+                  </div>
+                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                    data-parent="#accordionExample">
+                    <div class="card-body bg-transparent pt-0">
+                      <div class="col-12 mb-2 p-0">
+                        <div class="input-group input-group-sm mb-2">
+                          <input class="form-control" id="filter" #filter
+                            (keyup)="treeMultiselect.treeModel.filterNodes(filter.value)" placeholder="Search Site" />
+                        </div>
+                      </div>
+                      <div class="btn-group mr-2 mb-2">
+                        <button id="collapse-all" (click)="treeMultiselect.treeModel.expandAll();"
+                          class="btn btn-secondary btn-sm mr-2">Expand</button>
+                        <button id="show-all" (click)="treeMultiselect.treeModel.collapseAll();"
+                          class="btn btn-secondary btn-sm mr-2">Collapse</button>
+                      </div>
+                      <div class="col-12 px-0 content">
+                        <tree-root #treeMultiselect [nodes]="metaDataStorage.site" [options]="options">
+                          <ng-template #treeNodeTemplate let-node="node" let-index="index">
+                            <input (change)="checkTreeMultiSelect(node, !node.data.isChecked)" type="checkbox"
+                              [indeterminate]="node.data.indeterminate" [checked]="node.data.isChecked">
+                            <span>{{ node.data.name }}</span>
+                          </ng-template>
+                        </tree-root>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-lg-5 col-md-8 col-sm-8"
+              *ngIf="saveFromConfig.device_selection === 'site_device_group'">
+              <kl-multiselect [DropDownInfo]="metaDataStorage.device_group" [settings]="SingleSelectsettings"
+                [SelectedInfo]="saveFromConfig.selected_devices.device_group"
+                (SelectedValues)="selectDevicesGroup($event)"></kl-multiselect>
+            </div>
+            <div class="form-group col-lg-5 col-md-8 col-sm-8"
+              *ngIf="saveFromConfig.device_selection === 'device_group'">
+              <kl-multiselect [DropDownInfo]="metaDataStorage.device_group" [settings]="SingleSelectsettings"
+                [SelectedInfo]="saveFromConfig.selected_devices.device_group"
+                (SelectedValues)="selectDevicesGroup($event)"></kl-multiselect>
+            </div>
+            <div class="form-group col-lg-5 col-md-8 col-sm-8" *ngIf="saveFromConfig.device_selection === 'devices'">
+              <kl-multiselect [DropDownInfo]="metaDataStorage.devices" [settings]="multiSelectSettings"
+                [SelectedInfo]="saveFromConfig.selected_devices.devices" (SelectedValues)="selectDevices($event)">
+              </kl-multiselect>
+            </div>
+          </div>
+          <div class="form-group col-lg-6 col-md-8 col-sm-10"
+            *ngIf="saveFromConfig.device_selection === 'site_device_group'">
+            <div class="accordion" style="background:#f9f9f9;" id="accordionExample">
+              <div class="card bg-transparent">
+                <div class="card-header bg-transparent py-2 px-1" id="headingOne">
+                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                    aria-expanded="false" aria-controls="collapseOne">
+                    Select level from hierarchy
+                  </button>
+                </div>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                  data-parent="#accordionExample">
+                  <div class="card-body pt-0">
+                    <div class="col-12 mb-2 p-0">
+                      <div class="input-group input-group-sm mb-2">
+                        <input class="form-control" id="filter" #filter
+                          (keyup)="treeMultiselect.treeModel.filterNodes(filter.value)" placeholder="Search Site" />
+                      </div>
+                    </div>
+                    <div class="btn-group mr-2 mb-2">
+                      <button id="collapse-all" (click)="treeMultiselect.treeModel.expandAll();"
+                        class="btn btn-secondary btn-sm mr-2">Expand</button>
+                      <button id="show-all" (click)="treeMultiselect.treeModel.collapseAll();"
+                        class="btn btn-secondary btn-sm mr-2">Collapse</button>
+                    </div>
+                    <div class="col-12 px-0 content">
+                      <tree-root #treeMultiselect [nodes]="metaDataStorage.site" [options]="options">
+                        <ng-template #treeNodeTemplate let-node="node" let-index="index">
+                          <input (change)="checkTreeMultiSelect(node, !node.data.isChecked)" type="checkbox"
+                            [indeterminate]="node.data.indeterminate" [checked]="node.data.isChecked">
+                          <span>{{ node.data.name }}</span>
+                        </ng-template>
+                      </tree-root>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-lg-5 col-md-8 col-sm-8">
+              <label class="control-label text-right pr-0">
+                Select Tags Based on <span class="color-red">&nbsp;*</span></label>
+              <kl-multiselect [DropDownInfo]="metaDataStorage.tag_selection_list" [settings]="SingleSelectsettings"
+                [SelectedInfo]="saveFromConfig.tag_selection"
+                (SelectedValues)="selectTagsBasedOn($event, 'tag_selection')" (Reset)="onClearFiled($event,'tags')">
+              </kl-multiselect>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-lg-5 col-md-8 col-sm-8">
+              <!-- <label class="control-label text-right pr-0" *ngIf="saveFromConfig.tag_selection !== ''">Select Tags
+                *</label> -->
+              <span *ngIf="saveFromConfig.tag_selection === 'tag_group'">
+                <label class="control-label text-right pr-0">Select Tag Group <span
+                    class="color-red">&nbsp;*</span></label>
+                <kl-multiselect [DropDownInfo]="metaDataStorage.tag_group" [settings]="SingleSelectsettings"
+                  [SelectedInfo]="saveFromConfig.selected_tags.tag_group"
+                  (SelectedValues)="selectedTagandGroups($event, 'tag_group')"></kl-multiselect>
+              </span>
+              <span *ngIf="saveFromConfig.tag_selection === 'tags'">
+                <label class="control-label text-right pr-0">Select Tags <span class="color-red">&nbsp;*</span></label>
+                <kl-multiselect [DropDownInfo]="metaDataStorage.tags" [settings]="multiSelectSettings"
+                  [SelectedInfo]="saveFromConfig.selected_tags.tags"
+                  (SelectedValues)="selectedTagandGroups($event, 'tags')"></kl-multiselect>
+              </span>
+            </div>
+          </div>
+          <!-- <div class="row mt-3">
+                  <span class="col-6">
+                    <label>Date</label>
+                    <angular2-date-picker [(ngModel)]="saveFromConfig.dateDisp" [settings]="datePickerSettings"
+                      [ngModelOptions]="{standalone: true}" (onDateSelect)="onDateSelect($event)">
+                    </angular2-date-picker>
+                  </span>
+                  <span class="col-6">
+                  </span>
+                </div> -->
+          <div class="row">
+            <div class="form-group col-lg-5 col-md-8 col-sm-8">
+              <label class="control-label text-right pr-0">Time <span class="color-red">&nbsp;*</span></label>
+              <kl-multiselect [DropDownInfo]="metaDataStorage.time_selection_list" [settings]="SingleSelectsettings"
+                [SelectedInfo]="saveFromConfig.time_selection" (SelectedValues)="selectTimeBasedOn($event, 'tags')"
+                (Reset)="onClearFiled($event,'time')">
+              </kl-multiselect>
+            </div>
+          </div>
+          <div *ngIf="saveFromConfig.time_selection === 'time'" class="row">
+            <div class="form-group col-lg-5 col-md-8 col-sm-8">
+              <label class="control-label text-right pr-0">Pick time</label>
+              <input type="text" [(ngModel)]="saveFromConfig.selected_time.timeDisp" autocomplete="off"
+                [owlDateTimeTrigger]="dt1" (dateTimeChange)="onTimeChange($event)" placeholder="Pick Time"
+                [owlDateTime]="dt1" name="Start Time" class="form-control inputClass">
+              <owl-date-time [pickerType]="'timer'" #dt1></owl-date-time>
+            </div>
+          </div>
+          <div *ngIf="saveFromConfig.time_selection === 'shift'" class="row">
+            <div class="form-group col-lg-5 col-md-8 col-sm-8">
+              <label class="control-label text-right pr-0">Select Shift</label>
+              <kl-multiselect [DropDownInfo]="metaDataStorage.shift" [settings]="MultiSelectsettingsShift"
+                [SelectedInfo]="saveFromConfig.selected_time.shift" (SelectedValues)="selectedShift($event, 'tags')">
+              </kl-multiselect>
+            </div>
+          </div>
+          <!-- MetaData inside master settings starts-->
+          <div class="row">
+            <div class="border-bottom form-group col-12 pb-2">
+              <b>Additional Information</b>
+              <button type="button" class="btn btn-sm btn-primary ml-2" (click)="addRow()"><strong>+
+                  Add</strong></button>
+            </div>
+          </div>
+          <ng-container *ngFor="let metaData of metaDataArray;trackBy: trackByFn; let i = index">
+            <div class="row">
+              <div class="form-group col-lg-4 col-md-5 col-sm-8">
+                <label class="control-label">Label <span class="color-red">&nbsp;*</span></label>
+                <div class="form-item">
+                  <angular2-multiselect [data]="metaKeys" [(ngModel)]="metaData.key"
+                    [settings]="metaDataDropdownSettings_key" name="{{'metaData_key_' + i}}"
+                    id="{{'metaData_key_' + i}}" (onAddFilterNewItem)="onAddMetaKey($event, i)"
+                    (onSelect)="onMetaKeySelect($event, i)">
+                  </angular2-multiselect>
+                </div>
+              </div>
+              <div class="form-group col-lg-4 col-md-5 col-sm-8">
+                <label class="control-label">Value <span class="color-red">&nbsp;*</span></label>
+                <div class="form-item" (click)=getMetaValuesOnClickValueDD(i)>
+                  <angular2-multiselect [data]="metaValues" [(ngModel)]="metaData.value"
+                    [settings]="metaDataDropdownSettings_value" name="{{'metaData_value_' + i}}"
+                    id="{{'metaData_value_' + i}}" (onAddFilterNewItem)="onAddMetaValue($event, i)"
+                    (onSelect)="onMetaValueSelect($event, i, 'masterSettingsPage')">
+                  </angular2-multiselect>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-4">
+                <label class="control-label invisible">Delete</label>
+                <div class="form-item">
+                  <button type="button" class="btn btn-secondary" (click)="deleteMetaData(i)">
+                    <strong>Delete</strong>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <div class="form-footer">
+            <input type="submit" value="Save" [disabled]="disableBtn" class="btn btn-primary btn-sm" />
+            <input type="button" class="btn btn-secondary btn-sm" value="Clear" (click)="resetForm(metaDataForm)" />
+          </div>
+          <!-- MetaData inside master settings ends-->
+          <!-- <div *ngIf="!manualEntryLoaded">
+            <div id="loader-wrapper-submaincontent">
+              <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          </div> -->
+        </div>
+        <div class="form-footer">
+          <button *ngIf="editpageSettings && !addNewConfig" (click)="backToManualEntry()"
+            class="btn btn-secondary btn-sm">
+            <i class="elm-back h6"></i>Back
+            <!-- <fa-icon [icon]="['fas', 'arrow-left']"></fa-icon> -->
+          </button>
+          <button type="submit" style="margin-left: 10px;"
+            [class.disabled]="(pageDetails.manual_entry_name.trim() === '') ||  disableSave"
+            class="btn btn-primary btn-sm" (click)="allowAddOrEditManualEntry ? saveManualEntryConfig() : ''">
+            Save
+            <img *ngIf="savingConfig" class="but-loader" src="assets/images/button_loader.gif">
+          </button>
+          <button style="margin-left: 10px;" class="btn btn-sm btn-secondary" (click)="refreshData()">
+            Cancel
+          </button>
+        </div>
+        <div *ngIf="!manualEntryLoaded">
+          <div id="loader-wrapper-submaincontent">
+            <div class="lds-ring">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<button hidden #deviceHistory class="btn btn-secondary btn-sm active shadow-none" type="button" data-toggle="modal"
+  data-target="#showHistoryModal" class="btn btn-secondary border-left-0 btn-sm">
+  Show History</button>
+<!-- Modal to Show History of selected Manual Entry Record-->
+<!-- <ng-container *ngIf="isShowHistory"> -->
+<ng-container>
+  <div class="modal fade" id="showHistoryModal" tabindex="-1" role="dialog" aria-labelledby="showHistoryModalModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable h-100" role="document">
+      <div class="modal-content">
+        <div class="modal-header form-header">
+          <h6 class="modal-title text-muted"><b> History for {{deviceHistoryData['device_instance_name']}} </b>
+          </h6>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="elm-cancel"></i>
+          </button>
+        </div>
+        <ng-container *ngIf="!isHistoryNotFound">
+          <div class="modal-body form-body">
+            <!-- <table datatable *ngIf="deviceHistoryData['data']"
+              class="table table-custom table-bordered table-striped table-hover">
+              <thead>
+                <tr>
+                  <th *ngFor="let th of deviceHistoryData['data'].headerContent">{{th.label}}</th>
+                </tr>
+              </thead>
+              <tbody class="fixedAlign">
+                <tr *ngFor="let tr of deviceHistoryData['data'].bodyContent | slice:0:1000">
+                  <td style="text-align:left" *ngFor="let th of deviceHistoryData['data'].headerContent">
+                    <pre>{{(th.key == 'timestamp' || th.key.split('_')[0] == 'timestamp')? convertToTime(tr[th.key]) : tr[th.key]}}</pre>
+                  </td>
+                </tr>
+              </tbody>
+            </table> -->
+            <kl-common-table [tableData]="deviceHistoryData['data']"></kl-common-table>
+          </div>
+        </ng-container>
+        <ng-container *ngIf='isHistoryNotFound'>
+          <div class="modal-body form-body">
+            <h6>History Data Not Found</h6>
+          </div>
+        </ng-container>
+        <div class="modal-footer py-2">
+          <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal" aria-label="Close">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<div class="modal fade" id="showmetadata" tabindex="-1" role="dialog" aria-labelledby="showmetadata" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-component modal-xl p-0 modal-dialog-scrollable h-100" role="document">
+    <div class="modal-content modal-content-component">
+      <div class="modal-header form-header">
+        <h6 class="modal-title text-muted"><b> Additional Information </b>
+        </h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <i class="elm-cancel"></i>
+        </button>
+      </div>
+      <div class="modal-body modal-body-component form-content">
+        <ng-container *ngFor="let metaData of metaDataArray;trackBy: trackByFn; let i = index">
+          <div>
+            <div class="col-3" id="{{'metaData_key_' + i}}">
+              <strong>{{metaData.key[0].key_name}}</strong>
+            </div>
+            <div class="col-3">
+              <div class="form-item" (click)=getMetaValuesOnClickValueDD(i)>
+                <angular2-multiselect [data]="metaValues" [(ngModel)]="metaData.value"
+                  [settings]="metaDataDropdownSettings_value" name="{{'metaData_value_' + i}}"
+                  id="{{'metaData_value_' + i}}" (onAddFilterNewItem)="onAddMetaValue($event, i)"
+                  (onSelect)="onMetaValueSelect($event, i, 'settingsPage')">
+                </angular2-multiselect>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

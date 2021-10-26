@@ -1,0 +1,126 @@
+<div class="modal-dialog modal-dialog-centered modal-xl h-90" role="document">
+  <div class="modal-content h-100">
+    <div class="modal-header">
+      <h6 class="modal-title text-muted">Asset Control Configuration - {{currentState}}</h6>
+      <button aria-label="Close" class="close" data-dismiss="modal" type="button"><i class="elm-cancel"></i></button>
+    </div>
+    <div class="modal-body overflow-auto">
+      <div class="main-loader content-align" *ngIf="isDevicesLoading;else metaLoaded" id="scada-loader">
+        <div id="loader-wrapper-submaincontent">
+          <div class="loader-rings">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+      <ng-template #metaLoaded>
+        <div class="container config-bg">
+          <div class="accordian-header border-bottom" id="assetsGeneralTab" data-toggle="collapse"
+            data-target="#assetsGeneral" aria-expanded="true" aria-controls="assetsGeneral">
+            <div class="row">
+              <div class="col-md-6 col-sm-6 col-lg-6">
+                <h6>General</h6>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="assetsGeneral" class="collapse show mt-3 mb-3" aria-labelledby="assetsGeneralTab">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="element-name">Elements Name <span class="color-red">&nbsp;*</span></label>
+                  <input type="text" class="form-control" name="element-name" id="element-name"
+                    [(ngModel)]='elementsName' autocomplete="off" placeholder="Enter elements name">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="element-name">Action</label>
+                <label class="d-flex">
+                  Disable <input class="etsadm--ios-toggle" type="checkbox" [(ngModel)]='control_enabled' /> Enable
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container config-bg mt-3">
+          <div class="accordian-header border-bottom" id="assetControlTable" data-toggle="collapse"
+            data-target="#assetsTable" aria-expanded="true" aria-controls="assetsTable">
+            <div class="row">
+              <div class="col-md-6 col-sm-6 col-lg-6">
+                <h6>Actions</h6>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="assetsTable" class="collapse show mt-3 mb-3" aria-labelledby="assetControlTable">
+            <div class="row">
+              <table class="table table-head">
+                <thead>
+                  <tr>
+                    <td>Assets <span class="color-red">&nbsp;*</span></td>
+                    <td>Tags <span class="color-red">&nbsp;*</span></td>
+                    <td>Value <span class="color-red">&nbsp;*</span></td>
+                    <td>Label <span class="color-red">&nbsp;*</span></td>
+                    <td>Delete</td>
+                  </tr>
+                </thead>
+                <tbody *ngIf='actions.length !== 0'>
+                  <tr *ngFor='let action of actions;let i = index'>
+                    <td>
+                      <!-- <ng-select [items]='devicesMeta' class="scada-cards" bindLabel='label' [clearable]="false"
+                        [loading]="isDevicesLoading" loadingText='Loading Tags..' [virtualScroll]='true'
+                        placeholder='Select tags..' [multiple]='true' [(ngModel)]="action.assets"></ng-select>-->
+                      <angular2-multiselect [data]="devicesMeta" [settings]="multiselectSettings"
+                        (onDeSelectAll)="onDeSelectAll($event, i, 'assets')" [(ngModel)]="action.assets">
+                      </angular2-multiselect>
+                    </td>
+                    <td>
+                      <!-- <ng-select [items]='tagsMeta' class="scada-cards" bindLabel='label' [clearable]="false"
+                        [loading]="isDevicesLoading" loadingText='Loading Tags..' [virtualScroll]='true'
+                        placeholder='Select tags..' [multiple]='true' [(ngModel)]="action.tags"></ng-select> -->
+                      <angular2-multiselect [data]="tagsMeta" [settings]="multiselectSettings"
+                        (onDeSelectAll)="onDeSelectAll($event, i, 'tags')" [(ngModel)]="action.tags">
+                      </angular2-multiselect>
+                    </td>
+                    <td>
+                      <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]='action.write_value'
+                          [disabled]='action.tags.length == 1 &&  action.tags[0].value === "tag_1473"'
+                          placeholder="Enter value">
+                      </div>
+                    </td>
+                    <td>
+                      <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="action.action_label"
+                          placeholder="Enter label">
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <i class="fa fa-trash trash-hov color-ac" [ngClass]="{'not-allowed':actions.length == 1}"
+                        (click)='(actions.length !== 1) ? deleteRow(i) : ""'></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="col-md-6">
+                <div class="form-group" *ngIf='devicesMeta && devicesMeta.length !== 0'>
+
+                </div>
+              </div>
+            </div>
+            <ng-container>
+              <button class="btn btn-primary btn-sm" (click)='isDevicesLoading ? "" : addRows()'><i
+                  class="fa fa-plus"></i>
+                Add</button>
+            </ng-container>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary btn-sm mr-3"
+        (click)='!savingAssetControl ? saveAssetControl(): ""'>Save</button>
+      <button type="button" class="btn btn-secondary btn-sm mr-3" data-dismiss="modal" #closeModal>Close</button>
+    </div>
+  </div>
+</div>

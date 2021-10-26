@@ -1,0 +1,166 @@
+{
+  "data": {
+    "chartData": {
+      "series": [
+        {
+          "aggregation": null,
+          "benchmark": false,
+          "benchmarkValue": 9,
+          "color": null,
+          "conversionFactor": 1,
+          "function": {
+            "frequency": null,
+            "isCustom": false,
+            "name": null,
+            "operator": null,
+            "shift": null,
+            "tag1": null,
+            "tag2": null,
+            "tag3": null
+          },
+          "group": null,
+          "isAdvance": false,
+          "isCustomValue": false,
+          "isInverse": false,
+          "isMap": false,
+          "isTile": false,
+          "name": "GF Spare1_W Total",
+          "position": "left",
+          "selectedUnit": "Watt",
+          "selectedUnitVal": null,
+          "tag": {
+            "label": "W Total",
+            "type": "tag",
+            "unit": {
+              "label": "Watt",
+              "value": "unit_101"
+            },
+            "value": "tag_264"
+          },
+          "threshold": false,
+          "thresholdValue": 100,
+          "type": "line",
+          "unit": "Watt",
+          "unitInfo": {
+            "label": "Watt",
+            "value": "unit_101"
+          },
+          "seriesId": "series_0",
+          "seriesName": "W Total",
+          "seriesDataSource": "ilens.live_data.raw",
+          "selectedTag": "tag_264",
+          "selectedName": "W Total",
+          "groupName": "device_instance_169",
+          "data":[
+            [
+              "28/05/2020 08:00:00",
+              "0.8",
+              0.8,
+              200
+            ],
+            [
+              "28/05/2020 08:01:00",
+              "0.4",
+              0.4,
+              100
+            ],
+            [
+              "28/05/2020 08:02:00",
+              "0.5",
+              0.5,
+              124
+            ],
+            [
+              "28/05/2020 08:03:00",
+              "0.3",
+              0.3,
+              200
+            ],
+            [
+              "28/05/2020 08:05:00",
+              "0.7",
+              0.7,
+              100
+            ],
+            [
+              "28/05/2020 08:06:00",
+              "0.4",
+              0.4,
+              100
+            ],
+            [
+              "28/05/2020 08:07:00",
+              "-0.3",
+              -0.3,
+              100
+            ],
+            [
+              "28/05/2020 08:08:00",
+              "-0.4",
+              -0.4,
+              100
+            ],
+            [
+              "28/05/2020 08:09:00",
+              "-0.6",
+              -0.6,
+              130
+            ],
+            [
+              "28/05/2020 08:10:00",
+              "-0.5",
+              -0.5,
+              140
+            ],
+            [
+              "28/05/2020 08:11:00",
+              "-0.5",
+              -0.5,
+              100
+            ]
+          ]
+        }
+      ],
+      "category": [
+        "28/05/2020 08:00:00",
+        "28/05/2020 08:01:00",
+        "28/05/2020 08:02:00",
+        "28/05/2020 08:03:00",
+        "28/05/2020 08:04:00",
+        "28/05/2020 08:05:00",
+        "28/05/2020 08:06:00",
+        "28/05/2020 08:07:00",
+        "28/05/2020 08:08:00",
+        "28/05/2020 08:09:00",
+        "28/05/2020 08:10:00",
+        "28/05/2020 08:11:00"
+      ]
+    },
+    "yaxisData":
+        {
+          "data": [
+            -0.1,
+            -0.2,
+            -0.3,
+            -0.4,
+            -0.5,
+            -0.6,
+            -0.7,
+            -0.8,
+            -0.9,
+            1,
+            0.9,
+            0.8,
+            0.7,
+            0.6,
+            0.5,
+            0.4,
+            0.3,
+            0.2,
+            0.1,
+            0
+          ]
+    }
+  },
+  "status": "success"
+}

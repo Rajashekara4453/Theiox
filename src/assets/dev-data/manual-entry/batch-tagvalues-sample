@@ -1,0 +1,24 @@
+[
+    { tag_id: "tag_1728", tagValue: "100"
+    },
+    { tag_id: "tag_1729", tagValue: "200"
+    },
+    { tag_id: "tag_1733", tagValue: "300"
+    },
+    { tag_id: "tag_1739", tagValue: "400"
+    },
+    { tag_id: "tag_1742", tagValue: "500"
+    },
+    { tag_id: "tag_1745", tagValue: "600"
+    },
+    { tag_id: "tag_1746", tagValue: "700"
+    },
+    { tag_id: "tag_1750", tagValue: "800"
+    },
+    { tag_id: "tag_1751", tagValue: "900"
+    },
+    { tag_id: "tag_2005", tagValue: "1100"
+    },
+    { tag_id: "tag_2006", tagValue: "105430"
+    },
+]

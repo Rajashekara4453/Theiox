@@ -1,0 +1,116 @@
+<div class="modal-content h-100">
+    <div class="modal-header dropdown">
+        <h6 class="modal-title text-muted">
+            {{headerTitle}}
+        </h6>
+        <div class="search-group mr-2 ml-auto" tabindex="1">
+            <i class="fa fa-search search-icon"></i>
+            <input class="search-input" placeholder="Search" type="search" [(ngModel)]="queryStringHistoryTable"
+                [ngModelOptions]="{standalone:true}">
+        </div>
+        <ng-select bindValue="date_and_time" bindLabel="triggered_by" [clearable]="false"
+            name="historyDefaultDropdownValue" ngDefaultControl [items]="historyExecutionDropdownList"
+            [(ngModel)]="historyDefaultDropdownValue" (change)="actionHistoryInfo($event.execution_id)"
+            placeholder="Activity">
+            <ng-template ng-label-tmp let-item="item" [(ngModel)]="historyDefaultDropdownValue" ngDefaultControl>
+                {{historyDefaultDropdownValue}}
+            </ng-template>
+            <ng-template ng-option-tmp let-item="item">
+                {{item['date_and_time']}} by {{item['triggered_by']}}
+            </ng-template>
+        </ng-select>
+    </div>
+    <div class="modal-body pt-0">
+        <table class="table" *ngIf="!isHistoryDataMessage && !isHistoryResponse && !isHistoryLoading">
+            <thead>
+                <tr>
+                    <th *ngFor="let th of historyExecutionData['header_content']">{{th['label']}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="let tr of historyExecutionData['body_content']  | elmfilter : queryStringHistoryTable : ['asset_name','tag','value','status'] : true : 2 | slice:initialRangeHistoryExecutionTable:finalRangeHistoryExecutionTable; let i =index; trackBy:trackAssetControlList ">
+                    <td *ngFor="let td of historyExecutionData['header_content']">
+                        <span *ngIf="td['key']!='status'">
+                            {{tr[td['key']]}}
+                        </span>
+                        <span *ngIf="td['key']=='status'">
+                            <span *ngIf="tr[td['key']]=='success'">
+                                <span class="table-status success">
+                                    {{tr[td['key']]}}
+                                </span>
+                            </span>
+                            <span *ngIf="tr[td['key']]=='failed'">
+                                <span class="table-status failed">
+                                    {{tr[td['key']]}}
+                                </span>
+                            </span>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="btn-load-more"
+            *ngIf="isHistoryExecutionTableLoadMore && (historyExecutionData['body_content'] | elmfilter : queryStringHistoryTable : ['asset_name','tag','value'] : true : 2).length>30">
+            <button (click)="loadMoreHistoryLists()" class="btn btn-sm  btn-outline-primary"><i
+                    class="fa fa-repeat"></i> Load More</button>
+        </div>
+        <!-- Page Loading -->
+        <div *ngIf="isHistoryLoading" class="position-relative h-100">
+            <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <!-- Page Loading -->
+        <!-- No Data Found -->
+        <div class="empty-history" *ngIf="isHistoryDataMessage">
+            <span class="fa fa-clock-o">
+            </span>
+            <h6 class="text-muted">
+                History data not found
+            </h6>
+            <p>
+                Choose another activity from the activity list to view the history of other schedules.
+            </p>
+        </div>
+        <!-- No Data Found -->
+        <!-- Error Message -->
+        <div class="modal-body" *ngIf="isHistoryResponse">
+            <div class="empty-history">
+                <span class="fa fa-refresh">
+                </span>
+                <h6 class="text-muted">
+                    Failed
+                </h6>
+                <p class="text-muted">
+                    Invalid response from server. Please try again later.
+                </p>
+                <button class="btn btn-sm btn-link widget-text-color" (click)="actionHistory($event.execution_id)">
+                    <i class="fa fa-repeat"></i>
+                    Try Again
+                </button>
+            </div>
+        </div>
+        <!-- Error Message -->
+        <!-- No Search Result Found  -->
+        <div *ngIf="!isHistoryDataMessage && !isHistoryResponse && !isHistoryLoading && (historyExecutionData['body_content'] | elmfilter : queryStringHistoryTable : ['asset_name','tag','value','status'] : true : 2).length===0"
+            class="d-flex align-items-center justify-content-center flex-column h-100">
+            <h6 class="text-muted">
+                No results found
+            </h6>
+            <p class="text-muted">
+                <!-- Please search keywords related to <strong>Action Name</strong>, <strong>Group</strong> or
+                <strong>User Name</strong>. -->
+            </p>
+        </div>
+        <!-- No Search Result Found  -->
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-sm btn-secondary" data-dismiss="modal" type="button"
+            (click)="cancelHistoryInfoModal()">Close</button>
+    </div>
+</div>
+<!-- History Modal Ends-->

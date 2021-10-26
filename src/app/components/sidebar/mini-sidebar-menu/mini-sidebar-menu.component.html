@@ -1,0 +1,124 @@
+<div (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()">
+
+  <div id="mini-sidebar-menu" class="mini-sidebar-menu">
+    <ul class="main-mini-menu">
+      <li class="pin dekstop">
+        <a href="javascript:void(0)">
+          <kl-pin-sidebar></kl-pin-sidebar>
+        </a>
+      </li>
+      <li class="pin mobile" *ngIf="dashboardSidebar">
+        <a href="javascript:void(0)">
+          <a class="nav-brand mobile" (click)='overlaySideBar($event)'>
+            <i id="pin-sidebar" class="elm-menu"></i>
+          </a>
+        </a>
+      </li>
+      <li *ngIf='showOrHide.dashboard' (click)="getSidebarMenus('Dashboard')"
+        [ngClass]="{'active': heading === 'Dashboard'}">
+        <a href="javascript:void(0);"><i class="elm-speed elm-icon"></i></a>
+        <span class="subtext">Dashboard</span>
+      </li>
+      <li *ngIf='showOrHide.reports' (click)="getSidebarMenus('Reports')" [ngClass]="{'active': heading === 'Reports'}">
+        <a href="javascript:void(0);"><i class="elm-ratings elm-iocn"></i></a>
+        <span class="subtext">Reports</span>
+      </li>
+      <li *ngIf='showOrHide.trends' (click)="getSidebarMenus('Trends')" [ngClass]="{'active': heading === 'Trends'}">
+        <a href="javascript:void(0);"><i class="elm-account elm-icon"></i></a>
+        <span class="subtext">Trends</span>
+      </li>
+      <!-- <li (click)="getSidebarMenus('Maps')" [ngClass]="{'active': heading === 'Maps'}">
+        <a href="javascript:void(0);"><i class="elm-place-marker"></i></a>
+        <span class="subtext">Maps</span>
+      </li> -->
+      <li *ngIf='showOrHide.sld' (click)="getSidebarMenus('SLD')" [ngClass]="{'active': heading == 'SLD'}">
+        <a href="javascript:void(0);"><i class="elm-flow-chart elm-icon"></i></a>
+        <span class="subtext">SLD</span>
+      </li>
+      <li *ngIf='showOrHide.alarmEvents' (click)="getSidebarMenus('Alarms')"
+        [ngClass]="{'active': heading == 'Alarms'}">
+        <a href="javascript:void(0);"><i class="elm-alarm elm-icon"></i></a>
+        <span class="subtext">Alarms/Events</span>
+      </li>
+      <li *ngIf='showOrHide.channelConfiguration' (click)="getSidebarMenus('Channel_Configuraton')"
+        [ngClass]="{'active': heading == 'Channel_Configuraton'}">
+        <a href="javascript:void(0);"><i class="elm-computers-connecting elm-icon"></i></a>
+        <span class="subtext">Channel Configuration</span>
+      </li>
+    </ul>
+    <div>
+      <ul class="mb-2">
+        <li>
+          <a class="khide" href="https://support.elmeasure.com" target="_blank"><i class="elm-info"></i></a>
+          <span class="subtext">Need Help?</span>
+        </li>
+        <li *ngIf='showOrHide.Configurations' (click)="getSidebarMenus('Configurations')"
+          [ngClass]="{'active': heading === 'Configurations'}">
+          <a href="javascript:void(0);"><i class="elm-settings elm-icon"></i></a>
+          <span class="subtext">Configurations</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <kl-left-side-bar *ngIf="leftSidebar" [menus]="sideMenus" [heading]="heading"></kl-left-side-bar>
+  <kl-dashboard-sidebar *ngIf="dashboardSidebar" [menus]="sideMenus" [heading]="heading"
+    (loadPreviousDashboard)="loadDefaultDashBoard()"></kl-dashboard-sidebar>
+
+  <div class="draggable-sidebar" *ngIf="!leftSidebar && !dashboardSidebar && !sldSidebar">
+    <!-- <div class="d-flex justify-content-left align-items-center title-container">
+        <div class="sidebar-title display-inline-block">Sidebar Menu</div>
+      </div> -->
+
+    <div class="sidebar-content">
+
+      <div id="accordion" *ngIf='showOrHide.dashboard' (click)="getSidebarMenus('Dashboard')"
+        [ngClass]="{'active': heading === 'Dashboard'}">
+        <div class="card">
+          <div class="card-header">
+            <a href="javascript:void(0);" class="sidebar-title">Dashboard</a>
+          </div>
+        </div>
+      </div>
+      <div *ngIf='showOrHide.reports' id="accordion" (click)="getSidebarMenus('Reports')"
+        [ngClass]="{'active': heading === 'Reports'}">
+        <div class="card">
+          <div class="card-header">
+            <a href="javascript:void(0);" class="sidebar-title">Reports</a>
+          </div>
+        </div>
+      </div>
+      <div id="accordion" *ngIf='showOrHide.trends' (click)="getSidebarMenus('Trends')"
+        [ngClass]="{'active': heading === 'Trends'}">
+        <div class="card">
+          <div class="card-header">
+            <a href="javascript:void(0);" class="sidebar-title">Trends</a>
+          </div>
+        </div>
+      </div>
+      <div id="accordion" *ngIf='showOrHide.sld' (click)="getSidebarMenus('SLD')"
+        [ngClass]="{'active': heading == 'SLD'}">
+        <div class="card">
+          <div class="card-header">
+            <a href="javascript:void(0);" class="sidebar-title">SLD</a>
+          </div>
+        </div>
+      </div>
+      <div id="accordion" *ngIf='showOrHide.alarmEvents' (click)="getSidebarMenus('Alarms')"
+        [ngClass]="{'active': heading == 'Alarms'}">
+        <div class="card">
+          <div class="card-header">
+            <a href="javascript:void(0);" class="sidebar-title">Alarms/Events</a>
+          </div>
+        </div>
+      </div>
+      <div id="accordion" *ngIf='showOrHide.channelConfiguration' (click)="getSidebarMenus('Channel_Configuraton')"
+        [ngClass]="{'active': heading == 'Channel Configuraton'}">
+        <div class="card">
+          <div class="card-header">
+            <a href="javascript:void(0);" class="sidebar-title">Channel Configuration</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

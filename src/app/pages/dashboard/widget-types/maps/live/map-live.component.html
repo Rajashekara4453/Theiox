@@ -1,0 +1,22 @@
+<!-- [style.height.px]="tableDataMaps.h -155" -->
+<agm-map #AgmMap [fitBounds]="true" class="ui-resizable-handle d-block w-100 h-100" [disableDefaultUI]="false"
+    (zoomChange)="zoomChanges($event)" [zoomControl]="true" [maxZoom]="zoom" [minZoom]="2" [fullscreenControl]="true"
+    [streetViewControl]="false">
+    <agm-marker-cluster [minimumClusterSize]="2" [gridSize]="size*16" [maxZoom]="size" [zoomOnClick]="true"
+        imagePath="./../../../../../../assets/images/map-images/m">
+        <agm-marker [agmFitBounds]="true" *ngFor="let m of markers; let i = index;trackBy:track"
+             [latitude]="m.lat" [longitude]="m.lng" [title]='m.title'
+            [iconUrl]="m.image" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m, $event)">
+            <agm-info-window #infowindow [isOpen]="true">
+                <label class="text-truncate" title="{{m.name}}">{{ m.name }}</label>
+                <div style="width: 300px;height: 100px;" *ngIf="m['tableData']!='undefined' && m['tableData']['bodyContent'].length>0;else noData">
+                    <kl-common-table [tableData]="m['tableData']">
+                    </kl-common-table>
+                </div>
+                <ng-template #noData>
+                    <span class="no-data">Data not found</span>
+                </ng-template>
+            </agm-info-window>
+        </agm-marker>
+    </agm-marker-cluster>
+</agm-map>

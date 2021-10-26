@@ -1,0 +1,78 @@
+<!-- <kl-mini-sidebar-menu [pageName]="'License Management'"></kl-mini-sidebar-menu> -->
+<!-- <kl-config-breadcrumb [breadcrumbTitle]="'Version Information'"></kl-config-breadcrumb> -->
+
+
+<!-- <div class="modal fade" id="versionInfoModal" tabindex="-1" role="dialog" aria-labelledby="versionInfoModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-component modal-xl p-0" role="document">
+    <div class="modal-content modal-content-component">
+      <div class="modal-header form-header">
+        <h6 class="modal-title text-muted" id="exampleModalLabel"> ElNet - 7 VERSION INFO</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <i class="elm-cancel"></i>
+        </button>
+      </div>
+      <div class="modal-body modal-body-component form-content">
+        <kl-versions-info></kl-versions-info>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- <div class="main-content bg-white">
+    <div class="">
+        <div class="row">
+  <div class="col-12">
+    <table class="table table-lg">
+        <thead>
+      <tr>
+        <th>
+           ElNet - 7 
+        </th>
+        <th>
+          
+        </th>
+      </tr>
+      </thead>
+      <tbody  *ngFor="let version of versionArray">
+       
+      <tr>
+        <td>
+            {{version.displayName}}
+        </td>
+        <td>
+            {{version.version}}
+        </td>
+      </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div> -->
+
+<table class="table table-lg">
+  <thead>
+    <tr>
+      <th>
+        ElNet - 7
+      </th>
+      <th>
+
+      </th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let version of versionArray">
+
+    <tr>
+      <td>
+        {{version.displayName}}
+      </td>
+      <td>
+        {{version.version}}
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- *ngFor="let element of versionOf.value | keyvalue" -->

@@ -1,0 +1,132 @@
+<div class="main-content">
+  <div class="sub-main-content">
+    <ng-container *ngIf="!showAddClientForm">
+      <div class="d-flex p-2">
+        <div class="search-group search-group-sm">
+          <span class="fa fa-search search-icon"></span>
+          <input class="search-input" type="search" placeholder="Search Clients" [(ngModel)]="queryString"
+            [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="ml-auto">
+          <button type="button" class="btn btn-primary btn-sm float-right" (click)="showClientForm('')">
+            <strong>+</strong> Add Client
+          </button>
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>CLIENTS</th>
+            <th>ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let client of clientList | elmfilter : queryString : ['label'] : true : 2; trackBy: trackByFn; let i = index">
+            <ng-container>
+              <!-- *ngIf="!client.isdeleted" -->
+              <td>{{client.label}}</td>
+              <td>
+                <span (click)="showClientForm(client.value)">
+                  <i class="elm-pencil icon-size"></i>
+                </span>
+                <span data-toggle="modal" data-target="#clientDeleteModal" id="deleteModalButton"
+                  (click)="sendClientIdToDelete(client.value, client.label, client.isdeleted)">
+                  <!-- {{ client.isdeleted}} -->
+                  <ng-container *ngIf="client.isdeleted === 'true'; else elseblock">
+                    <i class="elm-password icon-size"></i>
+                  </ng-container>
+                  <ng-template #elseblock>
+                    <i class="elm-padlock  icon-size"></i>
+                  </ng-template>
+                </span>
+              </td>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+
+    <!-- Modal for Delete Confirmation -->
+    <ng-container>
+      <div class="modal fade" id="clientDeleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to {{disableOrEnable}} the Client <b>{{clientName}}</b>?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" id="dismissDelete" data-dismiss="modal">No</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)=deleteClientData()>Yes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <!-- Modal for Delete Confirmation ends -->
+
+    <ng-container *ngIf="showAddClientForm">
+      <form (ngSubmit)=addClientToList(addClientForm.value) autocomplete="off" [formGroup]="addClientForm">
+        <div class="formGroup sub-main-content">
+          <div class="col-4">
+            <div class="form-group">
+              <div class="image-upload">
+                <label for="file-input">
+                  <img [src]="clientLogo" class="image logo-size" alt="clientLogo"
+                    title="Click to upload client logo" />
+                </label>
+                <input hidden type="file" class="form-control browse" formControlName="Imagefile" id="file-input"
+                  ngModel (change)="getFiles($event)">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <input hidden class="form-control" [(ngModel)]="clientId" type="text" placeholder="clientId"
+                name="clientId" formControlName="clientId" autocomplete="off" />
+            </div>
+
+            <div class="form-group">
+              <label for="clientName">Client Name*:
+                <input required class="form-control" [(ngModel)]="clientName" type="text"
+                  placeholder="Enter Client Name" name="clientName" formControlName="clientName" autocomplete="off" />
+              </label>
+            </div>
+            <div class="form-group">
+              <label for="clientDescription">Client Description*:
+                <textarea required class="form-control" [(ngModel)]="clientDescription" type="text"
+                  placeholder="Enter Client Description" name="clientDescription" formControlName="clientDescription"
+                  autocomplete="off"></textarea>
+              </label>
+            </div>
+            <div class="form-group">
+              <label for="clientAddress">Client Address*:
+                <textarea class="form-control" [(ngModel)]="clientAddress" type="text"
+                  placeholder="Enter Client Address" name="clientAddress" formControlName="clientAddress"
+                  autocomplete="off"></textarea>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div>
+          <ng-container *ngIf='isShowDelete'>
+            <input type="button" name="deleteButton" class="btn btn-primary float-right" value="Delete"
+              data-toggle="modal" data-target="#userDeleteModal" id="deleteModalButton"
+              [class.disabled]='disableDelete' />
+          </ng-container>
+          <input type="button" name="cancelButton" class="btn btn-primary float-right" value="Cancel"
+            (click)="resetFields()" />
+          <input type="submit" name="addButton" class="btn btn-primary float-right" value="Submit"
+            [class.disabled]="disableSave" />
+
+        </div>
+      </form>
+    </ng-container>
+  </div>
+</div>

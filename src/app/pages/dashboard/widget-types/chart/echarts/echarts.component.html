@@ -1,0 +1,40 @@
+<!-- <div [style.height.px]="chartHeight"> -->
+<ng-container *ngIf="cType === 'bar'">
+  <kl-e-bar [chartInfo]="eChartData"></kl-e-bar>
+</ng-container>
+<ng-container *ngIf="cType === 'area'">
+  <kl-e-area [chartInfo]="eChartData"></kl-e-area>
+</ng-container>
+<ng-container *ngIf="cType === 'combination'">
+  <kl-e-custom [chartInfo]="eChartData"></kl-e-custom>
+</ng-container>
+<ng-container *ngIf="cType === 'gauge'">
+  <kl-e-gauge [chartInfo]="eChartData"></kl-e-gauge>
+</ng-container>
+<ng-container *ngIf="cType === 'line'">
+  <kl-e-line [chartInfo]="eChartData"></kl-e-line>
+</ng-container>
+<ng-container *ngIf="cType === 'pie'">
+  <kl-e-pie [chartInfo]="eChartData"></kl-e-pie>
+</ng-container>
+<ng-container *ngIf="cType === 'scatter'">
+  <kl-e-scatter [chartInfo]="eChartData"></kl-e-scatter>
+</ng-container>
+<ng-container *ngIf="cType === 'treemap'">
+  <kl-e-treemap [chartInfo]="eChartData"></kl-e-treemap>
+</ng-container>
+<ng-container *ngIf="cType === 'markLine'">
+  <kl-e-marker-line [chartInfo]="eChartData"></kl-e-marker-line>
+</ng-container>
+<ng-container *ngIf="cType === 'markPoint'">
+  <kl-e-marker-pointer [chartInfo]="eChartData"></kl-e-marker-pointer>
+</ng-container>
+<ng-container *ngIf="cType === 'stackedBar'">
+  <kl-stack-bar [chartInfo]="eChartData"></kl-stack-bar>
+</ng-container>
+<ng-container *ngIf="cType === 'harmonics'">
+  <kl-bar-tag [chartInfo]="eChartData"></kl-bar-tag>
+</ng-container>
+<ng-container *ngIf="cType === 'pfgraph'">
+  <kl-e-pf [chartInfo]="eChartData"></kl-e-pf>
+</ng-container>

@@ -1,0 +1,200 @@
+{
+    "data": {
+        "dashboard": {
+            "name": "Dashboard",
+            "url": "dashboard",
+            "children": {
+                "widgets": {
+                    "name": "Widgets",
+                    "url": "dashboard",
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false
+                },
+                "dashboard": {
+                    "name": "Dashboard",
+                    "url": "dashboard",
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false,
+                    "resize": false
+                }
+            }
+        },    
+        "reports": {
+            "name": "Reports",
+            "url": "reports",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "trends": {
+            "name": "Trends",
+            "url": "trends",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "scada": {
+            "name": "Scada",
+            "url": "sld",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "alarmEvents": {
+            "name": "Alarms / Events",
+            "url": "alarm-events",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "acknowledge": false
+        },
+        "maps": {
+            "name": "Maps",
+            "url": "maps",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "userManagement": {
+            "name": "User Management",
+            "url": "configurations/userManagement",
+            "children": {
+                "userList": {
+                    "name": "User List",
+                    "url": "configurations/userManagement/userList",
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false
+                },
+                "accessLevel": {
+                    "name": "Access Level",
+                    "url": "configurations/userManagement/accessLevel",
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false
+                },
+                "workGroup": {
+                    "name": "Work Group",
+                    "url": "configurations/userManagement/workGroup",
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false
+                }
+            }
+        },
+        "sites": {
+            "name": "Site Configuration",
+            "url": "configurations/sites",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "gateways": {
+            "name": "Channel Configuration",
+            "url": "configurations/gatewayDevices/gatewaylist",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "devices": {
+            "name": "Device Configuration",
+            "url": "configurations/gatewayDevices/gatewaylist",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "tags": {
+            "name": "Tag Configuration",
+            "url": "configurations/masterConfig/parameters",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "ruleEngine": {
+            "name": "Rule Engine",
+            "url": "configurations/rule-engine",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "manualEntry": {
+            "name": "Manual Entry",
+            "url": "configurations/manual-entry",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "alarmConfiguration": {
+            "name": "Alarm",
+            "url": "configurations/alarm",
+            "children": {
+                "alarmConfigurations": {
+                    "name": "Alarm Configurations",
+                    "url": "configurations/alarm/alarms",
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false
+                },
+                "alarmPriorityTypes": {
+                    "name": "Alarm Priority Types",
+                    "url": "configurations/alarm/alarmPriorityTypes",
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false
+                },
+                "thresholds": {
+                    "name": "Thresholds",
+                    "url": "configurations/alarm/thresholds",
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false
+                }
+            }
+        },
+        "assets": {
+            "name": "Assets",
+            "url": "assets",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "licenceType": {
+            "name": "Licence Type",
+            "url": "license-management",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "masterConfiguration": {
+            "name": "Master Configuration",
+            "url": "configurations/masterConfig",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        }
+    }
+}

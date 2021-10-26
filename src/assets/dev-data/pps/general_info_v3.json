@@ -1,0 +1,304 @@
+{
+    "data": {
+      "bodyContent": {
+        "balance_type": "1",
+        "block_type": "general_info",
+        "customer_address": "elmeasuere india private limited, huviyankana halli, jalala hobli, bagaluru yelahanka",
+        "customer_id": "5",
+        "customer_name": "sm5",
+        "dg_threshold_kva": 5,
+        "email_id": "raju.g@elmeasure.com",
+        "flat_no": "5",
+        "isdeleted": false,
+        "isdisabled": false,
+        "meter_type": "1",
+        "mobile_no": 8142524589,
+        "model": 5120,
+        "no_of_digital_input": 2,
+        "sensor_id": [
+          {
+            "sensor_id": "sensor_10030",
+            "sensor_name": "smart-meter-5"
+          }
+        ],
+        "serial_no": 0,
+        "smart_meter_configuration_id": "",
+        "version": 101
+      },
+      "headerContent": [
+        {
+          "class": "",
+          "content": "New Section",
+          "data": [
+            {
+              "disabled": true,
+              "gridWidth": "3",
+              "hidden": true,
+              "key": "smart_meter_configuration_id",
+              "label": "Smart meter configuration ID",
+              "placeholder": "Enter Smart meter configuration ID",
+              "required": false,
+              "type": "text",
+              "value": ""
+            },
+            {
+              "disabled": true,
+              "gridWidth": "3",
+              "hidden": true,
+              "key": "sensor_id",
+              "label": "Sensor ID",
+              "placeholder": "Enter Sensor ID",
+              "required": false,
+              "type": "text",
+              "value": ""
+            },
+            {
+              "disabled": true,
+              "gridWidth": "3",
+              "hidden": true,
+              "key": "block_type",
+              "label": "block_type",
+              "placeholder": "Enter Sensor ID",
+              "required": false,
+              "type": "text",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "3",
+              "hidden": false,
+              "key": "customer_id",
+              "label": "Customer ID",
+              "placeholder": "Enter Customer ID",
+              "required": true,
+              "type": "text",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "3",
+              "hidden": false,
+              "key": "customer_name",
+              "label": "Customer Name",
+              "placeholder": "Enter Customer Name",
+              "required": true,
+              "type": "text",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "3",
+              "hidden": false,
+              "key": "flat_no",
+              "label": "Flat No",
+              "placeholder": "Enter Flat No",
+              "required": true,
+              "type": "text",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "3",
+              "hidden": false,
+              "key": "area",
+              "label": "Area",
+              "placeholder": "",
+              "required": false,
+              "type": "text",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "3",
+              "hidden": false,
+              "key": "customer_address",
+              "label": "Address",
+              "placeholder": "Enter Address",
+              "required": false,
+              "type": "text",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "3",
+              "hidden": false,
+              "key": "gst_number",
+              "label": "GST Number",
+              "placeholder": "GST Number",
+              "required": false,
+              "type": "text",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "3",
+              "hidden": false,
+              "key": "mobile_no",
+              "label": "Mobile No",
+              "placeholder": "Enter Mobile Number",
+              "required": false,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "3",
+              "hidden": false,
+              "key": "email_id",
+              "label": "Email ID",
+              "placeholder": "Enter Email Address",
+              "required": false,
+              "type": "text",
+              "value": ""
+            },
+            {
+              "disabled": false,
+              "gridWidth": "3",
+              "hidden": false,
+              "key": "dg_threshold_kva",
+              "label": "DG Threshold (kVA)",
+              "placeholder": "Enter DG Threshold (kVA)",
+              "required": true,
+              "type": "number",
+              "value": "60"
+            },
+            {
+              "disabled": true,
+              "gridWidth": "3",
+              "hidden": false,
+              "key": "no_of_digital_input",
+              "label": "No. of Digital Inputs",
+              "placeholder": "No. of Digital Inputs",
+              "required": true,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": true,
+              "gridWidth": "3",
+              "hidden": false,
+              "key": "serial_no",
+              "label": "Serial No.",
+              "placeholder": "Serial No.",
+              "required": true,
+              "type": "text",
+              "value": ""
+            },
+            {
+              "disabled": true,
+              "gridWidth": "3",
+              "hidden": false,
+              "key": "version",
+              "label": "Version",
+              "placeholder": "Version",
+              "required": true,
+              "type": "text",
+              "value": ""
+            },
+            {
+              "disabled": true,
+              "gridWidth": "3",
+              "hidden": false,
+              "key": "model",
+              "label": "Model",
+              "placeholder": "Model",
+              "required": true,
+              "type": "text",
+              "value": ""
+            },
+            {
+              "disabled": true,
+              "gridWidth": "3",
+              "hidden": true,
+              "key": "meter_type",
+              "label": "Meter Type",
+              "placeholder": "Meter Type",
+              "required": true,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "disabled": true,
+              "gridWidth": "3",
+              "hidden": true,
+              "key": "balance_type",
+              "label": "Balance Type",
+              "placeholder": "Balance Type",
+              "required": true,
+              "type": "number",
+              "value": ""
+            },
+            {
+              "allowClear": true,
+              "dependent": false,
+              "disabled": true,
+              "gridWidth": "4",
+              "hidden": true,
+              "key": "isdisabled",
+              "label": "Disable/ Enable",
+              "options": [
+                {
+                  "label": "Disable",
+                  "value": "true"
+                },
+                {
+                  "label": "Enable",
+                  "value": "false"
+                }
+              ],
+              "placeholder": "Select Status",
+              "required": false,
+              "type": "select",
+              "value": ""
+            },
+            {
+              "allowClear": true,
+              "dependent": false,
+              "disabled": true,
+              "gridWidth": "4",
+              "hidden": true,
+              "key": "isdeleted",
+              "label": "Delete/Restore",
+              "options": [
+                {
+                  "label": "Delete",
+                  "value": "true"
+                },
+                {
+                  "label": "Restore",
+                  "value": "false"
+                }
+              ],
+              "placeholder": "Select Status",
+              "required": false,
+              "type": "select",
+              "value": ""
+            }
+          ],
+          "layoutType": "section",
+          "sectionTitle": "",
+          "sectionWidth": "12"
+        }
+      ],
+      "number": 6,
+      "userActions": {
+        "buttonsPosition": "fixed",
+        "customActions": [
+          {
+            "buttonId": "readBtn",
+            "label": "Read",
+            "isReloadDFM":true,
+            "isConfirm": true
+          },
+          {
+            "buttonId": "writeBtn",
+            "label": "Write",
+            "isSave": true
+          }
+        ]
+      }
+    },
+    "header_id": "smart_meter_configuration",
+    "message": "Data fetched successfully",
+    "status": "success"
+  }

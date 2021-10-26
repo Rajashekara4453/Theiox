@@ -1,0 +1,299 @@
+<kl-config-breadcrumb></kl-config-breadcrumb>
+<div class="main-content">
+
+  <!-- Page Loading -->
+  <div *ngIf="isPageLoading" class="position-relative h-100">
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <!-- Page Loading -->
+
+  <!-- Error Message -->
+  <div class="empty-history" *ngIf="isResponseFailure && !isPageLoading && !isNoDataMessage">
+    <span class="fa fa-refresh">
+    </span>
+    <p class="text-muted">
+      Invalid response from server. Please try again later.
+    </p>
+    <button class="btn btn-sm btn-link widget-text-color" (click)="errorReload(pageURLs['action'], 'history', onloadRequestPayload)">
+      <i class="fa fa-repeat"></i>
+      Try Again
+    </button>
+  </div>
+  <!-- Error Message -->
+
+  <!-- No Data Found -->
+  <div class="empty-history" *ngIf="(isNoDataMessage && !isResponseFailure && !isPageLoading )">
+    <span class="fa fa-clock-o"></span>
+    <h6 class="text-muted">
+      Data not found
+    </h6>
+    <button class="btn btn-sm btn-link widget-text-color" (click)="errorReload(pageURLs['action'], 'history', onloadRequestPayload)">
+      <i class="fa fa-repeat"></i>
+       Reload
+    </button>
+  </div>
+  <!-- No Data Found -->
+
+  <!-- MAIN CONTENT AREA STARTS -->
+  <div *ngIf="!isPageLoading && !isNoDataMessage && !isResponseFailure" class="sub-main-content ">
+
+    <!-- FILTER SECTION STARTS -->
+
+    <div class="tab-pane filter-content" *ngIf="filterPageData['filters'] && filterPageData['filters'].length > 0">
+      <div class="tab-pane-container clearfix body-container">
+        <div class="row">
+          <div class="col-md-10 ">
+            <div class="row">
+              <ng-container *ngFor="let filter of filterPageData['filters']">
+                <!-- Multi-Select Dropdown Starts -->
+                <div *ngIf="filter['type'] == 'multiSelect'" class="form-group col-md-2">
+                  <label class="control-label"> {{filter['title']}} </label>
+                  <angular2-multiselect [settings]="multiSelectDropDownSettings"
+                    [(ngModel)]="viewDataBinding[filter['filterType']]" [data]="filter['list']"
+                    (onSelect)="onItemSelect($event, filter['filterType'], filter['type'])"
+                    (onDeSelect)="onItemDeSelect($event, filter['filterType'], filter['type'])"
+                    (onDeSelectAll)="onDeSelectAll(filter['filterType'], filter['type'])">
+                  </angular2-multiselect>
+                </div>
+                <!-- Multi-Select Dropdown Ends -->
+
+                <!-- Single-Select Dropdown Starts -->
+                <div class="form-group col-md-2 single-select-dropdown" *ngIf="filter['type'] == 'singleSelect'">
+                  <label class="control-label"> {{filter['title']}} </label>
+                  <angular2-multiselect [settings]="singleSelectDropDownSettings" [data]="filter['list']"
+                    [(ngModel)]="viewDataBinding[filter['filterType']]"
+                    (onSelect)="onItemSelect($event, filter['filterType'], filter['type'])"
+                    (onDeSelect)="onItemDeSelect($event, filter['filterType'], filter['type'])"
+                    (onDeSelectAll)="onDeSelectAll(filter['filterType'], filter['type'])">
+                  </angular2-multiselect>
+                </div>
+                <!-- Single-Select Dropdown Ends -->
+
+                <!-- Date Range Select Starts -->
+                <ng-container class="" *ngIf="filter['type'] == 'dateRange'">
+                  <div class="form-group col-md-3">
+                    <div class="col">
+                      <label class="control-label">From</label>
+                      <angular2-date-picker [settings]="date_time_settings"
+                        [(ngModel)]="viewDataBinding[filter['type']].from"
+                        (onDateSelect)="onDateSelect(filter['type'], 'from')">
+                      </angular2-date-picker>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <div class="col">
+                      <label class="control-label">To</label>
+                      <angular2-date-picker [settings]="date_time_settings"
+                        [(ngModel)]="viewDataBinding[filter['type']].to"
+                        (onDateSelect)="onDateSelect(filter['type'], 'to')">
+                      </angular2-date-picker>
+                    </div>
+                  </div>
+                </ng-container>
+                <!-- Date Range Select Ends -->
+
+                <!-- Single Date Select Starts -->
+                <div class="form-group col-md-2" *ngIf="filter['type'] == 'date'">
+                  <label class="control-label">{{filter['title']}} </label>
+                  <angular2-date-picker [settings]="date_settings" [(ngModel)]="viewDataBinding[filter['type']]"
+                    (onDateSelect)="onDateSelect(filter['type'])">
+                  </angular2-date-picker>
+                </div>
+                <!-- Single Date Select Ends -->
+
+              </ng-container>
+            </div>
+          </div>
+          <div class="d-flex btn-container form-group col-md-2">
+            <div class="form-group apply-btn">
+              <label for=""></label>
+              <button class="btn btn-secondary btn-sm" (click)="resetfilter()">
+                Reset
+              </button>
+            </div>
+            <div class="form-group apply-btn">
+              <label for=""></label>
+              <button class="btn btn-primary btn-sm"  [ngClass]="isFilterApplied ? 'not-allowed-cursor' : ''" (click)="!isFilterApplied ? applyFilter('apply'):$event.stopPropagation()">
+                <span *ngIf="!isFilterApplied">Apply</span>
+                <span *ngIf="isFilterApplied" class="loader-custom btn-loader d-inline-block"></span>
+              </button>
+              <div class="dropdown">
+                <button class="btn btn-primary btn-sm" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton2">
+                  <!-- <a  class="dropdown-item"  href="#">Apply</a> -->
+                  <a class="dropdown-item" [ngClass]="isFilterApplied ? 'not-allowed-cursor' : ''" (click)="!isFilterApplied ? downloadFilter('generate'):$event.stopPropagation()" >Download</a>
+                  <!-- <a class="dropdown-item" [ngClass]="isFilterApplied ? 'not-allowed-cursor' : ''" (click)="!isFilterApplied ? applyDownloadFilter():$event.stopPropagation()" >Apply & Download</a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- FILTER SECTION ENDS -->
+
+    <!-- TABLE SECTION STARTS -->
+    <div class="filtered-table">
+      <!-- Table Loading -->
+      <div *ngIf="isTableLoading" class="position-relative h-100 mt-5">
+        <div class="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      <!-- Table Loading -->
+
+      <!-- No Data Found -->
+      <div class="empty-history" *ngIf="isNoTableDataMessage">
+        <!-- <span class="fa fa-clock-o"></span> -->
+        <h6 class="text-muted">
+          No records found
+        </h6>
+      </div>
+      <!-- No Data Found -->
+
+      <!-- Error Message -->
+      <!-- <div class="" *ngIf="isResponseFailure">
+        <div class="empty-history">
+          <span class="fa fa-refresh">
+          </span>
+          <p class="text-muted">
+            Invalid response from server. Please try again later.
+          </p>
+          <button class="btn btn-sm btn-link widget-text-color" (click)="getData(pageType, action)">
+            <i class="fa fa-repeat"></i>
+            Try Again
+          </button>
+        </div>
+      </div> -->
+      <!-- Error Message -->
+
+      <div class="display table-content">
+        <table class="table table-striped" *ngIf="!isTableLoading && !isNoTableDataMessage && !isResponseFailure">
+          <thead>
+            <tr>
+              <th class="column-size header-check" *ngIf="this.filterPageData.isCheckBox">
+                <span>
+                  <input class="check-box" type="checkbox" [(ngModel)]="isCheckedAll" [title]="isCheckedAll ? 'Deselect all' : 'Select all' " (change)="checkUncheckAll($event)">
+                </span>
+              </th>
+              <th *ngFor="let th of filterPageData['header_content']">
+                <span *ngIf="th['key']!='action' && th['key']!='isSelected'">
+                  {{th['value']}}
+                </span>
+                <!-- <span *ngIf="th['key']=='isSelected'">
+                  <input class="mt-2" type="checkbox" title="All" [(ngModel)]="isCheckedAll"
+                    (change)="checkUncheckAll($event)">
+                </span> -->
+                <span class="ml-4" *ngIf="th['key']=='action' && !multiAction">
+                  {{th['value']}}
+                </span>
+                <span class="" *ngIf="th['key']=='action' && multiAction">
+          <tbody class="d-flex justify-content-center">
+            <tr class="selected-data-action"
+              *ngFor="let th of filterPageData[filterPageData.body_content[0][th['key']]]">
+              <span class="" (click)="multiDataAction(th)">
+                <i class="" [ngClass]="th['class'] + ' fa-sm'" [title]="th['label'] + ' Selected'"
+                  aria-hidden="true"></i>
+              </span>
+            </tr>
+          </tbody>
+          </span>
+          </th>
+          </tr>
+          </thead>
+
+
+          <tbody class="fixedAlign">
+            <tr
+              *ngFor="let tr of filterPageData['body_content'] | slice:initialRangeTableList:finalRangeTableList; let i=index; trackBy:trackFilteredList(i)">
+
+              <td class="column-size" *ngIf="tr.recharge_id !== null && this.filterPageData.isCheckBox">
+                <span>
+                  <input class="check-box" type="checkbox" [(ngModel)]="tr.isSelected" [title]="tr.isSelected ? 'Deselect' : 'Select' "  (change)="selectRechargeId(tr, $event)">
+                </span>
+              </td>
+              <td class="column-size" *ngIf="tr.recharge_id == null && this.filterPageData.isCheckBox">
+                <span>
+                  <input type="checkbox" title="No recharge id found" class="not-allowed-cursor check-box" disabled>
+                </span>
+              </td>
+
+              <td style="text-align:left" *ngFor="let td of filterPageData['header_content']">
+                <span *ngIf="td['key']!='action' && td['key']!='status' && td['key']!='isSelected'">
+                  {{tr[td['key']]}}
+                </span>
+                <span *ngIf="td['key']=='status'">
+                  <span *ngIf="tr[td['key']]=='Success'">
+                    <span class="table-status success">
+                      {{tr[td['key']]}}
+                    </span>
+                  </span>
+                  <span *ngIf="tr[td['key']]=='Failed'">
+                    <span class="table-status failed">
+                      {{tr[td['key']]}}
+                    </span>
+                  </span>
+                </span>
+                <span *ngIf="td['key']=='action'" class="">
+          <tbody class="d-flex justify-content-center">
+            <tr class="action-icon" *ngFor="let th of filterPageData[tr[td['key']]]">
+              <span class="ml-1 mr-1" (click)="tableAction(th, tr)" [attr.data-toggle]="isConfirmModal ? 'modal':''"
+                [attr.data-target]="isConfirmModal ? '#confirmationModalPopup':''">
+                <i [class]="th['class']" [title]="th['label']" aria-hidden="true"></i>
+              </span>
+            </tr>
+          </tbody>
+          </span>
+
+          <!-- <span *ngIf="td['key']=='isSelected'">
+            <input type="checkbox" [checked]="filterPageData[tr[td['key']]].value"
+              [(ngModel)]="filterPageData[tr[td['key']]].value" (change)="selectRechargeId(tr, $event)">
+            {{filterPageData[tr[td['key']]].value}}
+          </span> -->
+
+          </td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="btn-load-more" *ngIf="isTableLoadMore && filterPageData.body_content.length > 20 ">
+          <button class="btn btn-sm  btn-outline-primary" (click)="loadMoreTable()">
+            <i class="fa fa-repeat mr-1"></i> Load More
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- TABLE SECTION ENDS -->
+  </div>
+  <!-- MAIN CONTENT AREA ENDS -->
+</div>
+<!-- Delete Modal Starts -->
+<div aria-labelledby="" class="modal fade" id="confirmationModalPopup" role="dialog" tabindex="-1" aria-modal="true">
+  <div class="modal-dialog modal-dialog-component" role="document">
+    <div class="modal-content">
+      <div class="modal-header dropdown">
+        <h6>Confirm </h6>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to {{this.dataForConfirmation['action']}} ?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-sm btn-primary" id="dismissDeleteModal" data-dismiss="modal" type="button">
+          No
+        </button>
+        <button class="btn btn-sm btn-secondary" (click)="confirmPopupApply()" type="button"
+          data-dismiss="modal">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Delete Modal Ends -->

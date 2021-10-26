@@ -1,0 +1,13 @@
+@mixin elm-icon
+{
+    color:rgba($default-icon, 0.8);
+    &:hover,&:focus
+    {
+        color:$default-icon;
+        
+    }
+}
+@mixin header-icons
+{
+    color:$header-icon-color;
+}

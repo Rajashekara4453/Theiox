@@ -1,0 +1,73 @@
+{
+    "data": {
+        "general_info": {
+            "number": 6,
+            "headerContent": [
+                {
+                    "sectionWidth": "12",
+                    "content": "New Section",
+                    "class": "",
+                    "data": [
+                        {
+                            "label": "Name",
+                            "type": "text",
+                            "key": "name",
+                            "value": "",
+                            "placeholder": "Enter Name",
+                            "required": true,
+                            "disabled": false,
+                            "hidden": false,
+                            "gridWidth": "12"
+                            
+                        },
+                        {
+                            "label": "Organisation Name",
+                            "type": "text",
+                            "key": "orgname",
+                            "value": "",
+                            "placeholder": "Enter Organisation Name",
+                            "required": true,
+                            "disabled": false,
+                            "hidden": false,
+                            "gridWidth": "12"
+                        },
+                        {
+                            "label": "Mobile Number",
+                            "type": "number",
+                            "key": "mobileno",
+                            "value": "",
+                            "placeholder": "Enter Mobile Number",
+                            "required": true,
+                            "disabled": false,
+                            "hidden": false,
+                            "gridWidth": "12"
+                        },
+                        {
+                            "label": "Email",
+                            "type": "email",
+                            "key": "email",
+                            "value": "",
+                            "placeholder": "Enter your User ID",
+                            "required": true,
+                            "disabled": false,
+                            "hidden": false,
+                            "gridWidth": "12"
+                        }
+                    ],
+                    "layoutType": "section",
+                    "sectionTitle": ""
+                }
+            ],
+            "bodyContent": {},
+            "userActions": {
+                "buttonsPosition": "fixed",            
+                "save": {
+                    "label": "Submit"
+                },
+                "customBtn": {
+                    "label": "Back To Login"
+                }
+            }
+        }
+    }
+}

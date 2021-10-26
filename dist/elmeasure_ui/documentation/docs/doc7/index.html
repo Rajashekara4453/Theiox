@@ -1,0 +1,189 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Configuring Dashboard · Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Setting-up New Dashboards"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Configuring Dashboard · Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="undefined/documentation/"/><meta property="og:description" content="## Setting-up New Dashboards"/><meta property="og:image" content="undefined/documentation/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="undefined/documentation/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/documentation/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/documentation/js/scrollSpy.js"></script><link rel="stylesheet" href="/documentation/css/main.css"/><script src="/documentation/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/documentation/"><h2 class="headerTitle">Documentation</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"></ul></nav></div></header></div></div><div class="navPusher singleRowMobileNav"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Working with ELNet</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Welcome<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/documentation/docs/doc1">Introduction</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Getting started<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/documentation/docs/doc2">Sign Up</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Client area<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/documentation/docs/doc3">Work area</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Components<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/documentation/docs/doc6">Understanding the Components</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Working with ELNet<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/documentation/docs/doc9">User Management</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc8">Organisation Settings</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc10">Data Acquisition</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc14">Master Settings</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc11">Protocols</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/documentation/docs/doc7">Dashboard</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc12">Reports</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc13">Alert Notifications</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc15">Web Scada</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc16">Data Processing</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc17">Trends</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Configuring Dashboard</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="setting-up-new-dashboards"></a><a href="#setting-up-new-dashboards" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setting-up New Dashboards</h2>
+<p>To create new dashboards follow the steps given below,</p>
+<ol>
+<li>Click on Dashboard component</li>
+</ol>
+<p><img src="/documentation/docs/assets/dashboard1.png" alt="alt-text"></p>
+<p>Click (+)create to create a new Dashboard</p>
+<p><img src="/documentation/docs/assets/dashboard2.png" alt="alt-text"></p>
+<ol start="2">
+<li>Enter the name for the dashboard in the Name textbox and click <strong>Save</strong></li>
+</ol>
+<p><img src="/documentation/docs/assets/dashboard3.png" alt="alt-text"></p>
+<h2><a class="anchor" aria-hidden="true" id="associating-widgets-to-dashboards"></a><a href="#associating-widgets-to-dashboards" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Associating Widgets to Dashboards</h2>
+<p>Any number of widgets can be associated to a dashboard. The following steps must be performed to associate a widget to an existing Dashboard.</p>
+<ol>
+<li>Select the newly created dashboard or any one from the existing list for which you need to add the widgets.</li>
+</ol>
+<ul>
+<li>Click on the <strong>+create</strong> button on the top right corner of the page and then click on <strong>Widget</strong></li>
+</ul>
+<p><img src="/documentation/docs/assets/Widget1.png" alt="alt-text"></p>
+<p>2.Select the type of Chart by which you need to represent the widget.</p>
+<p><img src="/documentation/docs/assets/widget2.png" alt="alt-text"></p>
+<p>After selecting the chart type , a new screen will apprear to configure the widget for your dashboard.</p>
+<ul>
+<li>Widget Info : Here you will give the Title for the widget. eg &quot;15mins Energy&quot;  depending what you want show on the dashboard.</li>
+</ul>
+<p><img src="/documentation/docs/assets/widget3.png" alt="alt-text"></p>
+<ul>
+<li>Time Period : Here you need to select the time range to show the data  . <em>Note :  There is an Overwrite Checkbox on the right corner. If the box is Checked then the Filters which we apply in the Dashboard overwrites. Else whatever we are applying filters while creating remains the same.</em>.
+_ Select <strong>compare</strong> if you would like to compare the data with previous period.</li>
+</ul>
+<p><img src="/documentation/docs/assets/widget4.png" alt="alt-text"></p>
+<ul>
+<li>Filter : In Filter you select the Type from where the Data should come from</li>
+</ul>
+<p><img src="/documentation/docs/assets/widget5.png" alt="alt-text"></p>
+<p>You have  following slection under Filter  <strong>Organization Hierarchy</strong>, <strong>Asset Group</strong>, <strong>Assets</strong>, and, <strong>Shift</strong>. ***</p>
+<p>After Making selection the items pertaining to the selection will appear, for example If you select Filter Type as <strong>Organization Hierarchy</strong> Items of <strong>Organization Hierarchy</strong> will be displayed. Based on the Hierarchy selected widgets will be displayed.</p>
+<p><img src="/documentation/docs/assets/widget6.png" alt="alt-text"></p>
+<ul>
+<li>Tags : Under <strong>Tags</strong> you will be able to set the parameters to diaplay on your wigdets on dashboard. Based on <strong>Tag</strong> selected <strong>Unit</strong> will be displayed. <strong>Tag</strong> Section also give options to set <strong>Color</strong>, <strong>Y-axis Position</strong>, <strong>Frequency</strong>, <strong>Function</strong>, <strong>Benchmark</strong> and <strong>Threshold</strong>.</li>
+<li>Note: <strong><em>You can add mulitple tags by click on <strong>Add Tag</strong> button.</em></strong></li>
+</ul>
+<p><img src="/documentation/docs/assets/widget7.png" alt="alt-text"></p>
+<ul>
+<li><strong>Data Type</strong> : It is used for data representation.</li>
+</ul>
+<ul>
+<li><p>Under <strong>Select Data Type</strong>, you have two options <strong>Category</strong> and <strong>Time series</strong>.</p></li>
+<li><p>If you select <strong>Time Series</strong> then you have to select <strong>Time Stamp</strong> and <strong>Aggregation</strong> like <strong>Sum</strong>, <strong>Min</strong>, <strong>Max</strong>.</p></li>
+</ul>
+<p><img src="/documentation/docs/assets/widget8.png" alt="alt-text"></p>
+<ul>
+<li>If you select <strong>Category</strong> then you have options to select tags as <strong>Group by</strong>  liks <strong>Assets</strong>  and the  <strong>Aggregation</strong> like <strong>Sum</strong>, <strong>Min</strong>, <strong>Max</strong>.</li>
+</ul>
+<p><img src="/documentation/docs/assets/widget9.png" alt="alt-text"></p>
+<ul>
+<li><strong>Visualisation</strong>:  which can be used  for represenation in <strong>X-Axis</strong>  like hide and show the <strong>Title</strong> by checking the box , placement of <strong>Date</strong>, select the <strong>Format</strong> of the date , you can set the widget <strong>Auo Refresh</strong> and also the Refresh time <strong>Interval</strong> , It also gives an option to set or restric the <strong>Decimal Value</strong> for the data, <strong>Show Legends</strong> and Grid lines for<strong>X and Y</strong> axis .</li>
+</ul>
+<p><img src="/documentation/docs/assets/widget10.png" alt="alt-text"></p>
+<h2><a class="anchor" aria-hidden="true" id="demo-video"></a><a href="#demo-video" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Demo Video</h2>
+<p><img src="/documentation/docs/assets/Dashboard.gif" alt="alt-text"></p>
+<h2><a class="anchor" aria-hidden="true" id="types-of-widgets"></a><a href="#types-of-widgets" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Types of Widgets</h2>
+<p>we have widgets for  Historical Data and  for Live Data.</p>
+<p>Under Historical we can use widgets like</p>
+<h3><a class="anchor" aria-hidden="true" id="kpi"></a><a href="#kpi" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>KPI</h3>
+<p>KPI Is used to highlight any key metric in a dashboard for  comprehension. The key metric can be accompanied with associated comparison indicator a target to show progression.</p>
+<p><img src="/documentation/docs/assets/kpi.gif" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="custom-kpi"></a><a href="#custom-kpi" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Custom KPI</h3>
+<p>It helps to make comparison with additional options like *<strong>Custom Multiplication Factor</strong> , <strong>Custom Unit Lable</strong> and <strong>Custom Value</strong>
+<img src="/documentation/docs/assets/customkpi.gif" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="pf-chart"></a><a href="#pf-chart" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>PF Chart</h3>
+<p>It help you to measure of how effectively you are using electricity, with this widget you can display</p>
+<p><img src="/documentation/docs/assets/pfchartwidget.gif" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="alarm"></a><a href="#alarm" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Alarm</h3>
+<p>Help to view  the  real time Alerts on dashbaord.</p>
+<p><img src="/documentation/docs/assets/Alarm_widget.gif" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="tile"></a><a href="#tile" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Tile</h3>
+<p>A tile is a chart type that lets you select specific values from the cell to display.you can directly enter a cell intersection that provides the value for a tile.</p>
+<p><img src="/documentation/docs/assets/Tile_widget.gif" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="table"></a><a href="#table" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Table</h3>
+<p>A table chart shows data arranged in rows and columns.</p>
+<p><img src="/documentation/docs/assets/tablewidget.gif" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="pie"></a><a href="#pie" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Pie</h3>
+<p>A pie chart is a  statistical graphic, which is divided into slices to demonstrate numerical proportion.</p>
+<p><img src="/documentation/docs/assets/piewidget.gif" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="stacked"></a><a href="#stacked" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Stacked</h3>
+<p>In a stacked column chart, data series are stacked one on top of the other in vertical columns, charts can show change over time and it's easy to compare total column lengths.</p>
+<p><img src="/documentation/docs/assets/stackwidget.gif" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="combined"></a><a href="#combined" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Combined</h3>
+<p>This widget help to  combines two or more chart types in a single chart. To create a combination chart</p>
+<p><img src="/documentation/docs/assets/combined_widget.gif" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="line"></a><a href="#line" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Line</h3>
+<p>Line displays information as a series of data points called 'markers' connected by straight line segments.</p>
+<p><img src="/documentation/docs/assets/Line_widget.gif" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="bar"></a><a href="#bar" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Bar</h3>
+<p>It presents categorical data with rectangular bars, it is  used to display and compare the number, frequency or other measure for different discrete categories of data</p>
+<p><img src="/documentation/docs/assets/Bar_widget.gif" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="markline"></a><a href="#markline" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>MarkLine</h3>
+<p>MarkLine is more  informative. We can use MarkLines series by series, timeline by timeline, there is minimum and Maximum vaule filed in this widget where usercan set the mark. Minimum value should be &quot;0&quot; and Maximum vaule should be &quot;75&quot;. beyond of the max value lines will be invisible.</p>
+<p><img src="/documentation/docs/assets/markline.gif" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="markpoint"></a><a href="#markpoint" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>MarkPoint</h3>
+<p>Markpoints makes a chart more informative. We can use it to add markPoints series by series, timeline by timeline. In this widge user can set the Min, Max and average points under the tags.</p>
+<p><img src="/documentation/docs/assets/markpoint.gif" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="area"></a><a href="#area" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Area</h3>
+<p>It helps to  displays graphically quantitative data.</p>
+<p><img src="/documentation/docs/assets/Area.gif" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="scatter"></a><a href="#scatter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Scatter</h3>
+<p>Helps to plot data points on a horizontal and a vertical axis to show how much one variable is affected by another.</p>
+<p><img src="/documentation/docs/assets/Scatter.gif" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="onoff"></a><a href="#onoff" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ON/OFF</h3>
+<p>It give you the ability to remotely <strong>ON</strong> and <strong>OFF</strong> the physical Sensor device.</p>
+<p><img src="/documentation/docs/assets/on_off.gif" alt="alt-text"></p>
+<h2><a class="anchor" aria-hidden="true" id="live-data-widget"></a><a href="#live-data-widget" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Live Data Widget</h2>
+<h3><a class="anchor" aria-hidden="true" id="kpi-1"></a><a href="#kpi-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>KPI</h3>
+<p>This KPI can be used to represent live date</p>
+<p><img src="/documentation/docs/assets/livekpi.gif" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="harmonics"></a><a href="#harmonics" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Harmonics</h3>
+<p>Helps to display non-linear loads and can be used to set thresholds and benchmarks</p>
+<p><img src="/documentation/docs/assets/liveharmonics.gif" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="gauge"></a><a href="#gauge" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Gauge</h3>
+<p>It use needles to show information as a reading on a dial. On a gauge chart, the value for each needle is read against the colored data range and can be used to used in dashboard reports to show key indicators</p>
+<p><img src="/documentation/docs/assets/livegauge.gif" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="table-1"></a><a href="#table-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Table</h3>
+<p><img src="/documentation/docs/assets/livetable.gif" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="horizontal-progress-bar"></a><a href="#horizontal-progress-bar" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Horizontal Progress Bar</h3>
+<p>ProgressBar is a graphical view indicator that shows selected parameters' progress.</p>
+<p><img src="/documentation/docs/assets/horizontalprogressbar.gif" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="vertical-progress-bar"></a><a href="#vertical-progress-bar" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Vertical Progress Bar</h3>
+<p>Same like Horizonatl ProgressBar is a graphical view indicator that shows selected parameters' progress in vertical form.</p>
+<p><img src="/documentation/docs/assets/Verticalprogressbar.gif" alt="alt-text"></p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 5/7/2021 by MithuLohar</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/documentation/docs/doc11"><span class="arrow-prev">← </span><span>Protocols</span></a><a class="docs-next button" href="/documentation/docs/doc12"><span>Reports</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#setting-up-new-dashboards">Setting-up New Dashboards</a></li><li><a href="#associating-widgets-to-dashboards">Associating Widgets to Dashboards</a></li><li><a href="#demo-video">Demo Video</a></li><li><a href="#types-of-widgets">Types of Widgets</a><ul class="toc-headings"><li><a href="#kpi">KPI</a></li><li><a href="#custom-kpi">Custom KPI</a></li><li><a href="#pf-chart">PF Chart</a></li><li><a href="#alarm">Alarm</a></li><li><a href="#tile">Tile</a></li><li><a href="#table">Table</a></li><li><a href="#pie">Pie</a></li><li><a href="#stacked">Stacked</a></li><li><a href="#combined">Combined</a></li><li><a href="#line">Line</a></li><li><a href="#bar">Bar</a></li><li><a href="#markline">MarkLine</a></li><li><a href="#markpoint">MarkPoint</a></li><li><a href="#area">Area</a></li><li><a href="#scatter">Scatter</a></li><li><a href="#onoff">ON/OFF</a></li></ul></li><li><a href="#live-data-widget">Live Data Widget</a><ul class="toc-headings"><li><a href="#kpi-1">KPI</a></li><li><a href="#harmonics">Harmonics</a></li><li><a href="#gauge">Gauge</a></li><li><a href="#table-1">Table</a></li><li><a href="#horizontal-progress-bar">Horizontal Progress Bar</a></li><li><a href="#vertical-progress-bar">Vertical Progress Bar</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><a href="https://elmeasure.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/documentation/img/oss_logo.png" alt="Elmeasure" width="223" height="64"/></a></footer></div></body></html>

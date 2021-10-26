@@ -1,0 +1,46 @@
+<kl-config-breadcrumb></kl-config-breadcrumb>
+<kl-serviceloader></kl-serviceloader>
+<div class="main-content">
+  <div class="sub-main-content overflow-hidden">
+    <div *ngIf="isPageLoading" class="form-header row">
+      <div class="col-sm-8 col-md-6 col-lg-4 mr-2 pr-1">
+        <angular2-multiselect [data]="dataItems" [(ngModel)]="selectedValue" [settings]="dropdownSettings"
+          (onSelect)="onSelect($event)" (onDeSelectAll)="onDeSelect($event)">
+        </angular2-multiselect>
+      </div>
+    </div>
+    <div class="form-content px-0" *ngIf="dmfLoading">
+      <kl-dfm *ngIf="DFMinput" [DFMDATA]="DFMinput" (SelectedValues)="getGeneralInfo($event)"
+        (showFields)="showFields($event)" (cancel)="onCancel()" (customActions)="onCustomAction($event)"
+        (customActionsSave)="onCustomAction($event)" class="d-block h-100" (recharge)="onRecharge($event)">
+      </kl-dfm>
+    </div>
+  </div>
+</div>
+
+<!-- trigger for confirmation dialog -->
+<button hidden #confirmModalTrigger data-toggle="modal" [attr.data-target]="'#confirmModal'" >
+</button>
+
+<!-- confirmation dialog -->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to <b> {{cpyActionData ? cpyActionData['customAction']['label']:''}} </b> ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary"
+                    (click)="onCustomAction(this.cpyActionData, true)" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-secondary" id="actionDismissBtn" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="scrollsetup">
+    <ul class="userList pt-0 pl-0">
+        <li *ngFor="let item of menus.data; let i=index"
+            (click)="onSelectElement((valueProperty=='')?item:item[valueProperty], i)" class="list-item-select"
+            draggable="true" (dragstart)="onDragStart($event,(valueProperty=='')?item:item[valueProperty])">
+            <span class="name cursor">{{ item[displayProperty] }} {{ item[secondDisplyProperty] }}</span>
+        </li>
+    </ul>
+</div>

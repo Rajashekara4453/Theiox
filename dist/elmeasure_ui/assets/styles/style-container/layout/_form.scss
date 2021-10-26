@@ -1,0 +1,123 @@
+@mixin form-title
+{
+	font-family: $font-family;
+	font-size: 30px;
+	color: $white;
+	line-height: 1.2;
+	text-align: center;
+	text-transform: capitalize;
+    display: block;
+    padding:27px 0px 34px 0px;
+}
+@mixin login-a
+{
+    font-family: $font-family;
+	font-size: 14px;
+	line-height: 1.7;
+	margin: 0;
+	transition: all .4s;
+	-webkit-transition: all .4s;
+	-o-transition: all .4s;
+	-moz-transition: all .4s;
+&:focus
+{
+    
+        outline: none!important;
+    
+}
+&:hover
+{
+        text-decoration: none;
+        color: $white;
+ 
+}
+}
+@mixin login-p
+{
+    font-family: $font-family;
+	font-size: 14px;
+	line-height: 1.7;
+	color: $grey;
+	margin: 0;
+}
+@mixin form-input
+{
+	width: 100%;
+	position: relative;
+	border-bottom: 2px solid rgba($border,0.3);
+	margin-bottom: 30px;
+.input{
+	font-family: $font-family;
+	font-size: 16px;
+	color: $grey;
+	line-height: 1.2;
+	display: block;
+	width: 100%;
+	height: 45px;
+	background:transparent !important;
+    padding: 0 5px 0 38px;
+    border:none;
+    box-shadow: none;
+	&:focus{
+		padding-left: 5px;
+	}
+}
+.focus-input
+{
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	pointer-events: none;
+&::before
+{
+	content: "";
+	display: block;
+	position: absolute;
+	bottom: -2px;
+	left: 0;
+	width: 0;
+	height: 2px;
+	transition: all .4s;
+	background: $white;
+}
+&::after
+{
+	font-family: FontAwesome;;
+	font-size: 22px;
+	color: $white ;
+	content: attr(data-placeholder);
+	display: block;
+	width: 100%;
+	position: absolute;
+	top: 6px;
+	left: 0;
+	padding-left: 5px;
+	transition: all .4s;
+}
+}
+}
+.wrap-input 
+{
+	
+	@include form-input;
+
+}
+
+.input:focus+.focus-input::after {
+	top: -22px;
+	font-size: 18px
+}
+
+.input:focus+.focus-input::before {
+	width: 100%
+}
+#Login input:-webkit-autofill,
+#Login input:-webkit-autofill:hover,
+#Login input:-webkit-autofill:focus,
+#Login input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: $white !important;
+}

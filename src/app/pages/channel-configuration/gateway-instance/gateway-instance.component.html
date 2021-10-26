@@ -1,0 +1,14 @@
+<kl-serviceloader></kl-serviceloader>
+<!-- <kl-mini-sidebar-menu [pageName]="'Channel Configuration'"></kl-mini-sidebar-menu> -->
+<div class="main-content gateway-silo">
+    <div class="sub-main-content gateway-list bg-transparent">
+        <ng-container *ngIf="gatewaydata">
+            <kl-gateway-configuration [gatewayInfo]="gatewayLists" (dmf)="onSelection()" [key]="gatewayInfo"
+                (siloEdit)="onEditSilo($event)" (expandEdit)="onExapandSilo($event)" (cancel)="onCancel()"
+                (deviceEditFromSilo)="onDeviceEditFromSilo($event)"
+                (createGatewayFromModel)="onCreateGatewayFromModel($event)"
+                (selectedSensorFilter)="sendSensorFilterValue($event)">
+            </kl-gateway-configuration>
+        </ng-container>
+    </div>
+</div>

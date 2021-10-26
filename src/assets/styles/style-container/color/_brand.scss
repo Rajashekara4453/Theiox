@@ -1,0 +1,44 @@
+//default color
+$white:#fff;
+$black:#000;
+
+//brand COlor
+$form-bg-one:#239bdb;
+$form-bg-two:#333399;
+$grey:#484a4b;
+$body-bg:lighten( $form-bg-one, 60% );
+
+
+
+$login-background:transparentize($white,0.2);
+$border:$white;
+
+
+$primary-background:-webkit-linear-gradient(top,$form-bg-one,$form-bg-two);
+$nav-li-a:$grey;
+$nav-li-a-hover:$white;
+
+$mini-li-a:darken($white,20%);
+
+$btn-elm-cancel:$grey;
+$btn-elm-save:$form-bg-one;
+//Default Icon color
+
+$default-icon:$white;
+
+$shadow:#484a4b;
+
+//buttons
+$back-hover:$black;
+$backgound-color:$white;
+$blue:$form-bg-two;
+$button-first-bg:#f1f3fa;
+
+
+
+//font color
+$font-color:$form-bg-one;
+$font-color-bg:$white;
+
+//icon color
+$header-icon-color:$grey;

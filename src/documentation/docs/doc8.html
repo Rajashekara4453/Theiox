@@ -1,0 +1,153 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Site Configuration · Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Step 1: Setting up the site"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Site Configuration · Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="undefined/documentation/"/><meta property="og:description" content="## Step 1: Setting up the site"/><meta property="og:image" content="undefined/documentation/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="undefined/documentation/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/documentation/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/documentation/js/scrollSpy.js"></script><link rel="stylesheet" href="/documentation/css/main.css"/><script src="/documentation/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/documentation/"><h2 class="headerTitle">Documentation</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"></ul></nav></div></header></div></div><div class="navPusher singleRowMobileNav"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Working with ELNet</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Welcome<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/documentation/docs/doc1">Introduction</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Getting started<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/documentation/docs/doc2">Sign Up</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Client area<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/documentation/docs/doc3">Work area</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Components<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/documentation/docs/doc6">Understanding the Components</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Working with ELNet<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/documentation/docs/doc9">User Management</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/documentation/docs/doc8">Organisation Settings</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc10">Data Acquisition</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc14">Master Settings</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc11">Protocols</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc7">Dashboard</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc12">Reports</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc13">Alert Notifications</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc15">Web Scada</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc16">Data Processing</a></li><li class="navListItem"><a class="navItem" href="/documentation/docs/doc17">Trends</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Site Configuration</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="step-1-setting-up-the-site"></a><a href="#step-1-setting-up-the-site" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Step 1: Setting up the site</h2>
+<p>To set-up the Site</p>
+<ul>
+<li>Click  Organisation Settings -&gt; Organisation Info</li>
+</ul>
+<p><img src="/documentation/docs/assets/org1.png" alt="alt-text"></p>
+<p>To add new site follow the steps given below,</p>
+<ol>
+<li>Enter the information for your organisation and click save</li>
+</ol>
+<p><img src="/documentation/docs/assets/org2.png" alt="alt-text"></p>
+<h2><a class="anchor" aria-hidden="true" id="step-2-adding--hirerchy-for-your-organisation"></a><a href="#step-2-adding--hirerchy-for-your-organisation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Step 2: Adding  Hirerchy for your organisation</h2>
+<p>To add the hierarchy  click  Card <em>follow the steps shown in the video below</em>.</p>
+<ul>
+<li><p>When you click  &quot;Card&quot; a new dialouge box will appear with following option to create the hirerchy.</p></li>
+<li><p>Please select the appropiate name from the list to create the parent and child levels and enter all required fields for the respective selections and click on Save Config.</p></li>
+<li><p>To add the levels to the Hirerchy click on the + sign on the parent card</p></li>
+</ul>
+<p><img src="/documentation/docs/assets/OS2.gif" alt="alt-text"></p>
+<pre><code class="hljs">`
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="shift-managment"></a><a href="#shift-managment" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Shift Managment</h2>
+<p>Shift Management allow you to set the Time of Day (or TOD) tariff structure for differnt shift in your enterprise  e.g Shift1 , Shift2..etc and it also help you to assign the TOD Shift for different department in your enterprise.</p>
+<ul>
+<li>Under shiff Management you have <strong>Shift/TOD List</strong> and <strong>Shift/TOD Group</strong></li>
+</ul>
+<p><img src="/documentation/docs/assets/shiftman1.png" alt="alt-text"></p>
+<p><img src="/documentation/docs/assets/shiftman2.png" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="shifttod-list"></a><a href="#shifttod-list" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Shift/TOD List</h3>
+<ul>
+<li><p>To add new Shift/TOD click on  <strong>Shift/TOD List</strong> and then click <strong>+Add</strong></p></li>
+<li><p>Select the <strong>Date</strong>, enter <strong>Start Time</strong>, <strong>End Time</strong> , enter the Name of **Time Slot ** e.g *<strong>Shift1</strong>, Provide the **discription <strong>for the same . You can also slect the <strong>Time Slot</strong> From the Group, under <strong>Next Day</strong> you would slect <strong>Yes</strong> or <strong>No</strong>
+this is for you would like to repeat the same for next day .  under ** Apply To</strong> you can select the departmanet for which you want it to be  applied.</p></li>
+</ul>
+<p><img src="/documentation/docs/assets/TODadd.gif" alt="alt-text"></p>
+<ul>
+<li>Newly created shift entry will be listed in the shift/TOD list , you can edit the same by clicking on <strong>Pen</strong> Icon.</li>
+</ul>
+<p><img src="/documentation/docs/assets/TOD3.png" alt="alt-text"></p>
+<h3><a class="anchor" aria-hidden="true" id="shifttod-group"></a><a href="#shifttod-group" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Shift/TOD Group</h3>
+<p>In <strong>Shift/TOD Group</strong> you can create the group for the <strong>Shift</strong> and <strong>TOD</strong> which you can use it during creating new <strong>Shift</strong> or <strong>TOD</strong> entry  in the list, Click <strong>+</strong> to create new group then click save after entering the details.</p>
+<p><img src="/documentation/docs/assets/TOD4.png" alt="alt-text"></p>
+<h2><a class="anchor" aria-hidden="true" id="email-settings"></a><a href="#email-settings" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Email Settings</h2>
+<p>The Email Settings provides all the details of the existing Email profiles. The default profile can be set. There is provision to Edit or Delete a profile under the Actions column.</p>
+<ul>
+<li>To create a new <strong>Email Profile</strong> click  on **Email Settings ** then click on <strong>+Add</strong> button.</li>
+</ul>
+<p><img src="/documentation/docs/assets/emailset1.png" alt="alt-text"></p>
+<ul>
+<li>These settings are for sending emails from your email provider's mail server. After furnishing the  details, you can Send Test Mail to check if its working and <strong>Save</strong> the information of the newly created profile.</li>
+</ul>
+<table>
+<thead>
+<tr><th>Item</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>Profile Name</td><td>The user-defined name of the profile is to be provided.</td></tr>
+<tr><td>Sender Name</td><td>Name of the Sender</td></tr>
+<tr><td>Sender Email</td><td>The Email ID of the Sender</td></tr>
+<tr><td>Username</td><td>The user name of the email account</td></tr>
+<tr><td>Password</td><td>The password ofthe email account</td></tr>
+<tr><td>SMTP Address</td><td>The hostname of the outgoing SMTP (Simple Mail Transfer Protocol) server, such as smtp.example.com.</td></tr>
+<tr><td>SMTP PORT</td><td>The port number used by the outgoing mail server. Common port numbers for outgoing mail are 25, 465, and 587.</td></tr>
+<tr><td>SMTP Encryption Protocol</td><td>Select the protocol from the dropdown SSL or TLS</td></tr>
+<tr><td>SMTP Authorization required</td><td>Check the box if SMTP authorization is required</td></tr>
+</tbody>
+</table>
+<p><img src="/documentation/docs/assets/emailset2.png" alt="alt-text"></p>
+<ul>
+<li>Newly created email profile  will be listed in the <strong>Email Settings</strong> list , you can edit the same by clicking on <strong>Pen</strong> Icon. The list displays the configuration of the  Mail profile and also allows you to set the <strong>System Defauls</strong> by clicking the check box and by clicking on <strong>Delete</strong> it will remove that profile.</li>
+</ul>
+<p><img src="/documentation/docs/assets/Emailset3.png" alt="alt-text"></p>
+<h2><a class="anchor" aria-hidden="true" id="sms-settings"></a><a href="#sms-settings" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SMS Settings</h2>
+<p>An SMS settings allows a computer to send or receive Short Message Service (SMS) transmissions to a telecommunications network. These messages are eventually routed into the mobile phone networks.</p>
+<p>All the information required by the Service Providers to transmit this message is provided through the SMS Profile.</p>
+<p>The SMS Setting page provides all the details of the existing SMS profiles. The default profile can be set. There is provision to Edit or Delete a profile under the Actions column.</p>
+<ul>
+<li>To create a new <strong>SMS Profile</strong> click  on **SMS Settings ** then click on <strong>+Add</strong> button.</li>
+</ul>
+<p><img src="/documentation/docs/assets/SMS1.png" alt="alt-text"></p>
+<table>
+<thead>
+<tr><th>Item</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>Profile Name</td><td>The user-defined name of the profile is to be provided.</td></tr>
+<tr><td>URL</td><td>The URL provided by the service provider Accessed by the User is to be given in this field.</td></tr>
+<tr><td>For Mobile Number</td><td>This is the name provided by the Service Provider subscribed by the user. This name is used as a Parameter reference for mobile numbers.</td></tr>
+<tr><td>For Message</td><td>This is the name provided by the Service Provider subscribed by the user. This name is used as a Parameter reference for the message.</td></tr>
+</tbody>
+</table>
+<ul>
+<li>Apart from the above settings, depending on the Network Provider, few more inputs like Password, Sender ID, etc. might be required. To add such Parameters Click on Add Parameter button.</li>
+<li>Provide the Parameter Name and Parameter Value into their respective fields.
+<img src="/documentation/docs/assets/SMS2.png" alt="alt-text"></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 5/7/2021 by MithuLohar</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/documentation/docs/doc9"><span class="arrow-prev">← </span><span>User Management</span></a><a class="docs-next button" href="/documentation/docs/doc10"><span>Data Acquisition</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#step-1-setting-up-the-site">Step 1: Setting up the site</a></li><li><a href="#step-2-adding--hirerchy-for-your-organisation">Step 2: Adding  Hirerchy for your organisation</a></li><li><a href="#shift-managment">Shift Managment</a><ul class="toc-headings"><li><a href="#shifttod-list">Shift/TOD List</a></li><li><a href="#shifttod-group">Shift/TOD Group</a></li></ul></li><li><a href="#email-settings">Email Settings</a></li><li><a href="#sms-settings">SMS Settings</a></li></ul></nav></div><footer class="nav-footer" id="footer"><a href="https://elmeasure.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/documentation/img/oss_logo.png" alt="Elmeasure" width="223" height="64"/></a></footer></div></body></html>

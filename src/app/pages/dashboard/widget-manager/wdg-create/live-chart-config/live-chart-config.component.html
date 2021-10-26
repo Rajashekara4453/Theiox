@@ -1,0 +1,896 @@
+<div class="rounded-bottom" [ngClass]="{'with-preview': showPrevBtn, 'without-preview': !showPrevBtn}"
+  *ngIf="_chartConfig">
+
+  <div [hidden]="showImagePicker" class="col-12 without-content tab-content accordion" id="accordionExample">
+    <!-- Title -->
+    <div class="card border-0 pt-3">
+      <div class="accordian-header border-bottom" id="Title" data-toggle="collapse" data-target="#collapsetitle"
+        aria-expanded="true" aria-controls="collapsetitle">
+        <h6>Widget Info</h6>
+      </div>
+      <div class="tab-pane" id="collapsetitle" class="collapse show mt-3 mb-3" aria-labelledby="Title">
+        <div class="tab-pane-container">
+          <div class="row">
+            <div class="form-group col-lg-3 col-md-4 col-sm-6">
+              <label class="control-label">Widget Title <span *ngIf="chartConfig.isModeBus"
+                  class="color-red">&nbsp;*</span></label>
+              <input type="text" class="form-control" placeholder="Enter Widget Title" [(ngModel)]="chartConfig.title">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- asset control widget action section next iteration -->
+    <div *ngIf="chartConfig.isModeBus">
+      <div class="card border-0 pt-3">
+        <div class="accordian-header border-bottom" id="Yaxis" data-toggle="collapse" data-target="#collapseyaxis"
+          aria-expanded="true" aria-controls="collapseyaxis">
+          <h6> Configure Actions</h6>
+        </div>
+        <div class="tab-pane" id="collapseyaxis" class="collapse show mt-3 mb-3">
+          <div class="tab-pane-container" *ngFor="let series of _chartConfig.write_register; let i=index;trackBy:track">
+            <div *ngIf="chartConfig.isModeBus" class="form-group">
+              <input type="checkbox" class="form-control d-inline-block float-left"
+                [(ngModel)]="_chartConfig.isActionEnabled" (change)="actionsData('one')" />
+              <label class="control-label mx-2">Action 1 </label>
+            </div>
+            <div class="row">
+              <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                <label class="control-label">Label</label>
+                <input type="text" [(ngModel)]="series.label" class="form-control" placeholder="Label"
+                  (change)="actionsData('one')">
+              </div>
+              <div class="form-group col-lg-3 col-md-3 col-sm-6" *ngIf=" isAttributeShow('color')">
+                <label class="control-label">Color</label>
+                <ng-select bindValue="reference" bindLabel="label" [searchable]="false" name="icon"
+                  [items]="chartOptions.assetActionColors" [(ngModel)]="series.colorReference" [clearable]="false"
+                  (change)="colorChange($event,series,'one')">
+                  <ng-template ng-label-tmp let-item="item">
+                    <div [style.color]="item.value" [style.text-align]="'center'" class="color-pallet">
+                      <i [style.color]="item.value" class="elm-checked-2"></i>
+                      <label>{{item['label']}}</label>
+                    </div>
+                  </ng-template>
+                  <ng-template ng-option-tmp let-item="item" let-index="index">
+                    <div [style.text-align]="'center'" class="color-pallet">
+                      <i [style.color]="item.value" class="elm-unchecked-radio-button"></i>
+                      <label>{{item.label}}</label>
+                    </div>
+                  </ng-template>
+                </ng-select>
+              </div>
+
+              <!-- <table>-->
+
+            </div>
+
+            <button type="button" id="exampleModalLong" class="btn btn-sm btn-primary mb-3 ml-0 " data-toggle="modal"
+              title="Configure" data-target="#actionModalOpen" (click)=openActionModal()
+              [disabled]="!_chartConfig.isActionEnabled">
+              {{_chartConfig['write_register'][0].labelActionId?' Configure': 'Configure'}}
+            </button>
+
+            <div *ngIf="_chartConfig['write_register'][0].labelActionId" class="row">
+              <div class="col-md-10">
+                <table class="table border-0">
+                  <thead>
+                    <tr>
+                      <th *ngFor="let tableHeader of _chartConfig['actionsTable']['headerContent']">
+                        {{tableHeader.label}}</th>
+                    </tr>
+                  </thead>
+                  <tbody class="fixedAlign">
+                    <tr>
+                      <td *ngFor="let item of _chartConfig['actionsTable']['headerContent']" class="overflow-auto"
+                        style="text-overflow: inherit;">
+                        <ng-container *ngFor="let bodyTable of _chartConfig['actionsTable']['bodyContent'] ">
+                          <ng-container *ngIf="item.key !=='write_value'">
+                            <span *ngFor="let bodyElement of bodyTable[item.key];let a=index">
+                              {{bodyElement.label}}{{(bodyTable[item.key].length-1==a)?'':', '}}
+                            </span>
+                          </ng-container>
+                          <ng-container *ngIf="item.key =='write_value'">
+                            <span>{{bodyTable.write_value}} </span>
+                          </ng-container>
+                        </ng-container>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="collapseyaxis" class="collapse show mt-3 mb-3">
+          <div class="tab-pane-container"
+            *ngFor="let series of _chartConfig.write_register_actions;let i=index;trackBy:track">
+            <div *ngIf="chartConfig.isModeBus" class="form-group">
+              <input type="checkbox" class="form-control d-inline-block float-left" [(ngModel)]="_chartConfig.isAction"
+                (change)="actionsData('two')" />
+              <label class="control-label mx-2">Action 2</label>
+            </div>
+            <div class="row">
+              <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                <label class="control-label">Label</label>
+                <input type="text" [(ngModel)]="series.label" class="form-control" placeholder="Label"
+                  (change)="actionsData('two')">
+              </div>
+              <div class="form-group col-lg-3 col-md-3 col-sm-6" *ngIf=" isAttributeShow('color')">
+                <label class="control-label">Color</label>
+                <ng-select bindValue="reference" bindLabel="label" [searchable]="false" name="icon"
+                  [items]="chartOptions.assetActionColors" [(ngModel)]="series.colorReference" [clearable]="false"
+                  (change)="colorChange($event,series,'two')">
+                  <ng-template ng-label-tmp let-item="item">
+                    <div [style.color]="item.value" [style.text-align]="'center'" class="color-pallet">
+                      <i [style.color]="item.value" class="elm-checked-2"></i>
+                      <label>{{item['label']}}</label>
+                    </div>
+                  </ng-template>
+                  <ng-template ng-option-tmp let-item="item" let-index="index">
+                    <div [style.text-align]="'center'" class="color-pallet">
+                      <i [style.color]="item.value" class="elm-unchecked-radio-button"></i>
+                      <label>{{item.label}}</label>
+                    </div>
+                  </ng-template>
+                </ng-select>
+              </div>
+            </div>
+
+            <button id="openModalButton" title="Configure" type="button" class="btn btn-sm btn-primary mb-3 ml-0 "
+              data-toggle="modal" data-target="#exampleModal" (click)="openModal()" [disabled]="!_chartConfig.isAction">
+              {{_chartConfig['write_register_actions'][0].labelActionId?'Configure': 'Configure'}}
+            </button>
+            <div *ngIf="_chartConfig['write_register_actions'][0].labelActionId" class="row">
+              <div class="col-md-10">
+                <table class="table border-0">
+                  <thead>
+                    <tr>
+                      <th *ngFor="let tableHeader of _chartConfig['actionDataTable']['headerContent']">
+                        {{tableHeader.label}}</th>
+                    </tr>
+                  </thead>
+                  <tbody class="fixedAlign">
+                    <tr>
+                      <td *ngFor="let item of _chartConfig['actionDataTable']['headerContent']" class="overflow-auto"
+                        style="text-overflow: inherit;">
+                        <ng-container *ngFor="let bodyTable of _chartConfig['actionDataTable']['bodyContent'] ">
+                          <ng-container *ngIf="item.key !=='write_value'">
+                            <span *ngFor="let bodyElement of bodyTable[item.key];let a=index">
+                              {{bodyElement.label}}{{(bodyTable[item.key].length-1==a)?'':', '}}
+                            </span>
+                          </ng-container>
+                          <ng-container *ngIf="item.key =='write_value'">
+                            <span>{{bodyTable.write_value}} </span>
+                          </ng-container>
+                        </ng-container>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- asset control actions ends here -->
+
+    <!-- Filter -->
+    <div class="card border-0 pt-3" *ngIf="chartOptions.filter">
+      <div class="accordian-header border-bottom" id="Filter" data-toggle="collapse" data-target="#collapseFilter"
+        aria-expanded="true" aria-controls="collapseFilter">
+        <h6>Select Filters</h6>
+      </div>
+      <div class="tab-pane" id="collapseFilter" class="collapse show mt-3 mb-3" aria-labelledby="Filter">
+        <div class="tab-pane-container">
+          <div class="row ml-1">
+            <div class="row">
+              <!-- <label class="control-label col-12 d-flex align-items-center">Add Filter <i *ngIf="isClicked" class="elm-reset continues"></i></label> -->
+
+              <!-- <ng-select placeholder="Type" [clearable]="true" [(ngModel)]="selectedFilterType">
+                    <div *ngFor="let type of chartOptions.filter.types">
+                      <ng-option *ngIf="type.isShow && type.isShow!= 'undefined'" [value]="type"
+                        [disabled]="type.disabled">
+                        {{type.label}}</ng-option>
+                    </div>
+                  </ng-select> -->
+              <ul class="filter-menus">
+                <ng-container *ngFor="let type of chartOptions.filter.types;">
+                  <li (click)="!this['isClickedFilter' + type.label]?addFilter(type):''"
+                    *ngIf="type.isShow && type.isShow!= 'undefined'" [ngClass]="{'active': type.disabled}">
+                    <i
+                      [ngClass]='{"elm-unchecked-radio-button" : !type.disabled && !this["isClickedFilter" + type.label], "elm-reset continues" : !type.disabled && this["isClickedFilter" + type.label], "elm-checked-2" : type.disabled}'></i>
+                    <a class="">{{type.label}}</a>
+                  </li>
+                </ng-container>
+              </ul>
+              <!-- <div class="col-2 pl-0">
+                  <i (click)="addFilter()" *ngIf="!isClicked" class="elm-add-2"></i>
+                  <i *ngIf="isClicked" class="elm-reset continues"></i>
+                </div> -->
+
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-3"
+              *ngFor="let filter of _chartConfig.filter.filterList; let i=index;trackBy:track">
+              <ng-container *ngIf="filter.type === 'multiCheckboxSelect'">
+                <div class="col-12 p-2" style="background:#f9f9f9;">
+                  <div class="col-12 p-0">
+                    <h6 class="category-heading p-0">{{filter.title}}
+                      <i (click)="addReloadFilter(filter)" class="elm-reset px-2"
+                        style="font-size: 15px; vertical-align: middle;" title="Update Data"></i>
+                      <i (click)="deleteFilterRow(i)" class="elm-cancel float-right" style="font-size: 19px;"
+                        title="close"></i>
+                    </h6>
+                  </div>
+                  <div class="col-12 p-0">
+                    <h6 class="override-label clearfix">
+                      <input type="checkbox" [(ngModel)]="filter.overwrite" class="float-left"
+                        [disabled]="chartConfig.isModeBus" [ngClass]="{'not-allowed-cursor':chartConfig.isModeBus}">
+                      <span class="float-left">Override filter</span>
+                    </h6>
+                  </div>
+                  <kl-custom-multiselect *ngIf="!showLoader" [inputData]="filter" [selectedData]="filter.value"
+                    [isCheckBox]="isCheckBox" (emitData)="emittedData($event,filter['id'])" class="mt-3">
+                  </kl-custom-multiselect>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="filter.type === 'tree'">
+                <div class="col-12 p-2" style="background:#f9f9f9;">
+                  <div class="col-12 p-0">
+                    <h6 class="category-heading p-0">{{filter.title}}
+                      <i (click)="addReloadFilter(filter)" class="elm-reset px-2"
+                        style="font-size: 15px; vertical-align: middle;" title="Update Data"></i>
+                      <i (click)="deleteFilterRow(i)" class="elm-cancel float-right" style="font-size: 19px;"
+                        title="close"></i>
+                    </h6>
+                  </div>
+                  <div class="col-12 p-0">
+                    <h6 class="override-label">
+                      <input type="checkbox" [(ngModel)]="filter.overwrite" class="float-left">
+                      <span class="float-left">Override filter</span>
+                    </h6>
+                  </div>
+                  <kl-custom-tree [inputData]="filter" [selectedData]="filter.value"
+                    (emitData)="emittedData($event,filter['id'])" (emitTreeMode)="emittedTreeData($event)">
+                  </kl-custom-tree>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Harmonics -->
+    <div class="card border-0 pt-3" *ngIf="_chartConfig.chartType=='harmonics'">
+      <div class="accordian-header border-bottom" id="Harmonics" data-toggle="collapse" data-target="#collapseharmonics"
+        aria-expanded="true" aria-controls="collapseharmonics">
+        <h6>Harmonics</h6>
+      </div>
+      <div class="tab-pane" id="collapseharmonics" class="collapse show mt-3 mb-3" aria-labelledby="Harmonics">
+        <div class="tab-pane-container">
+          <div class="row">
+            <div class="form-group col-lg-3 col-md-4 col-sm-6">
+              <label class="control-label">Volts/Amps</label>
+              <ng-select bindValue="value" bindLabel="label" [items]="chartOptions.harmonics.voltoramps"
+                placeholder="Volts or amps" [clearable]="false" [(ngModel)]="_chartConfig.harmonics.volt_or_amps">
+              </ng-select>
+            </div>
+            <div class="form-group col-lg-3 col-md-4 col-sm-6">
+              <label class="control-label">Phase</label>
+              <ng-select bindValue="value" bindLabel="label" [items]="chartOptions.harmonics.phases" placeholder="Phase"
+                [multiple]="true" [clearable]="true" [(ngModel)]="_chartConfig.harmonics.phase">
+              </ng-select>
+            </div>
+            <div class="form-group col-lg-3 col-md-4 col-sm-6">
+              <label class="control-label">Harmonics Tags</label>
+              <ng-select bindValue="value" bindLabel="label" [items]="chartOptions.harmonics.tags"
+                placeholder="Volts or amps" [clearable]="false" [(ngModel)]="_chartConfig.harmonics.tag_range">
+              </ng-select>
+            </div>
+            <div class="form-group col-lg-3 col-md-4 col-sm-6" *ngIf="_chartConfig.harmonics.tag_range=='Custom'">
+              <label class="control-label">Custom Range Value</label>
+              <input type="text" class="form-control" placeholder="Ex: 5-25"
+                [(ngModel)]="_chartConfig.harmonics.custom_value">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-lg-3 col-md-4 col-sm-6">
+              <label class="control-label">Benchmark</label>
+              <ng-select bindValue="value" bindLabel="label" [items]="chartOptions.yaxis.benchmark"
+                placeholder="Benchmark" [clearable]="false" [(ngModel)]="_chartConfig.harmonics.benchmark">
+              </ng-select>
+            </div>
+            <div class="form-group col-lg-3 col-md-4 col-sm-6" *ngIf="_chartConfig.harmonics.benchmark">
+              <label class="control-label">Benchmark Value</label>
+              <input type="number" class="form-control" placeholder="Benchmark Value"
+                [(ngModel)]="_chartConfig.harmonics.benchmarkValue">
+            </div>
+            <div class="form-group col-lg-3 col-md-4 col-sm-6">
+              <label class="control-label">Threshold</label>
+              <ng-select bindValue="value" bindLabel="label" [items]="chartOptions.yaxis.threshold"
+                placeholder="Threshold" [clearable]="false" [(ngModel)]="_chartConfig.harmonics.threshold">
+              </ng-select>
+            </div>
+            <div class="form-group col-lg-3 col-md-4 col-sm-6" *ngIf=" _chartConfig.harmonics.threshold">
+              <label class="control-label">Threshold Value</label>
+              <input type="number" class="form-control" placeholder="Threshold Value"
+                [(ngModel)]="_chartConfig.harmonics.thresholdValue">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- new Asset control widget -->
+
+
+
+    <!--Tags -->
+    <div class="card border-0 pt-3">
+      <div class="accordian-header border-bottom" id="Yaxis" data-toggle="collapse" data-target="#collapseyaxis"
+        aria-expanded="true" aria-controls="collapseyaxis">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-md-1 col-sm-6">
+              <h6 class="text-nowrap">Tags
+
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="collapseyaxis" class="collapse show mt-3 mb-3" aria-labelledby="Yaxis">
+
+        <div class="tab-pane-container clearfix">
+          <div class="position-relative mb-3 p-3" style="background:#f9f9f9"
+            *ngFor="let series of _chartConfig.yaxis; let i=index;trackBy:track">
+
+            <div class="col-12">
+              <div class="row">
+                <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                  <label class="control-label">Tag<span class="color-red"
+                      *ngIf="chartConfig.isModeBus">&nbsp;*</span></label>
+                  <ng-select bindLabel="label" [items]="chartOptions.yaxis.tags" placeholder="Tag" [clearable]="false"
+                    [(ngModel)]="series.tag" (ngModelChange)="tagChangeAction(series)">
+                  </ng-select>
+                </div>
+                <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                  <label class="control-label">Label</label>
+                  <input type="text" class="form-control" placeholder="Label" [(ngModel)]="series.name">
+                </div>
+                <div *ngIf="!chartConfig.isModeBus" class="form-group col-lg-3 col-md-4 col-sm-6 d-none">
+                  <label class="control-label">Base Unit</label>
+                  <input type="text" class="form-control" placeholder="Original Unit" [(ngModel)]="series.selectedUnit"
+                    disabled>
+                </div>
+                <div class="form-group col-lg-3 col-md-4 col-sm-6" *ngIf="isAttributeShow('unitConverter')">
+                  <label class="control-label">Unit</label>
+                  <ng-select bindLabel="label" [items]="getUnitList(series)" placeholder="Unit" [clearable]="false"
+                    [(ngModel)]="series.unitInfo" (ngModelChange)="unitChangeAction(series)">
+                  </ng-select>
+                </div>
+                <div class="form-group col-lg-3 col-md-4 col-sm-6"
+                  *ngIf="isAttributeShow('color') && !chartConfig.isModeBus">
+                  <label class="control-label">Color</label>
+                  <ng-select bindValue="reference" [searchable]="false" name="icon" [items]="chartOptions.yaxis.colors"
+                    placeholder="Color" [(ngModel)]="series.colorReference" [clearable]="false"
+                    (change)="colorChange($event,series)">
+                    <ng-template ng-label-tmp let-item="item">
+                      <div [style.text-align]="'center'" class="color-pallet">
+                        <i class="elm-checked-2" [style.color]="item.value"></i>
+                        <label>{{item['label']}}</label>
+                      </div>
+                    </ng-template>
+                    <ng-template ng-option-tmp let-item="item" let-index="index">
+                      <div [style.text-align]="'center'" class="color-pallet">
+                        <i [style.color]="item.value" class="elm-unchecked-radio-button"></i>
+                        <label>{{item.label}}</label>
+                      </div>
+                    </ng-template>
+                  </ng-select>
+                </div>
+                <div class="form-group col-lg-3 col-md-4 col-sm-6"
+                  *ngIf="isAttributeShow('position') && !chartConfig.isModeBus">
+                  <label class="control-label">Position </label>
+                  <ng-select bindValue="value" bindLabel="label" [items]="chartOptions.yaxis.position"
+                    placeholder="Axis Position" [clearable]="false" [(ngModel)]="series.position">
+                  </ng-select>
+                </div>
+              </div>
+              <div *ngIf="!chartConfig.isModeBus" class="row">
+                <div class="form-group col-lg-3 col-md-4 col-sm-6" *ngIf="isAttributeShow('benchmark')">
+                  <label class="control-label">Benchmark</label>
+                  <ng-select bindValue="value" bindLabel="label" [items]="chartOptions.yaxis.benchmark"
+                    placeholder="Benchmark" [clearable]="false" [(ngModel)]="series.benchmark">
+                  </ng-select>
+                </div>
+                <div class="form-group col-lg-3 col-md-4 col-sm-6"
+                  *ngIf="isAttributeShow('benchmark') && series.benchmark">
+                  <label class="control-label">Benchmark Value</label>
+                  <input type="number" class="form-control" placeholder="Benchmark Value"
+                    [(ngModel)]="series.benchmarkValue">
+                </div>
+                <div class="form-group col-lg-3 col-md-4 col-sm-6" *ngIf="isAttributeShow('threshold')">
+                  <label class="control-label">Threshold</label>
+                  <ng-select bindValue="value" bindLabel="label" [items]="chartOptions.yaxis.threshold"
+                    placeholder="Threshold" [clearable]="false" [(ngModel)]="series.threshold">
+                  </ng-select>
+                </div>
+                <div class="form-group col-lg-3 col-md-4 col-sm-6"
+                  *ngIf="isAttributeShow('threshold') && series.threshold">
+                  <label class="control-label">Threshold Value</label>
+                  <input type="number" class="form-control" placeholder="Threshold Value"
+                    [(ngModel)]="series.thresholdValue">
+                </div>
+              </div>
+            </div>
+            <div class="cancel-y-axis" *ngIf="isAttributeShow('yaxisDeleteBtn') && _chartConfig.yaxis.length>1">
+              <label class="control-label"></label>
+              <span class="up-down-container">
+                <!-- <button type="button" class="btn btn-danger mt-4" (click)="deleteYaxisSeries(i)">Delete</button> -->
+                <i *ngIf="i!=0" (click)="moveUp(i,i-1)" class="elm-slide-up" data-toggle="tooltip"
+                  data-placement="right" title="Move Up"></i>
+                <i class="elm-down-button" *ngIf="i<_chartConfig.yaxis.length-1" (click)="moveUp(i,i+1)"
+                  data-toggle="tooltip" data-placement="right" title="Move Down"></i>
+                <i class="elm-cancel" (click)="deleteYaxisSeries(i)" data-toggle="tooltip" data-placement="top"
+                  title="Delete Current Y Axis"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="btn btn-sm btn-primary mb-3 ml-0 ng-star-inserted" (click)="addYaxisAction()"
+        *ngIf="isAttributeShow('yaxisAddBtn') && !chartConfig.isModeBus" data-toggle="tooltip" data-placement="right"
+        title="Add Tag" style="width: fit-content"><strong>+</strong> Add Tag
+      </button>
+    </div>
+    <div *ngIf="chartConfig.isModeBus" class="card border-0 pt-3">
+      <div class="accordian-header border-bottom" id="General" data-toggle="collapse" data-target="#collapseOne"
+        aria-expanded="true" aria-controls="collapseOne">
+        <h6>Comparator</h6>
+      </div>
+      <div class="tab-pane" id="collapseOne" class="collapse show mt-3 mb-3" aria-labelledby="General">
+        <div class="tab-pane-container clearfix " *ngIf="chartConfig.isModeBus">
+          <div class="position-relative mb-3 p-3" style="background:#f9f9f9"
+            *ngFor="let series of _chartConfig.assetControls; let i=index;trackBy:track">
+            <div class="row">
+              <div class="form-group col-lg-3 col-md-3 col-sm-6">
+                <label class="control-label">Compare</label>
+                <ng-select bindLabel="label" bindValue="value" [items]="chartOptions['assetControls']['condition']"
+                  placeholder="Condition" [clearable]="false" [(ngModel)]="series.condition"
+                  (change)="conditionCheck(i)">
+                </ng-select>
+              </div>
+              <div *ngIf="chartConfig.isModeBus && !series.isRangeValue" class="form-group col-lg-3 col-md-3 col-sm-6">
+                <label class="control-label">Value<span class="color-red">&nbsp;*</span></label>
+                <input type="number" class="form-control" placeholder="Enter value" [(ngModel)]="series.value">
+              </div>
+              <div *ngIf="chartConfig.isModeBus && series.isRangeValue" class="form-group col-lg-3 col-md-3 col-sm-6">
+                <label class="control-label">From<span class="color-red">&nbsp;*</span></label>
+                <input type="number" class="form-control" placeholder="Enter value" [(ngModel)]="series.fromValue">
+              </div>
+              <div *ngIf="chartConfig.isModeBus && series.isRangeValue" class="form-group col-lg-3 col-md-3 col-sm-6">
+                <label class="control-label">To<span class="color-red">&nbsp;*</span></label>
+                <input type="number" class="form-control" placeholder="Enter value" [(ngModel)]="series.toValue">
+              </div>
+              <div class="form-group col-lg-3 col-md-3 col-sm-6">
+                <label class="control-label">Live Status Color</label>
+                <ng-select bindLabel="label" bindValue="value" [items]="_chartConfig.controlsData"
+                  placeholder="Select Action" (open)="update()" [clearable]="false" [(ngModel)]="series.color">
+                </ng-select>
+              </div>
+            </div>
+            <div class="cancel-y-axis" data-placement="top" data-toggle="tooltip"
+              [ngClass]="{'not-allowed-cursor':_chartConfig.assetControls.length<=1}"
+              (click)="_chartConfig.assetControls.length>1? deleteCondition(i):''">
+              <span class="up-down-container">
+                <i class="elm-cancel" title="Cancel"
+                  [ngClass]="{'not-allowed-cursor':_chartConfig.assetControls.length<=1}">
+
+                </i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button *ngIf="chartConfig.isModeBus && _chartConfig.assetControls.length<conditionsCount" type="button"
+        class="btn btn-sm btn-primary mb-3 ml-0 ng-star-inserted" (click)="addAssetCondition()" data-toggle="tooltip"
+        data-placement="right" title="Add Condition" style="width: fit-content"><strong>+</strong> Add Condition
+      </button>
+    </div>
+
+    <!-- Benchmark for KPI -->
+    <div class="card border-0 pt-3" *ngIf="chartConfig.isNormaltile ||chartConfig.isGauge ||chartConfig.isProgressbar">
+      <div class="accordian-header border-bottom" id="Yaxis" data-toggle="collapse" data-target="#collapseyaxis"
+        aria-expanded="true" aria-controls="collapseyaxis">
+        <h6>Benchmark</h6>
+      </div>
+      <div *ngIf="_chartConfig.isGauge || chartConfig.isProgressbar" class="tab-pane-container clearfix">
+        <h6 class="category-heading">{{chartConfig.isProgressbar?'Progress Bar Scale' : 'Gauge Scale'}}</h6>
+        <div class="row">
+          <div class="form-group col-lg-3 col-md-4 col-sm-6">
+            <label class="control-label">Min</label>
+            <input type="number" min="0" max="12" class="form-control mb-2 mr-sm-2" placeholder="Minimum"
+              [(ngModel)]="_chartConfig.minValue">
+          </div>
+          <div class="form-group col-lg-3 col-md-4 col-sm-6">
+            <label class="control-label">Max</label>
+            <input type="number" min="0" class="form-control mb-2 mr-sm-2" placeholder="Maximum"
+              [(ngModel)]="_chartConfig.maxValue">
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="collapseyaxis" class="collapse show mt-3 mb-3" aria-labelledby="Yaxis">
+        <div class="tab-pane-container clearfix">
+          <div class="position-relative mb-3 p-3" style="background:#f9f9f9"
+            *ngFor="let series of _chartConfig.benchmark; let i=index;trackBy:track">
+            <div class="row">
+              <!-- Priority -->
+              <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                <label class="control-label">Priority</label>
+                <ng-select bindLabel="label" (change)="changePriority($event,series,i)"
+                  [items]="chartOptions['benchmark']['priorityTypes']" placeholder="Priority" [clearable]="false"
+                  [(ngModel)]="series.priority">
+                </ng-select>
+              </div>
+              <div *ngIf="series.isShowMax && ! _chartConfig.isNormaltile"
+                class="form-group col-lg-3 col-md-4 col-sm-6">
+                <label class="control-label">Max</label>
+                <input type="number" min="0" class="form-control mb-2 mr-sm-2" placeholder="Maximum" disabled
+                  [(ngModel)]="_chartConfig.maxValue">
+              </div>
+              <!-- COndition -->
+              <div *ngIf="_chartConfig.isNormaltile" class="form-group col-lg-3 col-md-4 col-sm-6">
+                <label class="control-label">Compare</label>
+                <ng-select bindLabel="label" [items]="chartOptions['benchmark']['conditions']" placeholder="Condition"
+                  [clearable]="false" [(ngModel)]="series.condition">
+                </ng-select>
+              </div>
+              <!-- Value -->
+              <div *ngIf="series.isShowValue || _chartConfig.isNormaltile"
+                class="form-group col-lg-3 col-md-4 col-sm-6">
+                <label class="control-label">Value</label>
+                <input type="number" class="form-control" placeholder="Enter value" [(ngModel)]="series.value">
+              </div>
+            </div>
+            <div class="cancel-y-axis">
+              <label class="control-label"></label>
+              <span class="up-down-container">
+                <!-- <button type="button" class="btn btn-danger mt-4" (click)="deleteYaxisSeries(i)">Delete</button> -->
+                <!-- <i *ngIf="i!=0" (click)="moveUp(i,i-1)" class="elm-slide-up" data-toggle="tooltip" data-placement="right" title="Move Up"></i> -->
+                <!-- <i class="elm-down-button" *ngIf="i<_chartConfig.yaxis.length-1" (click)="moveUp(i,i+1)" data-toggle="tooltip" data-placement="right" title="Move Down"></i> -->
+                <i class="elm-cancel" *ngIf="series.isDelete ||_chartConfig.isNormaltile" (click)="deleteBenchmark(i)"
+                  data-toggle="tooltip" data-placement="top" title="Delete Current Benchmark"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        <button type="button" *ngIf="isShowBenchmarkBlock" class="btn btn-sm btn-primary mb-3 ml-0 ng-star-inserted"
+          (click)="addBenchmarkAction()" data-toggle="tooltip" data-placement="right" title="Add Benchmark"
+          style="width: fit-content"><strong>+</strong> Add Benchmark
+        </button>
+      </div>
+    </div>
+    <!-- Data Type -->
+    <div class="card border-0 pt-3"
+      *ngIf="chartConfig.cType !== 'gauge' && chartConfig.cType !== 'map' && !chartConfig.isProgressbar && _chartConfig.chartType!='harmonics' && !chartConfig.isNormaltile && chartConfig.cType !== 'table' && !chartConfig.isModeBus">
+      <div class="accordian-header border-bottom" id="Xaxis" data-toggle="collapse" data-target="#collapsexaxis"
+        aria-expanded="true" aria-controls="collapsexaxis">
+        <h6>Data Type</h6>
+      </div>
+      <div class="tab-pane" id="collapsexaxis" class="collapse show mt-3 mb-3" aria-labelledby="Xaxis">
+        <div class="tab-pane-container" *ngIf="_chartConfig.xaxis">
+          <div class="row">
+            <!-- <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                <label class="control-label">Label</label>
+                <input type="text" class="form-control" placeholder="Label"
+                  [(ngModel)]="_chartConfig.xaxis.label">
+              </div>
+           -->
+            <div class="form-group col-lg-3 col-md-4 col-sm-6" *ngIf="isAttributeShow('xaxisFromat')">
+              <label class="control-label">Timestamp Format</label>
+              <ng-select bindValue="value" bindLabel="label" [items]="chartOptions.xaxis.dateFormats"
+                placeholder="Timestamp Format" [clearable]="false" [(ngModel)]="_chartConfig.xaxis.format">
+              </ng-select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Visualisation-->
+    <div class="card border-0 pt-3">
+      <div class="accordian-header border-bottom" id="General" data-toggle="collapse" data-target="#collapseOne"
+        aria-expanded="true" aria-controls="collapseOne">
+        <h6>Visualisation</h6>
+      </div>
+      <div class="tab-pane" id="collapseOne" class="collapse show mt-3 mb-3" aria-labelledby="General">
+        <div class="tab-pane-container clearfix">
+          <!-- <div class="form-group">
+          <label class="control-label">Description</label>
+          <textarea class="form-control mb-2 mr-sm-2" rows="6" placeholder="Widget Description"
+            [(ngModel)]="chartConfig.description"></textarea>
+        </div> -->
+          <!-- <div class="row">
+          <div class="form-group col-lg-3 col-md-4 col-sm-6" *ngIf="chartConfig.isNormaltile || chartConfig.isPue">
+            <label class="control-label">Upload image</label>
+            <div class="image-upload" *ngIf="_chartConfig.img!=''">
+              <label for="reportLogo">
+                <img src="{{_chartConfig.img}}" class="image imgCorners" title="Click to upload new image" />
+              </label>
+              <i class="elm-cancel" *ngIf="_chartConfig.img!=''" (click)="_chartConfig.img=''" data-toggle="tooltip" data-placement="top" title="Remove uploaded image"></i>
+              <input type="file" class="form-control browse" accept="image/png, image/jpeg" id="reportLogo" ngModel
+                (change)="getFiles($event)">
+                <i class="elm-cancel" *ngIf="_chartConfig.img!='assets/images/save-energy.png'" (click)="_chartConfig.img='assets/images/save-energy.png'" data-toggle="tooltip" data-placement="top" title="Remove uploaded image"></i>
+            </div>
+            <div>
+              <button class="btn btn-primary" (click)="showImagePicker = true;">Select</button>
+            </div>
+          </div>
+          <div class="form-group col-lg-3 col-md-4 col-sm-6" *ngIf="chartConfig.isNormaltile">
+            <label class="control-label">Show image</label>
+
+            <input type="checkbox" class="" [(ngModel)]="_chartConfig['isImageShow']" />
+
+          </div>
+        </div> -->
+          <div class="row">
+            <div class="form-group col-lg-3 col-md-4 col-sm-6"
+              *ngIf="chartConfig.isNormaltile || chartConfig.isPue || chartConfig.isModeBus">
+              <label class="control-label">Image <span *ngIf="chartConfig.isModeBus"
+                  class="color-red">&nbsp;*</span></label>
+              <div class="image-upload" *ngIf="_chartConfig.img!=''">
+                <label for="reportLogo">
+                  <img src="{{_chartConfig.img}}" class="image imgCorners" title="Click to upload new image" />
+                </label>
+                <i class="elm-cancel" *ngIf="_chartConfig.img!=''" (click)="_chartConfig.img=''" data-toggle="tooltip"
+                  data-placement="top" title="Remove selected image"></i>
+                <!-- <input type="file" class="form-control browse" accept="image/png, image/jpeg" id="reportLogo" ngModel
+                (change)="getFiles($event)">
+                <i class="elm-cancel" *ngIf="_chartConfig.img!='assets/images/save-energy.png'" (click)="_chartConfig.img='assets/images/save-energy.png'" data-toggle="tooltip" data-placement="top" title="Remove uploaded image"></i> -->
+                <!-- <kl-image-picker [settings]='imagePickerSettings'></kl-image-picker> -->
+              </div>
+              <div>
+                <button class="btn btn-secondary" (click)="chooseImage()">{{_chartConfig.img==''?'Choose
+                  Image':'Change
+                  Image'}}</button>
+              </div>
+            </div>
+            <div *ngIf="!chartConfig.isModeBus" class="form-group col-lg-3 col-md-4 col-sm-6">
+              <label class="control-label">Show Widget Title</label>
+              <input type="checkbox" class="form-control" [(ngModel)]="chartConfig.isTitleShow" />
+            </div>
+            <div *ngIf="chartConfig.isModeBus" class="form-group col-lg-3 col-md-4 col-sm-6">
+              <label class="control-label">Show Live Value</label>
+              <input type="checkbox" class="form-control" [(ngModel)]="chartConfig.isShowActionValue" />
+            </div>
+            <div *ngIf="chartConfig.isModeBus" class="form-group col-lg-3 col-md-4 col-sm-6">
+              <label class="control-label">Show Action Buttons</label>
+              <input type="checkbox" class="form-control" [(ngModel)]="chartConfig.isShowActionButtons" />
+            </div>
+            <div class="form-group col-lg-3 col-md-4 col-sm-6"
+              *ngIf="_chartConfig.isNormaltile && this._chartConfig.hasOwnProperty('benchmark') && this._chartConfig['benchmark'].length>0">
+              <label class="control-label">Show Border</label>
+              <input type="checkbox" class="" [(ngModel)]="_chartConfig['isShowBorder']" />
+            </div>
+            <!-- <div class="form-group col-lg-3 col-md-4 col-sm-6">
+            <label class="pr-3">Show Date</label>
+            <ng-select  [(ngModel)]="_chartConfig.isDateShow" [items]="chartOptions.showDate.options"
+            [clearable]="false" placeholder="Show Date">
+                </ng-select>
+          </div> -->
+            <!-- <div class="form-group col-lg-3 col-md-4 col-sm-6">
+            <label class="pr-3">Date/Time Format</label>
+            <ng-select bindValue="value" bindLabel="label" [(ngModel)]="_chartConfig.format"
+                  [items]="chartOptions.showDate.dateFormats" placeholder="Select Date/Time Format" [clearable]="false">
+                </ng-select>
+          </div> -->
+            <!-- <ng-container *ngIf="chartConfig.cType === 'gauge' && _chartConfig.sectorColors">
+          <h6 class="category-heading">Gauge Sector Colors</h6>
+          <div class="row">
+            <div class="form-group col-3">
+              <label class="control-label">Sector 1 Color</label>
+              <input type="color" class="form-control mb-2 mr-sm-2" placeholder="Color"
+                [(ngModel)]="_chartConfig.sectorColors[0][1]">
+            </div>
+            <div class="form-group col-3">
+              <label class="control-label">Sector 2 Color</label>
+              <input type="color" class="form-control mb-2 mr-sm-2" placeholder="Color"
+                [(ngModel)]="_chartConfig.sectorColors[1][1]">
+            </div>
+            <div class="form-group col-3">
+              <label class="control-label">Sector 3 Color</label>
+              <input type="color" class="form-control mb-2 mr-sm-2" placeholder="Color"
+                [(ngModel)]="_chartConfig.sectorColors[2][1]">
+            </div>
+          </div>
+        </ng-container> -->
+
+            <div class="tab-pane-container clearfix d-none">
+              <div class="row">
+                <div class="form-group col-4">
+                  <label class="control-label">Width</label>
+                  <input type="number" min="2" max="12" class="form-control mb-2 mr-sm-2" placeholder="Width"
+                    [(ngModel)]="chartConfig.w">
+                </div>
+                <div class="form-group col-4">
+                  <label class="control-label">Height</label>
+                  <input type="number" min="100" class="form-control mb-2 mr-sm-2" placeholder="Height"
+                    [(ngModel)]="chartConfig.h">
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane-container clearfix" *ngIf="isAttributeShow('legend') && !chartConfig.isProgressbar
+          && !chartConfig.isTile && !chartConfig.isModeBus">
+              <div class="row">
+                <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                  <label class="control-label">Show Legend</label>
+                  <ng-select bindValue="value" bindLabel="label" [items]="chartOptions.legends.show"
+                    [(ngModel)]="_chartConfig.legend.show" [clearable]="false" placeholder="Position">
+                  </ng-select>
+                </div>
+                <div class="form-group col-lg-3 col-md-4 col-sm-6" *ngIf="_chartConfig.legend.show">
+                  <label class="control-label">Legend Position</label>
+                  <ng-select bindValue="value" bindLabel="label" [items]="chartOptions.legends.position"
+                    [(ngModel)]="_chartConfig.legend.position" [clearable]="false" placeholder="Position">
+                  </ng-select>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane-container clearfix"
+              *ngIf="isAttributeShow('grid') && !chartConfig.isProgressbar && !chartConfig.isModeBus">
+              <div class="row">
+                <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                  <label class="control-label">X-Axis Grid Line</label>
+                  <ng-select bindValue="value" bindLabel="label" [items]="chartOptions.legends.show"
+                    [(ngModel)]="_chartConfig.grid.xGridLine" [clearable]="false" placeholder="X-Axis Grid Line">
+                  </ng-select>
+                </div>
+                <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                  <label class="control-label">Y-Axis Grid Line</label>
+                  <ng-select bindValue="value" bindLabel="label" [items]="chartOptions.legends.show"
+                    [(ngModel)]="_chartConfig.grid.yGridLine" [clearable]="false" placeholder="Y-Axis Grid Line">
+                  </ng-select>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane-container clearfix">
+              <div *ngIf="!chartConfig.isModeBus" class="row">
+                <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                  <label class="control-label">Restrict decimal to</label>
+                  <input type="number" min="0" max="12" class="form-control mb-2 mr-sm-2"
+                    placeholder="Restrict decimal to" [(ngModel)]="_chartConfig.maxDecimalPoint">
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+    <!--asset control live Modal 1 next iteration optimization-->
+
+  </div>
+  <div *ngIf="showImagePicker" class="col-12 without-content tab-content">
+    <kl-image-picker (onSelect)="setImage($event)" [settings]='imagePickerSettings'></kl-image-picker>
+  </div>
+
+  <div class="modal fade " id="actionModalOpen" tabindex="-1" role="dialog" aria-labelledby="actionModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-component modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title">
+            Configure Action 1</h6>
+
+        </div>
+
+        <div class="modal-body">
+          <div class="row" *ngFor="let item of configdata.actions ; let i=index;trackBy:trackByActionValue">
+
+            <div class="form-group col-md-3">
+              <label class="control-label">Assets <span class="color-red">&nbsp;*</span></label>
+              <angular2-multiselect class="form-control" [data]="configOptionData.assets" [settings]="tagsDDSettings"
+                [(ngModel)]="item.assets">
+              </angular2-multiselect>
+            </div>
+            <div class="form-group col-md-3">
+              <label class="control-label">Tag<span class="color-red">&nbsp;*</span></label>
+              <angular2-multiselect [data]="configOptionData.tags" [settings]="tagsDDSettings" [(ngModel)]="item.tags">
+
+              </angular2-multiselect>
+
+
+            </div>
+            <div class="form-group col-md-3">
+              <label class="control-label">Value<span class="color-red">&nbsp;*</span></label>
+              <input type="number" class="form-control" placeholder="Enter value" [(ngModel)]="item.write_value">
+            </div>
+            <div class="form-group col-md-3">
+              <label class="control-label">&nbsp;</label>
+              <p>
+                <i class="fa fa-trash" [ngClass]="{'not-allowed-cursor':configdata.actions.length<=1}" title="Delete"
+                  (click)="configdata.actions.length>1? removeAction(i):''"></i>
+              </p>
+            </div>
+
+          </div>
+
+          <button *ngIf="configdata.actions.length<actionsCount" type="button"
+            class="btn btn-sm btn-primary mb-3 ml-0 ng-star-inserted" data-toggle="tooltip" data-placement="right"
+            title="Add" style="width: fit-content" (click)="addActions()"><strong>+</strong> Add
+          </button>
+
+
+        </div>
+        <div class="modal-footer">
+
+          <button class="btn btn-sm btn-secondary" title="Cancel" data-dismiss="modal" type="button">Cancel</button>
+
+          <button type="submit" class="btn btn-sm btn-primary mx-2 ng-star-inserted" title="Save" data-dismiss="modal"
+            (click)="createActionId()">Save</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <-- asset control one more modal-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-component modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title">
+            Configure Action 2</h6>
+        </div>
+        <div class="modal-body">
+          <div class="row" *ngFor="let item of configurationdata.actions ; let i=index;trackBy:trackByActionValue">
+            <div class="form-group col-md-3">
+              <label class="control-label">Assets <span class="color-red">&nbsp;*</span></label>
+              <angular2-multiselect class="form-control" [data]="configOptionData.assets" [settings]="tagsDDSettings"
+                [(ngModel)]="item.assets">
+              </angular2-multiselect>
+            </div>
+            <div class="form-group col-md-3">
+              <label class="control-label">Tag <span class="color-red">&nbsp;*</span></label>
+              <angular2-multiselect [data]="configOptionData.tags" [settings]="tagsDDSettings" [(ngModel)]="item.tags">
+              </angular2-multiselect>
+            </div>
+            <div class="form-group col-md-3">
+              <label class="control-label">Value <span class="color-red">&nbsp;*</span></label>
+              <input type="number" class="form-control" placeholder="Enter value" [(ngModel)]="item.write_value">
+            </div>
+            <div class="form-group col-md-3">
+              <label class="control-label">&nbsp; </label>
+              <p>
+                <i class="fa fa-trash" [ngClass]="{'not-allowed-cursor':configurationdata.actions.length<=1}"
+                  title="Delete" (click)="configurationdata.actions.length>1? removeAddAction(i):''"></i>
+              </p>
+            </div>
+          </div>
+
+          <button *ngIf="configurationdata.actions.length<actionsCount" type="button"
+            class="btn btn-sm btn-primary mb-3 ml-0 ng-star-inserted" data-toggle="tooltip" data-placement="right"
+            title="Add" style="width: fit-content" (click)="addActionsData()"><strong>+</strong> Add
+          </button>
+
+        </div>
+        <div class="modal-footer">
+
+          <button class="btn btn-sm btn-secondary" title="Cancel" data-dismiss="modal" type="button"
+            (click)="actionCancel()">Cancel</button>
+
+
+          <button type="submit" class="btn btn-sm btn-primary mx-2 ml-0 ng-star-inserted" title="Save"
+            data-dismiss="modal" (click)="createActionIdModal()">Save</button>
+
+        </div>
+      </div>
+    </div>
+  </div>

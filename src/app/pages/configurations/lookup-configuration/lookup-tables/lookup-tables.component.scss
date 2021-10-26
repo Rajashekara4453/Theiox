@@ -1,0 +1,52 @@
+.border1px{
+    border: 1px solid #e6e6e6;
+}
+.table_height_setup{
+    height: calc(50vh - 180px);
+    // min-height: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.centered-content{
+    text-align: center;
+}
+
+
+.form-control-borderless {
+    border: none;
+    font-size: 15px;
+    margin-top: 3%;
+    padding-left: 4%;
+}
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+.bg-ghostwhite{
+    background-color: ghostwhite;
+}
+.btn:active{
+    background-color: none;
+    border-color: none; 
+}
+
+.color-blue{
+    color:blue;
+}
+.scroll_setup {
+  height: calc(100vh - 255px);
+  min-height: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.title_style{
+    color: #2b5a92;
+    font-size: 20px;
+}
+.border_bottom{
+  border-bottom: 1px solid #ced9e6;
+}

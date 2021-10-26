@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+	<defs>
+		<image width="600" height="600" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAAJYAQMAAACEqAqfAAAAAXNSR0IB2cksfwAAAANQTFRF////p8QbyAAAAENJREFUeJztwQENAAAAwqD3T20ON6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL4NsiAAAfkdBQsAAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #c13531 } 
+		.shp1 { fill: #ff0000 } 
+		.shp2 { fill: #293c54 } 
+	</style>
+	<use id="Background" href="#img1" x="0" y="0" />
+	<path id="Layer 1" class="shp0" d="M40 137L414 137L414 254L40 254L40 137Z" />
+	<path id="Shape 2" class="shp1" d="" />
+	<path id="Shape 2" class="shp2" d="M449 254L506 137L573 254" />
+	<path id="Shape 1" class="shp2" d="M40 323L560 323L560 382L40 382L40 323Z" />
+</svg>

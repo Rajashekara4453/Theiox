@@ -1,0 +1,228 @@
+.list-area
+{
+    max-height: 200px;
+    overflow: hidden;
+}
+  .scrollDivContent{
+    overflow: scroll;
+    height: calc(100vh - 210px);
+    overflow-x: hidden;
+    padding: 2px;
+  }
+  .form-group{
+    margin-bottom: 18px !important;
+    font-size: 13px;
+}
+
+.form-control-borderless {
+    border: none;
+    font-size: 11px;
+    margin-top: 3%;
+    padding-left: 4%;
+}
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+// .form-control{
+//     border-radius: 0px;
+//     border-color: lightblue;
+//     font-size: 11px;
+//     background-color: ghostwhite;
+// }
+
+.select{
+    max-width: 280px;
+    font-size: 11px;
+    background-color: ghostwhite;
+    border-color: lightblue;
+}
+.required{
+    color: red;
+}
+
+
+.form-group{
+    margin-bottom: 18px !important;
+    font-size: 13px;
+}
+.iconButton{
+    cursor: pointer;
+    margin-left: 5px;
+}
+.freqType{
+    font-weight: 600;
+    background: #31addc;
+    color: #fff;
+    display: inline;
+    padding: 3px;
+    border-radius: 8px;
+}
+.searchbar{
+    text-align: left;
+}
+
+.getBorder{
+    border: 1px solid grey;
+}
+
+.ruleBuilderFooter{
+    border:  1px solid grey;
+    padding: 10px;
+    border-top: 0px;
+    min-height: 150px
+}
+.ruleBuilderHeader{
+    border:  1px solid grey;
+    padding: 10px;
+    border-bottom: 0px;
+    min-height: 40px;
+}
+
+.noPadding{
+    padding: 0 !important;
+}
+.tagExtLable{
+    text-align: center;   
+}
+.deleteBuilder{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+// button:focus { outline: none; }
+
+.colorRed{
+    color: red;
+}
+.colorGreen{
+    color: green;
+}
+.calcBlock{
+    margin: 40px 0px;
+}
+// .scrollCalcItem{
+//     height: 500px;
+//     overflow-y: scroll;
+//     overflow-x: hidden;
+// }
+.submitCalc{
+    text-align: right;
+}
+
+.alert{
+    margin: 0px !important;
+    padding: 6px !important;
+
+}
+
+// button:active {
+//     outline: none;
+//     border: none;
+// }
+// button:focus {
+//     outline: 0;
+// }
+
+
+ul.pull-right{
+    display: none !important;
+}
+.schedule_Box{
+    // border-top: 1px solid grey;
+    margin-bottom: 100px;
+}
+.scheduleList{
+    font-weight: 600;
+}
+/* -------------Table------------ */
+.table th, .table td {
+    vertical-align: middle !important;
+}
+.table td:nth-child(1){
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 1px;
+    width: 18%;
+}
+.table td:nth-child(2){
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 1px;
+    width: 33%;
+}
+.table th:nth-child(2){
+    width: 25%;
+}
+.table td, th{
+    // text-align: center;
+}
+
+
+ng-select {
+    height: 39.14px !important;
+}
+::ng-deep ng-select > div {
+    height: 100% !important;
+    padding: 3px 0px 0px 0px !important;
+    border-radius: 3px;
+}
+
+.errorOnRuleBuilder{
+    text-align: center;
+}
+
+.ruleBuilderFooter  table  tr{
+    font-size: 13px;
+}
+.ruleBuilderFooter  table  tr th{
+    font-weight: 100;
+}
+
+.checkbox label {
+    cursor: pointer;
+}
+.ruleFooter, .tableFooter{
+    margin: 5px 0px 5px 0px;
+}
+.tableFooter td{
+    table-layout: fixed;  
+}
+.tableFooter th , td{
+    // padding: 2px !important;
+    // border: 0px !important;
+}
+.tableFooter td:nth-of-type(1) {width:135px;}/*Setting the width of column 1.*/
+.tableFooter td:nth-of-type(2) {width:220px}/*Setting the width of column 2.*/
+.tableFooter td:nth-of-type(3) {width:220px}/*Setting the width of column 3.*/
+.tableFooter td:nth-of-type(4) {width:220px}/*Setting the width of column 3.*/
+.tableFooter td:nth-of-type(5) {width:220px}/*Setting the width of column 3.*/
+
+.CompleteTagInfo{
+    width: 500px !important; 
+    padding-left: 20px !important; 
+    font-size: 20px !important;
+}
+
+.sticky{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #fff;
+}
+
+/* ------Date Picker----- */
+angular2-date-picker .wc-date-container{
+    height: 36px !important;
+    padding: 7px !important;
+    border-radius: .25rem;
+}
+.filter-select-all .ng-star-inserted
+{
+max-height: 200px;
+}

@@ -1,0 +1,368 @@
+<nav id="sidebar" class="sidebar-wrapper" (mouseleave)="mouseLeave()">
+  <div class="pin-sidebar">
+    <kl-pin-sidebar></kl-pin-sidebar>
+  </div>
+  <a
+    *ngIf="isShowSecondary && !isSearchEnabled && createButtonActive"
+    class="btn-reload"
+    (click)="onReload()"
+    title="Refresh List"
+  >
+    <i class="fa fa-refresh"></i>
+  </a>
+  <div
+    class="sidebar-header"
+    [ngClass]="{ 'with-menu-title': isShowSecondary && !isSearchEnabled }"
+  >
+    <div class="sidebar-brand">
+      <a class="mini-sidebar-logo"
+        ><img
+          src="assets/images/branding/mini-sidebar-logo.png"
+          width="38px"
+          alt="elmeasure"
+      /></a>
+      <a class="sidebar-logo"
+        ><img
+          src="assets/images/branding/sidebar-logo.png"
+          height="38px"
+          alt="elmeasure"
+      /></a>
+      <span
+        class="m-0 overlaySidebar"
+        style="cursor: pointer"
+        (click)="overlaySideBar()"
+        data-toggle="tooltip"
+        data-placement="right"
+        title="Collapse"
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          focusable="false"
+          role="presentation"
+        >
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path
+            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </span>
+    </div>
+
+    <div class="sidebar-search d-flex align-items-center">
+      <button class="btn btn-primary btn-sm sidebar-icon" (click)="onBackShowPreviousMenu()"
+        *ngIf="isShowSecondary && !userInput" title="Back">
+        <i class="fa fa-arrow-left"></i>
+      </button>
+      <button class="btn btn-primary btn-sm sidebar-icon" (click)="onHomeShowRootMenu()"
+        *ngIf="isShowSecondary && !userInput" title="Home">
+        <i class="fa fa-home"></i>
+      </button>
+      <div
+        class="search-group search-group-sm with-bg p-0 w-100 border-right-0 border-left-0 border-top-0"
+        tabindex="1"
+      >
+        <span class="search-icon fa fa-search"></span>
+
+        <input
+          type="search"
+          placeholder="Search"
+          class="search-input"
+          [(ngModel)]="userInput"
+          (keyup)="onSearch()"
+          (search)="onSearchClear()"
+          spellcheck="false"
+          autocomplete="off"
+        />
+      </div>
+    </div>
+
+    <div class="secondary-title" *ngIf="isShowSecondary && !isSearchEnabled">
+      <i [ngClass]="activeItem.icon" class="icon"></i>
+      <span class="text">{{ activeItem.name }}</span>
+      <button
+        *ngIf="createButtonActive && !isMobileView"
+        class="btn btn-primary btn-sm sidebar-icon"
+        data-toggle="modal"
+        [attr.data-target]="isCreateAccess ? '#addModal' : ''"
+        id="addModalButton"
+        [title]="isCreateAccess ? 'Create New' : 'Access Denied'"
+        [ngStyle]="{ cursor: isCreateAccess ? 'pointer' : 'not-allowed' }"
+        (click)="isCreateAccess ? onAddModalOpen() : ''"
+      >
+        <span class="fa fa-plus"></span>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="isSearchEnabled" class="sidebar-content">
+    <ul>
+      <div
+        class="ml-3"
+        *ngIf="
+          (menuItemsSearch | sidebarSearch: userInput:['name']:true:3)
+            .length === 0
+        "
+      >
+        No results found.
+      </div>
+      <ng-container
+        *ngFor="
+          let item of menuItemsSearch
+            | sidebarSearch: userInput:['name']:true:3;
+          let i = index
+        "
+      >
+        <li>
+          <a
+            *ngIf="
+              item['accessLevel']['view'] &&
+              item.isShowLeftSideBar &&
+              item.hasChildren
+            "
+            (click)="onItemClick(item)"
+            [ngClass]="{ haschild: item.hasChildren }"
+          >
+            <i [ngClass]="item.icon"> </i>
+            <span>{{ item.name }}</span>
+          </a>
+          <a
+            *ngIf="
+              item['accessLevel']['view'] &&
+              item.isShowLeftSideBar &&
+              !item.hasChildren &&
+              item.url
+            "
+            href="#/{{ item.url }}"
+            (click)="onItemClick(item)"
+            [ngClass]="{ haschild: item.hasChildren }"
+          >
+            <i [ngClass]="item.icon"> </i>
+            <span>{{ item.name }}</span>
+          </a>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+  <div
+    class="sidebar-content"
+    *ngIf="isShowPrimary"
+    [ngClass]="{
+      'd-none': isSearchEnabled,
+      'with-menu-title': isShowSecondary && !isSearchEnabled
+    }"
+  >
+    <ul>
+      <ng-container *ngFor="let item of menuItemsSecondary; let i = index">
+        <li>
+          <ng-container
+            *ngIf="
+              item['accessLevel']['view']
+                ? isMobileView
+                  ? item['isShowMobileView']
+                    ? item['isShowLeftSideBar']
+                    : false
+                  : item['isShowLeftSideBar']
+                : false
+            "
+          >
+            <a
+              *ngIf="item.hasChildren"
+              (click)="onItemClick(item)"
+              title="{{ item.name }}"
+              [ngClass]="{
+                haschild: item.hasChildren,
+                active: isActive == item.id
+              }"
+            >
+              <i [ngClass]="item.icon"> </i>
+              <span>{{ item.name }}</span>
+            </a>
+            <a
+              *ngIf="!item.hasChildren && item.url"
+              title="{{
+                item['reference'] == 'dashboard'
+                  ? !item['isOwner']
+                    ? item.name +
+                      ' ' +
+                      'shared by' +
+                      ' ' +
+                      item['userDetails']['name']
+                    : item.name
+                  : item.name
+              }}"
+              href="#/{{ item.url }}"
+              (click)="onItemClick(item)"
+              [ngClass]="{
+                haschild: item.hasChildren,
+                active: isActive == item.id,
+                shared:
+                  item['reference'] == 'dashboard'
+                    ? !item['isOwner']
+                      ? true
+                      : false
+                    : false
+              }"
+            >
+              <i [ngClass]="item.icon"> </i>
+              <span>{{ item.name }}</span>
+            </a>
+          </ng-container>
+        </li>
+      </ng-container>
+      <li *ngIf="isListLoading" class="list-loading ml-3 pl-3">Loading...</li>
+    </ul>
+  </div>
+  <div class="sidebar-footer">
+    <div
+      class="userContainer"
+      (click)="onUserRouteTo('configurations/userManagement/userProfile')"
+      style="cursor: pointer"
+    >
+      <div class="user-pic">
+        <img *ngIf="userImageShow" [src]="userImage" alt="" width="100%" />
+        <span *ngIf="!userImageShow" class="defaultuserprofile"
+          ><strong>{{ shortUserName | uppercase }}</strong></span
+        >
+      </div>
+      <div class="userInfo">
+        <span class="user-name" title="My profile">{{ fullName }}</span>
+        <span class="userRole">{{ userRole }} </span>
+      </div>
+      <a
+      (click)="onLogOut()"
+      class="userLink float-right h4"
+      title="Logout"
+    >
+      <span class="elm-shutdown" title="Sign out"> </span>
+    </a>
+    </div>
+
+  </div>
+</nav>
+
+<!-- Varsha - create dashboard, reports trends -->
+<div
+  class="modal fade"
+  id="addModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="addModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog wow fadeInDown" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title text-muted" id="exampleModalLabel">
+          Create New {{ this.menuType }}
+        </h6>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <i class="elm-cancel"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="isShowTemplates" class="form-group">
+          <label for="Dtype" class="control-label modal-title text-muted"
+            >Library</label
+          >
+          <ng-select
+            bindValue="value"
+            [items]="dashboardtemplateData[menuType]"
+            placeholder="Select from library"
+            [clearable]="true"
+            [(ngModel)]="newDashboard.dashboard_template_id"
+          >
+          </ng-select>
+        </div>
+        <div
+          class="form-group m-0 text-center"
+          *ngIf="newDashboard.dashboard_template_id == null && isShowTemplates"
+        >
+          <label for="Dtype" class="modal-title text-muted"
+            ><strong>OR</strong></label
+          >
+        </div>
+        <div
+          class="form-group"
+          *ngIf="newDashboard.dashboard_template_id == null"
+        >
+          <label for="Dtype" class="control-label modal-title text-muted">{{
+            isShowTemplates ? 'Custom
+            Name' : 'Name'
+          }}</label>
+          <input
+            class="form-control"
+            autocomplete="off"
+            type="text"
+            name="name"
+            placeholder="Enter Name"
+            [(ngModel)]="newDashboard.name"
+          />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          *ngIf="validateSaveForm(newDashboard) && isCreateAccess"
+          type="button"
+          class="btn btn-sm btn-primary"
+          (click)="
+            allowAccess(
+              menuType == 'Dashboard'
+                ? 'dashboard'
+                : menuType == 'Reports'
+                ? 'reports'
+                : menuType == 'Scada'
+                ? 'webscada'
+                : 'trends',
+              'create'
+            )
+              ? saveDashboard('')
+              : ''
+          "
+          id="saveDashboard"
+        >
+          Save
+        </button>
+        <button
+          *ngIf="!validateSaveForm(newDashboard) || !isCreateAccess"
+          type="button"
+          class="btn btn-sm btn-primary"
+          disabled="disabled"
+          (click)="
+            allowAccess(
+              menuType == 'Dashboard'
+                ? 'dashboard'
+                : menuType == 'Reports'
+                ? 'reports'
+                : menuType == 'Scada'
+                ? 'webscada'
+                : 'trends',
+              'create'
+            )
+              ? saveDashboard('')
+              : ''
+          "
+          id="saveDashboard"
+        >
+          Save
+        </button>
+        <button
+          type="button"
+          class="btn btn-sm btn-secondary"
+          id="dismissAdd"
+          data-dismiss="modal"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

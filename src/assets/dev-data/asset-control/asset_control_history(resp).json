@@ -1,0 +1,40 @@
+{
+  "data": [
+    {
+      "date_and_time": "21-12-2020 6:54pm",
+      "triggered_by": "mithu",
+      "execution_id": "execution_id_12"
+    },
+    {
+      "date_and_time": "21-12-2020 6:50pm",
+      "triggered_by": "akash",
+      "execution_id": "execution_id_13"
+    },
+    {
+      "date_and_time": "21-12-2020 6:50pm",
+      "triggered_by": "shashi",
+      "execution_id": "execution_id_14"
+    },
+    {
+      "date_and_time": "21-12-2020 6:50pm",
+      "triggered_by": "varun",
+      "execution_id": "execution_id_15"
+    },
+    {
+      "date_and_time": "21-12-2020 6:50pm",
+      "triggered_by": "karishma",
+      "execution_id": "execution_id_16"
+    },
+    {
+      "date_and_time": "21-12-2020 6:50pm",
+      "triggered_by": "honnappa",
+      "execution_id": "execution_id_17"
+    },
+    {
+      "date_and_time": "21-12-2020 6:55pm",
+      "triggered_by": "harini",
+      "execution_id": "execution_id_18"
+    }
+  ],
+  "status": "success"
+}

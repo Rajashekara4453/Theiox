@@ -1,0 +1,166 @@
+<div class="col-12 h-100 p-0" *ngIf="inputData">
+  <div class="search-group search-group-sm w-100 mb-2" tabindex="1">
+    <span class="search-icon fa fa-search"></span>
+    <input [(ngModel)]="userInput" (keyup)="searchFilter(userInput, tree.treeModel)" placeholder="Search" type="search"
+      class="search-input" (search)="searchFilter(userInput, tree.treeModel)" (focusout)="latestStateEmit()">
+  </div>
+  <!-- Temprorily commented Select Deselect -->
+  <!-- <ng-container *ngIf = "isEnableSelectionOptions">
+      <button class="btn btn-link btn-sm "
+      (click)="tree.treeModel.doForAll(selectAll);callCurrentMode(tree, true, $event)">Select All</button>
+    <button class="btn btn-sm btn-link"
+      (click)="tree.treeModel.doForAll(unselectAll);callCurrentMode(tree, false, $event)">Deselect All</button> |
+    </ng-container> -->
+  <div class="previlage d-flex flex-wrap">
+    <div class="btn-group mr-2 mb-2" role="group" aria-label="Button group with nested dropdown">
+      <button class="btn btn-secondary btn-sm mr-2" (click)="tree.treeModel.expandAll();">Expand</button>
+      <button class="btn btn-secondary btn-sm" (click)="tree.treeModel.collapseAll();">Collapse</button>
+    </div>
+    <ng-container *ngIf="isShowModesOption">
+      <!-- Temprorily commented modes -->
+      <!-- <button class="btn btn-sm btn-link" (click)="selectMode_state('leafMode', tree.treeModel)">Leaf Mode</button>
+    <button class="btn btn-sm btn-link" (click)="selectMode_state('treeMode',tree.treeModel)">Tree Mode</button>
+    <button class="btn btn-sm btn-link" (click)="selectMode_state('selectMode',tree.treeModel)">Select Mode</button> | <br />
+        <button class="btn btn-sm btn-link" (click)="selectMode_node('treeHierarchy', tree.treeModel)">Tree Hierarchy Mode</button>
+    <button class="btn btn-sm btn-link" (click)="selectMode_node('singleSelect', tree.treeModel)">Single Select Mode</button>
+    <button class="btn btn-sm btn-link" (click)="selectMode_state('multiSelect',tree.treeModel)">Multi Select Mode</button> -->
+      <!-- <div class="d-none input-group input-group-sm">
+          <button *ngIf='isShowSliderBtn' 
+          type="button" 
+          class="btn btn-secondary btn-sm input-group-prepend"
+          (click)="switchMode(tree, treeMode, 'prev')">
+          <span class="fa fa-angle-left"></span>
+          </button>
+            <input type="text" disabled [(ngModel)]="currentMode" class="form-control"/>
+          <button *ngIf='isShowSliderBtn' 
+          type="button" 
+          class="btn btn-secondary btn-sm input-group-postpend"
+          (click)="switchMode(tree, treeMode, 'next')">
+          <span class="fa fa-angle-right"></span>
+          </button>
+        </div> -->
+
+      <!-- <div class="input-group mr-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> 
+              <span class="fa fa-angle-left"></span></span>
+          </div>
+          <input type="text" disabled [(ngModel)]="currentMode" class="form-control"/>
+          <div class="input-group-append">
+            <span class="input-group-text"> <span class="fa fa-angle-left"></span></span>
+          </div>
+        </div> -->
+      <div *ngIf="displayModes.length == 1" class="btn-group mr-2 bg-white border mb-2">
+        <button disabled="disabled" class="btn btn-sm btn-secondary bg-none border-0 h-100" type="button"
+          title="Previous" (click)="switchMode(tree, treeMode, 'prev')"><span class="fa fa-angle-left"></span></button>
+        <P class="d-flex align-items-center px-2 m-0 custom-mode border-left border-right h-100 my-auto text-center justify-content-center"
+          title="{{currentMode}}"> {{currentMode}} </P>
+        <button disabled="disabled" class="btn btn-sm btn-secondary bg-none border-0 mx-0 h-100" title="Next"
+          type="button" (click)="switchMode(tree, treeMode, 'next')"><span class="fa fa-angle-right"></span></button>
+      </div>
+      <div *ngIf="displayModes.length != 1" class="btn-group mr-2 bg-white border mb-2">
+        <button [ngClass]="{'cursor-disabled': displayModes.length == 1 }"
+          class="btn btn-sm btn-secondary bg-none border-0 h-100" type="button" title="Previous"
+          (click)="switchMode(tree, treeMode, 'prev')"><span class="fa fa-angle-left"></span></button>
+        <P class="d-flex align-items-center px-2 m-0 custom-mode border-left border-right h-100 my-auto text-center justify-content-center"
+          title="{{currentMode}}"> {{currentMode}} </P>
+        <button [ngClass]="{'cursor-disabled': displayModes.length == 1 }"
+          class="btn btn-sm btn-secondary bg-none border-0 mx-0 h-100" title="Next" type="button"
+          (click)="switchMode(tree, treeMode, 'next')"><span class="fa fa-angle-right"></span></button>
+      </div>
+    </ng-container>
+
+  </div>
+
+  <div class="col-12 px-0 content" *ngIf="show">
+    <!-- <strong>Current Mode:</strong> {{currentMode}} -->
+
+    <ng-container *ngIf='treeMode == "treeHierarchy"'>
+      <tree-root #tree [focused]="true" [(state)]="stateData" [nodes]="inputData.list" [options]="treeOptions">
+        <ng-template #treeNodeWrapperTemplate let-node="node" let-index="index">
+          <div class="node-wrapper" [style.padding-left]="node.getNodePadding()">
+            <tree-node-expander [node]="node"></tree-node-expander>
+            <tree-node-checkbox *ngIf="node.options.useCheckbox" [node]="node"
+              (click)="callTreeFn_node(treeMode, node, $event)">
+            </tree-node-checkbox>
+            <div class="node-content-wrapper">
+              <tree-node-content [node]="node" [index]="index"></tree-node-content>
+            </div>
+          </div>
+        </ng-template>
+      </tree-root>
+      <!-- <tree-root #tree [focused]="true" [(state)]="stateData" [nodes]="inputData.list" [options]="treeOptions">
+        <ng-template #treeNodeWrapperTemplate let-node="node" let-index="index">
+          <div class="node-wrapper" [style.padding-left]="node.getNodePadding()">
+            <tree-node-expander [node]="node"></tree-node-expander>
+            <input required (onClick)="callTreeFn_node(treeMode, node, !node.data.checked, $event)" type="checkbox"
+              [indeterminate]="node.data.indeterminate" [checked]="node.data.checked">
+            <div class="node-content-wrapper">
+              <tree-node-content [node]="node" [index]="index"></tree-node-content>
+            </div>
+          </div>
+        </ng-template>
+      </tree-root> -->
+    </ng-container>
+
+    <!-- <ng-container *ngIf='treeMode == "singleSelect"'>
+      <tree-root #tree [focused]="true" [(state)]="stateData" [nodes]="inputData.list" [options]="options">
+        <ng-template #treeNodeTemplate let-node="node" let-index="index">
+          <input (change)="callTreeFn_node(treeMode, node, $event, !node.data.isChecked)" type="checkbox"
+            [indeterminate]="node.data.indeterminate" [checked]="node.data.isChecked">
+          <span>{{ node.data.name }}</span>
+        </ng-template>
+      </tree-root>
+    </ng-container> -->
+
+    <ng-container *ngIf='treeMode == "singleSelect"'>
+      <tree-root #tree [focused]="true" [(state)]="stateData" [nodes]="inputData.list" [options]="treeOptions1">
+        <ng-template #treeNodeWrapperTemplate let-node let-index="index">
+          <div class="node-wrapper" [style.padding-left]="node.getNodePadding()">
+            <tree-node-expander [node]="node"></tree-node-expander>
+            <tree-node-checkbox *ngIf="node.options.useCheckbox" [node]="node"
+              (click)="callTreeFn_state(treeMode, tree.treeModel)">
+            </tree-node-checkbox>
+            <div class="node-content-wrapper">
+              <tree-node-content [node]="node" [index]="index"></tree-node-content>
+            </div>
+          </div>
+        </ng-template>
+      </tree-root>
+    </ng-container>
+
+
+    <ng-container *ngIf='treeMode == "selectMode" || treeMode == "multiSelect"'>
+      <tree-root #tree [focused]="true" [(state)]="stateData" [nodes]="inputData.list" [options]="treeOptions1">
+        <ng-template #treeNodeWrapperTemplate let-node let-index="index">
+          <div class="node-wrapper" [style.padding-left]="node.getNodePadding()">
+            <tree-node-expander [node]="node"></tree-node-expander>
+            <tree-node-checkbox *ngIf="node.options.useCheckbox" [node]="node"
+              (click)="callTreeFn_state(treeMode, tree.treeModel)">
+            </tree-node-checkbox>
+            <div class="node-content-wrapper">
+              <tree-node-content [node]="node" [index]="index"></tree-node-content>
+            </div>
+          </div>
+        </ng-template>
+      </tree-root>
+    </ng-container>
+
+    <ng-container *ngIf='treeMode == "treeMode" || treeMode == "leafMode" '>
+      <tree-root #tree [focused]="true" [(state)]="stateData" [nodes]="inputData.list" [options]="treeOptions">
+        <ng-template #treeNodeWrapperTemplate let-node let-index="index">
+          <div class="node-wrapper" [style.padding-left]="node.getNodePadding()">
+            <tree-node-expander [node]="node"></tree-node-expander>
+            <tree-node-checkbox *ngIf="node.options.useCheckbox" [node]="node"
+              (click)="callTreeFn_state(treeMode, tree.treeModel)">
+            </tree-node-checkbox>
+            <div class="node-content-wrapper">
+              <tree-node-content [node]="node" [index]="index"></tree-node-content>
+            </div>
+          </div>
+        </ng-template>
+      </tree-root>
+    </ng-container>
+
+  </div>
+</div>

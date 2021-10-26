@@ -1,0 +1,814 @@
+{
+  "body_content": [
+    {
+      "asset_name": "Tranformer Incomer",
+      "tag": "W total",
+      "value": "36975",
+      "status": "success"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "4188",
+      "status": "failed"
+    },
+    {
+      "asset_name": "Manufacturing",
+      "tag": "W total",
+      "value": "47388",
+      "status": "success"
+    },
+    {
+      "asset_name": "Retail",
+      "tag": "W total",
+      "value": "47906",
+      "status": "failed"
+    },
+    {
+      "asset_name": "Transportation",
+      "tag": "W total",
+      "value": "8300",
+      "status": "success"
+    },
+    {
+      "asset_name": "Hospitality",
+      "tag": "W total",
+      "value": "46455465634",
+      "status": "failed"
+    },
+    {
+      "asset_name": "Manufacturing",
+      "tag": "W total",
+      "value": "36546456356",
+      "status": "success"
+    },
+    {
+      "asset_name": "Healthcare",
+      "tag": "W total",
+      "value": "356456456356",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Finance",
+      "tag": "W total",
+      "value": "635634567567567",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Agriculture",
+      "tag": "W total",
+      "value": "256262465475",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Energy & Utilities industry",
+      "tag": "W total",
+      "value": "25768655335",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Smart homes & buildings",
+      "tag": "W total",
+      "value": "247387656423",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Airbus: Factory of the Future",
+      "tag": "W total",
+      "value": "2573657262",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Amazon: Reinventing warehousing",
+      "tag": "W total",
+      "value": "3.7675642",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Boeing: Using IoT to drive manufacturing efficiency",
+      "tag": "W total",
+      "value": "27672627.3",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Bosch: Track and trace innovator",
+      "tag": "W total",
+      "value": "23676.2736352463",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Caterpillar: An IIoT pioneer",
+      "tag": "W total",
+      "value": "2736756.432743",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Fanuc: Helping to minimize downtime in factories",
+      "tag": "W total",
+      "value": "63875.38723",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Gehring: A pioneer in connected manufacturing",
+      "tag": "W total",
+      "value": "8368723873.7865",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Hitachi: An integrated IIoT approach",
+      "tag": "W total",
+      "value": "36587387.38",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "John Deere: Self-driving tractors and ",
+      "tag": "W total",
+      "value": "38.6738673837",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Kaeser Kompressoren: Air as a service",
+      "tag": "W total",
+      "value": "3658573683.386",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Komatsu: Innovation in mining and heavy equipment",
+      "tag": "W total",
+      "value": "394.786349783",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "KUKA: Connected robotics",
+      "tag": "W total",
+      "value": "978563743.845",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Maersk: Intelligent logistics",
+      "tag": "W total",
+      "value": "34905.97865",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Magna Steyr: Smart automotive manufacturing",
+      "tag": "W total",
+      "value": "3847.8673",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "North Star BlueScope Steel: Keeping workers safe",
+      "tag": "W total",
+      "value": "905.8763543",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Real-Time Innovations: Microgrid innovation",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Rio Tinto: Mine of the Future",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Shell: Smart oil field innovator",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Shell: Smart oil field innovator",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    },
+    {
+      "asset_name": "Distributor",
+      "tag": "W total",
+      "value": "345",
+      "status": "success/failed"
+    }
+  ],
+  "header_content": [
+    {
+      "label": "Asset",
+      "key": "asset_name"
+    },
+    {
+      "label": "Tag",
+      "key": "tag"
+    },
+    {
+      "label": "Value",
+      "key": "value"
+    },
+    {
+      "label": "Status",
+      "key": "status"
+    }
+  ]
+}

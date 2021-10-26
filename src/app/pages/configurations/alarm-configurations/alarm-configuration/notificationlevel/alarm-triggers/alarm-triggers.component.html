@@ -1,0 +1,59 @@
+<div class="form-header px-2">
+  <!-- <img class="toggleImg" (click)="toggleExpandCollepseImg()" src="/assets/images/right.png"
+        [ngClass]="{'toggle-expanded': isExpanded, 'toggle-collepsed': !isExpanded }" />
+      Commands -->
+  <div class="btn-group mr-2" [ngClass]="{'d-inline-block': isExpanded, 'd-none': !isExpanded}">
+    <button class="btn btn-sm btn-primary" (click)="addCommand()">Add Command</button>
+  </div>
+  <div *ngIf="commands?.length > 0" class="btn-group mr-2" (click)="toggleExpandCollepseImg()"
+    [ngClass]="{'toggle-expanded': !isExpanded, 'toggle-collepsed': isExpanded }">
+    <button class="btn btn-secondary btn-sm" style="min-width: 100px">
+      {{isExpanded ? 'Collapse' : 'Expand'}}
+    </button>
+    <button class="btn btn-sm btn-secondary" type="button">
+      <i class="elm-forward"></i>
+    </button>
+  </div>
+</div>
+<table class="table" [ngClass]="{'': isExpanded, 'd-none': !isExpanded}">
+  <thead *ngIf="commands?.length > 0">
+    <tr>
+      <th class="text-center border-0">Assets <span class="color-red">&nbsp;*</span></th>
+      <th class="text-center border-0">Tags <span class="color-red">&nbsp;*</span></th>
+      <th class="text-center border-0">Value <span class="color-red">&nbsp;*</span></th>
+      <th class="text-center border-0">Label</th>
+      <th class="text-center border-0">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let command of commands; let i = index">
+      <td>
+        <ng-select bindValue="value" name="device" [items]="devices" placeholder="Select assets" dropdownPosition="bottom"
+          [(ngModel)]="command.device" [clearable]="true" class="form-control border-0" #device="ngModel"
+          [required]="true" [multiple]="true" [ngClass]="{ 'error' : device.invalid && device.touched }">
+        </ng-select>
+      </td>
+      <td>
+        <ng-select bindValue="value" name="tag" [items]="tags" placeholder="Select tags" [(ngModel)]="command.tag"
+          [clearable]="true" class="form-control border-0" #tag="ngModel" [multiple]="true" [required]="true"
+          dropdownPosition="bottom" [ngClass]="{ 'error' : tag.invalid && tag.touched }">
+        </ng-select>
+      </td>
+      <td style="width: 129px">
+        <input autocomplete="off" name="value" placeholder="Enter value" type="text" class="form-control"
+          [(ngModel)]="command.value" required #value="ngModel"
+          [ngClass]="{ 'error' : value.invalid && value.touched }" />
+      </td>
+      <td style="width: 120px">
+        <input autocomplete="off" placeholder="Enter label" name="value" type="text" class="form-control"
+          [(ngModel)]="command.label" required #value="ngModel"
+          [ngClass]="{ 'error' : value.invalid && value.touched }" />
+      </td>
+      <td class="text-center">
+        <button type="button" class="btn btn-sm btn-secondary" title="Delete Command"
+          (click)="deleteCommand(i)">Delete</button>
+        <!-- <fa-icon class="btn" [icon]="['fas', 'trash']" title="Delete Command" (click)="deleteCommand(i)"></fa-icon> -->
+      </td>
+    </tr>
+  </tbody>
+</table>

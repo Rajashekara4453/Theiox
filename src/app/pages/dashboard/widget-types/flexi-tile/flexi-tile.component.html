@@ -1,0 +1,85 @@
+<div class="h-100 d-flex" [ngClass]="{'flex-column':!isHeader,'flex-column-reverse':isHeader}">
+<div class="flexContent-Container">
+
+  <div *ngFor="let block of arrBlocks; let i = index;" class="eachBlockDiv"
+    [ngClass]="{'d-inline-block' : (block.hasTags == true && i &gt;= startIndex && i &lt;= endIndex), 'd-none' : (i &lt; startIndex || i &gt; endIndex)}">
+    <!-- <div class="d-inline-block p-0 eachBlockCardDiv"> -->
+      
+      <div *ngIf="arrSwapTileTags[i] != 'undefined'" class="card"
+        [style.background]="block.bgColor">
+        <h6 class="text-left sub-title text-trucket text-muted border-bottom border-light">{{ block.name }}</h6>
+        <div class="float-left d-inline-block tagsBlockDiv">
+          <div *ngFor="let eachCdata of block.tagsData; let j = index">
+            
+            <div
+              *ngIf="(arrSwapTileTags[i] != 'undefined' && arrSwapTileTags[i] != null && arrSwapTileTags[i]['startIndex'] != 'undefined' && arrSwapTileTags[i]['endIndex'] != 'undefined' && j &gt;= arrSwapTileTags[i]['startIndex'] && j &lt;= arrSwapTileTags[i]['endIndex'])" class="d-flex flex-row align-items-center tags border-bottom border-light">
+
+              <label class="mainLabel text-muted m-0 px-1 py-0 align-items-start justify-content-center"> 
+                <span *ngIf="eachCdata.tag != ''" class="text-trucket" title="Tag Name : {{ eachCdata.tag }}">{{ eachCdata.tag }}</span>
+                <label class="unitLabel m-0 text-trucket" title="Unit : {{ eachCdata.unit }}" *ngIf="isShowUnit">{{ eachCdata.unit }}</label> 
+               
+                </label>
+                <p class="currentvalue m-0" [ngClass]='{"addpercentage": eachCdata.isComparisonRequired}' title="{{eachCdata.currentValue}}">{{ eachCdata.currentValue }}</p>
+              {{calculateValue(eachCdata)}}
+              <div class="percentage" 
+                *ngIf="block.comparisonCount != 1 && eachCdata.isComparisonRequired" [ngClass]="{ 'd-none' : block.comparisonCount == 1, 'd-inline-block' : block.comparisonCount != 1 }">
+                <label class="percentage-value" [ngClass]="{ 'red' : block.isPositive , 'green' : !block.isPositive }">{{ eachCdata.percentageVal }} %</label>
+                <i class="elm-thick-arrow-pointing-down"
+                  [ngClass]="{ 'red' : block.isPositive , 'green' : !block.isPositive }"
+                  *ngIf="eachCdata.isPositive"></i>
+                <i class="elm-thick-arrow-pointing-up"
+                  [ngClass]="{ 'red' : eachCdata.inverse , 'green' : !eachCdata.inverse }"
+                  *ngIf="!eachCdata.isPositive"></i>
+              </div>
+
+              <div *ngIf="block.percentageVal != 'undefined'" class="percentage" [ngClass]="{ 'd-none' : block.comparisonCount != 1, 'd-inline-block' : block.
+              comparisonCount == 1 }">
+                <div class="float-right">
+                  <label class="percentage-value" [ngClass]="{ 'red' : block.isPositive , 'green' : !block.isPositive }">{{ block.percentageVal }} %</label>
+                  <i class="elm-thick-arrow-pointing-down singleUpDownIcon" [ngClass]="{ 'red' : !block.inverse , 'green' : block.inverse }"
+                    *ngIf="block.isPositive"></i>
+                  <i class="elm-thick-arrow-pointing-up singleUpDownIcon" [ngClass]="{ 'red' : block.inverse , 'green' : !block.inverse }"
+                    *ngIf="!block.isPositive"></i>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        {{getComparisonOfCountOne(block)}}
+        
+        <div class="d-inline-block p-0 pull-left progressBarDiv w-100" title="{{progressTagTitle}}" *ngIf="selectedTag != 'all' && block.isShowProgressBar">
+            <kl-progress-bar [percentValue]="block.progressValue" [bgColor]="block.progressBarColor" [progressTagCount]="showPercent"
+              [displayText]="block.progressValue" [isDisplayVertical]="false"  [ngClass]="{'horizontalBar' : !isDisplayVertical, 'verticalBar' : isDisplayVertical}">
+            </kl-progress-bar>
+          </div>  
+      </div>
+    </div>
+  </div>
+<div class="selectedTagHeader">
+    <ul class="headerLeft" *ngIf="selectedTag != 'all'">
+      <li *ngFor="let block of blockData; let i = index;" [ngClass]="{'active' : block.name == currentBlockName}">
+          <a style="cursor:pointer"
+          (click)="handleBlockNameClicked(i)">{{block.name}}</a>
+      </li>
+    </ul>
+
+    <div class="play-pause-container" *ngIf="isShowControls">
+          <a class="playPauseBtn pull-left" (click)="handleBackClick()" title="Back">
+            <i class="elm-back"></i>
+          </a>
+        <a class="playPauseBtn" (click)="handlePlayPauseClick()" [title]="isPlay ? 'Pause' : 'Play'">
+          <i [ngClass]="{'elm-sort-right' : !isPlay, 'fa fa-pause' : isPlay}"></i>
+          </a>
+       
+       
+          <a class="playPauseBtn pull-right" (click)="handleForwardClick()" title="Forward">
+            <i class="elm-forward"></i>
+          </a>
+             </div>
+
+  </div>
+</div>
+  
+
+  <!-- </div> -->

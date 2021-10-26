@@ -1,0 +1,33 @@
+<div class="kpi-widget">
+    <div class="data-container" [style.border-bottom]="cData.chartOptions.isShowBorder?'2px solid'+ textColor:''">
+      <div class="data-left">
+      <p class="text-truncate sensor-name" *ngIf="cData.chartOptions.autoRefreshType == 'realTime'" title="{{title}}">{{title}}</p>
+      <h6 class="text-truncate" [style.color]="textColor" title="{{labelValue}}">{{labelValue}} <span>{{labelUnit}}</span> </h6> 
+      <!-- *ngIf="doCompare"   -->
+      <p class="percentage" *ngIf="doCompare" [ngClass]="getColorDifference()"  title="Previous: {{secondValue}}"><span class="fa" [ngClass]="{'fa-caret-up':isPositive, 'fa-caret-down':!isPositive}"></span>{{percentageVal}}%</p>
+      <div class="data-footer" *ngIf="showFooter && this.cData.chartOptions.autoRefreshType == 'realTime'">
+        <ul>
+            <ng-container *ngFor="let item of priorityList">
+          <li title="{{item['priority']}}: {{item['condition']['value']}}{{item['value']}}">
+            <i class="{{item['icon']}}" [style.color]="item['color']"></i>&nbsp;
+            {{item['value']}}
+          </li>
+        </ng-container>
+        </ul>
+                  </div>  
+    </div>
+      <div class="data-right h-100" *ngIf="cData.chartOptions.img != ''" >
+        <div class="image-container h-100">
+            <img class="h-100" src="{{cData.chartOptions.img}}">
+            <!-- <svg width="105" height="105" viewBox="0 0 114 113" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M57.3986 11.9513C69.0377 11.9513 80.2 16.5877 88.4302 24.8406C96.6604 33.0935 101.284 44.2869 101.285 55.9585C101.285 67.6301 96.6624 78.8239 88.4329 87.0775C80.2034 95.3311 69.0415 99.9685 57.4025 99.9695C45.7634 99.9705 34.6007 95.3351 26.3697 87.0829C18.1388 78.8307 13.5139 67.6378 13.5124 55.9661C13.5108 44.2945 18.1328 33.1003 26.3616 24.846C34.5904 16.5917 45.7519 11.9533 57.391 11.9513" stroke="#F2F2F2" stroke-opacity="0.85" stroke-width="8.07348"/>
+    <path d="M57.3986 18.4759C67.312 18.4759 76.8195 22.425 83.8295 29.4543C90.8396 36.4836 94.778 46.0175 94.7784 55.9587C94.7788 65.8999 90.8413 75.4342 83.8318 82.4641C76.8224 89.4941 67.3153 93.4439 57.4018 93.4448C47.4884 93.4457 37.9806 89.4975 30.9699 82.4688C23.9593 75.44 20.0201 65.9065 20.0188 55.9653C20.0175 46.0241 23.9542 36.4895 30.963 29.4589C37.9718 22.4284 47.4786 18.4777 57.3921 18.4759" stroke="#F2F2F2" stroke-opacity="0.85" stroke-width="8.07348"/>
+    <path d="M57.3986 25.0006C65.5865 25.0006 73.4391 28.2622 79.2289 34.068C85.0187 39.8738 88.2716 47.7482 88.272 55.959C88.2723 64.1698 85.0201 72.0445 79.2308 77.8508C73.4415 83.6571 65.5892 86.9195 57.4013 86.9202C49.2134 86.9209 41.3606 83.6599 35.5702 77.8546C29.7799 72.0494 26.5263 64.1752 26.5252 55.9644C26.5242 47.7536 29.7757 39.8787 35.5645 34.0718C41.3533 28.265 49.2053 25.002 57.3932 25.0006" stroke="#F2F2F2" stroke-opacity="0.85" stroke-width="8.07348"/>
+    <path d="M57.3986 11.9513C67.3876 11.9513 77.0777 15.3685 84.868 21.6384C92.6583 27.9082 98.0825 36.6555 100.245 46.4351C102.407 56.2146 101.177 66.4412 96.759 75.4251C92.3409 84.4091 84.9988 91.6128 75.9457 95.8462C66.8926 100.08 56.6702 101.089 46.9674 98.7083C37.2647 96.3274 28.6622 90.6984 22.5813 82.7514C16.5004 74.8044 13.3049 65.0149 13.5228 55.0003C13.7407 44.9857 17.359 35.3453 23.7798 27.6719" stroke="#FFBC00" stroke-opacity="0.85" stroke-width="8.32317"/>
+    <path d="M57.3986 18.4759C64.514 18.4759 71.4817 20.5125 77.4828 24.3463C83.4839 28.1801 88.2691 33.6519 91.2762 40.1188C94.2833 46.5856 95.3874 53.7788 94.4586 60.8531C93.5299 67.9274 90.6069 74.5889 86.0332 80.0549" stroke="#727CF5" stroke-opacity="0.85" stroke-width="8.32317"/>
+    <path d="M57.3986 25.0006C65.5867 25.0006 73.4395 28.2624 79.2294 34.0685C85.0192 39.8746 88.272 47.7493 88.272 55.9604C88.272 64.1714 85.0192 72.0462 79.2294 77.8523C73.4395 83.6583 65.5867 86.9202 57.3986 86.9202" stroke="#0ACF97" stroke-opacity="0.85" stroke-width="8.32317"/>
+    </svg> -->
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,301 @@
+<div class="filter" *ngIf="filtersObj">
+  <div class="filterHeader">
+    <div class="filter-title">Filters
+    </div>
+    <!-- <i class="fa fa-close" title="Close Filter" (click)="hidefilter()"></i> -->
+    <span (click)="hidefilter()" title="Close Filter">
+      <svg _ngcontent-c5="" focusable="false" height="24" role="presentation" viewBox="0 0 24 24" width="24">
+        <path _ngcontent-c5="" d="M0 0h24v24H0V0z" fill="none"></path>
+        <path _ngcontent-c5=""
+          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"
+          fill="currentColor" fill-rule="evenodd"></path>
+      </svg>
+    </span>
+  </div>
+  <div class="filter-body">
+    <div class="card" *ngIf="pageType != 'alarmEvents'">
+
+      <div class="card-header d-block collapse-header" role="tab" style="padding: 0 1rem;border: none;">
+        <a data-toggle="collapse" class="accordion-toggle text-black font-weight-bold">
+          Time Period
+        </a>
+
+        <!-- <a class="float-right pull-right card-header-number ">123</a> -->
+      </div>
+      <div class="card-body collapse-body">
+        <div class="card-body" style="padding: 0 1rem;">
+          <!-- <div class="input-group overflow-hidden">
+                <div class="input-group-prepend" style="background: #f0f2f4">
+                  <div class="input-group-text m-0 p-2">
+                      <input type="checkbox" [(ngModel)]="isDateReq"
+                      [ngModelOptions]="{standalone: true}"/>
+                  </div>
+                </div>
+                <div class="form-control p-0">
+                  <div class="text-black custom-select-dropdown d-inline-block rounded"
+                    (click)="isDateReq?showDropdownValues($event):return" title="{{_chartConfig.filter.timeRangeLabel}}">
+                    <span disabled="disabled">
+                      <span (click)="isDateReq?showDropdownValues($event):return"  >
+                       {{ _chartConfig.filter.timeRangeLabel ? _chartConfig.filter.timeRangeLabel : 'Select' }}
+                      </span>
+                    </span>
+                 </div>
+                </div>
+          </div> -->
+          <div class="input-group overflow-hidden">
+            <div class="form-control p-0">
+              <button class="form-control text-left rounded"
+                style="border-color: #cccccc !important; box-shadow: none !important;" *ngIf="!isDateReq"
+                (click)="showDropdownValues($event)">
+                Select</button>
+              <button class="form-control text-left rounded text-truncate"
+                style="border-color: #cccccc !important; box-shadow: none !important;" *ngIf="isDateReq"
+                (click)="isDateReq?showDropdownValues($event):return" title="{{ _chartConfig.filter.timeRangeLabel}}">
+                {{ _chartConfig.filter.timeRangeLabel }}</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="custom-dropdown-toggle dateRangeClass border common" (click)="$event.stopPropagation();"
+      *ngIf="timeRangeList && showTimeRange && timeRangeList.length>0">
+      <div class="col-12 custom-dropdown-content d-flex flex-column" style="max-height: 83vh; overflow: auto;">
+        <div class="modal-header">
+          <h6 class="custom-date-title">
+            Time Period
+          </h6>
+        </div>
+        <div class="row mb-0 border-0 pb-0">
+          <h6 class="col-12 custom-date-title">Absolute Time Range
+            <!-- <span style="cursor: pointer" (click)="closeDropdownValues()" class="pull-right"><svg _ngcontent-c18="" class="icon icon-close" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path _ngcontent-c18="" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></span> -->
+          </h6>
+          <div class="col-md-5 form-group">
+            <label class="control-label">From</label>
+            <angular2-date-picker [(ngModel)]="tempOnDate.fromDisp" [settings]="calendarSettings"
+              (onDateSelect)="onDateSelect($event,'from')">
+            </angular2-date-picker>
+          </div>
+          <div class="col-md-5 form-group">
+            <label class="control-label">To</label>
+            <angular2-date-picker [(ngModel)]="tempOnDate.toDisp" [settings]="calendarSettings"
+              (onDateSelect)="onDateSelect($event,'to')">
+            </angular2-date-picker>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-10 form-group">
+            <label class="control-label invisible d-block">Apply Time Range</label>
+            <button type="button" (click)="applyCustomRange()"
+              class="btn btn-sm btn-primary text-nowrap w-100 mt-1">Apply Time Range</button>
+          </div>
+          <h6 class="col-12 custom-date-title mt-2 mb-0">Relative Time Ranges</h6>
+        </div>
+        <div class="row overflow-auto pt-1">
+          <div class="col-md-3 list" *ngFor="let section of timeRangeList">
+            <div *ngFor="let item of section.list">
+              <label class="value" (click)="selectTimeRange(item)">{{ item.label }}</label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer" style="">
+          <!-- <button (click)="datePreview()" class="btn btn-sm btn-primary mr-2">Save</button> -->
+          <button (click)="closeDropdownValues()" class="btn btn-sm btn-secondary" title="Close">Close</button>
+        </div>
+
+      </div>
+      <div class="custom-modal-fade" (click)="closeDropdownValues()">
+
+      </div>
+    </div>
+
+
+    <ng-container *ngIf="pageType == 'alarmEvents'">
+      <ng-container *ngFor="let item of alarmFilter;let j=index">
+        <div class="card">
+          <div class="card-header d-block collapse-header" role="tab" style="padding: 0 1rem;border: none;" (click)="onClickCollapse(item)">
+            <a data-toggle="collapse" class="accordion-toggle text-black font-weight-bold">
+              {{ item.title}}
+            </a>
+          </div>
+          <div [hidden]=item.isCollapsed class="card-body collapse-body" style="padding: 0 1rem;">
+            <!-- <div class="col-xs-4" *ngIf="item.title == 'Status'">
+              <div class="card-body">
+                <ng-select placeholder="Select" class="form-control p-0" [clearable]="true"
+                  [(ngModel)]="alarmFilterObject['alarmStatus']" [items]="item.Status" bindLabel="label"
+                  bindValue="value">
+                </ng-select>
+              </div>
+            </div> -->
+            <!-- <div class="col-xs-4" *ngIf="item.title == 'alarmType'">
+              <div class="card-body">
+                <ng-select placeholder="Select" [clearable]="true" [(ngModel)]="alarmFilterObject['type']"
+                [items]="item.alarmType" bindLabel="label" bindValue="value">
+              </ng-select>
+              </div>
+            </div> -->
+            <!-- <div class="col-xs-4" *ngIf="item.title == 'acknowledge'">
+              <div class="card-body">
+                <ng-select placeholder="Select" [clearable]="true" [(ngModel)]="alarmFilterObject['acknowledged']"
+                  [items]="item.acknowledge" bindLabel="label" bindValue="value">
+                </ng-select>
+              </div>
+            </div> -->
+            <!-- <div class="col-xs-4" *ngIf="item.title == 'Count'">
+              <div class="card-body">
+                <ng-select placeholder="Select" [clearable]="true" [(ngModel)]="alarmFilterObject['count']"
+                [items]="item.count" bindLabel="label" bindValue="value">
+              </ng-select>
+              </div>
+            </div> -->
+            <!-- <div class="col-xs-4" *ngIf="item.title == 'Priority'">
+              <div class="card-body">
+                <angular2-multiselect [data]="item.priorityList" [(ngModel)]="alarmFilterObject['priority']"
+                  [settings]="dropdownSettingsDeviceGropup" class="form-control p-0" (onSelect)="onItemSelect($event)"
+                  (onDeSelectAll)="onDeSelectAll($event,'priority')"></angular2-multiselect>
+              </div>
+            </div> -->
+            <div class="col-xs-4" *ngIf="item.title == 'Tags'">
+              <div class="card-body">
+                <angular2-multiselect [data]="item.tags" [(ngModel)]="alarmFilterObject['tags']"
+                  [settings]="dropdownSettingsDeviceGropup" class="form-control p-0" (onSelect)="onItemSelect($event)"
+                  (onDeSelectAll)="onDeSelectAll($event,'tags')"></angular2-multiselect>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngFor="let item of filtersObj;let j=index">
+      <ng-container *ngIf="item.title != 'Site'">
+        <div class="card">
+          <div class="card-header d-block collapse-header" role="tab" style="padding: 0 1rem;border: none;" (click)="onClickCollapse(item)">
+            <a data-toggle="collapse" class="accordion-toggle text-black font-weight-bold">
+              <!-- {{ pageType !='alarmEvents'?item.title:dropdownLabels[item.title]}} -->
+              {{item.title}}
+            </a>
+
+            <!-- <a class="float-right pull-right card-header-number ">123</a> -->
+          </div>
+          <div [hidden]=item.isCollapsed class="card-body collapse-body" style="padding: 0 1rem;">
+            <ng-container *ngFor="let filter of item.filters;let i = index">
+              <!-- CheckBox on load JSON -->
+              <ng-container *ngIf="filter.type == 'checkBox'">
+                <!-- Search on load JSON -->
+                <div *ngIf="filter.searchable" class="input-group input-group-sm ">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text oi oi-copywriting"></span>
+                  </div>
+                  <input type="text" [(ngModel)]="filter.searchVal" class="form-control" aria-label="Small"
+                    aria-describedby="inputGroup-sizing-sm">
+                </div>
+                <div class="custom-control custom-checkbox "
+                  *ngFor="let checkBoxItem of filter.list | search: ['displayName'] : filter.searchVal;">
+                  <input type="checkbox" id="{{checkBoxItem.displayName}}" [(ngModel)]="checkBoxItem['isChecked']"
+                    class="custom-control-input">
+                  <label class="custom-control-label" for="{{checkBoxItem.displayName}}">
+                    {{checkBoxItem.displayName}}
+                  </label>
+                </div>
+              </ng-container>
+              <!-- Single Select D on load JSON -->
+              <div class="col-xs-4 " *ngIf="filter.type == 'select'">
+                <div>
+                  <select [(ngModel)]="filter.value" class='form-control' aria-placeholder="Select">
+                    <option *ngFor='let dateType of filter.list' [value]="dateType.value">
+                      {{dateType.label}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <!-- Tree Strucute on load JSON -->
+
+
+              <div class="col-xs-4" *ngIf="filter.type == 'tree'">
+                <div class="">
+                  <!-- <h6>{{filter.title}}
+                      <button type="button" (click)="deleteFilterRow(i)"
+                        class="btn btn-xs btn-danger float-right d-none">
+                        <i class="elm-delete" style="font-size: 20px;"></i>
+                      </button>
+                    </h6> -->
+                  <!-- <button data-toggle="modal" class="btn btn-primary btn-sm" data-target="#exampleModalCenter">Select
+                      here</button> -->
+                  <div class="card-body">
+                    <button data-toggle="modal" class="form-control text-left rounded"
+                      style="border-color: #cccccc !important; box-shadow: none !important;"
+                      data-target="#exampleModalCenter">
+                      Select</button>
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered site-hierarchy" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header d-flex align-item-center">
+                            <h6 class="m-o d-flex align-item-center justify-content-between w-100">
+                              Organisation Hierarchy
+                              <span class="elm-cancel" style="cursor: pointer; font-size: 19px;" title="close"
+                                data-dismiss="modal"></span>
+                            </h6>
+                          </div>
+                          <div class="modal-body pt-2">
+
+                            <kl-custom-tree [inputData]="filter" [selectedData]="filter.value"
+                              (emitData)="emittedTreeData($event,filter['id'])"> </kl-custom-tree>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-sm mr-2"
+                              data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-4 " *ngIf="filter.type == 'multiSelect'" [class]="closedrop?'closedropdown':' '">
+                <div *ngIf="filter.filterType == 'deviceGroups'" class="card-body">
+                  <angular2-multiselect [data]="filter.list" [(ngModel)]="filter.value"
+                    [settings]="dropdownSettingsDeviceGropup" class="form-control p-0" (onSelect)="onItemSelect($event)"
+                    (onDeSelectAll)="onDeSelectAll($event,'deviceGroups',i,j)"></angular2-multiselect>
+
+                </div>
+                <div *ngIf="filter.filterType == 'shift'" class="card-body">
+                  <angular2-multiselect [data]="filter.list" [(ngModel)]="filter.value"
+                    [settings]="dropdownSettingsShift" class="form-control p-0" (onSelect)="onItemSelect($event)"
+                    (onDeSelectAll)="onDeSelectAll($event,'shift',i,j)">
+                  </angular2-multiselect>
+
+                </div>
+                <div *ngIf="filter.filterType == 'devices'" class="card-body">
+                  <angular2-multiselect [data]="filter.list" [(ngModel)]="filter.value" [settings]="dropdownSettings"
+                    class="form-control p-0" (onSelect)="onItemSelect($event)"
+                    (onDeSelectAll)="onDeSelectAll($event,'devices',i,j)"></angular2-multiselect>
+
+                </div>
+              </div>
+              <div class="col-xs-4 " *ngIf="filter.type == 'singleSelect'">
+                <ng-multiselect-dropdown [placeholder]="'Select'" [data]="filter.list"
+                  [settings]="singleSelectDropdownSettings" (onSelect)="onItemSelect($event)" [(ngModel)]="filter.value"
+                  (onSelectAll)="onSelectAll($event)" (ngModelChange)="multiSelectChange(filter)">
+                </ng-multiselect-dropdown>
+              </div>
+
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+  <div class="filter-footer">
+    <button type="button" class="btn btn-primary btn-sm mr-2"
+      (click)="pageType != 'alarmEvents'?appyFilter():applyFilterAlarm()">Apply</button>
+    <button type="button" class="btn btn-secondary btn-sm" (click)="clearFilter()">Clear</button>
+
+  </div>
+  <!-- <div class="filter-left-hideshow" (click)="hidefilter()" data-placement="left" data-toggle="tooltip"
+    style="cursor: pointer;" title="Close Filter">
+    <svg class="icon icon-close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+    </svg>
+  </div> -->
+</div>
+<!-- <div class="rightbar-overlay"></div> -->

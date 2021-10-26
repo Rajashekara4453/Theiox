@@ -1,0 +1,10 @@
+{
+    "deviceGroup": {
+       "step1":"Group Info",
+       "step2":"Group Hierachy"
+    },
+    "sites": {
+        "step1": "Site Info",
+        "step2": "Site Hierachy"        
+    }
+}

@@ -1,0 +1,107 @@
+<!-- <kl-mini-sidebar-menu [pageName]="pageType == 'dashboard' ? 'Dashboard' : (pageType == 'reports' ? 'Reports' : 'Trends')" (loadPreviousDashboard)="getSidebarMenus('delete')"></kl-mini-sidebar-menu> -->
+<!-- <kl-dashboard-sidebar [menus]="sideMenus" [heading]="heading" (createDashboardEmitter)="modifyDashboard($event)">
+</kl-dashboard-sidebar> -->
+<div id="printDashborad">
+    <kl-breadcrumb *ngIf="dashboardId" (refreshDashboardEmitter)="loadWidgets()" (startResizingWidget)="startResize($event)" [showDashboardFilter]="showDashboardFilter"
+        [dashboardData]="dashboardData" (dashboardFilterEmitter)="updateDashboardFilterFlag($event)"
+        (createWidgetEmitter)="createWidget($event)"></kl-breadcrumb>
+    <kl-widget-manager *ngIf="widgetLoading" [startRezingWidget]="resizeWidgetSubject.asObservable()" [dWidgets]="widgetData" [dashboardInfo]="dashboardInfo"
+        [showDashboardFilter]="showDashboardFilter" (closeDashboradFilterEmitter)="updateDashboardFilterFlag($event)"
+        (wdgManagerEmitter)="saveWidgetData($event)"  (wdgManagerResizeEmitter)="saveWidgetResize($event)"  [createWidgetEvent]="addWidgetSubject.asObservable()"
+        (deleteWidgetEmitter)=" loadWidgets()">
+    </kl-widget-manager>
+</div>
+<button class="invisible" data-toggle="modal" data-target="#addModal" id="addModalButton"></button>
+<button class="invisible" data-toggle="modal" data-target="#addModalFolder" id="addModalButtonFolder"></button>
+<button class="invisible" data-toggle="modal" data-target="#deleteModal" id="deleteModalButton"></button>
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create New Dashboard</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-12">
+                        <label for="name" class="control-label text-right pr-0">Dashboard Name</label>
+                        <span> *</span>
+                        <div>
+                            <input class="form-control" type="text" name="name" placeholder="Enter Dashboard Name"
+                                [(ngModel)]="dashBoardsaveData.name">
+                        </div>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="description" class="control-label text-right pr-0">Dashboard Description</label>
+                        <span> *</span>
+                        <div>
+                            <textarea class="form-control" type="text" name="description"
+                                placeholder="Enter Dashboard Description"
+                                [(ngModel)]="dashBoardsaveData.description"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="dismissAdd" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" [disabled]="dashBoardsaveData.name ==''"
+                    (click)="saveDashboard('')">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure want to delete <b>
+                    <!-- {{delete_name}} -->
+                </b> ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="dismissDelete" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" (click)="confirmDelete()">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addModalFolder" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create Folder</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-12">
+                        <label for="name" class="control-label text-right pr-0">Folder Name</label>
+                        <span> *</span>
+                        <div>
+                            <input class="form-control" type="text" name="name" placeholder="Enter Folder Name"
+                                [(ngModel)]="folderData.name">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="dismissAdd" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" [disabled]="folderData.name ==''"
+                    (click)="saveDashboard('folder')">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

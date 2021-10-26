@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+	],
+	"settings": {
+		"editor.defaultFormatter": "vscode.html-language-features",
+		"editor.formatOnSave": true,
+		"eslint.validate": [
+			"typescript",
+			"json",
+			"jsonc"
+		],
+		"editor.codeActionsOnSave": {
+			"source.fixAll.eslint": true
+		},
+	}
+}

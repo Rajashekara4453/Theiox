@@ -1,0 +1,301 @@
+{
+  "act-btn": [
+    {
+      "label": "Download",
+      "value": "generate",
+      "class": "fa fa-download",
+      "type": "download"
+    },
+    {
+      "label": "Delete",
+      "value": "delete",
+      "class": "fa fa-trash",
+      "type": "confirm"
+    },
+    {
+      "label": "Share",
+      "value": "share",
+      "class": "fa fa-share-square",
+      "type": "confirm"
+    }
+  ],
+  "body_content": [
+    {
+      "isSelected": false,
+      "customerId": "c1",
+      "customerName": "Ashok",
+      "action": "act-btn",
+      "paymentMode": "Cash",
+      "shift": "Day",
+      "recharge_id": "recharge_01"
+    },
+    {
+      "isSelected": false,
+      "customerId": "c2",
+      "customerName": "Ashok",
+      "action": "act-btn",
+      "paymentMode": "Cash",
+      "shift": "Day",
+      "recharge_id": null
+    },
+    {
+      "isSelected": false,
+      "customerId": "c3",
+      "customerName": "Ashok",
+      "action": "act-btn",
+      "paymentMode": "Cash",
+      "shift": "Day",
+      "recharge_id": null
+    },
+    {
+      "isSelected": false,
+      "customerId": "c4",
+      "customerName": "Ashok",
+      "action": "act-btn",
+      "paymentMode": "Cash",
+      "shift": "Day",
+      "recharge_id": "recharge_04"
+    },
+    {
+      "isSelected": false,
+      "customerId": "c5",
+      "customerName": "Ashok",
+      "action": "act-btn",
+      "paymentMode": "Cash",
+      "shift": "Day",
+      "recharge_id": "recharge_05"
+    },
+    {
+      "isSelected": false,
+      "customerId": "c6",
+      "customerName": "Ashok",
+      "action": "act-btn",
+      "paymentMode": "Cash",
+      "shift": "Day",
+      "recharge_id": "recharge_06"
+    },
+    {
+      "isSelected": false,
+      "customerId": "c7",
+      "customerName": "Ashok",
+      "action": "act-btn",
+      "paymentMode": "Cash",
+      "shift": "Day",
+      "recharge_id": "recharge_07"
+    },
+    {
+      "isSelected": false,
+      "customerId": "c8",
+      "customerName": "Ashok",
+      "action": "act-btn",
+      "paymentMode": "Cash",
+      "shift": "Day",
+      "recharge_id": "recharge_08"
+    },
+    {
+      "isSelected": false,
+      "customerId": "c9",
+      "customerName": "Ashok",
+      "action": "act-btn",
+      "paymentMode": "Cash",
+      "shift": "Day",
+      "recharge_id": "recharge_09"
+    },
+    {
+      "isSelected": false,
+      "customerId": "c10",
+      "customerName": "Ashok",
+      "action": "act-btn",
+      "paymentMode": "Cash",
+      "shift": "Day",
+      "recharge_id": "recharge_10"
+    },
+    {
+      "isSelected": false,
+      "customerId": "c11",
+      "customerName": "Ashok",
+      "action": "act-btn",
+      "paymentMode": "Cash",
+      "shift": "Day",
+      "recharge_id": "recharge_11"
+    },
+    {
+      "isSelected": false,
+      "customerId": "c12",
+      "customerName": "Ashok",
+      "action": "act-btn",
+      "paymentMode": "Cash",
+      "shift": "Day",
+      "recharge_id": "recharge_12"
+    },
+    {
+      "isSelected": false,
+      "customerId": "c13",
+      "customerName": "Ashok",
+      "action": "act-btn",
+      "paymentMode": "Cash",
+      "shift": "Day",
+      "recharge_id": "recharge_13"
+    },
+    {
+      "isSelected": false,
+      "customerId": "c14",
+      "customerName": "Ashok",
+      "action": "act-btn",
+      "paymentMode": "Cash",
+      "shift": "Day",
+      "recharge_id": "recharge_14"
+    },
+    {
+      "isSelected": false,
+      "customerId": "c15",
+      "customerName": "Ashok",
+      "action": "act-btn",
+      "paymentMode": "Cash",
+      "shift": "Day",
+      "recharge_id": "recharge_15"
+    },
+    {
+      "isSelected": false,
+      "customerId": "c16",
+      "customerName": "Ashok",
+      "action": "act-btn",
+      "paymentMode": "Cash",
+      "shift": "Day",
+      "recharge_id": "recharge_16"
+    },
+    {
+      "isSelected": false,
+      "customerId": "c17",
+      "customerName": "Ashok",
+      "action": "act-btn",
+      "paymentMode": "Cash",
+      "shift": "Day",
+      "recharge_id": "recharge_17"
+    },
+    {
+      "isSelected": false,
+      "customerId": "c18",
+      "customerName": "Ashok",
+      "action": "act-btn",
+      "paymentMode": "Cash",
+      "shift": "Day",
+      "recharge_id": "recharge_18"
+    },
+    {
+      "isSelected": false,
+      "customerId": "c19",
+      "customerName": "Ashok",
+      "action": "act-btn",
+      "paymentMode": "Cash",
+      "shift": "Day",
+      "recharge_id": "recharge_19"
+    },
+    {
+      "isSelected": false,
+      "customerId": "c20",
+      "customerName": "Ashok",
+      "action": "act-btn",
+      "paymentMode": "Cash",
+      "shift": "Day",
+      "recharge_id": "recharge_20"
+    }
+  ],
+  "header_content": [
+    {
+      "key": "customerId",
+      "value": "Customer ID"
+    },
+    {
+      "key": "customerName",
+      "value": "Customer Name"
+    },
+    {
+      "key": "paymentMode",
+      "value": "Payment Mode"
+    },
+    {
+      "key": "shift",
+      "value": "Shift"
+    },
+    {
+      "key": "recharge_id",
+      "value": "Recharge Id"
+    },
+    {
+      "key": "action",
+      "value": "Actions"
+    }
+  ],
+  "filters": [
+    {
+      "title": "Customers",
+      "filterType": "customerId",
+      "type": "multiSelect",
+      "list": [
+        {
+          "id": "c1",
+          "value": "customer-1"
+        },
+        {
+          "id": "c2",
+          "value": "customer-2"
+        },
+        {
+          "id": "c3",
+          "value": "customer-3"
+        }
+      ]
+    },
+    {
+      "title": "Payment Mode",
+      "filterType": "paymentMode",
+      "type": "singleSelect",
+      "list": [
+        {
+          "id": "creditCard",
+          "value": "Credit Card"
+        },
+        {
+          "id": "gPay",
+          "value": "Google Pay"
+        },
+        {
+          "id": "phone-pe",
+          "value": "Phonepe"
+        }
+      ]
+    },
+    {
+      "title": "Date",
+      "filterType": "dateRange",
+      "type": "dateRange"
+    },
+    {
+      "title": "Date",
+      "filterType": "date",
+      "type": "date"
+    },
+    {
+      "title": "Equipments",
+      "filterType": "equipments",
+      "type": "multiSelect",
+      "list": [
+        {
+          "id": "axe",
+          "value": "Axe"
+        },
+        {
+          "id": "hammer",
+          "value": "Hammer"
+        },
+        {
+          "id": "screw",
+          "value": "Screw"
+        }
+      ]
+    }
+  ],
+  "isCheckBox":true,
+  "status": "success"
+}

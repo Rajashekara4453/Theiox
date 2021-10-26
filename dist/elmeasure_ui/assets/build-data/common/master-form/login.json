@@ -1,0 +1,28 @@
+{
+    "org-login": {
+        "subject": "test",
+        "cc": " suresh@elmeasure.com",
+        "bcc": "suresh@elmeasure.com",
+        "eMail": "suresh@elmeasure.com",
+        "message":"elmeasure will contact you shortly",
+        "applications": [
+            {
+                "label": "ELNet 5",
+                "value": 1
+            },
+            {
+                "label": "ELNet 6",
+                "value": 2
+            },
+            {
+                "label": "ELNet 7",
+                "value": 3
+            }
+        ]
+    },
+    "sa-login": {
+        "subject": "test",
+        "cc": " suresh@elmeasure.com",
+        "bcc": "suresh@elmeasure.com"
+    }
+}

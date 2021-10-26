@@ -1,0 +1,122 @@
+<ng-container *ngIf="!isWorkGroupFromUserList">
+    <div class="main-content">
+        <div class="sub-sidebar">
+            <ng-container *ngIf="onLoaded">
+                <kl-menubar *ngIf="sideMenus" [menus]="sideMenus" [displayProperty]="'workGroupName'"
+                    [valueProperty]="''" (clickStatus)="editWorkGroup($event)"
+                    (addnew)="resetWorkGroupForm(workGroupForm)"></kl-menubar>
+            </ng-container>
+        </div>
+        <div class="sub-main-content-sb">
+
+            <div class="form-container">
+                <form name="form"
+                    (ngSubmit)="(workGroupForm.form.valid && addOrEditWorkGroup) ? addWorkGroup(workGroup.work_group_id) : ''"
+                    #workGroupForm="ngForm" class="">
+
+                    <div class="form-header">
+                        <h5 class="form-title">{{title}}</h5>
+                    </div>
+
+                    <div class="form-content col-6 d-inline-block">
+                        <!-- py-2 -->
+                        <div class="form-group">
+                            <input hidden type="text" name="work_group_id" class="form-control"
+                                [(ngModel)]="workGroup.work_group_id" #work_group_id="ngModel" />
+                        </div>
+                        <div class="form-group">
+                            <label for="workGroupName">Name <span class="color-red">*</span></label>
+                            <input placeholder="Name" type="text" name="workGroupName" class="form-control" required
+                                [(ngModel)]="workGroup.workGroupName" #workGroupName="ngModel" autocomplete="off" />
+                        </div>
+                        <div class="form-group">
+                            <label for="workGroupDescription">Description</label>
+                            <textarea placeholder="Description" name="workGroupDescription" class="form-control "
+                                [(ngModel)]="workGroup.workGroupDescription" #workGroupDescription="ngModel"
+                                autocomplete="off"></textarea>
+                        </div>
+                        <div class="form-group pull-right">
+
+                            <!-- <ng-container *ngIf='showDeleteBtn'>                                        
+                                        <input type="button" name="deleteButton" class="btn btn-primary float-right"
+                                            value="Delete" (click)="Delete" data-toggle="modal" data-target="#workGroupDeleteModal"
+                                            id="deleteModalButton" [class.disabled]='disableDelete'/>
+                                    </ng-container> -->
+                            <!-- Modal for Delete Confirmation -->
+                            <!-- <ng-container>
+                                        <div class="modal fade" id="workGroupDeleteModal" tabindex="-1" role="dialog"
+                                            aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure you want to delete the WorkGroup <b>{{workGroup.workGroupName}}</b>?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" id="dismissDelete"
+                                                            data-dismiss="modal">No</button>
+                                                        <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                                            (click)="allowDeleteWorkGroup ? deleteWorkGroup(workGroup.work_group_id) : ''">Yes</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container> -->
+                            <!-- Modal for Delete Confirmation ends -->
+                        </div>
+
+                    </div>
+                    <div class="form-footer">
+                        <input type="submit" class="btn btn-primary btn-sm"
+                            [class.disabled]="(!workGroupForm.form.valid) || disableSave" value="Save" />
+                        <input type="submit" class="btn btn-secondary btn-sm" value="Cancel"
+                            (click)="resetWorkGroupForm(workGroupForm)" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+
+<ng-container *ngIf="isWorkGroupFromUserList">
+
+    <form name="form"
+        (ngSubmit)="(workGroupForm.form.valid && addOrEditWorkGroup) ? addWorkGroup(workGroup.work_group_id) : ''"
+        #workGroupForm="ngForm" class="">
+
+
+        <div class="form-content">
+            <!-- py-2 -->
+            <div class="form-group">
+                <input hidden type="text" name="work_group_id" class="form-control"
+                    [(ngModel)]="workGroup.work_group_id" #work_group_id="ngModel" />
+            </div>
+            <div class="form-group">
+                <label for="workGroupName">Work Group Name *</label>
+                <input placeholder="Enter Work Group Name" type="text" name="workGroupName" class="form-control"
+                    required [(ngModel)]="workGroup.workGroupName" #workGroupName="ngModel" autocomplete="off" />
+            </div>
+            <div class="form-group">
+                <label for="workGroupDescription">Description</label>
+                <textarea placeholder="Work Group Description" name="workGroupDescription" class="form-control "
+                    [(ngModel)]="workGroup.workGroupDescription" #workGroupDescription="ngModel"
+                    autocomplete="off"></textarea>
+            </div>
+        </div>
+        <div class="form-footer position-relative">
+            <input type="submit" class="btn btn-primary btn-sm mr-1"
+                [class.disabled]="(!workGroupForm.form.valid) || disableSave" value="Save" />
+            <input type="submit" class="btn btn-secondary btn-sm mr-1" value="Clear"
+                (click)="resetWorkGroupForm(workGroupForm)" />
+        </div>
+
+    </form>
+
+</ng-container>

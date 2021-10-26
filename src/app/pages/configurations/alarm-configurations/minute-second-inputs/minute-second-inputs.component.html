@@ -1,0 +1,36 @@
+<!-- 
+  <div class="col-12">
+    <div class="col-6 d-inline-block">
+      <label for="minute">Minutes</label>
+    
+    <div class="col-5 d-inline-block">
+        <input autocomplete="off" type="number" name="minute" min="0" class="w-100 border-0 text-center rounded" 
+        onKeyPress="if(this.value.length==4) return false;" [(ngModel)]="minuteValue" (change)="onChangeOfMinuteSecond()"/>
+      </div>
+    </div>
+    <div class="col-6 d-inline-block">
+      <label for="minute">Seconds</label>
+    
+    <div class="col-5 d-inline-block">
+        <input autocomplete="off" type="number" name="second" max="59" min="0" class="w-100 border-0 text-center rounded"
+        onKeyPress="if(this.value.length==2) return false;" [(ngModel)]="secondValue" (change)="onChangeOfMinuteSecond()"/>
+      </div>
+    </div>
+  </div> -->
+  <div class="input-group mb-3 overflow-hidden">
+      <div class="input-group-prepend bg-light">
+        <span class="input-group-text px-1">Select/Modify Time</span>
+      </div>
+      <input autocomplete="off" type="number" name="minute" min="0" class="form-control text-center" 
+      onKeyPress="if(this.value.length==4) return false;" [(ngModel)]="minuteValue" (change)="onChangeOfMinuteSecond()"/>
+    <div class="input-group-append bg-light">
+        <span class="input-group-text pl-1">Minute</span>
+      </div>
+      <input autocomplete="off" type="number" name="second" max="59" min="0" class="form-control text-center"
+      onKeyPress="if(this.value.length==2) return false;" [(ngModel)]="secondValue" (change)="onChangeOfMinuteSecond()"/>
+    <div class="input-group-append bg-light">
+        <span class="input-group-text pl-1">Seconds</span>
+      </div>
+
+    </div>
+    

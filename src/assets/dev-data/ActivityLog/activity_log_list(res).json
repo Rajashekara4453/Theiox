@@ -1,0 +1,88 @@
+{
+  "status": "success",
+  "page": {
+    "from": 0,
+    "length": 100,
+    "total_recors": 1000
+  },
+
+  "body_content": [
+    {
+      "log_id": "activity_1",
+
+      "date": "08-02-2021 11:30Am",
+      "users": "user3",
+      "action": "edit",
+      "status": "failed",
+      "entity": "MithuTest"
+    },
+    {
+      "log_id": "activity_32",
+
+      "date": "08-02-2021 10:30Am",
+      "users": "user9",
+      "action": "create",
+      "status": "failed",
+      "entity": "Mithu-test-2"
+    },
+    {
+      "log_id": "activity_11",
+
+      "date": "08-02-2021 9:30Am",
+      "users": "user233",
+      "action": "edit",
+      "status": "success",
+      "entity": "MithuTest2"
+    },
+    {
+      "log_id": "activity_12",
+
+      "date": "08-02-2021 9:30Am",
+      "users": "user230",
+      "action": "edit",
+      "status": "success",
+      "entity": "MithuTest2"
+    },
+    {
+      "log_id": "activity_13",
+
+      "date": "08-02-2021 9:30Am",
+      "users": "user231",
+      "action": "edit",
+      "status": "success",
+      "entity": "MithuTest2"
+    },
+    {
+      "log_id": "activity_10",
+
+      "date": "08-02-2021 9:30Am",
+      "users": "user232",
+      "action": "edit",
+      "status": "success",
+      "entity": "MithuTest2"
+    }
+  ],
+  "header_content": [
+
+    {
+      "label": "Date",
+      "key": "date"
+    },
+    {
+      "label": "Users",
+      "key": "users"
+    },
+    {
+      "label": "Action",
+      "key": "action"
+    },
+    {
+      "label": "Status",
+      "key": "status"
+    },
+    {
+      "label": "Entity",
+      "key": "entity"
+    }
+  ]
+}

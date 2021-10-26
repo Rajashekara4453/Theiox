@@ -1,0 +1,95 @@
+<div class="main-content">
+  <div class="sub-sidebar">
+    <ng-container *ngIf="onLoaded">
+      <kl-menubar [valueProperty]="''" [displayProperty]="'name'" [secondDisplyProperty]="'id'" *ngIf="sideMenus"
+        (addnew)="addNew()" [menus]="sideMenus" (clickStatus)="onLeftSideBarItemClick($event)"></kl-menubar>
+    </ng-container>
+  </div>
+  <div class="sub-main-content-sb">
+    <div class="form-container">
+      <div class="form-header">
+        <h5 class="form-title">{{title}}</h5>
+      </div>
+      <div class="form-content">
+        <form #commonForm="ngForm" class="">
+          <div class="form-group">
+            <div class="col-6 p-0">
+              <div class="form-item" *ngIf="formLoad">
+                <label for="Name">{{labelName}} <span class="color-red">&nbsp;*</span></label>
+                <input autocomplete="off" placeholder={{placeHolderName}} type="text" name="Name" class="form-control "
+                  required [(ngModel)]="selectedValues.name" #name="ngModel"
+                  [ngClass]="{ 'error' : name.invalid && name.touched }" />
+              </div>
+              <div class="form-item" *ngIf="!(URL=='unit-master') && formLoad">
+                <label for="description">{{descriptionName}}</label>
+                <textarea placeholder={{descriptionPlaceHolder}} name="description" class="form-control "
+                  [(ngModel)]="selectedValues.description"></textarea>
+              </div>
+              <div class="form-item" *ngIf="(URL=='unit-master') && formLoad">
+                <label for="notation">{{descriptionName}} <span class="color-red">&nbsp;*</span></label>
+                <input placeholder={{descriptionPlaceHolder}} autocomplete="off" required type="text" name="notation"
+                  class="form-control " [(ngModel)]="selectedValues.notation" #notation="ngModel"
+                  [ngClass]="{ 'error' : notation.invalid && notation.touched }" />
+              </div>
+              <div class="form-item" *ngIf="valuePlaceholder">
+                <label for="Value">{{valueName}} <span class="color-red">&nbsp;*</span></label>
+                <input *ngIf="!selectionFiled" autocomplete="off" placeholder={{valuePlaceholder}} type="number"
+                  name="Value" class="form-control " required [(ngModel)]="selectedValues.value" #value="ngModel"
+                  [ngClass]="{ 'error' : value.invalid && value.touched }" />
+                <ng-select *ngIf="selectionFiled" bindValue="value" name="unit" [items]="unitList"
+                  placeholder="{{valuePlaceholder}}" [(ngModel)]="selectedValues.unit" [clearable]="true"
+                  [required]="true" class="form-control" #unit="ngModel"
+                  [ngClass]="{ 'error' : unit.invalid && unit.touched }">
+                </ng-select>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div *ngIf="!loadMasterForm">
+          <div id="loader-wrapper-submaincontent">
+            <div class="lds-ring">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-footer">
+        <!-- <button type="button" class="btn btn-primary" [disabled]="!commonForm.form.valid" (click)="save()">{{buttonName}}
+                <div class="loader-custom float-right btn-loader" style="font-size: 10px;" *ngIf="isLoading"></div>
+              </button> -->
+        <input type="submit" class="btn btn-primary btn-sm" [value]="isUpdate == false ? 'Save' : 'Update'"
+          [disabled]="!commonForm.form.valid || disableBtn" (click)="accessLevel.create ? save() : ''" />
+        <input type="submit" class="btn btn-secondary btn-sm" value="Cancel" (click)="onCancel()" />
+        <input type="submit" class="btn btn-secondary btn-sm" value="Delete" data-toggle="modal"
+          data-target="#deleteModal" id="deleteModalButton" (click)="getCmpNameToDelete()"
+          [ngClass]="{'d-inline-block' : isUpdate, 'd-none' : !isUpdate}" />
+      </div>
+    </div>
+    <ng-container>
+      <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Are you sure want to delete <b>{{deleteCmpName}}</b> ?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btn-sm" id="dismissDelete" data-dismiss="modal">No</button>
+              <!-- (click)="delete()" -->
+              <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal"
+                (click)="accessLevel.delete ? delete() : '' ">Yes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>

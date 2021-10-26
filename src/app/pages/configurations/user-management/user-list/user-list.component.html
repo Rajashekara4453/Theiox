@@ -1,0 +1,308 @@
+<div class="main-content">
+   <div class="sub-main-content">
+      <ng-container *ngIf="!showAddUserInfo">
+         <div class="table-container">
+            <div class="header-container d-flex align-items-center pr-3 justify-content-between">
+               <div class="header-left">
+                  <div class="search-group search-group-sm" tabindex="1">
+                     <i class="fa fa-search search-icon"></i>
+                     <input class="search-input" type="search" placeholder="Search" [(ngModel)]="queryString"
+                        [ngModelOptions]="{standalone: true}">
+
+                  </div>
+               </div>
+               <div class="header-right">
+                  <button type="button" class="btn btn-primary btn-sm float-right" (click)="showAddUserPage('')">
+                     <strong>+</strong> Create
+                  </button>
+               </div>
+            </div>
+            <div class="table-content">
+               <table class="table">
+                  <thead>
+                     <tr>
+                        <!-- temprorily commented since data are static -->
+                        <!-- <th>STATUS</th> -->
+                        <th>#</th>
+                        <th>Full Name</th>
+                        <!-- <th>USERNAME</th> -->
+                        <th>E-Mail</th>
+                        <th>Phone</th>
+                        <th>Work Group</th>
+                        <th>User Role</th>
+                        <!-- <th>LAST ACTIVITY</th> -->
+                        <!-- <th>LAST LOGIN</th> -->
+                        <th>Actions</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr
+                        *ngFor="let user of userData | elmfilter : queryString : ['fullName', 'userName'] : true : 2; trackBy: trackByFn; let i = index">
+                        <ng-container *ngIf='user.theme.userImage != "";else defaultImage '>
+                           <td>
+                              <img src="{{'data:image/png;base64,' + user.theme.userImage}}" alt="" width="100%"
+                                 class='imgCorners'>
+                           </td>
+                        </ng-container>
+                        <ng-template #defaultImage>
+                           <td>
+                              <span class="defaultuserprofile"><strong>{{user['shortUserName'] |
+                                    uppercase}}</strong></span>
+                           </td>
+                        </ng-template>
+                        <!--  width="80" height="80" -->
+                        <td>{{user.fullName}}</td>
+                        <!-- <td>{{user.userName}}</td> -->
+                        <td>{{user.eMail}}</td>
+                        <td>{{user.phone}}</td>
+                        <td>
+                           <span *ngFor="let workGroup of user.workGroup">
+                              {{workGroup?.workGroupName}}
+                           </span>
+                        </td>
+                        <td class="text-nowrap">
+                           <span *ngFor="let userRole of user.userRole">
+                              {{userRole?.userRole}}
+                              <span *ngIf="user.isSuperUser"><i class="fa fa-star"></i> Super User</span>
+                           </span>
+                        </td>
+                        <!-- <td>{{user.lastActivity}}</td> -->
+                        <!-- <td>{{user.lastLogin}}</td> -->
+                        <td class="text-nowrap">
+                           <button class="btn btn-sm btn-primary mr-1"
+                              (click)="editUserDataInTable(user.user_id)">Edit</button>
+                           <!--  *ngIf="!user.isAdmin" -->
+                           <ng-container>
+                              <button *ngIf='!disableDelete' class="btn btn-sm btn-secondary mr-1" data-toggle="modal"
+                                 data-target="#userDeleteModal" id="deleteModalButton"
+                                 (click)="sendUserIdToDelete(user.user_id, user.fullName, user.isAdmin)">
+                                 Delete
+                              </button>
+                           </ng-container>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </ng-container>
+      <!-- Modal for Delete Confirmation -->
+      <ng-container *ngIf='!disableDelete'>
+         <div class="modal fade" id="userDeleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+               <div class="modal-content" *ngIf="!isAdmin">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     Are you sure you want to delete the User <b>{{fullName}}</b>?
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" id="dismissDelete" data-dismiss="modal">No</button>
+                     <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        (click)="allowDeleteUser ? deleteUserData('delete') : ''">Yes</button>
+                  </div>
+               </div>
+               <div class="modal-content" *ngIf="isAdmin">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="exampleModalLabel">Alert</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     <b>You cannot delete an admin account.</b>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </ng-container>
+      <!-- Modal for Delete Confirmation ends -->
+      <ng-container *ngIf="showAddUserForm">
+         <div id="accordion" class="h-100">
+            <form (ngSubmit)="(allowAddOrEditUser ? addUserToList(addUserForm.value, addUserForm) : '')"
+               autocomplete="off" [formGroup]="addUserForm" class="h-100">
+               <div class="row body-container overflow-auto m-0 position-relative">
+                  <div class="col-12 col-xl-5 col-lg-6 col-md-8 col-sm-12 mx-auto">
+                     <div class="image-container">
+                        <div class="imageContent">
+                           <!-- <img [src]="userImage" class="User Image" /> -->
+                           <img *ngIf="!isDefaultImage" [src]="userImage" alt="" width="100%" class="User Image">
+                           <span *ngIf="isDefaultImage" class="defaultuserprofile">{{shortUserName | uppercase}}</span>
+                        </div>
+                        <!-- <div class="buttonContent" title="Upload Square image Ex:300*300">
+                             <input type="file" class=""
+                                formControlName="Imagefile" id="file-input" ngModel
+                                (change)="getFiles($event)">
+                             <a>Upload <span class="fa fa-camera"></span></a>
+                          </div> -->
+                     </div>
+                  </div>
+                  <div class="col-12 col-xl-7 col-lg-6 col-md-12 col-sm-12">
+                     <div class="userContainer">
+                        <h6 class="contentSubTitle">
+                           User Basic Info
+                        </h6>
+                        <input hidden class="form-control" [(ngModel)]="user_id" type="text" formControlName="user_id"
+                           autocomplete="off" />
+                        <div class="row">
+                           <div class="form-group col-xl-6 col-lg-10 col-md-6 col-sm-8">
+                              <label for="fullName">Full Name <span class="color-red">*</span> </label>
+                              <input required class="form-control" [(ngModel)]="fullName" type="text"
+                                 placeholder="Enter Your Full Name" name="fullName" formControlName="fullName"
+                                 autocomplete="off" (input)="onTypingSetDefaultImage($event.target.value)" />
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="form-group col-xl-6 col-lg-10 col-md-6 col-sm-8">
+                              <label for="eMail">E-mail <span class="color-red">*</span> </label>
+                              <input required class="form-control" [(ngModel)]="eMail" type="email"
+                                 placeholder="Enter E-Mail Id" name="eMail" formControlName="eMail" autocomplete="off"
+                                 klEmailValidator />
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="form-group col-xl-6 col-lg-10 col-md-6 col-sm-8">
+                              <label for="phone">Phone <span class="color-red">*</span>:</label>
+                              <input required class="form-control" [(ngModel)]="phone" type="number"
+                                 placeholder="Enter Phone No." name="phone" formControlName="phone" autocomplete="off"
+                                 klNumbersOnly />
+                           </div>
+                        </div>
+                        <h6 class="contentSubTitle">
+                           User Previlage
+                        </h6>
+                        <div class="row">
+                           <div class="form-group col-xl-6 col-lg-10 col-md-6 col-sm-8">
+                              <input class="" [checked]="isSuperUser" style="vertical-align: middle" type="checkbox"
+                                 value="isSuperUser" (change)="updateIsSuperUser($event)" name="superUser"
+                                 formControlName="isSuperUser" autocomplete="off" />
+                              <span>Super User</span>
+                           </div>
+                        </div>
+                        <ng-container *ngIf="isShowUserRoleDD">
+                           <div class="row">
+                              <div class="form-group col-xl-6 col-lg-10 col-md-6 col-sm-8">
+                                 <label class="">User Access Level <span class="color-red">*</span></label>
+                                 <div class="d-flex align-items-center">
+                                    <angular2-multiselect [data]="userRolesDropDown" [(ngModel)]="selectedUserRole"
+                                       (onDeSelectAll)="onDeSelectAllUserRole()" [settings]="userRoleDropdownSettings"
+                                       name="userRole" formControlName="userRole" style="width: 80%">
+                                    </angular2-multiselect>
+                                    <!-- <button type="button" class="btn float-left btn-primary ml-2 btn-sm text-nowrap"
+                                       data-toggle="modal" data-target="#addNewUserRoleModal"
+                                       (click)="showuserRoleModal()"><strong> + </strong>Add</button> -->
+                                 </div>
+                              </div>
+                           </div>
+                        </ng-container>
+                        <div class="row">
+                           <div class="form-group col-xl-6 col-lg-10 col-md-6 col-sm-8">
+                              <label class=''>User Work Group</label>
+                              <div class="d-flex align-items-center">
+                                 <angular2-multiselect [data]="workGroupsDropDown" [(ngModel)]="selectedWorkGroups"
+                                    [settings]="workGroupDropdownSettings" name="workGroup"
+                                    (onDeSelectAll)="onDeSelectAllWorkGroups()" formControlName="workGroup"
+                                    style="width:80%"></angular2-multiselect>
+                                 <!-- <button type="button" class="btn float-left btn-primary ml-2 btn-sm text-nowrap"
+                                    data-toggle="modal" data-target="#addNewWorkGroupModal"
+                                    (click)="showWorkGroupModal()"><strong> + </strong>Add</button> -->
+                              </div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="form-group col-xl-6 col-lg-10 col-md-6 col-sm-8 mb-1">
+                              <label class="title">Assign Site to User <span class="color-red">*</span></label>
+                              <input class="form-control" id="filter" #filter
+                                 (keyup)="tree.treeModel.filterNodes(filter.value)" placeholder="Search Site" />
+
+                           </div>
+                           <div class="form-group col-12">
+                              <div class="collapse-buttons">
+                                 <a id="collapse-all" (click)="tree.treeModel.expandAll();" href="javascript:void(0)"
+                                    class="ml-2">Expand all</a>
+                                 <a id="show-all" (click)="tree.treeModel.collapseAll();" href="javascript:void(0)"
+                                    class="ml-2">Collapse all</a>
+                              </div>
+                              <tree-root #tree [nodes]="sitesHeirarchy" [options]="options">
+                                 <ng-template #treeNodeTemplate let-node="node" let-index="index">
+                                    <input required (onClick)="check(node, !node.data.checked)" type="checkbox"
+                                       [indeterminate]="node.data.indeterminate" [checked]="node.data.checked">
+                                    <span>{{ node.data.name }}</span><br />
+                                 </ng-template>
+                              </tree-root>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-footer">
+                  <input type="submit" name="addButton" class="btn btn-primary btn-sm mr-1" [value]="addOrUpdate"
+                     [class.disabled]="disableSave" />
+                  <input type="button" name="cancelButton" class="btn btn-sm btn-secondary mr-1" value="Cancel"
+                     (click)="loadUserListTab()" />
+                  <ng-container *ngIf='showDeleteBtn'>
+                     <input type="button" name="deleteButton" class="btn btn-secondary btn-sm mr-1" value="Delete"
+                        data-toggle="modal" data-target="#userDeleteModal" id="deleteModalButton"
+                        [class.disabled]='disableDelete' />
+                  </ng-container>
+                  <ng-container *ngIf="enableSaveAndExit">
+                     <input type="submit" name="saveAndExitButton" class="btn btn-primary btn-sm mr-1"
+                        [value]="saveAndExit" [class.disabled]="disableSave" />
+                  </ng-container>
+               </div>
+            </form>
+
+         </div>
+      </ng-container>
+   </div>
+</div>
+<ng-container *ngIf="showAddNewWorkGroup">
+   <div class="modal fade" id="addNewWorkGroupModal" tabindex="-1" role="dialog"
+      aria-labelledby="addNewWorkGroupModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-component" role="document">
+         <div class="modal-content modal-content-component">
+            <div class="modal-header">
+               <h6 class="modal-title text-muted" id="exampleModalLabel">Add
+                  Work Group
+               </h6>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <i class="elm-cancel"></i>
+               </button>
+            </div>
+            <div class="modal-body modal-body-component">
+               <kl-work-group [isWorkGroupFromUserList]='true'
+                  (workGroupAddedFromUserList)='getUserMgmtDropdown(user_id)'>
+               </kl-work-group>
+            </div>
+         </div>
+      </div>
+   </div>
+</ng-container>
+<!-- Modal to Add User Role -->
+<ng-container *ngIf="showAddNewUserRole">
+   <div class="modal fade" id="addNewUserRoleModal" tabindex="-1" role="dialog"
+      aria-labelledby="addNewUserRoleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-component modal-xl p-0" role="document">
+         <div class="modal-content modal-content-component">
+            <div class="modal-header form-header">
+               <h6 class="modal-title text-muted" id="exampleModalLabel">Add User
+                  Role
+               </h6>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <i class="elm-cancel"></i>
+               </button>
+            </div>
+            <div class="modal-body modal-body-component form-content">
+               <kl-access-levels [isUserRoleFromUserList]='true'
+                  (userRoleAddedFromUserList)='getUserMgmtDropdown(user_id)'>
+               </kl-access-levels>
+            </div>
+         </div>
+      </div>
+   </div>
+</ng-container>

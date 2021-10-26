@@ -1,0 +1,142 @@
+<div [ngClass]="{'table-responsive-sm' : styling.responsiveNess}" class="h-100">
+  <!-- <cdk-virtual-scroll-viewport style="height: 100%; width: 100%" itemSize="25"
+    minBufferPx="350" maxBufferPx="400">  -->
+  <cdk-virtual-scroll-viewport itemSize="25" minBufferPx="350" maxBufferPx="400" style="height: calc(100% - 45px)">
+    <table class="table" [ngClass]="styling.tableClass">
+      <thead [ngClass]="styling.theadClass">
+        <tr>
+          <th class="col1" *ngIf="settings.selectRecords">
+            <input id="kl_grid_mainCheckbox" type="checkbox" [checked]="isGridSelectAll"
+              (click)="selectUnnselectAllRecords($event, isGridSelectAll)">
+          </th>
+          <ng-container *ngFor="let column of columns.columnOrder">
+            <th *ngIf="column !== 'industry_id'">
+              {{columns.columnData[column].label}}
+
+
+              <!--  [ngClass] = "{'col2' : columns.columnData[column].label === 'Site',
+          'col3' : columns.columnData[column].label === 'Device'}" -->
+              <ng-container *ngIf="settings.columnLevelSearch && column !== 'industry_id'">
+                <input *ngIf="columns.columnData[column].search" class="col-12" type="text">
+                <input *ngIf="!columns.columnData[column].search" disabled class="col-12" type="text">
+              </ng-container>
+            </th>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- cdkVirtualFor -->
+        <tr *cdkVirtualFor="let row of data; let ind = index;"
+          [ngClass]="{'tr-bg-disable' : (settings.disableRecords || !row.isChecked), 'tr-bg-enable' : (!settings.disableRecords || row.isChecked) }">
+          <td class="freeze" *ngIf="settings.selectRecords">
+            <input type="checkbox" [(ngModel)]="row.isChecked" [checked]="row.isChecked"
+              (click)="selectUnselectRecord(row.isChecked, ind)">
+          </td>
+          <ng-container *ngFor="let column of columns.columnOrder">
+            <td *ngIf="column !== 'industry_id'"
+              [ngClass]="{'disabled' : (settings.disableRecords || !row.isChecked), 'enable' : (!settings.disableRecords || row.isChecked)}"
+              data-toggle="tooltip" [attr.data-placement]="columns.columnData[column].tooltip.placement"
+              title="{{row[columns.columnData[column].tooltip.key]}}">
+              <!--  'freeze' : column === 'industry_id', 'freeze' : column === 'device_instance_id' -->
+              <ng-container *ngIf="!row.isChecked">
+                <ng-container *ngIf="row[columns.columnData[column].value]">{{row[columns.columnData[column].value]}}
+                </ng-container>
+                <ng-container *ngIf="!row[columns.columnData[column].value] && column !== 'batch_group_id'">
+                  {{row[column]}}</ng-container>
+              </ng-container>
+              <ng-container *ngIf="row.isChecked">
+                <ng-container [ngSwitch]="columns.columnData[column].cell.cellType">
+                  <ng-container *ngSwitchCase="'text'">
+                    <ng-container *ngIf="row[columns.columnData[column].value]">
+                      {{row[columns.columnData[column].value]}}
+                    </ng-container>
+                    <ng-container *ngIf="!row[columns.columnData[column].value]">{{row[column]}}</ng-container>
+                    <ng-container *ngIf="column === gridActions['actionColumn'] && gridActions['isShowActions']">
+                      <div>
+                        <div *ngFor="let btn of gridActions['actions']" class="float-left d-inline-block">
+                          <ng-container *ngIf="btn['enable']">
+                            <i (click)="emitAction(ind, btn['key'])" id="ind" class="{{btn['icon']}} m-1"
+                              title="{{btn['btnLabel']}}"></i>
+                          </ng-container>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="'dropdown'">
+                    <!-- <select [(ngModel)]="row[column]" class="col-12" name="{{row[column]}}_{{ind}}"
+                    (change)=dropDownChange($event,column,row)>
+                    <option *ngFor="let dropdownData of columns.columnData[column].cell.cellData"
+                      value="{{dropdownData['value']}}">{{dropdownData['label']}}</option>
+                  </select> -->
+
+                    <ng-container *ngIf="row['batch_name'] !== ''; else selectBlock">
+                      <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#batchModal"
+                        (click)="getDropdownValue(column,row)">
+                        {{row['batch_name']}} </button>
+                    </ng-container>
+
+                    <ng-template #selectBlock>
+                      <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#batchModal"
+                        (click)="getDropdownValue(column,row)">Select</button>
+                    </ng-template>
+
+                  </ng-container>
+
+                  <ng-container *ngSwitchCase="'input'">
+                    <ng-container *ngIf="columns.columnData[column].cell.accept == 'number'; else elseBlock">
+                      <input type="number" [(ngModel)]="row[column]" name="{{row[column]}}_{{ind}}"
+                        class="form-control">
+                    </ng-container>
+                    <ng-template #elseBlock>
+                      <input type="columns.columnData[column].cell.accept" [(ngModel)]="row[column]"
+                        class="form-control" name="{{row[column]}}_{{ind}}">
+                    </ng-template>
+                  </ng-container>
+                  <ng-container *ngSwitchDefault>{{row[column]}}</ng-container>
+                </ng-container>
+              </ng-container>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </cdk-virtual-scroll-viewport>
+  <div class="footer-container border-top">
+    <button type="submit" class="btn btn-sm btn-primary ml-2" (click)="allowSaveOnEdit ? saveGrid() : ''"
+      [class.disabled]='disableSaveOnEdit'>
+      Save
+    </button>
+    <button class="btn btn-sm btn-secondary ml-2" (click)="cancelGrid()">
+      Cancel
+    </button>
+  </div>
+</div>
+
+<div class="modal fade" id="batchModal" tabindex="-1" role="dialog" aria-labelledby="batchModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title col-md-8" id="batchModalCenterTitle">Select Batch</h6>
+        <button aria-label="Close" class="close" data-dismiss="modal" #closeBatchModal type="button"><span
+            aria-hidden="true" class="elm-cancel cancel-elm"></span></button>
+      </div>
+      <div class="modal-body" style="min-height: 300px">
+        <style>
+          .ng-select.customNgSelect {
+            color: #000000 !important;
+          }
+        </style>
+        <ng-select class="customNgSelect" id="batchList" bindValue="value" bindLabel="label" name="batchList"
+          [items]="batchList" placeholder="Select" dropdownPosition="bottom" [(ngModel)]="selectedBatchId"
+          [clearable]="true" [searchable]="true" [required]="true" #ngSelectBatch #batch_group_id="ngModel"
+          [selectOnTab]="true" [openOnEnter]="true" [closeOnSelect]="true" (change)="assignBatch()">
+        </ng-select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" hidden="hidden" class="btn btn-secondary" data-dismiss="modal" #close>Close</button>
+        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

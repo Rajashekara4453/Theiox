@@ -1,0 +1,225 @@
+{
+    "data": {
+        "sites": {
+            "id": 1,
+            "name": "Site Configuration",
+            "url": "configurations/sites",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "userManagement": {
+            "id": 2,
+            "name": "User Management",
+            "url": "configurations/userManagement",
+            "children": {
+                "userList": {
+                    "id": 3,
+                    "name": "User List",
+                    "url": "configurations/userManagement/userList",
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false
+                },
+                "workGroup": {
+                    "id": 4,
+                    "name": "Work Group",
+                    "url": "configurations/userManagement/workGroup",
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false
+                },
+                "accessLevel": {
+                    "id": 5,
+                    "name": "Access Level",
+                    "url": "configurations/userManagement/accessLevel",
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false
+                }
+            }
+        },
+        "gateways": {
+            "id": 7,
+            "name": "Channel Configuration",
+            "url": "configurations/gatewayDevices/gatewaylist",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "devices": {
+            "id": 7.1,
+            "name": "Device Configuration",
+            "url": "configurations/gatewayDevices/gatewaylist",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "ruleEngine": {
+            "id": 10,
+            "name": "Rule Engine",
+            "url": "configurations/rule-engine",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "alarmConfiguration": {
+            "id": 11,
+            "name": "Alarm",
+            "url": "configurations/alarm",
+            "children": {
+                "alarmConfigurations": {
+                    "id": 12,
+                    "name": "Alarm Configurations",
+                    "url": "configurations/alarm/alarms",
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false
+                },
+                "alarmPriorityTypes": {
+                    "id": 13,
+                    "name": "Alarm Priority Types",
+                    "url": "configurations/alarm/alarmPriorityTypes",
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false
+                },
+                "thresholds": {
+                    "id": 14,
+                    "name": "Thresholds",
+                    "url": "configurations/alarm/thresholds",
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false
+                }
+            }
+        },
+        "manualEntry": {
+            "id": 17,
+            "name": "Manual Entry",
+            "url": "configurations/manual-entry",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "tags": {
+            "id": 24.1,
+            "name": "Tag Configuration",
+            "url": "configurations/masterConfig/parameters",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "masterConfiguration": {
+            "id": 24,
+            "name": "Master Configuration",
+            "url": "configurations/masterConfig",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "dashboard": {
+            "id": 51,
+            "name": "Dashboard",
+            "url": "dashboard",
+            "children": {
+                "widgets": {
+                    "id": 52,
+                    "name": "Widgets",
+                    "url": "dashboard",
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false
+                },
+                "dashboard": {
+                    "id": 53,
+                    "name": "Dashboard",
+                    "url": "dashboard",
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false,
+                    "resize": false
+                }
+            }
+        },
+        "reports": {
+            "id": 54,
+            "name": "Reports",
+            "url": "reports",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "trends": {
+            "id": 55,
+            "name": "Trends",
+            "url": "trends",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "scada": {
+            "id": 56,
+            "name": "Scada",
+            "url": "sld",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "alarmEvents": {
+            "id": 57,
+            "name": "Alarms / Events",
+            "url": "alarm-events",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false,
+            "acknowledge": false
+        },
+        "maps": {
+            "id": 58,
+            "name": "Maps",
+            "url": "maps",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "assets": {
+            "id": 59,
+            "name": "Assets",
+            "url": "assets",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        },
+        "licenceType": {
+            "id": 60,
+            "name": "Licence Type",
+            "url": "license-management",
+            "view": false,
+            "create": false,
+            "edit": false,
+            "delete": false
+        }
+    }
+}

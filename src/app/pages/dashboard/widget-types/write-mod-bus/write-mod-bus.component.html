@@ -1,0 +1,27 @@
+<div class="modbus-widget">
+  <div class="data-container h-100">
+    <div class="data-left h-100">
+      <p class="text-truncate name" title="{{labelUnit}}">{{labelUnit}}</p>
+      <div class="image-container">
+        <i class="fa fa-power-off" style="cursor: not-allowed;" [style.backgroundColor]="powerIconColor + '47'"
+          [style.color]="powerIconColor">
+        </i>
+        <span class="text-truncate" [style.color]="powerIconColor"
+          title="{{!isShowLabel?'None':powerIconLabel}}">{{!isShowLabel?'None':powerIconLabel}}</span>
+      </div>
+      <ng-container *ngFor="let setData of vData.chartData.action; let i=index">
+        <p class="refresh-time text-truncate" title="@{{setData.action_time}}">@{{setData.action_time}}</p>
+      </ng-container>
+    </div>
+    <div class="data-right">
+      <div class="switch-container">
+        <ul>
+          <ng-container *ngFor="let setData of vData.chartOptions.write_register; let k=index">
+            <li title="{{setData.label}}" [style.backgroundColor]="setData.color"
+              [style.border]="'1px solid setData.color'" (click)="actionsCompare(setData)">{{setData.label}}</li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

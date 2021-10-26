@@ -1,0 +1,31 @@
+
+<div class="pue-widget">
+    <div class="image-content">
+        <img class="image" src="{{vData.chartOptions.img}}">
+</div>
+<div class="data-content">
+        <ng-container *ngFor="let setData of vData.chartOptions.yaxis">
+                <ng-container *ngIf="setData.set ==1 && setData.isSetShow">
+                    <div class="data">
+                    <h6 title="{{setData.name}}">{{setData.name}} </h6>
+                    <p class="" title="{{data['set1']}} {{setData.customUnit}}">{{data['set1']}} {{setData.customUnit}}</p>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="setData.set ==2 && setData.isSetShow">
+                    <div class="data">
+                    <h6 title="{{setData.name}} ">{{setData.name}} </h6>
+                    <p class="" title="{{data['set2']}} {{setData.customUnit}}">{{data['set2']}} {{setData.customUnit}}</p>
+                </div>
+                </ng-container>
+        
+                <ng-container *ngIf="setData.set ==3 && setData.isSetShow">
+                   <div class="data">
+                    <h6 title="{{setData.label}}">
+                        {{setData.label}} 
+                    </h6>
+                    <p title="{{data['result']}} {{setData.customUnit}}">{{data['result']}} {{setData.customUnit}}</p>
+                </div>
+                </ng-container>
+            </ng-container>
+</div>
+</div>

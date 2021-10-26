@@ -1,0 +1,36 @@
+<div class="main-content">
+  <div class="sub-main-content">
+    <div *ngIf="isPageLoading">
+      <angular2-multiselect [data]="meters" [(ngModel)]="selectedMeters" [settings]="meterDropdownSettings"
+        (onSelect)="onMeterSelect($event)" (onDeSelect)="clearAllSelectedMeters()"
+        (onDeSelectAll)="clearAllSelectedMeters()">
+      </angular2-multiselect>
+    </div>
+    <div class="table-content">
+      <div class="height_setup m-2">
+        <div *ngIf="pageLoaded" class=" centered-content">
+          <table class="table table-bordered" *ngIf="bodyContent_length !== 0">
+            <tr>
+              <th><input type="checkbox" name="all" [checked]="areAllSelected" (change)="toggleAllSelection()"></th>
+              <th *ngFor="let headerContent of table_data.headerContent">{{headerContent.label}}</th>
+            </tr>
+            <tr *ngFor="let bodyContent of table_data.bodyContent; let _index= index">
+              <input type="checkbox" [(ngModel)]="bodyContent.selected" [checked]="bodyContent.selected">
+              <td *ngFor="let headerContent of table_data.headerContent">{{bodyContent[headerContent.key]}}</td>
+            </tr>
+          </table>
+        </div>
+        <div *ngIf="!pageLoaded">
+          <div id="loader-wrapper-submaincontent">
+            <div class="lds-ring">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

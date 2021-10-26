@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,MAAM,CACN;EACC,MAAM,EAAE,IAAI;CACZ",
+    "sources": [
+        "scada.component.scss"
+    ],
+    "names": [],
+    "file": "scada.component.css"
+}

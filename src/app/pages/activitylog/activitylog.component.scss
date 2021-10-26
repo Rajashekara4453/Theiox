@@ -1,0 +1,52 @@
+
+.display
+{
+    height: calc(100% - 120px) !important;
+
+}
+thead tr th {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  background: white;
+  z-index: 9;
+  height: 30px;
+}
+
+
+
+.lds-ring
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.btn-load-more
+{
+  margin:0px auto;
+  text-align: center;
+  .btn
+  {
+    width:600px;
+    max-width: 90%;
+
+  }
+}
+
+.apply-btn{
+padding-top: 32px;
+    display: flex;
+    justify-content: center;
+    margin: 0 25px 0 0;
+}
+
+
+.isempty{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.table{
+  margin-bottom: 0.5rem;
+}

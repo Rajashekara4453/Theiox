@@ -1,0 +1,381 @@
+{
+   
+    "header_id" : "gateway_instance",
+    "data" : {
+        "protocol" : {
+            "dfm_data" : {
+                "headerContent" : [ 
+                    {
+                        "label" : "GatewayId",
+                        "type" : "text",
+                        "key" : "gateway_model_ref_id",
+                        "value" : "",
+                        "placeholder" : "Enter Gateway Model Name",
+                        "required" : false,
+                        "disabled" : false,
+                        "hidden" : false,
+                        "gridWidth" : "4"
+                    }, 
+                    {
+                        "label" : "Gateway Model Name",
+                        "type" : "text",
+                        "key" : "gatewaymodelname",
+                        "value" : "",
+                        "placeholder" : "Enter Gateway Model Name",
+                        "required" : false,
+                        "disabled" : false,
+                        "hidden" : false,
+                        "gridWidth" : "4"
+                    }, 
+                    {
+                        "label" : "Gateway Name",
+                        "type" : "text",
+                        "key" : "gatewayname",
+                        "value" : "",
+                        "placeholder" : "Enter Gateway Name",
+                        "required" : false,
+                        "disabled" : false,
+                        "gridWidth" : "4"
+                    }, 
+                    {
+                        "label" : "Type",
+                        "type" : "select",
+                        "key" : "type",
+                        "value" : "",
+                        "placeholder" : "Select the Type",
+                        "allowClear" : true,
+                        "options" : [],
+                        "required" : false,
+                        "disabled" : false,
+                        "hidden" : true,
+                        "dependent" : false,
+                        "gridWidth" : "4"
+                    }, 
+                    {
+                        "label" : "Protocol",
+                        "type" : "select",
+                        "key" : "protocol",
+                        "value" : "",
+                        "placeholder" : "Set the Protocol",
+                        "allowClear" : true,
+                        "options" : [],
+                        "required" : false,
+                        "disabled" : true,
+                        "hidden" : true,
+                        "dependent" : false,
+                        "gridWidth" : "4"
+                    }, 
+                    {
+                        "label" : "Supported Device Protocols",
+                        "type" : "multiselect",
+                        "key" : "protocolcategory",
+                        "placeholder" : "Select here",
+                        "allowClear" : true,
+                        "value" : "",
+                        "options" : [],
+                        "required" : true,
+                        "disabled" : false,
+                        "hidden" : false,
+                        "dependent" : false,
+                        "gridWidth" : "4",
+                        "settings" : {
+                            "singleSelection" : false,
+                            "text" : "Select Category",
+                            "selectAllText" : "Select All",
+                            "unSelectAllText" : "UnSelect All",
+                            "enableSearchFilter" : true,
+                            "classes" : "myclass custom-class",
+                            "labelKey" : "label",
+                            "primaryKey" : "value",
+                            "fullObject" : false
+                        }
+                    }, 
+                    {
+                        "label" : "Make",
+                        "type" : "text",
+                        "key" : "make",
+                        "value" : "",
+                        "placeholder" : "Name of the Manufacturer",
+                        "required" : false,
+                        "disabled" : false,
+                        "hidden" : true,
+                        "gridWidth" : "4"
+                    }, 
+                    {
+                        "label" : "Model Number ",
+                        "type" : "text",
+                        "key" : "modelnumber",
+                        "value" : "",
+                        "placeholder" : "Enter Gateway Model Number",
+                        "required" : false,
+                        "disabled" : false,
+                        "hidden" : true,
+                        "gridWidth" : "4"
+                    }, 
+                    {
+                        "label" : "Serial Number ",
+                        "type" : "text",
+                        "key" : "serialno",
+                        "value" : "",
+                        "placeholder" : "Enter Serial Number",
+                        "required" : false,
+                        "disabled" : false,
+                        "hidden" : true,
+                        "gridWidth" : "4"
+                    }, 
+                    {
+                        "label" : "Asset Reference ID ",
+                        "type" : "text",
+                        "key" : "referenceid",
+                        "value" : "",
+                        "placeholder" : "Enter Reference ID",
+                        "required" : false,
+                        "disabled" : false,
+                        "hidden" : true,
+                        "gridWidth" : "4"
+                    }, 
+                    {
+                        "disabled" : false,
+                        "required" : false,
+                        "gridWidth" : "4",
+                        "key" : "assign_ref",
+                        "saveTree" : "treeStructure",
+                        "label" : "Assign To",
+                        "innerlabel" : "Select here",
+                        "innerlabelsub" : "",
+                        "type" : "treesingleselect",
+                        "expanded" : false,
+                        "options" : {
+                            "allowDrag" : true,
+                            "allowDrop" : true
+                        },
+                        "nodeData" : []
+                    }, 
+                    {
+                        "label" : "Disable/ Enable",
+                        "type" : "select",
+                        "key" : "isdisabled",
+                        "value" : "",
+                        "placeholder" : "Select Status",
+                        "allowClear" : true,
+                        "options" : [ 
+                            {
+                                "label" : "Disable",
+                                "value" : "true"
+                            }, 
+                            {
+                                "label" : "Enable",
+                                "value" : "false"
+                            }
+                        ],
+                        "required" : false,
+                        "disabled" : true,
+                        "hidden" : true,
+                        "dependent" : false,
+                        "gridWidth" : "4"
+                    }, 
+                    {
+                        "label" : "Delete/Restore",
+                        "type" : "select",
+                        "key" : "isdeleted",
+                        "value" : "",
+                        "placeholder" : "Select Status",
+                        "allowClear" : true,
+                        "options" : [ 
+                            {
+                                "label" : "Delete",
+                                "value" : "true"
+                            }, 
+                            {
+                                "label" : "Restore",
+                                "value" : "false"
+                            }
+                        ],
+                        "required" : false,
+                        "disabled" : true,
+                        "hidden" : true,
+                        "dependent" : false,
+                        "gridWidth" : "4"
+                    }
+                ],
+                "bodyContent" : {},
+                "protocol_list_110" : {
+                    "number" : 4,
+                    "headerContent" : [ 
+                        {
+                            "label" : "COM Port",
+                            "type" : "text",
+                            "key" : "port",
+                            "value" : "",
+                            "placeholder" : "Enter COM Port Name",
+                            "required" : false,
+                            "disabled" : false,
+                            "gridWidth" : "4"
+                        }, 
+                        {
+                            "label" : "Baud Rate",
+                            "type" : "text",
+                            "key" : "baudRate",
+                            "value" : "",
+                            "placeholder" : "Enter Baud Rate",
+                            "required" : false,
+                            "disabled" : false,
+                            "gridWidth" : "4"
+                        }, 
+                        {
+                            "label" : "Parity",
+                            "type" : "select",
+                            "key" : "parity",
+                            "value" : "",
+                            "placeholder" : "Set Parity",
+                            "allowClear" : true,
+                            "options" : [ 
+                                {
+                                    "label" : "Odd",
+                                    "value" : "odd"
+                                }, 
+                                {
+                                    "label" : "Even",
+                                    "value" : "even"
+                                }
+                            ],
+                            "required" : false,
+                            "disabled" : false,
+                            "dependent" : false,
+                            "gridWidth" : "4"
+                        }, 
+                        {
+                            "label" : "Stop Bit",
+                            "type" : "text",
+                            "key" : "stopBit",
+                            "value" : "",
+                            "placeholder" : "Enter Stop Bit",
+                            "required" : false,
+                            "disabled" : false,
+                            "gridWidth" : "4"
+                        }, 
+                        {
+                            "label" : "Data Bit",
+                            "type" : "text",
+                            "key" : "dataBit",
+                            "value" : "",
+                            "placeholder" : "Enter Data Bit",
+                            "required" : false,
+                            "disabled" : false,
+                            "gridWidth" : "4"
+                        }, 
+                        {
+                            "label" : "Timeout",
+                            "type" : "text",
+                            "key" : "timeout",
+                            "value" : "",
+                            "placeholder" : "Enter Timeout",
+                            "required" : false,
+                            "disabled" : false,
+                            "gridWidth" : "4"
+                        }
+                    ],
+                    "bodyContent" : {}
+                },
+                "protocol_list_111" : {
+                    "number" : 4,
+                    "headerContent" : [ 
+                        {
+                            "label" : "Host",
+                            "type" : "text",
+                            "key" : "host",
+                            "value" : "",
+                            "placeholder" : "Enter Host Name",
+                            "required" : false,
+                            "disabled" : false,
+                            "gridWidth" : "4"
+                        }, 
+                        {
+                            "label" : "Port",
+                            "type" : "text",
+                            "key" : "port",
+                            "value" : "",
+                            "placeholder" : "Enter Port",
+                            "required" : false,
+                            "disabled" : false,
+                            "gridWidth" : "4"
+                        }, 
+                        {
+                            "label" : "Timeout",
+                            "type" : "text",
+                            "key" : "timeout",
+                            "value" : "",
+                            "placeholder" : "Enter Timeout",
+                            "required" : false,
+                            "disabled" : false,
+                            "gridWidth" : "4"
+                        }
+                    ],
+                    "bodyContent" : {}
+                },
+                "protocol_list_112" : {
+                    "number" : 4,
+                    "headerContent" : [ 
+                        {
+                            "label" : "Host",
+                            "type" : "text",
+                            "key" : "host",
+                            "value" : "",
+                            "placeholder" : "Enter Host Name",
+                            "required" : false,
+                            "disabled" : false,
+                            "gridWidth" : "4"
+                        }, 
+                        {
+                            "label" : "Port",
+                            "type" : "text",
+                            "key" : "port",
+                            "value" : "",
+                            "placeholder" : "Enter Port",
+                            "required" : false,
+                            "disabled" : false,
+                            "gridWidth" : "4"
+                        }, 
+                        {
+                            "label" : "Timeout",
+                            "type" : "text",
+                            "key" : "timeout",
+                            "value" : "",
+                            "placeholder" : "Enter Timeout",
+                            "required" : false,
+                            "disabled" : false,
+                            "gridWidth" : "4"
+                        }
+                    ],
+                    "bodyContent" : {}
+                },
+                "protocol_list_113" : {
+                    "number" : 4,
+                    "headerContent" : [ 
+                        {
+                            "label" : "Gateway Ref/Mac ID",
+                            "type" : "text",
+                            "key" : "uniqueid",
+                            "value" : "",
+                            "placeholder" : "Enter Gateway Ref/Mac ID",
+                            "required" : false,
+                            "disabled" : false,
+                            "gridWidth" : "4"
+                        }, 
+                        {
+                            "label" : "Timeout",
+                            "type" : "text",
+                            "key" : "timeout",
+                            "value" : "",
+                            "placeholder" : "Enter Timeout",
+                            "required" : false,
+                            "disabled" : false,
+                            "gridWidth" : "4"
+                        }
+                    ],
+                    "bodyContent" : {}
+                }
+            }
+        }
+    }
+}
